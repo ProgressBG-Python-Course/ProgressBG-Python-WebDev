@@ -1,0 +1,20 @@
+{
+	"build_systems":
+	[
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"show_definitions": false,
+		"spell_check": true,
+		"tab_size": 2,
+		"translate_tabs_to_spaces": true,
+		"trim_trailing_white_space_on_save": true
+	},
+	// "virtualenv": "/home/nemsys/projects/courses/ProgressBG/ProgressBG-Python-WebDev/.venv"
+}
