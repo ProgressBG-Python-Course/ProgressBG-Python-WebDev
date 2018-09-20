@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Python for Web Development Course.</title>
+	<title>Full-Stack Web Development with Django and Angular</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="generator" content="Sublime Text3, SASS">
 	<link rel="shortcut icon" href="/ProgressBG-Python-WebDev/favicon.ico">
@@ -15,8 +15,7 @@
 </head>
 <body class="background_gradient_left_right">
 <header class="dark_centered_background_gradient">
-	<h1>Python for Web Development</h1>
-	<h2>ProgressBG</h2>
+	<h1>Full-Stack Web Development with Django and Angular</h1>
 	<h3>Syllabus</h3>
 </header>
 <main>
@@ -24,60 +23,422 @@
 	<section class="syllabus">
 		<!-- <h1>Syllabus</h1> -->
 		<div class="toggleButtons">
-			<!-- <span class="toggleThemes">Toggle Themes</span> -->
+			<span class="toggleThemes">Toggle Themes</span>
 			<span class="toggleSubThemes">Toggle sub-themes</span>
 		</div>
 		<div class="themes">
 			<article><h1>Introduction</h1>
-				<section id="CourseIntro" data-hours="1">
+				<section id="CourseIntro" data-hours="0.5" data-wip>
 					<h3>Course Intro</h3>
 					<ol>
 						<li>About the course and the online resources being used.</li>
 						<li>What you have to know and what you'll learn</li>
-						<li><span>Set up the environment</span>: node, Angular CLI, Code Editor/IDE</li>
+						<li>A walk through</li>
+						<li><span>Prerequisites: setup python, pipenv, git</span></li>
 					</ol>
 				</section>
-			</article>
-			<article>
-				<section id="_cliches" data-hours="4">
-					<h3>Web Development Overview</h3>
+				<section id="web_development_concepts_overview" data-hours="1.5" data-wip>
+					<h3>Web Development Concepts - Overview</h3>
 					<ol>
 						<li>Client-Server Communication. HTTP Basics.</li>
-						<li>Single Page Application</li>
-						<li>Client-Side vs Server-Side Rendering</li>
-						<li>The MVC Design pattern</li>
+						<li>Client-Side vs Server-Side Rendering (or SPA vs. MPA)</li>
+						<li>Web Services, RESTfull APIs.</li>
 					</ol>
 				</section>
-				<section id="client_side_programming_overview" data-hours="4">
-					<h3>Client-Side Programming Overview</h3>
+				<section id="client_side_programming_nutshell" data-hours="6" data-wip>
+					<h3>Client-Side (Front-End) Programming in a Nutshell</h3>
 					<ol>
-						<li>HTML in an nutshell</li>
-						<li>CSS: selectors, basic prperties.</li>
-						<li>JavaScript and DOM Overview</li>
-						<li>Popular Font-End Frameworks - how and what they do</li>
+						<li>Structuring content with HTML5</li>
+						<li>CSS: selectors, basic properties.</li>
+						<li>JavaScript and DOM Overview.</li>
+						<li>AJAX with XMLHttpRequest (and with jQuery)</li>
 					</ol>
 				</section>
-				<section id="server_side_programming_overview" data-hours="3">
-					<h3>Server-Side Programming Overview</h3>
+				<section id="server_side_programming_overview" data-hours="2" data-wip>
+					<h3>Server-Side (Back-End) Programming Overview</h3>
 					<ol>
-						<li>Routes</li>
-						<li>Controller</li>
-						<li>View</li>
-						<li>Cliche</li>
+						<li>Overview. CGI and modern equivalents.</li>
+						<li>Introduction to Website Security</li>
+						<li>Build a simple Web App without a Framework</li>
+						<li>Popular Server-Side Frameworks</li>
+					</ol>
+				</section>
+				<section id="the_MVC_design_pattern" data-hours="2" data-wip>
+					<h3>The MVC Design pattern</h3>
+					<ol>
+						<li>Classic Model-View-Controller Pattern and its variations</li>
+						<li>MV* in the Front-End and it's future.</li>
+						<li>MV* in the Back-End</li>
 					</ol>
 				</section>
 			</article>
 
-			<article>
-				<section id="courseFinalTest" data-hours="1">
-					<h3>Course final test</h3>
+			<article><h1>The Django Framework - Fundamentals</h1>
+				<section id="django_introduction_and_architecture_overview" data-hours="2" data-wip>
+					<h3>Django - introduction and architecture overview</h3>
 					<ol>
-						<li>Develop Angular App - ProductListApp, with UI components (Bootstrap or Material) with 2 navigation components: <span>Products List</span> and <span>Product Details</span>
-					</li>
+						<li>What is Django and what problem it solves? A brief history.</li>
+						<li>Applications made with Django.</li>
+						<li>Django versions.</li>
+						<li>The MVC Pattern in Django - MTV (Model Template View)</li>
+						<li>Project and Apps.</li>
+						<li>Django - database tools overview</li>
+						<li>Frame the "Demo App" in Django terms</li>
+					</ol>
+				</section>
+				<section id="create_first_django_project" data-hours="4" data-wip>
+					<h3>Create a skeleton Django Project</h3>
+					<ol>
+						<li>Setup the environment</li>
+						<li>Create the database (MySQL/PostgreSQL/Oracle)</li>
+						<li>Create a Django project.</li>
+						<li>The file structure of a Django project</li>
+						<li>Configure the project</li>
+						<li>Start the project under Django Web server.</li>
+						<li>Define the URL Mappings.</li>
+						<li>Creating the Views and Templates</li>
+						<li>Define the Models.</li>
+						<li>Do the Migrations</li>
+						<li>Play with Django Admin - create users.</li>
+						<li>Exercise: create the skeleton of our "Demo App"</li>
+					</ol>
+				</section>
+				<section id="django_template_system" data-hours="4" data-wip>
+					<h3>The Django Template System</h3>
+					<ol>
+						<li>How Django Template System works?</li>
+						<li>Template Language Syntax</li>
+						<li>Templates Configuration</li>
+						<li>Context processors</li>
+						<li>Extend and reuse templates</li>
+						<li>Built-In Tags</li>
+						<li>Filters</li>
+						<li>Using Django with Jinja templates</li>
+					</ol>
+				</section>
+				<section id="django_views_and_routing" data-hours="4" data-wip>
+					<h3>Django Views and Routing</h3>
+					<ol>
+						<li>Views and URL configuration</li>
+						<li>URL patterns</li>
+						<li>URL parameters and query strings</li>
+						<li>URL names and namespaces</li>
+						<li>Class-based Views.</li>
+						<li>Reusable Views.</li>
+					</ol>
+				</section>
+				<section id="django_middleware_framework" data-hours="2" data-wip>
+					<h3>Django’s middleware framework</h3>
+					<ol>
+						<!-- <li></li> -->
+					</ol>
+				</section>
+				<section id="django_forms" data-hours="4" data-wip>
+					<h3>Django Forms</h3>
+					<ol>
+						<li>Form classes</li>
+						<li>Validation</li>
+						<li>Authentication</li>
+						<li>Advanced Forms processing techniques</li>
+					</ol>
+				</section>
+				<section id="django_and_static_resources" data-hours="2" data-wip>
+					<h3>Django and static resources (images, JavaScript, CSS, etc.)</h3>
+					<ol>
+						<li>Access Static Resources in Django Templates</li>
+					</ol>
+				</section>
+				<section id="django_cache_framework" data-hours="2" data-wip>
+					<h3>Django’s Cache Framework</h3>
+					<ol>
+						<li>Overview of cache strategies</li>
+						<li>python-memcached binding</li>
+						<li>Database Caching</li>
+						<li>Filesystem and Local-Memory Caching</li>
+						<li>Per-Site and Per-View Caching</li>
+					</ol>
+				</section>
+				<!-- <section id="unit_testing_with_django" data-hours="2" data-wip>
+					<h3>Unit Testing with Django</h3>
+					<ol>
+						<li></li>
+					</ol>
+				</section> -->
+			</article>
+
+			<article><h1>Django ORM</h1>
+				<section id="Configure and connect to the Database" data-hours="1" data-wip>
+					<h3>Configure and connect to the Database</h3>
+					<ol>
+						<!-- <li></li> -->
+					</ol>
+				</section>
+				<section id="django_orm_overview" data-hours="3" data-wip>
+					<h3>Django ORM Overview</h3>
+					<ol>
+						<li>Django Models Overview</li>
+						<li>The Migrations Workflow</li>
+						<li>Model Data Types</li>
+						<li>Model Metadata</li>
+						<li>The Model Methods</li>
+						<li>Models Relationships</li>
+						<li>Model Transactions</li>
+						<li>Initial Data Setup (fixtures)</li>
+					</ol>
+				</section>
+				<section id="django_orm_crud_operations" data-hours="4" data-wip>
+					<h3>Django ORM CRUD operations</h3>
+					<ol>
+						<li>CRUD on single records</li>
+						<li>CRUD on multiple records</li>
+						<li>One to One CRUD Operations</li>
+						<li>One to Many CRUD Operations</li>
+						<li>Many to Many CRUD Operations</li>
+					</ol>
+				</section>
+				<section id="django_orm_model_queries" data-hours="4" data-wip>
+					<h3>Django ORM Model Queries</h3>
+					<ol>
+						<li>Field lookup with Django ORM</li>
+						<li>Merge and aggregate queries </li>
+						<li>Expression and Function Queries</li>
+						<li>Model Queries with Raw SQL</li>
+					</ol>
+				</section>
+				<section id="django_model_forms_and_class_views" data-hours="2" data-wip>
+					<h3>Django Model Forms and Class Views</h3>
+					<ol>
+						<li>Overview and workflow</li>
+						<li>Create Django Model Forms</li>
+						<li>Model Forms and Field Mapping</li>
+						<li>Model Forms with relationships</li>
+						<li>Model Forms initialization and validation</li>
+						<li>Class-Based Views with Models</li>
+					</ol>
+				</section>
+				<section id="Notes on using Django ORM with Oracle" data-hours="2" data-wip>
+					<h3>Notes on using Django ORM with MySQL/Oracle</h3>
+					<ol>
+						<li>Connecting to and configuring the Database</li>
+						<li>Common issues</li>
 					</ol>
 				</section>
 			</article>
-			<article>
+
+			<article><h1>Users, Authentication and Admin Management</h1>
+				<section id="Django_user_system" data-hours="2" data-wip>
+					<h3>Django User System</h3>
+					<ol>
+						<li>Overview</li>
+						<li>Create and manage Users</li>
+						<li>Create and manage Groups</li>
+						<li>User Permissions</li>
+						<li>Model Permissions</li>
+						<li>Enforce Django permissions in views, urls, templates, models</li>
+					</ol>
+				</section>
+				<section id="Django_Admin" data-hours="2" data-wip>
+					<h3>Dive into Django Admin </h3>
+					<ol>
+						<li>Register and setup models</li>
+						<li>Django admin CRUD Options</li>
+						<li>Custom Page Layout, Data, and Behaviors</li>
+						<li>CRUD Permissions</li>
+					</ol>
+				</section>
+				<section id="Django_user_authentication" data-hours="2" data-wip>
+					<h3>User Authentication</h3>
+					<ol>
+						<li>Django pluggable backend system</li>
+						<li>Logging In and Out Users</li>
+						<li>Limiting Access to resources</li>
+						<li>Using Authentication Data in Templates</li>
+					</ol>
+				</section>
+				<section id="Django_session_framework" data-hours="4" data-wip>
+					<h3>Django Session Framework</h3>
+					<ol>
+						<li>Setup the Session Middleware</li>
+						<li>Using Sessions in Views</li>
+						<li>Setup Cookies</li>
+						<li>Saving Sessions</li>
+					</ol>
+				</section>
+				<section id="" data-hours="2" data-wip>
+					<h3>Django Social Authentication</h3>
+					<ol>
+						<li>Authenticating users with OAuth/OpenID</li>
+					</ol>
+				</section>
+			</article>
+
+			<article><h1>Web Services, Web Sockets and Django</h1>
+				<section id="Django_REST_Framework" data-hours="4" data-wip>
+					<h3>Django REST Framework</h3>
+					<ol>
+						<li>Overview of REST Services with Django</li>
+						<li>Introduction to Django REST Framework (DRF)</li>
+						<li>Serializers and Views</li>
+						<li>DRF Class-Based Views</li>
+						<li>Mixins and Generic Class-Based Views in DRF</li>
+						<li>View Sets and Routers</li>
+						<li>Security notes about DRF</li>
+					</ol>
+				</section>
+				<section id="Django_and_GraphQL" data-hours="2" data-wip>
+					<h3>Django and GraphQL</h3>
+					<ol>
+						<li>GraphQL vs REST Services</li>
+						<li>Graphene - a GraphQL framework for Python</li>
+					</ol>
+				</section>
+				<section id="Django_and_web_sockets" data-hours="2" data-wip>
+					<h3>Django and Web Sockets</h3>
+					<ol>
+						<li>WebSockets Overview</li>
+						<li>WebSockets vs. REST APIs</li>
+						<li>WebSockets with Django Channels</li>
+					</ol>
+				</section>
+			</article>
+
+			<article><h1>Deployment and testing of Django Applications</h1>
+				<section id="Deploy a Django App to production server" data-hours="2" data-wip>
+					<h3>Deploy a Django App to production server</h3>
+					<ol>
+						<li>Setting up the (nginx/Apache) server (for demo/test purposes)</li>
+					</ol>
+				</section>
+				<section id="Automated testing for Django" data-hours="2" data-wip>
+					<h3>Automated testing for Django</h3>
+					<ol>
+						<li>Create and Run Django’s unit tests</li>
+						<li>Testing tools</li>
+					</ol>
+				</section>
+			</article>
+
+			<!-- <article><h1>Angular Crash Course - Longer versions</h1>
+				<section id="getting_started_with_Angular" data-hours="4" data-wip>
+					<h3>Getting started with Angular</h3>
+					<ol>
+						<li>Angular Platform overview and versions.</li>
+						<li>Angular Architecture overview</li>
+						<li>Working with Angular CLI - create the "Hello World" Project</li>
+						<li>Understand the Angular Project Structure</li>
+						<li>Angular Workflow overview</li>
+						<li>Hands on: frame the "Demo Project" in Angular Terms</li>
+					</ol>
+				</section>
+				<section id="ES6_and_TypeScript_fundamentals" data-hours="4" data-wip>
+					<h3>ES6+ and TypeScript Fundamentals</h3>
+					<ol>
+						<li>EcmaScript6(and beyound) - new features</li>
+						<li>Classes, interfaces, and class inheritance</li>
+						<li>Decorators</li>
+						<li>TypeScript Overview</li>
+						<li>Types in TypeScript</li>
+					</ol>
+				</section>
+				<section id="Angular Components Basics" data-hours="2" data-wip>
+					<h3>Angular Components Basics</h3>
+					<ol>
+						<li>The app component tree</li>
+						<li>Components selectors and templates</li>
+					</ol>
+				</section>
+				<section id="Angular Directives" data-hours="1" data-wip>
+					<h3>Angular Directives</h3>
+					<ol>
+						<li>Built-In Directives</li>
+					</ol>
+				</section>
+				<section id="Angular Data and Events Bindings" data-hours="3" data-wip>
+					<h3>Angular Data and Events Bindings</h3>
+					<ol>
+						<li>Data Interpolation</li>
+						<li>Property binding</li>
+						<li>Events Binding</li>
+					</ol>
+				</section>
+				<section id="Angular Services and Dependency Injection" data-hours="2" data-wip>
+					<h3>Angular Services and Dependency Injection</h3>
+					<ol>
+						<li>How dependency injection works in Angular</li>
+						<li>Creating a Service</li>
+						<li>Share Services between Components</li>
+					</ol>
+				</section>
+				<section id="Angular Routers" data-hours="2" data-wip>
+					<h3>Angular Routers</h3>
+					<ol>
+						<li>Configuring Routes</li>
+						<li>Passing and fetching Router parameters</li>
+						<li>Extract Data from Router</li>
+						<li>Route Configuration</li>
+						<li>Redirecting and Wildcard Routes</li>
+					</ol>
+				</section>
+			</article> -->
+			<article><h1>Building Full-Stack Applications with Django and Angular</h1>
+				<section id="Angular Crash Course" data-hours="8" data-wip>
+					<h3>Angular Crash Course</h3>
+					<ol>
+						<li>Getting started with Angular</li>
+						<li>ES6 and Type Script concepts used in Angular</li>
+						<li>Angular Components Basics</li>
+						<li>Angular Directives</li>
+						<li>Angular Data and Events Bindings</li>
+						<li>Angular Services and Dependency Injection</li>
+						<li>Angular Routers</li>
+					</ol>
+				</section>
+				<section id="build_a_full_stack_REST_API_app_with_Django_and_Angular" data-hours="4" data-wip>
+					<h3>Build a Full-Stack REST API App with Django and Angular</h3>
+					<ol>
+						<li>Build the Django API Endpoints with DRF.</li>
+						<li>Consuming the REST API Using Angular 6 HttpClient</li>
+						<li>Deploy to production server</li>
+					</ol>
+				</section>
+				<section id="build_a_real_time_web_application_with_WebSockets_Django_and_Angular" data-hours="4" data-wip>
+					<h3>Build a Real time Web application with WebSockets, Django and Angular</h3>
+					<ol>
+						<li>Setup the WebSockets in server (Django Channels)</li>
+						<li>Setup the client-side with Angular WebSockets</li>
+						<li>Deploy to production server</li>
+					</ol>
+				</section>
+				<section id="Data Visualisation with Angular and D3" data-hours="4" data-wip>
+					<h3>Data Visualization with Angular and D3</h3>
+					<ol>
+						<li>D3.js overview</li>
+						<li>Using D3.js with Angular</li>
+					</ol>
+				</section>
+			</article>
+
+			<!-- <article><h1>Django Design Patterns and Best Practices</h1>
+				<section id="" data-hours="4" data-wip>
+					<h3>Create a modern Web App with ReactJS/Amgular and Django</h3>
+					<ol>
+						<li></li>
+					</ol>
+				</section>
+			</article> -->
+
+
+			<!-- <article><h1></h1>
+				<section id="" data-hours="0" data-wip>
+					<h3></h3>
+					<ol>
+						<li></li>
+					</ol>
+				</section>
+			</article> -->
+
+
+			<!-- <article><h1>Appendix</h1>
 				<section id="Appendix" data-hours="0" data-wip>
 				  <h3>Appendix</h3>
 				  <ol>
@@ -85,7 +446,7 @@
 				    <li></li>
 				  </ol>
 				</section>
-			</article>
+			</article> -->
 		</div>
 		<div class="stats">
 			<div id="total_hours"></div>
@@ -97,7 +458,7 @@
 		<p><span><a href="//www.linkedin.com/in/ivapopova">Iva E. Popova.</a></span>, 2018.
 		<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></p>
 		</div>
-		<div class="right">Created for <a href="http://progressbg.net">ProgressBG - BKA Angular5 Course</a></div>
+		<div class="right">Created for <a href="http://progressbg.net">ProgressBG</a></div>
 </footer>
 <script type="text/javascript" src="/ProgressBG-Python-WebDev/outfit/js/CustomDOM.js"></script>
 <script type="text/javascript" src="/ProgressBG-Python-WebDev/outfit/js/agenda.js"></script>

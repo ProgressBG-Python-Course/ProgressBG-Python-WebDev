@@ -1,1 +1,1 @@
-Python for Web Development course.
+Full-Stack Web Development with Django and Angular

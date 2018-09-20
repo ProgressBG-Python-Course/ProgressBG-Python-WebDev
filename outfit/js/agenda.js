@@ -4,8 +4,11 @@
 var articles = document.querySelectorAll(".themes>article")
 var themes = document.querySelectorAll('.themes>article>section');
 var subThemes = document.querySelectorAll('.themes>article>section>ol');
+var toggleButtonsDiv = document.querySelector('.toggleButtons');
+let toggleButtonsTopOffset = toggleButtonsDiv.offsetTop;
 
-var hours_per_day = 6;
+var hours_per_day = 4;
+themes.shown = true;
 subThemes.shown = false;
 
 
@@ -18,29 +21,61 @@ function init(){
     setThemeHours();
     calcTotalHours();
     calcTotalDays();
-    hideAllNodes(subThemes);
-    // calcSectionHours();
+    // hideAllNodes(themes);
+    // hideAllNodes(subThemes);
+
+    if (document.documentElement.clientWidth > 700) {
+        calcSectionHours();
+    }
 }
 function attachEvents(){
     // onclick to themes/sub-themes titles:
-    var titleNodes = document.querySelectorAll('.themes>article>h2, .themes>article h3');
+    var titleNodes = document.querySelectorAll('.themes>article>h1, .themes>article h3');
     // console.log("titleNodes:", titleNodes);
     for (let i = 0; i < titleNodes.length; i++) {
-        let element = titleNodes[i];
-        element.addEventListener( "click", function(){
+        let titleNode = titleNodes[i];
+
+        // do not add click on empty lists and remove the arrow class on that title:
+        if(titleNode.nextElementSibling.tagName === "OL" && titleNode.nextElementSibling.children.length === 0){
+            titleNode.className = "";
+            continue;
+        }
+
+        // but add to all others
+        titleNode.addEventListener( "click", function(){
             showHideNodes(getNextSiblings(this));
         });
     };
 
     // onclick to toggleThemes
+    var toggleThemes = document.querySelectorAll('.toggleThemes');
+    for (let i = 0; i < toggleThemes.length; i++) {
+        let element = toggleThemes[i];
+        element.addEventListener( "click", function(){
+            showHideAll( element, themes );
+        });
+    };
+
+    // onclick to toggleSubThemes
     var togglesubThemes = document.querySelectorAll('.toggleSubThemes');
-    // console.log("togglesubThemes:", togglesubThemes);
     for (let i = 0; i < togglesubThemes.length; i++) {
         let element = togglesubThemes[i];
         element.addEventListener( "click", function(){
             showHideAll( element, subThemes );
         });
     };
+
+    // on scroll => toggleButtons displayed as header:
+    window.addEventListener('scroll', function(e){
+        // console.dir(toggleButtonsDiv);
+        let topScroll = document.documentElement.scrollTop;
+
+        if(topScroll > toggleButtonsTopOffset - 32){
+            toggleButtonsDiv.classList.add('header')
+        }else{
+            toggleButtonsDiv.classList.remove('header')
+        }
+    });
 }
 
 function setThemeURL(){
@@ -51,7 +86,7 @@ function setThemeURL(){
     for (let i = 0, len = themes.length; i < len ; i++){
         // do not set link for elements in WIP mode:
         if( themes[i].hasAttribute("data-wip") ){
-            continue
+            continue;
         }
 
         let h3Node = themes[i].querySelector("h3");
@@ -134,10 +169,6 @@ function calcTotalDays(){
         // calculate current days and show it as tooltip
         var current_days;
 
-        // note: last 2 days are 4 hours each:
-        if(i >= len-2){
-            // hours_per_day = 4
-        }
 
         current_days = current_hours / hours_per_day;
         current_days = Math.round(current_days * 10)/10
@@ -177,6 +208,10 @@ function showAllNodes ( effected_nodes){
 }
 function hideAllNodes ( effected_nodes){
     for (var i = 0; i < effected_nodes.length; i++) {
+        // skip for empty lists:
+        if(effected_nodes[i].tagName === "OL" && effected_nodes[i].children.length === 0){
+            continue;
+        }
         hideNode(effected_nodes[i]);
     };
 }
