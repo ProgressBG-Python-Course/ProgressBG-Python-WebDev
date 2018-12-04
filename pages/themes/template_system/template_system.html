@@ -110,7 +110,7 @@
         ├── models.py
         ├── templates
         │   └── ToDoApp
-        │       └── index.html
+        │    └── index.html
         ├── tests.py
         ├── urls.py
         └── views.py
@@ -418,17 +418,70 @@
         <dt>More on tags:</dt>
         <dd><a href="https://docs.djangoproject.com/en/2.1/ref/templates/language/#tags">tags @djangoproject.com</a></dd>
         <dd><a href="https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#ref-templates-builtins-tags">builtins-tags @djangoproject.com</a></dd>
+        https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#built-in-tag-reference
     </dl>
   </section>
-  <section><h3>Template inheritance - extend and reuse templates</h3>
+</section>
+
+<section data-min="30"><h1>Filters</h1></section>
+<section><h2>Filters</h2>
+	<section>
+		<dl class="fa">
+			<dt><a href="https://docs.djangoproject.com/en/2.1/topics/templates/#filters">filters @djangoproject.com</a></dt>
+			<dt><a href="https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#built-in-filter-reference">built-in-filter-reference</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="30"><h1>Template inheritance</h1></section>
+<section><h2>Template inheritance</h2>
+  <section><h3>Overview</h3>
     <dl class="fa">
         <dt>Template inheritance allows you to build a base “skeleton” template that contains all the common elements of your site and defines blocks that child templates can override.</dt>
         <dt><a href="https://docs.djangoproject.com/en/2.1/ref/templates/language/#template-inheritance">template-inheritance @djangoproject.com</a></dt>
     </dl>
   </section>
+  <section><h3>The base template</h3>
+  	<pre><code rel="demos/templates/demos/base.html" class="html">
+  		&lt;!DOCTYPE html&gt;
+  		&lt;html&gt;
+  		&lt;head&gt;
+  			&lt;title&gt;&lt;/title&gt;
+  		&lt;/head&gt;
+  		&lt;body&gt;
+  			&lt;h1&gt;{{title}}&lt;/h1&gt;
+  			{% block content %}
+  			{% endblock %}
+  		&lt;/body&gt;
+  		&lt;/html&gt;
+  	</code></pre>
+  	<dl class="fa">
+  		<dt>We just define the block which will be replaced with the block "content" defined in a child-template, that extends this base template.</dt>
+  	</dl>
+  </section>
+  <section><h3>The child template</h3>
+  	<pre><code rel="demos/templates/demos/list.html" class="html">
+  		{% extends 'demos/base.html' %}
 
+  		{% block content %}
+  		    {% if latest_tasks %}
+  		        &lt;ul&gt;
+  		        {% for task in latest_tasks %}
+  		            &lt;li&gt;&lt;a href=&quot;/demos/task{{ task.id }}/&quot;&gt;{{ task.title }}&lt;/a&gt;&lt;/li&gt;
+  		        {% endfor %}
+  		        &lt;/ul&gt;
+  		    {% else %}
+  		        &lt;p&gt;No task left&lt;/p&gt;
+  		    {% endif %}
+  		{% endblock content %}
+  	</code></pre>
+  	<dl class="fa">
+  		<dt><span class="note"><code>{% extends %}</code> tag must be the first template tag in the child template.</span></dt>
+  		<dt>A good practice is to give explicit name to endblock tags.</dt>
+  	</dl>
+  </section>
 </section>
-
+<!--
 <section id="hw"><h1>Exercises</h1></section>
 <section><h2>Task1</h2>
     <section><h3>The Task</h3>
@@ -442,7 +495,7 @@
         <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
         <dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: template_system">progressbg.python.course@gmail.com</a></dt>
     </dl>
-</section>
+</section> -->
 
 
 
