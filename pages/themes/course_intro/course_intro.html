@@ -7,14 +7,14 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 	<!-- css & themes include -->
-	<link rel="stylesheet" href="/ProgressBG-Python-WebDev/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/ProgressBG-Python-WebDev/outfit/css/themes/projector.css" id="theme">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
 	<!-- Printing and PDF exports -->
 	<script>
 		var link = document.createElement( 'link' );
 		link.rel = 'stylesheet';
 		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-Python-WebDev/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-Python-WebDev/lib/reveal.js/css/print/paper.css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
 		document.getElementsByTagName( 'head' )[0].appendChild( link );
 	</script>
 	<!--[if lt IE 9]>
@@ -26,7 +26,7 @@
 <body>
 	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
 		<div class="top_links">
-			<a class="home_link" href="/ProgressBG-Python-WebDev/pages/agenda/agenda.html#course_intro" target="_top"><i class="fa fa-home"></i></a>
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#course_intro" target="_top"><i class="fa fa-home"></i></a>
 			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
 			<div class="help_text">
 				<div><span>N/Space</span><span>previous slide</span></div>
@@ -36,9 +36,9 @@
 			</div>
 		</div>
 		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-Python-WebDev/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-Python-WebDev/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-Python-WebDev/outfit/css/themes/projector.css'); return false;">Projector</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
 		</div>
 		<div class="slides">
 <!--
@@ -56,7 +56,7 @@
 		</div>
 		<div class="company">
 			<a href="http://progressbg.net">
-			<img style="height:80%" src="/ProgressBG-Python-WebDev/outfit/images/logos/ProgressBG_logo_529_127.png">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
 			</a>
 		</div>
 		<div class="author">
@@ -116,7 +116,7 @@
    <section><h3>Verify the installations and install Django</h3>
 		<pre><code rel="Terminal" class="bash" data-noescape>
 			# navigate to your course working folder
-			cd your/course/working/folder
+			cd ProgressBG-VC-Django-Slides-Labs/
 
 			# Create a new project using Python 3.7, specifically:
 			pipenv --python 3.7
@@ -166,6 +166,12 @@
 		# optional: upload your project to github
 	</code></pre>
 </section>
+<section><h3>Upload to github</h3>
+	<pre><code rel="Terminal" class="bash" data-noescape>
+		# navigate to the project folder
+		cd ProgressBG-VC-Django-Slides-Labs
+	</code></pre>
+</section>
 <!-- <section><h3>Submission</h3>
 	<dl class="fa">
 		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
@@ -176,7 +182,7 @@
 
 
 
-<section class="disclaimer" data-background="/ProgressBG-Python-WebDev/outfit/images/for_slides/the_end_on_sand.jpg">
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
 	 <p>These slides are based on</p>
 	 <p>customised version of </p>
 	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
@@ -190,10 +196,10 @@
 		</div>
 	</div>
 	<!-- Custom processing -->
-	<script src="/ProgressBG-Python-WebDev/outfit/js/slides.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
 	<!-- external scripts -->
-	<script src="/ProgressBG-Python-WebDev/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/ProgressBG-Python-WebDev/lib/reveal.js/js/reveal.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
 	 <!-- init reveal -->
 	<script>
 		// Full list of configuration options available at:
@@ -221,12 +227,12 @@
 			// transition: Reveal.getQueryHash().transition || 'default'
 			// Optional reveal.js plugins
 			dependencies: [
-				{ src: '/ProgressBG-Python-WebDev/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/ProgressBG-Python-WebDev/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/ProgressBG-Python-WebDev/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/ProgressBG-Python-WebDev/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/ProgressBG-Python-WebDev/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/ProgressBG-Python-WebDev/lib/reveal.js/plugin/notes/notes.js', async: true }
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
 			]
 		});
 	</script>

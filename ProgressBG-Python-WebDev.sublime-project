@@ -1,11 +1,20 @@
 {
 	"build_systems":
 	[
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "\"python\" -u \"$file\""
+		}
 	],
 	"folders":
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "../ProgressBG-VC-Django-Labs/"
 		}
 	],
 	"settings":
@@ -15,6 +24,5 @@
 		"tab_size": 2,
 		"translate_tabs_to_spaces": true,
 		"trim_trailing_white_space_on_save": true
-	},
-	// "virtualenv": "/home/nemsys/projects/courses/ProgressBG/ProgressBG-Python-WebDev/.venv"
+	}
 }
