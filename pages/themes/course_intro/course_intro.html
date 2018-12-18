@@ -108,7 +108,7 @@
   		<dt>If you want the pipenv for your project to reside in the project folder itself (in .venv/), instead of the default $HOME location, set the environment variable <code>PIPENV_VENV_IN_PROJECT=1</code></dt>
   	</dl>
   </section>
-  <section><h3>git (optional)</h3>
+  <section><h3>git</h3>
   	<dl class="fa">
   		<dt><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Installing Git</a></dt>
   	</dl>
@@ -153,24 +153,49 @@
 <section><h2>Creating a bare-bone Django project</h2>
 	<pre><code rel="Terminal" class="bash" data-noescape>
 		# navigate to your course working folder
+		cd ProgressBG-VC-Django-Labs/
 
-		# create a the "mysite" django project
+		# create the "mysite" django project
 		django-admin startproject mysite
 
 		# start the built-in dev server:
 		cd mysite/
 		python manage.py runserver
 
-		# test it - open <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
-
-		# optional: upload your project to github
+		# test it - open >><a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a><<
 	</code></pre>
 </section>
-<section><h3>Upload to github</h3>
-	<pre><code rel="Terminal" class="bash" data-noescape>
+<section><h2>Upload to github</h2>
+	<dl class="fa">
+		<dt><a href="https://help.github.com/articles/creating-a-new-repository/">Create a new repository on GitHub</a></dt>
+		<dt>Initialize the local directory as a Git repository</dt>
+		<pre style="margin-left: 0em; width: 100%;"><code rel="Terminal" class="bash" data-noescape>
 		# navigate to the project folder
-		cd ProgressBG-VC-Django-Slides-Labs
+		cd ProgressBG-VC-Django-Slides-Labs/
+
+		# Initialize the local directory as a Git repository.
+		git init
+
+		# ignore files you don't want to track
+		# you can search for ready "django .gitignore" files to use
+		vi .gitignore
+
+		# Add the files in your new local repository
+		git add .
+
+		# Commit the files and set commit message
+		git commit -am'Initial'
+
+		# add the <a href="https://help.github.com/articles/which-remote-url-should-i-use/">>>remote repository URL<<</a> where your local repository will be pushed.
+		git remote add origin remote/repository/URL
+
+		# Push the changes in your local repository to GitHub.
+		git push -u origin master
+
 	</code></pre>
+	</dl>
+	<p style="font-size: .8em">Reference: <a href="https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/">Adding an existing project to GitHub using the command line</a></p>
+
 </section>
 <!-- <section><h3>Submission</h3>
 	<dl class="fa">
