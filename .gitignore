@@ -2,8 +2,14 @@
 .python-version
 
 *.ipynb_checkpoints
+
+# virtenvs
 venv/
+.venv/
 ENV/
+.env
+Pipfile.lock
+
 
 
 # ignore all dot files and triple underscored:

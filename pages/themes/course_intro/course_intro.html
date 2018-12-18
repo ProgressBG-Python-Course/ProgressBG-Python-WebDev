@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>___title___</title>
+	<title>course_intro</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -26,7 +26,7 @@
 <body>
 	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
 		<div class="top_links">
-			<a class="home_link" href="/ProgressBG-Python-WebDev/pages/agenda/agenda.html#___title___" target="_top"><i class="fa fa-home"></i></a>
+			<a class="home_link" href="/ProgressBG-Python-WebDev/pages/agenda/agenda.html#course_intro" target="_top"><i class="fa fa-home"></i></a>
 			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
 			<div class="help_text">
 				<div><span>N/Space</span><span>previous slide</span></div>
@@ -46,7 +46,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section><h1>___PresentationTitile___</h1></section>
+<section><h1>Course Intro</h1></section>
 <section data-transition="zoom">
 	<!-- linkedin badge -->
 	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
@@ -55,7 +55,7 @@
 			<p>Created for</p>
 		</div>
 		<div class="company">
-			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<a href="http://progressbg.net">
 			<img style="height:80%" src="/ProgressBG-Python-WebDev/outfit/images/logos/ProgressBG_logo_529_127.png">
 			</a>
 		</div>
@@ -72,26 +72,107 @@
 </section>
 
 
-<section><h1>___MainSectionTitle___</h1></section>
-<section><h2>___MainSectionTitle___</h2>
-	<section><h3>___MainSectionSubTitle___</h3></section>
-</section>
-
-
-<section id="hw"><h1>Exercises</h1></section>
-<section><h2>Task1</h2>
-	<section><h3>The Task</h3>
-
+<section><h1>About the course</h1></section>
+<section><h2>About the course</h2>
+	<section><h3>Course Mail Account</h3>
+		<a href="mailto:progressbg.python.course@gmail.com" style="font-size: 1.5em">progressbg.python.course@gmail.com</a>
+	</section>
+	<section><h3>Course calendar</h3>
+		<p><a href="https://calendar.google.com/calendar/embed?src=tkesnvbrhmo9opimrumqac3qmk%40group.calendar.google.com&ctz=Europe%2FSofia&wkst=2">The Web interface</a> / <a href="https://calendar.google.com/calendar/ical/tkesnvbrhmo9opimrumqac3qmk%40group.calendar.google.com/public/basic.ics" download="ProgressBG-VC-Python-WebDev.ics">iCal format</a></p>
+		<iframe src="https://calendar.google.com/calendar/embed?src=tkesnvbrhmo9opimrumqac3qmk%40group.calendar.google.com&ctz=Europe%2FSofia&wkst=2" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 	</section>
 </section>
 
-<section><h3>Submission</h3>
+
+<!-- <section data-min="5"><h1>What you have to know and what you'll learn</h1></section>
+<section><h2>What you have to know and what you'll learn</h2>
+  <section>
+
+  </section>
+</section> -->
+
+<section data-min="20"><h1>Prerequisites: setup python, pipenv, git, django</h1></section>
+<section><h2>Prerequisites: setup python, pipenv, git</h2>
+  <section><h3>python 3</h3>
+  	<dl class="fa">
+  		<dt>We will work with <a href="https://www.python.org/downloads/">python 3</a>.</dt>
+  		<dt>Any version <span class="note">from 3.4 and above</span> will be perfect for Django:</dt>
+  		<dd><a href="https://docs.djangoproject.com/en/2.1/faq/install/#what-python-version-can-i-use-with-django">What Python version can I use with Django?</a></dd>
+  		<dt>If you do not want to change your global python interpreter, you can use <a href="https://github.com/pyenv/pyenv">pyenv</a>+<a href="https://pipenv.readthedocs.io/en/latest/">pipenv</a></dt>
+  		<dd>Note that pyenv is not supported on Windows.</dd>
+  	</dl>
+  </section>
+  <section><h3>pipenv</h3>
+  	<dl class="fa">
+  		<dt><a href="https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv">Installing Pipenv</a></dt>
+  		<dt>If you want the pipenv for your project to reside in the project folder itself (in .venv/), instead of the default $HOME location, set the environment variable <code>PIPENV_VENV_IN_PROJECT=1</code></dt>
+  	</dl>
+  </section>
+  <section><h3>git (optional)</h3>
+  	<dl class="fa">
+  		<dt><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Installing Git</a></dt>
+  	</dl>
+  </section>
+   <section><h3>Verify the installations and install Django</h3>
+		<pre><code rel="Terminal" class="bash" data-noescape>
+			# navigate to your course working folder
+			cd your/course/working/folder
+
+			# Create a new project using Python 3.7, specifically:
+			pipenv --python 3.7
+
+			# Activate the virt. environment:
+			pipenv shell
+
+			# check python version
+			python -V
+
+			# install Django
+			pipenv install Django
+
+			# check Django version
+			# both commands should return same version
+			python -m django --version
+			django-admin --version
+		</code></pre>
+	</section>
+  <section><h3>More on installing Django</h3>
+  	<dl class="fa">
+  		<dt><a href="https://docs.djangoproject.com/en/2.1/topics/install/">How to install Django?</a></dt>
+  	</dl>
+  </section>
+  <section><h3><a href="https://www.djangoproject.com/download/supported-versions">Django Supported Versions</a></h3>
+  	<a href="images/Django_Supported_Versions_Diagram.png"><img src="images/Django_Supported_Versions_Diagram.png"></a>
+  </section>
+  <section><h3>Django versions roadmap</h3>
+  	<a href="images/Django_Versions_Roudmap.png"><img src="images/Django_Versions_Roudmap.png"></a>
+  </section>
+</section>
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Creating a bare-bone Django project</h2>
+	<pre><code rel="Terminal" class="bash" data-noescape>
+		# navigate to your course working folder
+
+		# create a the "mysite" django project
+		django-admin startproject mysite
+
+		# start the built-in dev server:
+		cd mysite/
+		python manage.py runserver
+
+		# test it - open <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
+
+		# optional: upload your project to github
+	</code></pre>
+</section>
+<!-- <section><h3>Submission</h3>
 	<dl class="fa">
 		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
 		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: ___title___">progressbg.python.course@gmail.com</a></dt>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: course_intro">progressbg.python.course@gmail.com</a></dt>
 	</dl>
-</section>
+</section> -->
 
 
 
