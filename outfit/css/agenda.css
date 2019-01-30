@@ -130,6 +130,9 @@ body{
   transition: visibility 5s;
 }*/
 
+.themes>article>section[data-wip], .themes>article>section[data-wip] h3 {
+  color: #999;
+}
 
 .themes>article h3{
 	display: inline-block;

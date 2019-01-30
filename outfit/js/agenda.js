@@ -1,11 +1,11 @@
-"use strict";
+// "use strict";
 
 // DOM cache
-var articles = document.querySelectorAll(".themes>article")
+var articles = document.querySelectorAll(".themes>article");
 var themes = document.querySelectorAll('.themes>article>section');
 var subThemes = document.querySelectorAll('.themes>article>section>ol');
 var toggleButtonsDiv = document.querySelector('.toggleButtons');
-let toggleButtonsTopOffset = toggleButtonsDiv.offsetTop;
+var toggleButtonsTopOffset = toggleButtonsDiv.offsetTop;
 
 var hours_per_day = 4;
 themes.shown = true;
@@ -14,7 +14,8 @@ subThemes.shown = false;
 
 window.onload = function(){
     init();
-}
+};
+
 function init(){
     attachEvents();
     setThemeURL();
@@ -22,7 +23,7 @@ function init(){
     calcTotalHours();
     calcTotalDays();
     // hideAllNodes(themes);
-    // hideAllNodes(subThemes);
+    hideAllNodes(subThemes);
 
     if (document.documentElement.clientWidth > 700) {
         calcSectionHours();
@@ -31,7 +32,7 @@ function init(){
 function attachEvents(){
     // onclick to themes/sub-themes titles:
     var titleNodes = document.querySelectorAll('.themes>article>h1, .themes>article h3');
-    // console.log("titleNodes:", titleNodes);
+
     for (let i = 0; i < titleNodes.length; i++) {
         let titleNode = titleNodes[i];
 
@@ -45,7 +46,7 @@ function attachEvents(){
         titleNode.addEventListener( "click", function(){
             showHideNodes(getNextSiblings(this));
         });
-    };
+    }
 
     // onclick to toggleThemes
     var toggleThemes = document.querySelectorAll('.toggleThemes');
@@ -54,7 +55,7 @@ function attachEvents(){
         element.addEventListener( "click", function(){
             showHideAll( element, themes );
         });
-    };
+    }
 
     // onclick to toggleSubThemes
     var togglesubThemes = document.querySelectorAll('.toggleSubThemes');
@@ -63,7 +64,7 @@ function attachEvents(){
         element.addEventListener( "click", function(){
             showHideAll( element, subThemes );
         });
-    };
+    }
 
     // on scroll => toggleButtons displayed as header:
     window.addEventListener('scroll', function(e){
@@ -71,9 +72,9 @@ function attachEvents(){
         let topScroll = document.documentElement.scrollTop;
 
         if(topScroll > toggleButtonsTopOffset - 32){
-            toggleButtonsDiv.classList.add('header')
+            toggleButtonsDiv.classList.add('header');
         }else{
-            toggleButtonsDiv.classList.remove('header')
+            toggleButtonsDiv.classList.remove('header');
         }
     });
 }
@@ -98,7 +99,8 @@ function setThemeURL(){
         // create link node:
         let aNode = document.createElement('a');
         aNode.setAttribute("title", "slides");
-        aNode.href = `/ProgressBG-VC-Django-Slides/pages/themes/${themeTitle}/${themeTitle}.html`;
+        // aNode.href = `/ProgressBG-VC-Django-Slides/pages/themes/${themeTitle}/${themeTitle}.html`;
+        aNode.href = '/ProgressBG-VC-Django-Slides/pages/themes/'+themeTitle+'/'+themeTitle+'.html';
         aNode.innerHTML = h3_content;
 
         // append it into h3 node
@@ -144,7 +146,7 @@ function calcSectionHours(){
         outNode.title += "\n"+"day:" + currentSectionHours/hours_per_day;
 
         outNode.innerHTML = "Total Section Hours: " + sectionHours;
-    };
+    }
 }
 function calcTotalHours(){
     var out_node = document.getElementById("total_hours");
@@ -154,7 +156,7 @@ function calcTotalHours(){
         var theme_hours = hours_nodes[i].innerHTML*1 || 0; // cause of NaN
         total += theme_hours;
         // console.log("total hours=", total);
-    };
+    }
     out_node.innerHTML = total;
 }
 function calcTotalDays(){
@@ -171,14 +173,14 @@ function calcTotalDays(){
 
 
         current_days = current_hours / hours_per_day;
-        current_days = Math.round(current_days * 10)/10
+        current_days = Math.round(current_days * 10)/10;
 
         // output
         hours_nodes[i].title = "hours:" + current_hours;
         hours_nodes[i].title += "\n"+"day:" + current_days;
 
         total_days = current_days;
-    };
+    }
 
     // calculate total days
     out_node.innerHTML = total_days;
@@ -204,7 +206,7 @@ function showHideAll( clicked_node, effected_nodes ){
 function showAllNodes ( effected_nodes){
     for (var i = 0; i < effected_nodes.length; i++) {
         showNode(effected_nodes[i]);
-    };
+    }
 }
 function hideAllNodes ( effected_nodes){
     for (var i = 0; i < effected_nodes.length; i++) {
@@ -213,7 +215,7 @@ function hideAllNodes ( effected_nodes){
             continue;
         }
         hideNode(effected_nodes[i]);
-    };
+    }
 }
 function showHideNodes(effected_nodes){
     // console.log('showHideNode - effected_nodes:'+effected_nodes);
@@ -237,7 +239,7 @@ function showNode(effected_node){
     var arr_node = effected_node.parentElement.getElementsByTagName("h3")[0];
     // console.log("arr_node:", arr_node);
     changeArrow( arr_node, 'up');
-};
+}
 function hideNode (effected_node) {
     effected_node.classList.add("hidden");
 
