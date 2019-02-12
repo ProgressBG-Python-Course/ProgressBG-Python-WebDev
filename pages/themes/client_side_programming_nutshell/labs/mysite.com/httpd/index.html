@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Здравей Свят</title>
+
+	<style type="text/css">
+		ol>ul{
+			list-style-type: square;
+			border: 1px solid red;
+		}
+		ul>li:nth-child(2){
+			border: 1px solid green;
+		}
+		li:hover{
+			cursor: pointer;
+			background: yellow;
+		}
+	</style>
+</head>
+<body>
+	<ol>
+		<li class="id">Fruits
+			<ul class="test">
+				<li>Apple</li>
+				<li>Orange</li>
+				<li>Strawberry</li>
+			</ul>
+		</li>
+		<li>Books
+			<ul class="test red" id="ul2">
+				<li>Book 1</li>
+				<li>Book 2</li>
+			</ul>
+		</li>
+	</ol>
+
+
+
+	<ul>
+		<li>Ordinary Item</li>
+		<li>Ordinary Item</li>
+		<li>Ordinary Item</li>
+	</ul>
+	<hr>
+	<form id="login" action="../cgi-bin/login.php" method="GET">
+		<div><label>user name: <input type="text" name="uName" value="POPOVA" placeholder="please, enter your name"></label></div>
+		<div><label>password:</label><input type="password" name="uPass"></div>
+		<div><label>fav.color:</label><input type="color" name=""></div>
+		<div><label>volume level:</label><input type="range" name=""></div>
+
+		<div><span>fav. beer:</span>
+			<input type="checkbox" name="" id="ariana"><label for="ariana">ariana</label>
+			<input type="checkbox" name="" id="zagorka"><label for="username">zagorka</label>
+		</div>
+		<div><span>gender:</span>
+			<input type="radio" name="apple.pngender" id="gender"><label>male</label>
+			<input type="radio" name="gender" id="female"><label>female</label>
+		</div>
+		<div><button type="reset"><img src="apple.png" style="width:1em"><span>Send</span></button></div>
+		<div><input type="submit" value="Send"> </div>
+	</form>
+</body>
+<script type="text/javascript" src="index.js"></script>
+</html>

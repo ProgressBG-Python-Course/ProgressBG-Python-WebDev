@@ -1,0 +1,70 @@
+### Python ###
+__pycache__/
+*.py[cod]
+
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+*.manifest
+*.spec
+
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+.env
+db.sqlite3
+
+# ipython
+*.ipynb_checkpoints
+
+# virtenvs
+venv/
+.venv/
+ENV/
+.env
+Pipfile.lock
+
+# pyenv
+.python-version
+
+
+### custom
+# ignore all dot files and triple underscored:
+.*/
+___*
+# but not:
+!*/.gitignore
+
+*.sublime-workspace
+nohup.out

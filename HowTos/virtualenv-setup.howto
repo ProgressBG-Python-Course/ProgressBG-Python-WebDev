@@ -1,0 +1,15 @@
+Setting up an environment
+To not touch the system Python (generally a bad idea; OS-level services might be relying on some specific library versions, etc.) make your own environment, it's easy! Even better, no sudo, for it or pip installs!
+
+Install your preferred Python version (this will download the source and build it for your user, no input required)
+
+pyenv install 3.6.0
+Make it a virtualenv so you can make others later if you want
+
+pyenv virtualenv 3.6.0 general
+Make it globally active (for your user)
+
+pyenv global general
+Do what you want to with the Python/pip, etc. It's yours.
+
+If you want to clean out your libraries later, you could delete the virtualenv (pyenv uninstall general) or make a new one (pyenv virtualenv 3.6.0 other_proj). You can also have environments active per-directory: pyenv local other_proj will drop a .python-version file into your current folder and any time you invoke Python or pip-installed Python utilities from it or under it, they will be shimmed by pyenv.
