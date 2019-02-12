@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>django_introduction_and_architecture_overview</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#django_introduction_and_architecture_overview" target="_top"><i class="fa fa-home"></i></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>previous slide</span></div>
+				<div><span>P</span><span>next slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Django - introduction and architecture overview</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note">Iva E. Popova, 2018-2019:</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+		</div>
+	</section>
+	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section>
+</section>
+
+<section><h1>Django - introduction and architecture overview</h1></section>
+<section data-transition="zoom">
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+  <section class="copyright" data-transition="zoom">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/програмиране-с-python-2/">
+      <img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span class="note">Iva E. Popova, 2018-2019:</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </section>
+  <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+    <div class="company">
+       <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href="https://bg.linkedin.com/in/ivapopova?trk=profile-badge">Iva E. Popova on LinkedIn</a></div>
+    </div>
+  </section>
+</section>
+
+<section data-min="10"><h1>What is Django and what problem it solves? A brief history.</h1></section>
+<section><h2>What is Django and what problem it solves??</h2>
+  <section>
+    <dl class="fa">
+      <dt>A high-level Python Web framework</dt>
+      <dd>Exhaustive and opinionated</dd>
+      <dt>Encourages rapid development, clean and pragmatic design</dt>
+      <dt>Fast, secure, scalable, versatile...</dt>
+      <dt>Mature</dt>
+      <dd>First release: 2005</dd>
+    </dl>
+  </section>
+</section>
+
+<section data-min="5"><h1>Applications made with Django</h1></section>
+<section><h2>Applications made with Django</h2>
+  <section>
+    <dl class="fa">
+      <dt><a href="https://www.youtube.com/">YouTube</a></dt>
+      <dt><a href="https://www.spotify.com/">Spotify</a></dt>
+      <dt><a href="https://www.instagram.com/">Instagram</a></dt>
+      <dt><a href="http://www.disqus.com/">Disqus</a></dt>
+      <dt><a href="https://bitbucket.org/">Bitbucket</a></dt>
+      <dt><a href="https://www.dropbox.com/">Dropbox</a></dt>
+      <dt><a href="https://www.washingtonpost.com/">The Washington Post</a></dt>
+    </dl>
+    <hr>
+    <p>Read more: <a href="https://www.netguru.com/blog/top-10-django-apps-and-why-companies-are-betting-on-this-framework">Top 10 Django Apps and Why Companies Are Betting on This Framework</a></p>
+  </section>
+</section>
+
+<section data-min="20"><h1>Features</h1></section>
+<section><h2>Features</h2>
+  <section>
+    <dl class="fa">
+      <dt>A lightweight and standalone web server for development and testing</dt>
+      <dt>A form serialization and validation system</dt>
+      <dt>Django ORM with rich database lookup API</dt>
+      <dt>A dynamic admin interface</dt>
+      <dt>a template system that utilizes the concept of inheritance borrowed from object-oriented programming</dt>
+      <dt>a caching framework </dt>
+      <dt>URL dispache</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="5"><h1>Django versions</h1></section>
+<section><h2>Django versions</h2>
+  <section>
+    <a href="images/django_versions_timeline.png"><img src="images/django_versions_timeline.png" alt=""></a>
+    <dl class="fa">
+      <dt>LTS- long-term support releases</dt>
+    </dl>
+  </section>
+  <section><h3>Future Versions Roadmap</h3>
+    <a href="images/future_roadmap.png"><img src="images/future_roadmap.png" alt=""></a>
+  </section>
+</section>
+
+<section data-min="20"><h1>Django MTV (Model Template View)</h1></section>
+<section><h2>Django MVT (Model View Template)</h2>
+  <section>
+    <a href="images/Django_MVT_Overview.png"><img src="images/Django_MVT_Overview.png" alt=""></a>
+    <dl class="fa" style="font-size: .8em">
+      <dt>The MVT architecture in Django:</dt>
+      <dd>Model - DB operations (implemented through the Django ORM)</dd>
+      <dd>View  - describes <span class="note">which</span> data is presented</dd>
+      <dd>Template - describes <span class="note">how</span> the data is presented</dd>
+      <dt>Controller - the Django framework itself</dt>
+    </dl>
+  </section>
+</section>
+
+
+<section><h1>Set up the ToDoApp project</h1></section>
+<section><h2>Set up the ToDoApp project</h2>
+	<section><h3>Creating the project structure</h3>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			$ cd myprojects
+			$ django-admin startproject ToDoApp
+		</code></pre>
+		<p style="text-align: left; font-size: 0.8em">A folder ToDoApp will be created into myprojects folder. It is just a a container for the project (it does not matter anything to Django) and we can safely rename it as  ToDoAppProject. We also would like to rename <i>mysite</i> with <b>ToDoApp</b></p>
+		<pre><code rel="Output" class="shell" data-noescape>
+			ToDoAppProject/
+			├── manage.py
+			└── ToDoApp
+			    ├── __init__.py
+			    ├── settings.py
+			    ├── urls.py
+			    └── wsgi.py
+		</code></pre>
+	</section>
+	<section><h3>Project Structure Content</h3>
+		<dl class="fa" style="font-size: 0.8em">
+			<dt><span class="note">manage.py</span>: A command-line utility that lets you interact with this Django project in various ways.</dt>
+			<dt><span class="note">ToDoApp/</span>: this folder is the actual Python package for your project. Its name is the Python package name you'll need to use to import anything inside it</dt>
+			<dt><span class="note">ToDoApp/__init__.py</span>: An empty file that tells Python that this directory should be considered a Python package.</dt>
+			<dt><span class="note">ToDoApp/settings.py</span>: Settings/configuration for this Django project</dt>
+			<dt><span class="note">ToDoApp/urls.py</span>: The URL declarations for this Django project; a “table of contents” of your Django-powered site</dt>
+			<dt><span class="note">ToDoApp/wsgi.py</span>: An entry-point for WSGI-compatible web servers to serve your project</dt>
+		</dl>
+	</section>
+	<section><h3>Verify the project</h3>
+		<pre><code rel="Output" class="shell" data-noescape>
+			$ cd ToDoAppProject/
+			$ python manage.py runserver
+		</code></pre>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			Performing system checks...
+
+			System check identified no issues (0 silenced).
+
+			You have 14 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+			Run 'python manage.py migrate' to apply them.
+
+			April 18, 2018 - 21:22:56
+			Django version 2.0.4, using settings 'ToDoApp.settings'
+			Starting development server at http://127.0.0.1:8000/
+			Quit the server with CONTROL-C.
+		</code></pre>
+		<p class="note">We will deal with migration warning later</p>
+	</section>
+	<section><h3>Verify the project</h3>
+		<dl class="fa">
+			<dt><span class="note">Do not close the terminal</span>. The Django development server was started, and you can see you app running if you point your browser to <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></dt>
+			<dt class="note">The server, included with Djano is intended to be used only for development. For production projects, you'll need to set up a server like Apache HTTP Server.</dt>
+		</dl>
+	</section>
+</section>
+
+
+<section><h1>Start the ToDoApp</h1></section>
+<section><h2>Start the ToDoApp</h2>
+	<section><h3>Create ToDoListComponent</h3>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			$ django-admin startapp ToDoListComponent
+		</code></pre>
+	</section>
+	<section><h3>Code your first view</h3>
+		<dl class="fa">
+			<dt>Write in <span class="note">ToDoListComponent/views.py</span></dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from django.shortcuts import render
+			from django.http import HttpResponse
+
+			# Create your views here.
+			def index(request):
+			  return HttpResponse("This is the ToDoListComponent index.")
+		</code></pre>
+	</section>
+	<section><h3>Map view to a URL</h3>
+		<dl class="fa">
+			<dt>Create file <code>ToDoListComponent/urls.py</code></dt>
+			<dt>Write the code:</dt>
+		</dl>
+		<pre><code rel="ToDoListComponent/urls.py" class="python">
+			from django.urls import path
+
+			from . import views
+
+			urlpatterns = [
+			    path('', views.index, name='index'),
+			]
+		</code></pre>
+	</section>
+	<section><h3>Point the project root URLconf at the ToDoListComponent.urls module</h3>
+		<dl class="fa">
+			<dt>In ToDoApp/urls.py, add an import for django.urls.include and insert an include() in the urlpatterns list, so you have</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from django.contrib import admin
+			from django.urls import path,include
+
+			urlpatterns = [
+			    path('ToDoListComponent/', include('ToDoListComponent.urls')),
+			    path('admin/', admin.site.urls),
+			]
+		</code></pre>
+	</section>
+	<section><h3>Verify</h3>
+		<dl class="fa">
+			<dt>Go to <a href="http://127.0.0.1:8000/ToDoListComponent/">http://127.0.0.1:8000/ToDoListComponent/</a></dt>
+			<dl class="fa">
+				<dt>You should see:</dt>
+			</dl>
+		</dl>
+		<img src="images/127.0.0.1:8000-ToDoListComponent.png">
+	</section>
+	<section><h3>Path? Routes?</h3>
+		<dl class="fa">
+			<dt><span class="note">Route</span> is a string that contains a URL pattern. When processing a request, Django starts at the first pattern in urlpatterns list (inToDoApp/urls.py) and makes its way down the list, comparing the requested URL against each pattern until it finds one that matches.</dt>
+		</dl>
+	</section>
+	<section><h3>View?</h3>
+		<dl class="fa">
+			<dt>A view function, or view for short, is simply a Python function that takes a Web request and returns a Web response. This response can be the HTML contents of a Web page, or a redirect, or a 404 error, or an XML document, or an image . . . or anything,</dt>
+			<dt>When Django finds a matching URL pattern, it calls the specified view function with an HttpRequest object as the first argument.</dt>
+			<dt>Or simple speaking, the <span class="note"><b>view</b> returns an HTML page which will be presented on the requested URL.</span></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section><h1>Database setup</h1></section>
+<section><h2>Database setup</h2>
+	<section><h3>Overview of SQLite</h3>
+		<dl class="fa">
+			<dt>SQLite is an in-process library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine</dt>
+			<dt>SQLite is in the public domain and is thus free for use for any purpose, commercial or private.</dt>
+			<dt class="note">SQLite is included in Python, so you would not need to install anything else to support your database. When starting your first real project, however, you may want to use a more scalable database like PostgreSQL</dt>
+		</dl>
+	</section>
+	<section><h3>Setup the ToDoApp SQLite DB</h3>
+		<dl class="fa">
+			<dt>First, lets activate the DB needed for the pre-installed Django apps (admin, auth, contenttypes, sessions)</dt>
+		</dl>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			python manage.py migrate
+		</code></pre>
+		<pre><code rel="Output" class="shell" data-noescape>
+			Operations to perform:
+			  Apply all migrations: admin, auth, contenttypes, sessions
+			Running migrations:
+			  Applying contenttypes.0001_initial... OK
+			  Applying auth.0001_initial... OK
+			  Applying admin.0001_initial... OK
+			  Applying admin.0002_logentry_remove_auto_add... OK
+			  Applying contenttypes.0002_remove_content_type_name... OK
+			  Applying auth.0002_alter_permission_name_max_length... OK
+			  Applying auth.0003_alter_user_email_max_length... OK
+			  Applying auth.0004_alter_user_username_opts... OK
+			  Applying auth.0005_alter_user_last_login_null... OK
+			  Applying auth.0006_require_contenttypes_0002... OK
+			  Applying auth.0007_alter_validators_add_error_messages... OK
+			  Applying auth.0008_alter_user_username_max_length... OK
+			  Applying auth.0009_alter_user_last_name_max_length... OK
+			  Applying sessions.0001_initial... OK
+		</code></pre>
+	</section>
+	<section><h3>Create the model of ToDoApp</h3>
+		<dl class="fa">
+			<dt>Django uses models to interact with the database. </dt>
+			<dt>Each model represents a table in the database and it is used to add, update, delete data into the correponding table.</dt>
+			<dt>It's a kind of abstraction of database operations, so you do not need to know perfectly well SQL</dt>
+		</dl>
+	</section>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>Write in file <code>ToDoListComponent/models.py</code></dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from django.db import models
+
+			# Create your models here.
+			class Task(models.Model):
+				id = models.AutoField(primary_key=True)
+			    title = models.CharField('Title', max_length=100)
+			    description = models.TextField('Description')
+			    created = models.DateTimeField(auto_now_add=True)
+			    due = models.DateTimeField('due date')
+			    end = models.DateTimeField('end date')
+
+			    def __str__(self):
+			        return self.title
+		</code></pre>
+	</section>
+	<section><h3>Plug the app</h3>
+		<dl class="fa">
+			<dt>To include the app in our project, we need to add a reference to its configuration class in the INSTALLED_APPS setting</dt>
+			<dt>Open the <code>ToDoApp/settings.py</code> and append to it:</dt>
+			<dd><code>'ToDoListComponent'</code></dd>
+		</dl>
+		<pre><code rel="ToDoApp/settings.py" class="python">
+			INSTALLED_APPS = [
+			    'ToDoListComponent',
+			    'django.contrib.admin',
+			    'django.contrib.auth',
+			    'django.contrib.contenttypes',
+			    'django.contrib.sessions',
+			    'django.contrib.messages',
+			    'django.contrib.staticfiles',
+			]
+		</code></pre>
+	</section>
+	<section><h3>Activate the app</h3>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			$ python manage.py makemigrations ToDoListComponent
+		</code></pre>
+	</section>
+	<section><h3>See the SQL which will be created</h3>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			$ python manage.py sqlmigrate ToDoListComponent 0001
+		</code></pre>
+		<pre><code rel="Output" class="shell" data-noescape>
+			CREATE TABLE "ToDoListComponent_task" (
+				"id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+				"title" varchar(100) NOT NULL,
+				"description" text NOT NULL,
+				"created" datetime NOT NULL,
+				"due" datetime NOT NULL,
+				"end" datetime NOT NULL);
+			COMMIT;
+		</code></pre>
+	</section>
+	<section><h3>Create the model table in the DB</h3>
+		<dl class="fa">
+			<dt>Now, run migrate tool to create the ToDoListComponent model tables in your database:</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			python manage.py migrate
+		</code></pre>
+		<pre><code rel="Output" class="shell" data-noescape>
+			Operations to perform:
+			  Apply all migrations: ToDoListComponent, admin, auth, contenttypes, sessions
+			Running migrations:
+			  Applying ToDoListComponent.0001_initial... OK
+		</code></pre>
+	</section>
+</section>
+
+<section><h1>Introducing the Django Admin</h1></section>
+<section><h2>Introducing the Django Admin</h2>
+	<section><h3>Creating an admin user</h3>
+		<p>In root Project Folder (ToDoAppProject) type:</p>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			$ python manage.py createsuperuser
+		</code></pre>
+		<p>You'll be prompt to enter the admin user details</p>
+		<pre><code rel="Output" class="shell" data-noescape>
+			Username (leave blank to use 'nemsys'): admin
+			Email address: admin@test.me
+			Password:
+			Password (again):
+			This password is too short. It must contain at least 8 characters.
+			This password is too common.
+			This password is entirely numeric.
+			Password:
+			Password (again):
+			Superuser created successfully.
+		</code></pre>
+	</section>
+	<section><h3>Start the Admin Control Panel</h3>
+		<dl class="fa">
+			<dt>If there are any running Django server stop it first</dt>
+			<dt>Now, start the server again:</dt>
+		</dl>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			$ python manage.py runserver
+		</code></pre>
+		<dl class="fa">
+			<dt>Go to <a href="http://127.0.0.1:8000/admin/login/?next=/admin/">http://127.0.0.1:8000/admin/login/?next=/admin/</a></dt>
+		</dl>
+	</section>
+	<section>
+		<p>An admin panel should be loaded:</p>
+		<a href="images/Django site admin.png"><img src="images/Django site admin.png"></a>
+	</section>
+	<section><h3>Add our ToDoApp to the Admin Interface</h3>
+		<dl class="fa">
+			<dt>Open <code>ToDoListComponent/admin.py</code> and register our Task model:</dt>
+		</dl>
+		<pre><code rel="ToDoListComponent/admin.py" class="python">
+			from django.contrib import admin
+
+			# Register your models here.
+			from .models import Task
+
+			admin.site.register(Task)
+		</code></pre>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>If you refresh the Admin Interface (<kbd>CTRL+F5</kbd>), you should now see our Tasks model</dt>
+		</dl>
+		<a href="images/Tasks_IN_Django site admin.png"><img src="images/Tasks_IN_Django site admin.png" style="height: 70vh"></a>
+		<dl class="fa" style="font-size: 0.8em">
+			<dt>From here, you can interface with the Task table, and add/modify/remove data</dt>
+			<dt>The edit form will be automatically generated from the Tasks model.</dt>
+		</dl>
+	</section>
+</section>
+
+<section><h1>Query DB from our ToDoApp</h1>
+	<dl class="fa">
+		<dt>Change <code>ToDoListComponent/views.py</code> as:</dt>
+	</dl>
+	<pre><code rel="ToDoListComponent/views.py" class="python">
+		from django.shortcuts import render
+		from django.http import HttpResponse
+		from .models import Task
+
+
+		def index(request):
+		    latest_tasks = Task.objects.order_by('-due')[:5]
+		    output ="<h1>Taks:</h1>"
+		    output += ', '.join([q.title for q in latest_tasks])
+		    return HttpResponse(output)
+	</code></pre>
+</section>
+
+
+<section><h1>Add some Templates</h1></section>
+<section><h2>Add some Templates</h2>
+	<section><h3>task_list template</h3>
+		<dl class="fa">
+			<dt>In ToDoListComponent create a folder named <code>templates</code> and make the file <code>tasks_index.html</code> in it.</dt>
+		</dl>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			ToDoListComponent/
+			├── admin.py
+			├── apps.py
+			├── __init__.py
+			├── migrations
+			│   ├── 0001_initial.py
+			│   ├── __init__.py
+			│   └── __pycache__
+			│       ├── 0001_initial.cpython-36.pyc
+			│       └── __init__.cpython-36.pyc
+			├── models.py
+			├── __pycache__
+			│   ├── admin.cpython-36.pyc
+			│   ├── apps.cpython-36.pyc
+			│   ├── __init__.cpython-36.pyc
+			│   ├── models.cpython-36.pyc
+			│   ├── urls.cpython-36.pyc
+			│   └── views.cpython-36.pyc
+			├── templates
+			│   └── tasks_index.html
+			├── tests.py
+			├── urls.py
+			└── views.py
+		</code></pre>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Add the HTML template code in <code>templates/tasks_index.html</code></dt>
+		</dl>
+		<pre><code rel="HTML" class="html">
+			&lt;!DOCTYPE html&gt;
+			&lt;html&gt;
+			&lt;head&gt;
+			  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;&gt;
+			  &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+			  &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+			  &lt;title&gt;ToDo App&lt;/title&gt;
+			&lt;/head&gt;
+			&lt;body&gt;
+			  &lt;div class=&quot;jumbotron text-center&quot;&gt;
+			    &lt;h1&gt;ToDo's&lt;/h1&gt;
+			  &lt;/div&gt;
+
+			  &lt;div class=&quot;container&quot;&gt;
+			    &lt;div class=&quot;row&quot;&gt;
+			      &lt;div class=&quot;col-sm-4&quot;&gt;
+			      &lt;/div&gt;
+			      &lt;div class=&quot;col-sm-4&quot;&gt;
+			        &lt;h3&gt;Tasks List&lt;/h3&gt;
+			        &lt;table&gt;
+			          &lt;tr&gt;
+			            &lt;th&gt;Task&lt;/th&gt;
+			            &lt;th&gt;Due?&lt;/th&gt;
+			          &lt;/tr&gt;
+			          {% for task in task_list %}
+			          &lt;tr&gt;
+			            &lt;td&gt;
+			              {{ task.title }}
+			            &lt;/td&gt;
+			            &lt;td&gt;
+			              {{ task.due }}
+			            &lt;/td&gt;
+			          &lt;/tr&gt;
+			          {% endfor %}
+			        &lt;/table&gt;
+			      &lt;/div&gt;
+			      &lt;div class=&quot;col-sm-4&quot;&gt;
+			      &lt;/div&gt;
+			    &lt;/div&gt;
+			  &lt;/div&gt;
+			&lt;/body&gt;
+			&lt;/html&gt;
+		</code></pre>
+		<p>Or copy the raw code from <a href="https://pastebin.com/raw/Ks3xN1zR">here</a></p>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Update our <code>ToDoListComponent/views.py</code> in order to use the template, and fill it will DB data</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from django.shortcuts import render
+			from django.http import HttpResponse
+			from .models import Task
+
+			def index(request):
+				# query the DB
+		    task_list = Task.objects.all()
+
+		    return render(
+		        request,
+		        'tasks_index.html',
+		        {
+		            'task_list' : task_list,
+		        }
+		    )
+		</code></pre>
+	</section>
+	<section><h3>Add some CSS</h3>
+		<dl class="fa">
+			<dt>In the ToDoListComponent folder create the folder path<code>static/css</code>, and in it - make the file <code>base.css</code></dt>
+		</dl>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			ToDoListComponent/
+			├── admin.py
+			├── apps.py
+			├── __init__.py
+			├── migrations
+			│   ├── 0001_initial.py
+			│   ├── __init__.py
+			│   └── __pycache__
+			│       ├── 0001_initial.cpython-36.pyc
+			│       └── __init__.cpython-36.pyc
+			├── models.py
+			├── __pycache__
+			│   ├── admin.cpython-36.pyc
+			│   ├── apps.cpython-36.pyc
+			│   ├── __init__.cpython-36.pyc
+			│   ├── models.cpython-36.pyc
+			│   ├── urls.cpython-36.pyc
+			│   └── views.cpython-36.pyc
+			├── static
+			│   └── css
+			│       └── base.css
+			├── templates
+			│   └── tasks_index.html
+			├── tests.py
+			├── urls.py
+			└── views.py
+		</code></pre>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Put some CSS into <code>static/css/base.css</code>, and refresh the page/or run the server again, if it was turn off</dt>
+		</dl>
+		<pre><code rel="HTML" class="html">
+			body{
+				background: #FFBDBD
+			}
+			td {
+			  padding: 10px 5px;
+			}
+		</code></pre>
+	</section>
+</section>
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section>
+
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: django_introduction_and_architecture_overview">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section>
+
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
