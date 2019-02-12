@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>server_side_programming_overview</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#server_side_programming_overview" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>previous slide</span></div>
+        <div><span>P</span><span>next slide</span></div>
+        <div><span>O</span><span>overview slides</span></div>
+        <div><span>ctrl+left click</span><span>zoom element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Server-Side (Back-End) Programming Overview</h1></section>
+<section data-transition="zoom">
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+  <section class="copyright" data-transition="zoom">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/програмиране-с-python-2/">
+      <img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span class="note">Iva E. Popova, 2018-2019:</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </section>
+  <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+    <div class="company">
+       <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+    </div>
+  </section>
+</section>
+
+
+<section data-min="30"><h1>Overview. CGI and modern equivalents.</h1></section>
+<section><h2>Overview. CGI and modern equivalents.</h2>
+  <section><h3>CGI Overview</h3>
+    <p><a href="images/cgi_overview.gif"><img src="images/cgi_overview.gif" alt=""></a></p>
+    <dl class="fa">
+      <dt>CGI - Common Gateway Interface</dt>
+      <dd>A standard protocol for web servers to execute console applications running on a server that generates web pages dynamically.</dd>
+    </dl>
+  </section>
+  <section><h3>WSGI</h3>
+    <dl class="fa">
+      <dt><span class="note">WSGI</span> - Web Server Gateway Interface</dt>
+      <dd>The Python way of CGI</dd>
+      <dt><span class="note">mod_wsgi</span></dt>
+      <dd>Apache HTTP server module. Any Python web application which supports the Python WSGI specification can operate with it.</dd>
+    </dl>
+  </section>
+  <section><h3>WSGI</h3>
+    <a href="images/wsgi_overview.jpg"><img src="images/wsgi_overview.jpg" alt=""></a>
+  </section>
+</section>
+
+<!-- <section data-min="10"><h1>Introduction to Website Security</h1></section>
+<section><h2>Introduction to Website Security</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section> -->
+
+<section data-min="20"><h1>Build a simple Web App without a Framework</h1></section>
+<section><h2>Build a simple Web App without a Framework</h2>
+  <section><h3>Setup</h3>
+    <pre><code rel="Terminal" class="bash">
+      apt-get install apache2 python-setuptools libapache2-mod-wsgi
+    </code></pre>
+  </section>
+  <section><h3>App folder structure</h3>
+    <pre><code rel="Terminal" class="bash">
+      wsgiApp/
+      ├── app
+      │   └── get_hobbies.wsgi
+      ├── logs
+      │   ├── access.log
+      │   └── error.log
+      ├── public_html
+      │   └── index.html
+    </code></pre>
+  </section>
+  <section><h3>Apache vhost conf</h3>
+    <pre><code rel="/etc/apache2/sites-available/wsgiApp.conf" class="bash">
+      Define wsgiapp_path {full path to your wsgiApp/}
+
+      &lt;VirtualHost *:80&gt;
+        ServerName wsgiapp
+        ServerAlias www.wsgiapp
+        ServerAdmin username@wsgiapp
+
+        DocumentRoot ${wsgiapp_path}/public_html
+        WSGIScriptAlias /wsgi ${wsgiapp_path}/app
+
+        ErrorLog ${wsgiapp_path}/logs/error.log
+        CustomLog ${wsgiapp_path}/logs/access.log combined
+
+        &lt;Directory ${wsgiapp_path}/public_html&gt;
+           Require all granted
+        &lt;/Directory&gt;
+
+        &lt;Directory ${wsgiapp_path}/app&gt;
+           Require all granted
+        &lt;/Directory&gt;
+     &lt;/VirtualHost&gt;
+    </code></pre>
+  </section>
+  <section><h3>Enable your site</h3>
+    <pre><code rel="Terminal" class="bash">
+      # enable your site
+      sudo a2ensite wsgiApp
+    </code></pre>
+  </section>
+  <section><h3>the front-end:</h3>
+    <pre><code rel="public_html/index.html" class="html">
+      <form method="get" action="/wsgi/get_hobbies.wsgi">
+        <div><label>Age: <input type="text" name="age"></label></div>
+        <div>
+          <fieldset>
+            <legend>Hobbies</legend>
+            <label>Software<input name="hobbies" type="checkbox" value="software"></label>
+            <label>Hardware<input name="hobbies" type="checkbox" value="hardware"></label>
+          </fieldset>
+        </div>
+        <div><button type="submit">Send</button></div>
+      </form>
+    </code></pre>
+  </section>
+  <section><h3>the back-end</h3>
+    <pre><code rel="app/get_hobbies.wsgi" class="bash">
+      #!/usr/bin/env python
+
+      from cgi import parse_qs, escape
+
+      html = """
+      <html>
+      <body>
+            <h1>Your data:</h1>
+            <p>
+                    Age: %(age)s<br>
+                    Hobbies: %(hobbies)s
+            </p>
+      </body>
+      </html>
+      """
+
+      def application (environ, start_response):
+            # Returns a dictionary in which the values are lists
+            d = parse_qs(environ['QUERY_STRING'])
+
+            age = d.get('age', [''])[0]
+            hobbies = d.get('hobbies', [])
+
+            # Always escape user input to avoid script injection
+            age = escape(age)
+            hobbies = [escape(hobby) for hobby in hobbies]
+
+            response_body = html % {
+                    'checked-software': ('', 'checked')['software' in hobbies],
+                    'checked-tunning': ('', 'checked')['tunning' in hobbies],
+                    'age': age or 'Empty',
+                    'hobbies': ', '.join(hobbies or ['No Hobbies?'])
+            }
+
+            status = '200 OK'
+
+            response_headers = [
+                    ('Content-Type', 'text/html'),
+                    ('Content-Length', str(len(response_body)))
+            ]
+
+            start_response(status, response_headers)
+            return [response_body]
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h1>Server-Side Frameworks</h1></section>
+<section><h2>Server-Side Frameworks</h2>
+  <section><h3>Why?</h3>
+    <dl class="fa">
+      <dt>Simplified syntax to for HTTP requests and responses</dt>
+      <dt>Easy to access data in the request</dt>
+      <dt>Route requests to the appropriate handler</dt>
+      <dt>Abstract and simplify database access</dt>
+      <dt>Templating system for rendering data</dt>
+    </dl>
+  </section>
+  <section><h3>Popular Server-Side Frameworks</h3>
+    <dl class="fa">
+      <dt>Python</dt>
+      <dd><span class="note">Django</span>, <span class="note">Flask</span>, <span class="note">Pyramid</span></dd>
+      <dd>More reading: <a href="https://hackernoon.com/top-10-python-web-frameworks-to-learn-in-2018-b2ebab969d1a">Top 10 Python Web Frameworks to Learn in 2018 @hackernoon</a></dd>
+      <dt>Ruby</dt>
+      <dd><span class="note">Ruby on Rails</span></dd>
+      <dt>PHP</dt>
+      <dd><span class="note">Laravel</span>, <span class="note">Symfony</span></dd>
+    </dl>
+  </section>
+  <section><h3></h3>
+    <dl class="fa">
+      <dt>Perl</dt>
+      <dd><span class="note">Dancer</span>, <span class="note">Mojolicious</span></dd>
+      <dt>JavaScript</dt>
+      <dd><span class="note">Express</span> (on node.js)</dd>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+  <section><h3>The Task</h3>
+  	<dl class="fa">
+  		<dt><code>index.html</code>:</dt>
+  		<dd>a form to ask the user for her/his age</dd>
+  		<dt><code>wsgi/welcome.wsgi</code>:</dt>
+  		<dd>if the user age >= 18 => return welcome page</dd>
+  		<dd>if the user age <= 18 => return deny page ('Sorry, come back after X years')</dd>
+  	</dl>
+  </section>
+</section>
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+   <p>These slides are based on</p>
+   <p>customised version of </p>
+   <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+   <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+      center: true,
+      width: 1024,
+      height: 850,
+      // Bounds for smallest/largest possible scale to apply to content
+      // minScale: .5,
+      maxScale: 1,
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+</body>
+</html>
