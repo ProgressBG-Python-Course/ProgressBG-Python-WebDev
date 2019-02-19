@@ -175,32 +175,35 @@
 	<section><h3>Creating the project structure</h3>
 		<pre><code rel="Terminal" class="shell" data-noescape>
 			$ cd myprojects
-			$ django-admin startproject ToDoAppProject
+			$ django-admin startproject ToDoProject
 		</code></pre>
-		<p style="text-align: left; font-size: 0.8em">A folder ToDoApp will be created into myprojects folder. It is just a a container for the project (it does not matter anything to Django) and we can safely rename it as  ToDoAppProject. We also would like to rename <i>mysite</i> with <b>ToDoApp</b></p>
+		<dl class="fa" style="font-size: .8em">
+			<dt>A folder ToDoProject will be created into myprojects folder. It's just the project container and we can rename it to 'ToDoProjectContainer' to avoid paths missunderstandings</dt>
+			<dt>The inner 'ToDoProject' folder contains the project files.</dt>
+		</dl>
 		<pre><code rel="Output" class="shell" data-noescape>
-			ToDoAppProject/
+			ToDoProjectContainer/
 			├── manage.py
-			└── ToDoAppProject
-			    ├── __init__.py
-			    ├── settings.py
-			    ├── urls.py
-			    └── wsgi.py
+			└── ToDoProject
+						├── __init__.py
+						├── settings.py
+						├── urls.py
+						└── wsgi.py
 		</code></pre>
 	</section>
 	<section><h3>Project Structure Content</h3>
 		<dl class="fa" style="font-size: 0.8em">
 			<dt><span class="note">manage.py</span>: A command-line utility that lets you interact with this Django project in various ways.</dt>
-			<dt><span class="note">ToDoApp/</span>: this folder is the actual Python package for your project. Its name is the Python package name you'll need to use to import anything inside it</dt>
-			<dt><span class="note">ToDoApp/__init__.py</span>: An empty file that tells Python that this directory should be considered a Python package.</dt>
-			<dt><span class="note">ToDoApp/settings.py</span>: Settings/configuration for this Django project</dt>
-			<dt><span class="note">ToDoApp/urls.py</span>: The URL declarations for this Django project; a “table of contents” of your Django-powered site</dt>
-			<dt><span class="note">ToDoApp/wsgi.py</span>: An entry-point for WSGI-compatible web servers to serve your project</dt>
+			<dt><span class="note">ToDoProject/</span>: this folder is the actual Python package for your project. Its name is the Python package name you'll need to use to import anything inside it</dt>
+			<dt><span class="note">ToDoProject/__init__.py</span>: An empty file that tells Python that this directory should be considered a Python package.</dt>
+			<dt><span class="note">ToDoProject/settings.py</span>: Settings/configuration for this Django project</dt>
+			<dt><span class="note">ToDoProject/urls.py</span>: The URL declarations for this Django project; a “table of contents” of your Django-powered site</dt>
+			<dt><span class="note">ToDoProject/wsgi.py</span>: An entry-point for WSGI-compatible web servers to serve your project</dt>
 		</dl>
 	</section>
-	<section><h3>Verify the project</h3>
+	<section><h3>Verify/Start the project</h3>
 		<pre><code rel="Output" class="shell" data-noescape>
-			$ cd ToDoAppProject/
+			$ cd ToDoProjectContainer/
 			$ python manage.py runserver
 		</code></pre>
 		<pre><code rel="Terminal" class="shell" data-noescape>
@@ -208,11 +211,11 @@
 
 			System check identified no issues (0 silenced).
 
-			You have 14 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+			You have 15 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
 			Run 'python manage.py migrate' to apply them.
 
-			April 18, 2018 - 21:22:56
-			Django version 2.0.4, using settings 'ToDoApp.settings'
+			February 13, 2019 - 19:40:10
+			Django version 2.1.7, using settings 'ToDoProject.settings'
 			Starting development server at http://127.0.0.1:8000/
 			Quit the server with CONTROL-C.
 		</code></pre>
@@ -222,37 +225,42 @@
 		<dl class="fa">
 			<dt><span class="note">Do not close the terminal</span>. The Django development server was started, and you can see you app running if you point your browser to <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></dt>
 			<dt class="note">The server, included with Djano is intended to be used only for development. For production projects, you'll need to set up a server like Apache HTTP Server.</dt>
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/django-admin/#runserver">django-admin/#runserver @docs.djangoproject.com</a></dt>
 		</dl>
 	</section>
 </section>
 
 
-<section><h1>Start the ToDoApp</h1></section>
-<section><h2>Start the ToDoApp</h2>
-	<section><h3>Create ToDoListComponent</h3>
+<section><h1>Create the ToDoApp</h1></section>
+<section><h2>Create the ToDoApp</h2>
+	<section><h3>Create the ToDoApp Folder Structure</h3>
 		<pre><code rel="Terminal" class="shell" data-noescape>
-			$ django-admin startapp ToDoListComponent
+			# make sure you are in your project root folder (where 'manage.py' lives)
+			$ pwd
+			# {some_path}/ToDoProjectContainer
+
+			$ django-admin startapp ToDoApp
 		</code></pre>
 	</section>
 	<section><h3>Code your first view</h3>
 		<dl class="fa">
-			<dt>Write in <span class="note">ToDoListComponent/views.py</span></dt>
+			<dt>A View in Django is a function (or class) that in its simplest case takes a Web request and returns a Web response.</dt>
 		</dl>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="ToDoApp/views.py" class="python">
 			from django.shortcuts import render
 			from django.http import HttpResponse
 
 			# Create your views here.
 			def index(request):
-			  return HttpResponse("This is the ToDoListComponent index.")
+			  return HttpResponse("This is the ToDoApp index.")
 		</code></pre>
 	</section>
 	<section><h3>Map view to a URL</h3>
 		<dl class="fa">
-			<dt>Create file <code>ToDoListComponent/urls.py</code></dt>
+			<dt>Create file <code>ToDoApp/urls.py</code></dt>
 			<dt>Write the code:</dt>
 		</dl>
-		<pre><code rel="ToDoListComponent/urls.py" class="python">
+		<pre><code rel="ToDoApp/urls.py" class="python">
 			from django.urls import path
 
 			from . import views
@@ -262,23 +270,23 @@
 			]
 		</code></pre>
 	</section>
-	<section><h3>Point the project root URLconf at the ToDoListComponent.urls module</h3>
+	<section><h3>Point the project root URLconf at the ToDoApp.urls module</h3>
 		<dl class="fa">
-			<dt>In ToDoApp/urls.py, add an import for django.urls.include and insert an include() in the urlpatterns list, so you have</dt>
+			<dt>In ToDoProject/urls.py, add an import for django.urls.include and insert an include() in the urlpatterns list, so you have</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			from django.contrib import admin
 			from django.urls import path,include
 
 			urlpatterns = [
-			    path('ToDoListComponent/', include('ToDoListComponent.urls')),
+			    path('ToDoApp/', include('ToDoApp.urls')),
 			    path('admin/', admin.site.urls),
 			]
 		</code></pre>
 	</section>
 	<section><h3>Verify</h3>
 		<dl class="fa">
-			<dt>Go to <a href="http://127.0.0.1:8000/ToDoListComponent/">http://127.0.0.1:8000/ToDoListComponent/</a></dt>
+			<dt>Go to <a href="http://127.0.0.1:8000/ToDoApp/">http://127.0.0.1:8000/ToDoApp/</a></dt>
 			<dl class="fa">
 				<dt>You should see:</dt>
 			</dl>
@@ -287,7 +295,7 @@
 	</section>
 	<section><h3>Path? Routes?</h3>
 		<dl class="fa">
-			<dt><span class="note">Route</span> is a string that contains a URL pattern. When processing a request, Django starts at the first pattern in urlpatterns list (inToDoApp/urls.py) and makes its way down the list, comparing the requested URL against each pattern until it finds one that matches.</dt>
+			<dt><span class="note">Route</span> is a string that contains a URL pattern. When processing a request, Django starts at the first pattern in urlpatterns list (from ToDoProject/urls.py) and makes its way down the list, comparing the requested URL against each pattern until it finds one that matches.</dt>
 		</dl>
 	</section>
 	<section><h3>View?</h3>
@@ -296,6 +304,9 @@
 			<dt>When Django finds a matching URL pattern, it calls the specified view function with an HttpRequest object as the first argument.</dt>
 			<dt>Or simple speaking, the <span class="note"><b>view</b> returns an HTML page which will be presented on the requested URL.</span></dt>
 		</dl>
+	</section>
+	<section><h3></h3>
+		<a href="images/django_mvp_internals.png"><img src="images/django_mvp_internals.png" alt="click for bigger"></a>
 	</section>
 </section>
 
@@ -314,38 +325,43 @@
 			<dt>First, lets activate the DB needed for the pre-installed Django apps (admin, auth, contenttypes, sessions)</dt>
 		</dl>
 		<pre><code rel="Terminal" class="shell" data-noescape>
+			# make sure you're in project root folder
+			$ pwd
+			# {some_path}/ToDoProjectContainer
+
 			python manage.py migrate
 		</code></pre>
 		<pre><code rel="Output" class="shell" data-noescape>
 			Operations to perform:
-			  Apply all migrations: admin, auth, contenttypes, sessions
+				Apply all migrations: admin, auth, contenttypes, sessions
 			Running migrations:
-			  Applying contenttypes.0001_initial... OK
-			  Applying auth.0001_initial... OK
-			  Applying admin.0001_initial... OK
-			  Applying admin.0002_logentry_remove_auto_add... OK
-			  Applying contenttypes.0002_remove_content_type_name... OK
-			  Applying auth.0002_alter_permission_name_max_length... OK
-			  Applying auth.0003_alter_user_email_max_length... OK
-			  Applying auth.0004_alter_user_username_opts... OK
-			  Applying auth.0005_alter_user_last_login_null... OK
-			  Applying auth.0006_require_contenttypes_0002... OK
-			  Applying auth.0007_alter_validators_add_error_messages... OK
-			  Applying auth.0008_alter_user_username_max_length... OK
-			  Applying auth.0009_alter_user_last_name_max_length... OK
-			  Applying sessions.0001_initial... OK
+				Applying contenttypes.0001_initial... OK
+				Applying auth.0001_initial... OK
+				Applying admin.0001_initial... OK
+				Applying admin.0002_logentry_remove_auto_add... OK
+				Applying admin.0003_logentry_add_action_flag_choices... OK
+				Applying contenttypes.0002_remove_content_type_name... OK
+				Applying auth.0002_alter_permission_name_max_length... OK
+				Applying auth.0003_alter_user_email_max_length... OK
+				Applying auth.0004_alter_user_username_opts... OK
+				Applying auth.0005_alter_user_last_login_null... OK
+				Applying auth.0006_require_contenttypes_0002... OK
+				Applying auth.0007_alter_validators_add_error_messages... OK
+				Applying auth.0008_alter_user_username_max_length... OK
+				Applying auth.0009_alter_user_last_name_max_length... OK
+				Applying sessions.0001_initial... OK
 		</code></pre>
 	</section>
 	<section><h3>Create the model of ToDoApp</h3>
 		<dl class="fa">
-			<dt>Django uses models to interact with the database. </dt>
+			<dt>Django uses <span class="note">models</span> to interact with the database. </dt>
 			<dt>Each model represents a table in the database and it is used to add, update, delete data into the correponding table.</dt>
 			<dt>It's a kind of abstraction of database operations, so you do not need to know perfectly well SQL</dt>
 		</dl>
 	</section>
 	<section><h3></h3>
 		<dl class="fa">
-			<dt>Write in file <code>ToDoListComponent/models.py</code></dt>
+			<dt>Write in file <code>ToDoApp/models.py</code></dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			from django.db import models
@@ -353,25 +369,24 @@
 			# Create your models here.
 			class Task(models.Model):
 				id = models.AutoField(primary_key=True)
-			    title = models.CharField('Title', max_length=100)
-			    description = models.TextField('Description')
-			    created = models.DateTimeField(auto_now_add=True)
-			    due = models.DateTimeField('due date')
-			    end = models.DateTimeField('end date')
+				title = models.CharField('Title', max_length=100)
+				description = models.TextField('Description')
+				created = models.DateTimeField(auto_now_add=True)
+				due = models.DateTimeField('due date')
+				end = models.DateTimeField('end date')
 
-			    def __str__(self):
-			        return self.title
+				def __str__(self):
+					return self.title
 		</code></pre>
 	</section>
 	<section><h3>Plug the app</h3>
 		<dl class="fa">
 			<dt>To include the app in our project, we need to add a reference to its configuration class in the INSTALLED_APPS setting</dt>
-			<dt>Open the <code>ToDoApp/settings.py</code> and append to it:</dt>
-			<dd><code>'ToDoListComponent'</code></dd>
+			<dt>Open the <code>ToDoProject/settings.py</code> and append to it:</dt>
 		</dl>
-		<pre><code rel="ToDoApp/settings.py" class="python">
+		<pre><code rel="ToDoProject/settings.py" class="python">
 			INSTALLED_APPS = [
-			    'ToDoListComponent',
+			    'ToDoApp',
 			    'django.contrib.admin',
 			    'django.contrib.auth',
 			    'django.contrib.contenttypes',
@@ -383,15 +398,15 @@
 	</section>
 	<section><h3>Activate the app</h3>
 		<pre><code rel="Terminal" class="shell" data-noescape>
-			$ python manage.py makemigrations ToDoListComponent
+			$ python manage.py makemigrations ToDoApp
 		</code></pre>
 	</section>
 	<section><h3>See the SQL which will be created</h3>
 		<pre><code rel="Terminal" class="shell" data-noescape>
-			$ python manage.py sqlmigrate ToDoListComponent 0001
+			$ python manage.py sqlmigrate ToDoApp 0001
 		</code></pre>
 		<pre><code rel="Output" class="shell" data-noescape>
-			CREATE TABLE "ToDoListComponent_task" (
+			CREATE TABLE "ToDoApp_task" (
 				"id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 				"title" varchar(100) NOT NULL,
 				"description" text NOT NULL,
@@ -403,16 +418,16 @@
 	</section>
 	<section><h3>Create the model table in the DB</h3>
 		<dl class="fa">
-			<dt>Now, run migrate tool to create the ToDoListComponent model tables in your database:</dt>
+			<dt>Now, run migrate tool to create the ToDoApp model tables in your database:</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			python manage.py migrate
 		</code></pre>
 		<pre><code rel="Output" class="shell" data-noescape>
 			Operations to perform:
-			  Apply all migrations: ToDoListComponent, admin, auth, contenttypes, sessions
+			  Apply all migrations: ToDoApp, admin, auth, contenttypes, sessions
 			Running migrations:
-			  Applying ToDoListComponent.0001_initial... OK
+			  Applying ToDoApp.0001_initial... OK
 		</code></pre>
 	</section>
 </section>
@@ -420,7 +435,7 @@
 <section><h1>Introducing the Django Admin</h1></section>
 <section><h2>Introducing the Django Admin</h2>
 	<section><h3>Creating an admin user</h3>
-		<p>In root Project Folder (ToDoAppProject) type:</p>
+		<p>In project root folder (ToDoProjectContainer) type:</p>
 		<pre><code rel="Terminal" class="shell" data-noescape>
 			$ python manage.py createsuperuser
 		</code></pre>
@@ -456,9 +471,9 @@
 	</section>
 	<section><h3>Add our ToDoApp to the Admin Interface</h3>
 		<dl class="fa">
-			<dt>Open <code>ToDoListComponent/admin.py</code> and register our Task model:</dt>
+			<dt>Open <code>ToDoApp/admin.py</code> and register our Task model:</dt>
 		</dl>
-		<pre><code rel="ToDoListComponent/admin.py" class="python">
+		<pre><code rel="ToDoApp/admin.py" class="python">
 			from django.contrib import admin
 
 			# Register your models here.
@@ -481,9 +496,9 @@
 
 <section><h1>Query DB from our ToDoApp</h1>
 	<dl class="fa">
-		<dt>Change <code>ToDoListComponent/views.py</code> as:</dt>
+		<dt>Change <code>ToDoApp/views.py</code> as:</dt>
 	</dl>
-	<pre><code rel="ToDoListComponent/views.py" class="python">
+	<pre><code rel="ToDoApp/views.py" class="python">
 		from django.shortcuts import render
 		from django.http import HttpResponse
 		from .models import Task
@@ -491,7 +506,7 @@
 
 		def index(request):
 		    latest_tasks = Task.objects.order_by('-due')[:5]
-		    output ="<h1>Taks:</h1>"
+		    output ="<h1>Task:</h1>"
 		    output += ', '.join([q.title for q in latest_tasks])
 		    return HttpResponse(output)
 	</code></pre>
@@ -502,29 +517,22 @@
 <section><h2>Add some Templates</h2>
 	<section><h3>task_list template</h3>
 		<dl class="fa">
-			<dt>In ToDoListComponent create a folder named <code>templates</code> and make the file <code>tasks_index.html</code> in it.</dt>
+			<dt>In ToDoApp create a path named <code>templates/ToDoApp/</code> and make the file <code>tasks_index.html</code> in it.</dt>
+
 		</dl>
 		<pre><code rel="Terminal" class="shell" data-noescape>
-			ToDoListComponent/
-			├── admin.py
-			├── apps.py
-			├── __init__.py
-			├── migrations
-			│   ├── 0001_initial.py
-			│   ├── __init__.py
-			│   └── __pycache__
-			│       ├── 0001_initial.cpython-36.pyc
-			│       └── __init__.cpython-36.pyc
+			$ pwd
+			# {some_path}/ToDoProjectContainer
+
+			$ mkdir -p ToDoApp/templates/ToDoApp
+			$ touch ToDoApp/templates/ToDoApp/tasks_index.html
+
+			ToDoApp/
+			...
 			├── models.py
-			├── __pycache__
-			│   ├── admin.cpython-36.pyc
-			│   ├── apps.cpython-36.pyc
-			│   ├── __init__.cpython-36.pyc
-			│   ├── models.cpython-36.pyc
-			│   ├── urls.cpython-36.pyc
-			│   └── views.cpython-36.pyc
 			├── templates
-			│   └── tasks_index.html
+			│   └── ToDoApp
+			│       └── tasks_index.html
 			├── tests.py
 			├── urls.py
 			└── views.py
@@ -535,96 +543,40 @@
 			<dt>Add the HTML template code in <code>templates/tasks_index.html</code></dt>
 		</dl>
 		<pre><code rel="HTML" class="html">
-			&lt;!DOCTYPE html&gt;
-			&lt;html&gt;
-			&lt;head&gt;
-			  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;&gt;
-			  &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js&quot;&gt;&lt;/script&gt;
-			  &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
-			  &lt;title&gt;ToDo App&lt;/title&gt;
-			&lt;/head&gt;
-			&lt;body&gt;
-			  &lt;div class=&quot;jumbotron text-center&quot;&gt;
-			    &lt;h1&gt;ToDo's&lt;/h1&gt;
-			  &lt;/div&gt;
-
-			  &lt;div class=&quot;container&quot;&gt;
-			    &lt;div class=&quot;row&quot;&gt;
-			      &lt;div class=&quot;col-sm-4&quot;&gt;
-			      &lt;/div&gt;
-			      &lt;div class=&quot;col-sm-4&quot;&gt;
-			        &lt;h3&gt;Tasks List&lt;/h3&gt;
-			        &lt;table&gt;
-			          &lt;tr&gt;
-			            &lt;th&gt;Task&lt;/th&gt;
-			            &lt;th&gt;Due?&lt;/th&gt;
-			          &lt;/tr&gt;
-			          {% for task in task_list %}
-			          &lt;tr&gt;
-			            &lt;td&gt;
-			              {{ task.title }}
-			            &lt;/td&gt;
-			            &lt;td&gt;
-			              {{ task.due }}
-			            &lt;/td&gt;
-			          &lt;/tr&gt;
-			          {% endfor %}
-			        &lt;/table&gt;
-			      &lt;/div&gt;
-			      &lt;div class=&quot;col-sm-4&quot;&gt;
-			      &lt;/div&gt;
-			    &lt;/div&gt;
-			  &lt;/div&gt;
-			&lt;/body&gt;
-			&lt;/html&gt;
+			{% load static %}&#10;&#9;&#9;&#9;&lt;!DOCTYPE html&gt;&#10;&#9;&#9;&#9;&lt;html lang=&quot;en&quot;&gt;&#10;&#9;&#9;&#9;&lt;head&gt;&#10;&#9;&#9;&#9;&#9;&lt;meta charset=&quot;UTF-8&quot;&gt;&#10;&#9;&#9;&#9;&#9;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&#10;&#9;&#9;&#9;&#9;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;&#10;&#9;&#9;&#9;&#9;&lt;link rel=&quot;stylesheet&quot; href=&quot;{% static &apos;ToDoApp/css/base.css&apos;%}&quot;&gt;&#10;&#9;&#9;&#9;&#9;&lt;title&gt;Document&lt;/title&gt;&#10;&#9;&#9;&#9;&lt;/head&gt;&#10;&#9;&#9;&#9;&lt;body&gt;&#10;&#9;&#9;&#9;&#9;&lt;header&gt;ToDo App&lt;/header&gt;&#10;&#9;&#9;&#9;&#9;&lt;section class=&quot;tasks&quot;&gt;&lt;h1&gt;Current tasks:&lt;/h1&gt;&#10;&#9;&#9;&#9;&#9;&#9;&lt;ul&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;{% for task in task_list %}&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;li&gt;&lt;span&gt;{{task.title}}&lt;/span&gt;&lt;span&gt;{{task.due}}&lt;/span&gt;&lt;/li&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;{% endfor %}&#10;&#9;&#9;&#9;&#9;&#9;&lt;/ul&gt;&#10;&#9;&#9;&#9;&#9;&lt;/section&gt;&#10;&#9;&#9;&#9;&lt;/body&gt;&#10;&#9;&#9;&#9;&lt;/html&gt;
 		</code></pre>
-		<p>Or copy the raw code from <a href="https://pastebin.com/raw/Ks3xN1zR">here</a></p>
 	</section>
 	<section>
 		<dl class="fa">
-			<dt>Update our <code>ToDoListComponent/views.py</code> in order to use the template, and fill it will DB data</dt>
+			<dt>Update our <code>ToDoApp/views.py</code> in order to use the template, and fill it will DB data</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			from django.shortcuts import render
 			from django.http import HttpResponse
 			from .models import Task
 
+
 			def index(request):
 				# query the DB
-		    task_list = Task.objects.all()
+				task_list = Task.objects.all()
 
-		    return render(
-		        request,
-		        'tasks_index.html',
-		        {
-		            'task_list' : task_list,
-		        }
-		    )
+				return render(
+					request,
+					'tasks_index.html',
+					{
+						'task_list' : task_list,
+					}
+				)
 		</code></pre>
 	</section>
 	<section><h3>Add some CSS</h3>
 		<dl class="fa">
-			<dt>In the ToDoListComponent folder create the folder path<code>static/css</code>, and in it - make the file <code>base.css</code></dt>
+			<dt>In the ToDoApp folder create the path <code>static/ToDoApp/css</code>, and in it - make the file <code>base.css</code></dt>
 		</dl>
 		<pre><code rel="Terminal" class="shell" data-noescape>
-			ToDoListComponent/
-			├── admin.py
-			├── apps.py
-			├── __init__.py
-			├── migrations
-			│   ├── 0001_initial.py
-			│   ├── __init__.py
-			│   └── __pycache__
-			│       ├── 0001_initial.cpython-36.pyc
-			│       └── __init__.cpython-36.pyc
+			ToDoApp/
+			...
 			├── models.py
-			├── __pycache__
-			│   ├── admin.cpython-36.pyc
-			│   ├── apps.cpython-36.pyc
-			│   ├── __init__.cpython-36.pyc
-			│   ├── models.cpython-36.pyc
-			│   ├── urls.cpython-36.pyc
-			│   └── views.cpython-36.pyc
 			├── static
 			│   └── css
 			│       └── base.css
@@ -641,10 +593,31 @@
 		</dl>
 		<pre><code rel="HTML" class="html">
 			body{
-				background: #FFBDBD
+				background: #DDD5D5;
+				margin: 0
 			}
-			td {
-			  padding: 10px 5px;
+			header{
+				height: 10vh;
+				padding: .5em;
+				background: #666;
+				color: #FFBDBD;
+				font-size: 3em;
+				text-align: center;
+			}
+			ul,li{
+				margin: 0;
+				padding: 0;
+			}
+			.tasks{
+				width: 80%;
+				margin: 0 auto;
+			}
+			.tasks li{
+				height: 2em;
+				margin-left:1em;
+			}
+			.tasks li span:nth-of-type(1){
+				margin-right: 1em;
 			}
 		</code></pre>
 	</section>
@@ -653,7 +626,10 @@
 <section id="hw"><h1>Exercises</h1></section>
 <section><h2>Task1</h2>
 	<section><h3>The Task</h3>
-
+		<dl class="fa">
+			<dt>Create a simple 'about' page template (add some style, if you wish)</dt>
+			<dt>Configure the route to it, so that it will opens on <a href="http://127.0.0.1:8000/ToDoApp/about">http://127.0.0.1:8000/ToDoApp/about</a></dt>
+		</dl>
 	</section>
 </section>
 
