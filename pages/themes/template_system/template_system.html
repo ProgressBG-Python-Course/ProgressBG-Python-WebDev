@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>template_system</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
+</head>
+<body>
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#template_system" target="_top"><i class="fa fa-home"></i></a>
+            <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div><span>N/Space</span><span>previous slide</span></div>
+                <div><span>P</span><span>next slide</span></div>
+                <div><span>O</span><span>overview slides</span></div>
+                <div><span>ctrl+left click</span><span>zoom element</span></div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>The Django Template System</h1></section>
+<section data-transition="zoom">
+    <!-- linkedin badge -->
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="http://progressbg.net/програмиране-с-python-2/">
+            <img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note">Iva E. Popova, 2018-2019:</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+        </div>
+    </section>
+    <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+        <div class="company">
+             <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+        </div>
+    </section>
+</section>
+
+
+<section data-min="10"><h1>Overview</h1></section>
+<section><h2>Overview</h2>
+    <section><h3>What is a template?</h3>
+        <a href="images/template_engine_overview.png"><img src="images/template_engine_overview.png" width="300" height="300"></a>
+        <dl class="fa">
+            <dt>A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted</dt>
+        </dl>
+    </section>
+    <section><h3>Why to use a Template System?</h3>
+        <dl class="fa">
+            <dt><span class="note">Separation of concerns</span>: HTML/CSS vs Python/Django</dt>
+            <dd>I.e. to to separate the design of the page from the Python code itself</dd>
+            <dd>Easy change of the design of a Web site</dd>
+            <dd>The static part of the view can be implemented by Front-End Developer, while the Back-End Developer can concentrate on the dynamic parts</dd>
+        </dl>
+      </section>
+</section>
+
+
+<section data-min="10"><h1>Create your first Django Template</h1></section>
+<section><h2>Create your first Django Template</h2>
+  <section><h3>The template folder and file</h3>
+    <dl class="fa">
+        <dt>In the ToDoApp folder create the foldeer: <code>templates/ToDoApp</code></dt>
+        <dt>Inside <code>ToDoApp/templates/ToDoApp</code> create a new file: <code>index.html</code></dt>
+        <dt>You should have the following structure for your App:</dt>
+    </dl>
+    <pre><code rel="Terminal" class="js">
+        ToDoApp/
+        ├── admin.py
+        ├── apps.py
+        ├── __init__.py
+        ├── migrations
+        │   ├── 0001_initial.py
+        │   └── __init__.py
+        ├── models.py
+        ├── templates
+        │   └── ToDoApp
+        │       └── index.html
+        ├── tests.py
+        ├── urls.py
+        └── views.py
+    </code></pre>
+  </section>
+  <section><h3>The Template File</h3>
+    <pre><code rel="ToDoApp/templates/ToDoApp/index.html" class="HTML5">
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h1&gt;Latest tasks&lt;/h1&gt;
+            {% if latest_tasks %}
+                &lt;ul&gt;
+                {% for task in latest_tasks %}
+                    &lt;li&gt;&lt;a href=&quot;/task/{{ task.id }}/&quot;&gt;{{ task.title }}&lt;/a&gt;&lt;/li&gt;
+                {% endfor %}
+                &lt;/ul&gt;
+            {% else %}
+                &lt;p&gt;No task left&lt;/p&gt;
+            {% endif %}
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </code></pre>
+  </section>
+  <section><h3>Set up the view</h3>
+    <dl class="fa">
+        <dt>In <code>index</code> view we need to load the template and return the rendered html page</dt>
+    </dl>
+    <pre><code rel="ToDoApp/views.py" class="python3">
+        from django.shortcuts import render
+        from django.template import loader
+        from django.http import HttpResponse
+        from ToDoApp.models import Task
+
+        # Create your views here.
+        def index(request):
+            latest_tasks = Task.objects.order_by('due')[:5]
+
+            context = {
+                'latest_tasks': latest_tasks,
+            }
+            template_file = 'ToDoApp/index.html'
+
+            template = loader.get_template(template_file)
+            return HttpResponse(template.render(context, request))
+    </code></pre>
+  </section>
+</section>
+
+
+<section data-min="10"><h1>How Django Template System works</h1></section>
+<section><h2>How Django Template System works</h2>
+  <section>
+    <dl class="fa">
+        <dt>By default, django searches for templates files in <code>{app_folder}/templates</code> folder</dt>
+        <dt>In the project's <code>settings.py</code> file we can set up the template engine and the default search path</dt>
+    </dl>
+  </section>
+  <section><h3>TEMPLATES settings</h3>
+    <pre><code rel="ToDoProject/settings.py" class="bash">
+        TEMPLATES = [
+            {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'DIRS': [],
+                'APP_DIRS': True,
+                'OPTIONS': {
+                    # ... some options here ...
+                },
+            },
+        ]
+    </code></pre>
+  </section>
+  <section><h3>TEMPLATES settings</h3>
+      <dl class="fa">
+          <dt><span class="note">BACKEND</span> -  a dotted Python path to a template engine class implementing Django’s template backend API.</dt>
+          <dt>The built-in backends are</dt>
+          <dd><a href="https://docs.djangoproject.com/en/2.1/topics/templates/#django.template.backends.django.DjangoTemplates">django.template.backends.django.DjangoTemplates</a></dd>
+          <dd><a href="https://docs.djangoproject.com/en/2.1/topics/templates/#django.template.backends.jinja2.Jinja2">django.template.backends.jinja2.Jinja2</a></dd>
+      </dl>
+  </section>
+  <section><h3>TEMPLATES settings</h3>
+      <dl class="fa">
+          <dt><span class="note">DIRS</span> - defines a list of directories, in search order,  where the engine should look for template source files.</dt>
+          <dd>You can use whatever path for your templates, as long as the directories and templates are readable by the Web server.</dd>
+          <dd>Paths should use Unix-style forward slashes, even on Windows.</dd>
+          <dd>Template files can have any extension (.html or .txt), or they can have no extension at all.</dd>
+          <dt><span class="note">APP_DIRS</span> [True/False] -  whether the engine should look for templates inside installed applications.</dt>
+      </dl>
+  </section>
+  <section><h3>TEMPLATES settings</h3>
+      <dl class="fa">
+          <dt><span class="note">OPTIONS</span> - extra parameters to pass to the template backend.</dt>
+          <dt>Available parameters vary depending on the template backend (DjangoTemplates and Jinja2)</dt>
+          <dd>Reference: <a href="https://docs.djangoproject.com/en/2.1/topics/templates/#module-django.template.backends.django">Built-in backends @djangoproject.com</a></dd>
+      </dl>
+  </section>
+  <section><h3>Templates Loading - Live Demo</h3>
+    <dl class="fa">
+        <dt>Lets create another app for our project:</dt>
+        <dd>django-admin startapp DemosApp</dd>
+        <dt>Add it to the INSTALLED_APPS settings</dt>
+    </dl>
+    <pre><code rel="ToDoProject/settings.py" class="js">
+        INSTALLED_APPS = [
+            'ToDoApp',
+            'DemosApp',
+            'django.contrib.admin',
+            ...
+        ]
+    </code></pre>
+    <dl class="fa">
+        <dt>Note, that the order of listing your apps will reflect the order of default template search path!</dt>
+    </dl>
+  </section>
+  <section><h3>Templates Loading - Live Demo</h3>
+    <dl class="fa">
+        <dt>Create the templates folder for DemosApp, but this time we'll decide to keep it simple and to put our templates files directly inside it.</dt>
+        <pre><code rel="JS" class="js">
+            DemosApp/
+            ...
+            ├── models.py
+            ├── templates
+            │   └── index.html
+            ├── tests.py
+            ├── urls.py
+            └── views.py
+        </code></pre>
+        <dt>Create the urls and views for Demos App for a simple index page</dt>
+        <dt>Create a simple <code>index.html</code> template</dt>
+    </dl>
+  </section>
+  <section><h3>Templates Loading - Live Demo</h3>
+    <pre><code rel="DemosApp/views.py" class="python3">
+        from django.shortcuts import render
+
+        # Create your views here.
+        def index(request):
+            context = {
+                'title': "Demos App index",
+            }
+
+
+            template_file = 'index.html'
+
+            return render(request, template_file, context)
+    </code></pre>
+  </section>
+  <section><h3>Templates Loading - Live Demo</h3>
+    <pre><code rel="DemosApp/templates/index.html " class="html">
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;{{ title }}&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h1&gt;{{ title }}&lt;/h1&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </code></pre>
+    <p><a href="http://127.0.0.1:8000/demos/">http://127.0.0.1:8000/demos/</a> should load our DemosApp index view</p>
+  </section>
+  <section><h3>Templates Loading - Live Demo</h3>
+    <dl class="fa">
+        <dt>How can we see/debug where exactly Django will search for our templates files?</dt>
+        <dd>Let's raise a "TemplateDoesNotExist" error by setting a non existing template_file in our <code>DemosApp/views.py</code></dd>
+    </dl>
+  </section>
+  <section><h3>Templates Loading - Live Demo</h3>
+    <pre><code rel="http://127.0.0.1:8000/demos/" class="bash">
+        Template-loader postmortem
+        Django tried loading these templates, in this order:
+
+        Using engine django:
+
+        django.template.loaders.app_directories.Loader: .../ToDoProjectContainer/ToDoApp/templates/Index.html (Source does not exist)
+        django.template.loaders.app_directories.Loader: .../ToDoProjectContainer/DemosApp/templates/Index.html (Source does not exist)
+        django.template.loaders.app_directories.Loader: .../site-packages/django/contrib/admin/templates/Index.html (Source does not exist)
+        django.template.loaders.app_directories.Loader: .../site-packages/django/contrib/auth/templates/Index.html (Source does not exist)
+    </code></pre>
+  </section>
+  <section><h3></h3>
+    <dl class="fa">
+        <dt>Switch the order of you apps into INSTALLED_APPS project settings</dt>
+        <dt>And expect how the templates search path order will be changed, as well</dt>
+    </dl>
+    <pre><code rel="ToDoProject/settings.py" class="bash">
+        INSTALLED_APPS = [
+            'DemosApp',
+            'ToDoApp',
+            'django.contrib.admin',
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'django.contrib.messages',
+            'django.contrib.staticfiles',
+        ]
+    </code></pre>
+  </section>
+</section>
+
+
+<section data-min="30"><h1>Django Template Language Syntax</h1></section>
+<section><h2>Django Template Language Syntax</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+        <dt>Django has own template system based on Django Template Language (DTl).</dt>
+        <dt>A template is rendered with a context.</dt>
+        <dd>A dict-like object mapping variables to values.</dd>
+        <dt>Rendering replaces variables with their values, which are looked up in the context, and executes tags.</dt>
+        <dt>Everything else is output as is.</dt>
+    </dl>
+  </section>
+  <section><h3>Example</h3>
+    <pre><code rel="context" class="python3">
+        context = {
+            'title': "Demos App index",
+            'user_name': 'Ada',
+            'user_age': 32
+        }
+    </code></pre>
+    <pre><code rel="Template" class="html">
+        <p>Hello {{ user_name}}! You're {{user_age}} years old.</p>
+    </code></pre>
+    <pre><code rel="Rendered Output" class="js">
+        <p>Hello Ada! You're 32 years old.</p>
+    </code></pre>
+  </section>
+  <section><h3>Variables</h3>
+    <dl class="fa">
+        <dt>Variables are surrounded by <span class="note">{{</span> and <span class="note">}}</span></dt>
+        <dt>They are replaced with the respective values from the context</dt>
+        <dt>Dictionary lookup, attribute lookup and list-index lookups are implemented with a dot notation:</dt>
+    </dl>
+    <pre><code rel="Context" class="python3">
+        context = {
+            'product_prices': {
+                'apples': 2.4,
+                'oranges': 1.80
+            },
+            'products_list': ['apples', 'oranges']
+        }
+    </code></pre>
+    <pre><code rel="Template" class="html">
+        <p>{{products_list.0}}</p>
+        <p>{{product_prices.apples}}</p>
+    </code></pre>
+  </section>
+  <section><h3>Variables</h3>
+    <dl class="fa">
+        <dt>If a variable resolves to a function, the template system will call it with no arguments and use its result.</dt>
+    </dl>
+    <pre><code rel="Context" class="python3">
+        def say_hello():
+            return 'Hello there!'
+
+        context = {
+            'say_hello': say_hello,
+        }
+    </code></pre>
+    <pre><code rel="Template" class="html">
+        <p>{{say_hello}}</p>
+    </code></pre>
+    <pre><code rel="rendered output" class="bash">
+        Hello there!
+    </code></pre>
+  </section>
+  <section><h3>Tags</h3>
+    <dl class="fa">
+        <dt>Tags are surrounded by <span class="note">{%</span> and <span class="note">%}</span></dt>
+        <dt>Tags provide arbitrary logic in the rendering process.</dt>
+        <dt>Django provides a list of <a href="https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#ref-templates-builtins-tags">built-in tags</a></dt>
+        <dt>We can define a custom tags, as well.</dt>
+    </dl>
+  </section>
+  <section><h3>Tags</h3>
+    <pre><code rel="context" class="python3">
+        context = {
+            'products_list': ['apples', 'oranges'],
+        }
+    </code></pre>
+    <pre><code rel="template" class="html">
+        {% if products_list %}
+            <ul>
+            {% for product in products_list %}
+                <li>{{ product }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </code></pre>
+    <pre><code rel="Output" class="ascii">
+        <ul>
+
+            <li>apples</li>
+
+            <li>oranges</li>
+
+        </ul>
+    </code></pre>
+  </section>
+  <section><h3>Tags</h3>
+    <dl class="fa">
+        <dt>More on tags:</dt>
+        <dd><a href="https://docs.djangoproject.com/en/2.1/ref/templates/language/#tags">tags @djangoproject.com</a></dd>
+        <dd><a href="https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#ref-templates-builtins-tags">builtins-tags @djangoproject.com</a></dd>
+    </dl>
+  </section>
+  <section><h3>Template inheritance - extend and reuse templates</h3>
+    <dl class="fa">
+        <dt>Template inheritance allows you to build a base “skeleton” template that contains all the common elements of your site and defines blocks that child templates can override.</dt>
+        <dt><a href="https://docs.djangoproject.com/en/2.1/ref/templates/language/#template-inheritance">template-inheritance @djangoproject.com</a></dt>
+    </dl>
+  </section>
+
+</section>
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+    <section><h3>The Task</h3>
+
+    </section>
+</section>
+
+<section><h3>Submission</h3>
+    <dl class="fa">
+        <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+        <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+        <dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: template_system">progressbg.python.course@gmail.com</a></dt>
+    </dl>
+</section>
+
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+     <p>These slides are based on</p>
+     <p>customised version of </p>
+     <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+     <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1024,
+            height: 850,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+maous click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
+</body>
+</html>
