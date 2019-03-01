@@ -69,8 +69,12 @@
 }
 .reveal section dl.fa>dt{
   font-weight: normal;
+  font-size: .9em;
   margin: .5em 0 0 0;
   line-height: 1.2em;
+}
+.reveal section dl.fa>dd{
+  font-size: .8em;
 }
 .reveal section dl.fa>dt:first-child{
   margin: 0;

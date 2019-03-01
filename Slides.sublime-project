@@ -14,15 +14,15 @@
 			"path": "."
 		},
 		{
-			"path": "../ProgressBG-VC-Django-Labs/"
+			// "path": "../ProgressBG-VC-Django-Labs/"
 		}
 	],
 	"settings":
 	{
 		"show_definitions": false,
 		"spell_check": true,
-		"tab_size": 2,
-		"translate_tabs_to_spaces": false,
+		// "tab_size": 2,
+		// "translate_tabs_to_spaces": false,
 		"trim_trailing_white_space_on_save": true
 	}
 }

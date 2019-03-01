@@ -1,0 +1,45 @@
+#Request.path  http://127.0.0.1:8000/todos/list/
+#server log: "GET /todos/list/ HTTP/1.1"
+
+1. From ROOT_URLCONF => 'todo_project.urls'
+
+
+2. From "todo_project/urls.py" =>
+urlpatterns = [
+    path('', include('todo_app.urls')),
+    path('todos/', include('todo_app.urls')),
+    path('demos/', include('demos.urls')),
+    path('admin/', admin.site.urls),
+]
+
+# path syntax:
+# path(route, view, kwargs=None, name=None)
+
+2.1. Match the route strings to '/todos/list/' in given order. Stop on first match.
+2.2. Match found: path('todos/', include('todo_app.urls'))
+
+3. From "todo_app/urls.py" =>
+urlpatterns = [
+  path('', views.index),
+  path('list/', views.list),
+  path('table/', views.table),
+]
+
+3.1. Match the route strings to 'list/' in given order. Stop on first match.
+
+3.2.Match found: path('list/', views.list),
+
+4. Call views.list function
+
+4. From todo_app.views.py
+  def list(request):
+      latest_tasks = Task.objects.order_by('due')[:5]
+
+      context = {
+          'latest_tasks': latest_tasks
+      }
+
+      template_file = 'todo_app/list.html'
+
+
+      return render(request, template_file, context)

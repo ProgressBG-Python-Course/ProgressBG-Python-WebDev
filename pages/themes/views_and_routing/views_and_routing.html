@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>views_and_routing</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#django_views_and_routing" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>previous slide</span></div>
+        <div><span>P</span><span>next slide</span></div>
+        <div><span>O</span><span>overview slides</span></div>
+        <div><span>ctrl+left click</span><span>zoom element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Django Views and Routing</h1></section>
+<section data-transition="zoom">
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+  <section class="copyright" data-transition="zoom">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/програмиране-с-python-2/">
+      <img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span class="note">Iva E. Popova, 2018-2019:</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </section>
+  <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+    <div class="company">
+       <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+    </div>
+  </section>
+</section>
+
+<section data-min="10"><h1>How Django Process a Request</h1></section>
+<section><h2>How Django Process a Request</h2>
+  <section><h3>Overview</h3>
+    <a href="images/requst_django_responce.png"><img src="images/requst_django_responce.png"></a>
+  </section>
+  <section>
+    <p>In next slides we are going to  discuss the basic algorithm of processing a URL request by Django (we are not going to speak about middle-wares for now)</p>
+  </section>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>Find the main <code>URLconf</code> path</dt>
+      <dd>project's settings.py => ROOT_URLCONF</dd>
+      <dt>Load the module in the ROOT_URLCONF and get the list from <code>urlpatterns</code> variable</dt>
+      <dt>Runs through each URL pattern (<span class="note">in the given order</span>), and stops at the first one that matches the requested URL.</dt>
+      <dt>Once one of the URL patterns matches, Django imports and calls the given view.</dt>
+      <dt>In the common use case, the view queries the model and render a template with the given data. The rendered template will be returned as a Response.</dt>
+    </dl>
+    <p>Reference: <a href="https://docs.djangoproject.com/en/2.1/topics/http/urls/#how-django-processes-a-request">How Django processes a request @djangoproject</a></p>
+  </section>
+  <section><h3>todo_project demo (http://127.0.0.1:8000/todos/list/)</h3>
+    <dl class="fa">
+      <dt>Request Path: "todos/list/"</dt>
+      <dt>Find the main <code>URLconf</code> path</dt>
+    </dl>
+    <pre><code rel="todo_project/settings.py" class="python3">
+      ROOT_URLCONF = 'todo_project.urls'
+    </code></pre>
+    <pre><code rel="todo_project/urls.py" class="python3">
+      urlpatterns = [
+          path('', include('todo_app.urls')),
+          path('todos/', include('todo_app.urls')),
+          path('demos/', include('demos.urls')),
+          path('admin/', admin.site.urls),
+      ]
+    </code></pre>
+  </section>
+  <section><h3>todo_project demo (http://127.0.0.1:8000/todos/list/)</h3>
+    <dl class="fa">
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/urls/#django.urls.path">Path() @djangoproject</a></dt>
+    </dl>
+    <pre><code rel="todo_project/urls.py" class="python">
+      # Match routes strings to "todos/list/":
+
+      urlpatterns = [
+          path('', include('todo_app.urls')),
+          path('todos/', include('todo_app.urls')),
+          # Match! Go deep to 'todo_app.urls' with the rest of the string
+
+          path('demos/', include('demos.urls')),
+          path('admin/', admin.site.urls),
+      ]
+    </code></pre>
+    <!-- <dl class="fa">
+      <dt>Match routes string in 'todo_app.urls' to <span class="note">list/</span></dt>
+    </dl> -->
+    <pre><code rel="todo_app.urls" class="python">
+      # Match routes strings to "list/":
+
+      urlpatterns = [
+        path('', views.index),
+        path('list/', views.list),
+        # Match! Execute views.list.list
+
+        path('table/', views.table),
+      ]
+    </code></pre>
+  </section>
+  <section><h3>todo_project demo (http://127.0.0.1:8000/todos/list/)</h3>
+    <dl class="fa">
+      <dt>Call views.list function</dt>
+    </dl>
+    <pre><code rel="todo_app.views" class="python">
+      # ...
+
+      def list(request):
+        latest_tasks = Task.objects.order_by('due')[:5]
+
+        context = {
+            'latest_tasks': latest_tasks
+        }
+
+        template_file = 'todo_app/list.html'
+
+        return render(request, template_file, context)
+    </code></pre>
+  </section>
+</section>
+<!--
+<section data-min="10"><h1>Views and URL configuration</h1></section>
+<section><h2>Views and URL configuration</h2>
+  <section><h3>___MainSectionSubTitle___</h3></section>
+</section> -->
+
+<section data-min="10"><h1>django.urls functions</h1></section>
+<section><h2>django.urls functions</h2>
+	<section><h3>Compatibility notes</h3>
+		<dl class="fa">
+			<dt class="note"><code>path() and re_path()</code> functions discussed next are <b>new</b> in Django 2</dt>
+			<dt>Django 1 uses only the <code>url()</code> function</dt>
+		</dl>
+		<pre><code rel="JS" class="js">
+			# Django 1 way:
+			urlpatterns = [
+			    url(r'^$', views.index, name="index"),
+			    url(r'^(\d+)$', views.list, name="list"),
+			]
+
+			# Django 2 way
+			urlpatterns = [
+			    path('', views.index, name="index"),
+			    re_path('^(\d+)$', views.list, name="list")
+			]
+		</code></pre>
+	</section>
+  <section><h3><code>path()</code></h3>
+    <pre><code rel="Syntax" class="python">
+      path(route, view, kwargs=None, name=None)
+    </code></pre>
+    <dl class="fa">
+    	<dt>Usage - for routes without regex</dt>
+      <dt>reference:</dt>
+      <dd><a href="https://docs.djangoproject.com/en/2.1/ref/urls/#path">path() @djangoproject</a></dd>
+    </dl>
+  </section>
+  <section><h3><code>re_path()</code></h3>
+    <pre><code rel="Syntax" class="python">
+      re_path(route, view, kwargs=None, name=None)
+    </code></pre>
+    <dl class="fa">
+    	<dt>Usage - for complex routes with regex</dt>
+      <dt>reference:</dt>
+      <dd><a href="https://docs.djangoproject.com/en/2.1/ref/urls/#path">path() @djangoproject</a></dd>
+      <dd><a href="https://www.regular-expressions.info/refext.html">Named Groups and Backreferences @regular-expressions.info</a></dd>
+    </dl>
+  </section>
+</section>
+
+
+<section data-min="20"><h1>Capture URL parameters</h1></section>
+<section><h2>Capture URL parameters</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>When the URL dispatcher match a route in the URLconf list, it loads and executes the given view.</dt>
+      <dt>The view gets passed the following arguments:</dt>
+      <dd>An instance of HttpRequest</dd>
+      <dd>If the matched URL pattern returned <span class="note">no named groups</span>, then the matches from the regular expression are provided as <span class="note">positional arguments</span></dd>
+      <dd>The <span class="note">keyword arguments</span> are made up of any <span class="note">named parts matched by the path expression</span>, overridden by any arguments specified in the optional kwargs argument to django.urls.path() or django.urls.re_path().</dd>
+    </dl>
+  </section>
+  <section><h3><code>path()</code> - examples</h3>
+    <pre><code rel="urls => views" class="python">
+      # http://127.0.0.1:8000/todos/del/1
+
+      path('del/&lt;id&gt;', views.delete) =&gt;
+      	# pass number 1
+        delete(request,id=1)
+
+      path('del/&lt;str:id&gt;', views.delete) =&gt;
+      	# pass the string &quot;1&quot;
+      	delete(request,id=&quot;1&quot;)
+
+      path('del/&lt;id&gt;', views.delete, {'id':99}) =&gt;
+      	# pass the number 99, as it overides the named parts
+        delete(request,id=99):
+    </code></pre>
+    <dl class="fa">
+      <dt>To capture a value from the URL, use angle brackets in the route</dt>
+      <dd><code>path('&lt;name&gt;',...)</code></dd>
+      <dt>You can optionally prefix the name by a converter type</dt>
+      <dd><code>path('&lt;type:name&gt;',...)</code></dd>
+    </dl>
+  </section>
+  <section><h3>Path Converters</h3>
+    <dl class="fa">
+      <dt>reference:</dt>
+      <dd><a href="https://docs.djangoproject.com/en/2.1/topics/http/urls/#path-converters">path converters @djangoproject</a></dd>
+    </dl>
+  </section>
+  <section><h3>Using regular expressions</h3>
+  	<dl class="fa">
+  		<dt>reference: <a href="https://docs.djangoproject.com/en/2.1/topics/http/urls/#using-regular-expressions">Using regular expressions @djangoproject</a></dt>
+  	</dl>
+  </section>
+  <section><h3><code>re_path()</code> - examples</h3>
+    <pre><code rel="urls => views" class="python">
+      # http://127.0.0.1:8000/todos/2018-02
+
+      # no regex here, just for comparison
+      path('<year>-<month>', views.index)=>
+      	index(request, year='2018', month='02')
+
+      re_path('(\d{4})-(\d{,2})', views.index),
+        index(request, '2018', '02' )
+
+      re_path( '(?P<year>\d{4})-(?P<month>\d{,2})', views.index ) =>
+        index(request, year='2018', month='02')
+    </code></pre>
+  </section>
+</section>
+
+
+<section data-min="5"><h1>Access Query String</h1></section>
+<section><h2>Access Query String</h2>
+  <section><h3></h3>
+    <dl class="fa">
+      <dt><a href="https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.QueryDict.items"></a></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section data-min="20"><h1>Class-based Views</h1></section>
+<section><h2>Class-based Views</h2>
+  <section><h3>Overview</h3>
+    <p>Once again - what is a view?</p>
+    <p><a href="images/the_view_in_MVT.png"><img src="images/the_view_in_MVT.png" height="331" width="481"></a></p>
+    <p class="note">A callable which takes a request and returns a response</p>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt>In early Django versions there were only function-based views (FBV)</dt>
+      <dt>Django 1.3 introduce the <span class="note">class-based views</span>, which make it very easy to implement and reuse generic views, just by sub-classing them.</dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+  <section><h3>The Task</h3>
+  	<p>Define the URLconf and views for next urls</p>
+  	<dl class="fa">
+  		<dt>http://127.0.0.1:8000/todos/list</dt>
+  		<dd>views.list: detailed list of all tasks</dd>
+  		<dt>http://127.0.0.1:8000/todos/list_1</dt>
+  		<dd>views.list: detailed list of task with id=1 only</dd>
+  		<dt>http://127.0.0.1:8000/todos/2018</dt>
+  		<dd>views.index: short list of all task with due date year = 2018</dd>
+  		<dt>http://127.0.0.1:8000/todos/2018/02</dt>
+  		<dd>views.index: short list of all task with due date year = 2018 and month=February</dd>
+  	</dl>
+  	<p class="note">Note, that you need only 2 views to be defined</p>
+  </section>
+</section>
+
+<section data-min="5"><h1>Resources</h1></section>
+<section><h2>Resources</h2>
+  <section>
+  	<dl class="fa">
+  		<dt><a href="https://consideratecode.com/2018/05/02/django-2-0-url-to-path-cheatsheet/">Django 2.0 url() to path() cheatsheet</a> by <a href="https://consideratecode.com/author/daniel/">Daniel Hepper</a></dt>
+  	</dl>
+  </section>
+</section>
+<!--
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: django_views_and_routing">progressbg.python.course@gmail.com</a></dt>
+  </dl>
+</section>
+ -->
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+   <p>These slides are based on</p>
+   <p>customised version of </p>
+   <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+   <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+      center: true,
+      width: 1024,
+      height: 850,
+      // Bounds for smallest/largest possible scale to apply to content
+      // minScale: .5,
+      maxScale: 1,
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+</body>
+</html>
