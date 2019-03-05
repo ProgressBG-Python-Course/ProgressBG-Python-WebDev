@@ -276,22 +276,76 @@
 </section>
 
 
-<!-- <section data-min="5"><h1>Access Query String</h1></section>
+<section data-min="5"><h1>Reverse resolution of URLs</h1></section>
+<section><h2>Reverse resolution of URLs</h2>
+  <section><h3>Why?</h3>
+    <dl class="fa">
+      <dt>Often, we need in our applications to generate a full URL to some resource</dt>
+      <dd>in the UI: link to pages, static resources, etc</dd>
+      <dd>on the server-side: navigation, rediraction, etc.</dd>
+      <dt class="note">It's strongly recommended to avoid hard-coding these URLs. I.e. keep it DRY.</dt>
+    </dl>
+  </section>
+  <section><h3>How?</h3>
+    <dl class="fa">
+      <dt>Django provides a solution such that the URL mapper is the only repository of the URL design</dt>
+      <dd>In templates: using the <a href="https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#std:templatetag-url">url template tag</a></dd>
+      <dd>In Python code: Using the <a href="https://docs.djangoproject.com/en/2.1/ref/urlresolvers/#django.urls.reverse">reverse()</a>  function.</dd>
+      <dt>In order to perform URL reversing, you’ll need to use <a href="https://docs.djangoproject.com/en/2.1/topics/http/urls/#naming-url-patterns">URL pattern name</a></dt>
+      <dd>Reference: <a href="https://docs.djangoproject.com/en/2.1/topics/http/urls/#naming-url-patterns">Naming URL patterns</a></dd>
+    </dl>
+  </section>
+  <section><h3>Examples</h3>
+    <pre><code rel="todo_app/urls.py" class="python">
+      ...
+      urlpatterns = [
+        path('edit/<int:id>', views.edit, name="edit"),
+      ]
+    </code></pre>
+    <pre><code rel="todo_app/index.html" class="html">
+      <!-- not good: -->
+      <a href="/todos/edit/{{task.id}}"><i class="fa fa-trash"></i></a>
+
+      <!-- good: -->
+      <a href="{% url 'edit' task.id %}"><i class="fa fa-trash"></i></a>
+    </code></pre>
+    <dl class="fa">
+      <dt>The url tag will return an absolute path reference (a URL without the domain name) matching a given view (specified by <a href="https://docs.djangoproject.com/en/2.1/topics/http/urls/#naming-url-patterns">URL pattern name</a>) and optional parameters.</dt>
+    </dl>
+  </section>
+</section>
+
+
+<section data-min="5"><h1>Access Query String</h1></section>
 <section><h2>Access Query String</h2>
   <section><h3>Overview</h3>
     <dl class="fa">
       <dt>Recall that a query string is the part in a URL after the <span class="note">?</span> (question) mark.</dt>
       <dt>A query string consists of <span class="note">name=value</span> pairs, separated by <span class="note">&</span></dt>
-      <dt>With query string we can pass parameters to the back-end program</dt>
       <dd>Like: search string, page number, order by, etc. </dd>
+      <dt>With query string we can pass parameters to the back-end program using the GET Request Method</dt>
       <dt>Reference: <a href="https://en.wikipedia.org/wiki/Query_string">query string</a></dt>
     </dl>
   </section>
-  <section><h3>References</h3></section>
-</section> -->
+  <section><h3>HttpRequest.method</h3>
+    <dl class="fa">
+      <dt>We can check the Request Method by Django's HttpRequest.method</dt>
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.HttpRequest.method">HttpRequest.method</a></dt>
+    </dl>
+  </section>
+  <section><h3>HttpRequest.GET</h3>
+    <dl class="fa">
+      <dt>request.GET["param_name'] </dt>
+      <dt>HttpRequest.get(key, default=None)</dt>
+      <dd>Returns the value of the 'key' named param</dd>
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.HttpRequest.GET">HttpRequest.GET Method</a></dt>
+    </dl>
+  </section>
+
+</section>
 
 
-<!-- <section data-min="20"><h1>Class-based Views</h1></section>
+<section data-min="20"><h1>Class-based Views</h1></section>
 <section><h2>Class-based Views</h2>
   <section><h3>Overview</h3>
     <p>Once again - what is a view?</p>
@@ -302,9 +356,10 @@
     <dl class="fa">
       <dt>In early Django versions there were only function-based views (FBV)</dt>
       <dt>Django 1.3 introduce the <span class="note">class-based views</span>, which make it very easy to implement and reuse generic views, just by sub-classing them.</dt>
+      <dt>We'll use class-based view extensively in next topics (Django Forms, etc.)</dt>
     </dl>
   </section>
-</section> -->
+</section>
 
 
 <section id="hw"><h1>Exercises</h1></section>
@@ -362,7 +417,6 @@
     <p>Clicking on the first task trash icon, should generate next page (with url: http://127.0.0.1:8000/todos/delete/1)</p>
     <a href="Tasks_and_HW/images/127.0.0.1:8000-todos-delete-1.png"><img src="Tasks_and_HW/images/127.0.0.1:8000-todos-delete-1.png" style="height: 60vh;"></a>
   </section>
-
 </section>
 
 <section data-min="5"><h1>Resources</h1></section>

@@ -573,45 +573,61 @@
 </section>
 
 <!-- HTML forms -->
-<section><h1>HTML Forms</h1></section>
-<section id="forms"><h2>HTML Forms</h2>
-  <section><h3>HTML elements in <code><b>form</b></code></h3>
-    <pre>
-      <a href="http://www.w3schools.com/tags/tag_input.asp">input</a>      <a href="http://www.w3schools.com/tags/tag_textarea.asp">textarea</a>        <a href="http://www.w3schools.com/tags/tag_button.asp">button</a>
 
-      <a href="http://www.w3schools.com/tags/tag_option.asp">option</a>     <a href="http://www.w3schools.com/tags/tag_optgroup.asp">optgroup</a>       <a href="http://www.w3schools.com/tags/tag_select.asp">select</a>
+<section id="html_forms"><h1>HTML Forms Overview</h1></section>
+<section><h2>Какво са HTML Формите?</h2>
+  <dl class="fa">
+    <dt>Основен елемент от взаимодействието на потребителя със приложението (сайта).</dt>
+    <dt>Чрез формите потребителя може да изпраща данни към сървъра. <span class="note">В този случай, се работи с повишено внимание относно сигурността на системата.</span></dt>
+    <dt>Формата може да се използва и за взаимодействие изцяло на Front-End ниво (например, калкулатор и пр.).</dt>
+    <dt>Формата се състои от множество компоненти (контроли), като текстови полета, падащи списъци, чек-боксове, бутони.</dt>
+  </dl>
+</section>
 
-      <a href="http://www.w3schools.com/tags/tag_label.asp">label</a>      <a href="http://www.w3schools.com/tags/tag_fieldset.asp">fieldset</a>
-    </pre>
-  </section>
-  <section><h3>The Form Element</h3>
-    <p>A container for form components</p>
+<section id="form_element"><h1>Елемент form</h1></section>
+<section><h2>Елемент form</h2>
+  <section>
+    <p>Контейнер, в който се разполагат елементите на формата</p>
     <pre><code rel="HTML">
       <form action="registration.py" method="POST">
-        <div>Name: <input type="text" name="uname"></div>
-        <div>Password: <input type="password" name="pass"></div>
+        <div>Име: <input type="text" name="uname"></div>
+        <div>Парола: <input type="password" name="pass"></div>
         <button type="submit">Submit</button>
       </form>
     </code></pre>
   </section>
-  <section style="font-size: .8em"><h3>Form Element - main attributes</h3>
-    <dl class="fa">
+  <section><h3>Основни атрибути</h3>
+    <dl class="fa" style="font-size: .9em">
       <dt><span class="code">action</span></dt>
-      <dd>URL to the server-sede program which will handles the user input</dd>
+      <dd>Задава пътя до back-end програмата, която ще обработва данните на сървъра.</dd>
       <dt><span class="code">method</span></dt>
-      <dd>Specifies the HTTP request method:
+      <dd>Задава начина по който ще се изпратят данните. Основните HTTP методи за изпращане на данни са:
       <ul>
-        <li><span class="keyword">get</span> - defines a GET request. Form data will be attached in the URL</li>
-        <li><span class="keyword">post</span> - defines a POST request. Form data will be attached in the request body</li>
+        <li><span class="keyword">get</span> - данните ще се "закачат" в самото URL; </li>
+        <li><span class="keyword">post</span> - данните се предават в тялото на съобщенето.</li>
       </ul>
       </dd>
     </dl>
     <br><br>
-    <p class="note">Never use GET method when the form will contain sensitive information, like password fields.</p>
+    <p class="note">Когато чрез формата ще се изпращат конфиденциални данни (като парола), то винаги използвайте <code>method="post"</code></p>
   </section>
-  <section><h3>Input Element</h3>
-    <a href="http://www.w3schools.com/tags/tag_input.asp">http://www.w3schools.com/tags/tag_input.asp</a>
-    <div class="left half" style="margin-top:1.2em;">
+  <section id="form_controls_list"><h3>Допустими елементи във <code><b>form</b></code></h3>
+    <pre><code rel="" class="html" data-noescape>
+      <a href="http://www.w3schools.com/tags/tag_input.asp">input</a>       <a href="http://www.w3schools.com/tags/tag_textarea.asp">textarea</a>        <a href="http://www.w3schools.com/tags/tag_button.asp">button</a>
+
+      <a href="http://www.w3schools.com/tags/tag_option.asp">option</a>      <a href="http://www.w3schools.com/tags/tag_optgroup.asp">optgroup</a>        <a href="http://www.w3schools.com/tags/tag_select.asp">select</a>
+
+      <a href="http://www.w3schools.com/tags/tag_label.asp">label</a>       <a href="http://www.w3schools.com/tags/tag_fieldset.asp">fieldset</a>
+    </code></pre>
+  </section>
+</section>
+
+<section id="id="InputTag""><h1>Елемент input</h1></section>
+<section><h2>Елемент input</h2>
+  <section>
+    <p>Създава поле за въвеждане на данни от потребителя</p>
+    <p>Елемента е празен. Типът му се регулира от атрибута <a href="http://www.w3schools.com/tags/att_input_type.asp">type</a>:</p><br>
+    <div class="left half">
       <pre><code rel="HTML">
         Text type: <input type="text">
         Pass type: <input type="password">
@@ -623,36 +639,63 @@
         Reset button: <input type="reset">
       </code></pre>
     </div>
-    <div class="right half" style="line-height: .7em; height: .5em; font-size: .7em;">
-      <div style="margine:0 .8em; line-height: 1.5em; ">Text type: <input type="text" style="vertical-align: middle;"></div>
-      <div style="margine:0 .8em; line-height: 1.5em; ">Pass type: <input type="password" style="vertical-align: middle;"></div>
-      <div style="margine:0 .8em; line-height: 1.5em; ">Checkbox: <input type="checkbox" style="vertical-align: middle; transform: scale(1.5);"></div>
-      <div style="margine:0 .8em; line-height: 1.5em; ">Radio: <input type="radio" style="vertical-align: middle;transform: scale(1.5);"></div>
-      <div style="margine:0 .8em; line-height: 1.5em; ">File: <input type="file" style="vertical-align: middle;"></div>
-      <div style="margine:0 .8em; line-height: 1.5em; ">Color: <input type="color" style="vertical-align: middle;"></div>
-      <div style="margine:0 .8em; line-height: 1.5em; ">Submit button: <input type="submit" style="vertical-align: middle;"></div>
-      <div style="margine:0 .8em; line-height: 1.5em; ">Reset button: <input type="reset" style="vertical-align: middle;"></div>
+    <div class="right half">
+      <div>Text type: <input type="text" style="vertical-align: middle;"></div>
+      <div>Pass type: <input type="password" style="vertical-align: middle;"></div>
+      <div>Checkbox: <input type="checkbox" style="vertical-align: middle; transform: scale(1.5);"></div>
+      <div>Radio: <input type="radio" style="vertical-align: middle;transform: scale(1.5);"></div>
+      <div>File: <input type="file" style="vertical-align: middle;"></div>
+      <div>Color: <input type="color" style="vertical-align: middle;"></div>
+      <div>Submit button: <input type="submit" style="vertical-align: middle;"></div>
+      <div>Reset button: <input type="reset" style="vertical-align: middle;"></div>
     </div>
   </section>
-  <section><h3>The name attribute</h3>
+  <section><h3>Основни атрибути</h3>
     <dl class="fa">
-      <dt>Specifies a name for an input element.</dt>
-      <dt>The input data will be associated with that name</dt>
-      <dt>If the <code>name</code> attribute has no value, then no data will be sent to the server</dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_autocomplete.asp"><code class="note">autocomplete</code> attribute @w3schools</a></dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_autofocus.asp"><code class="note">autofocus</code> attribute @w3schools</a></dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_checked.asp"><code class="note">checked</code> attribute @w3schools</a></dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_name.asp"><code class="note">name</code> attribute @w3schools</a></dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_placeholder.asp"><code class="note">placeholder</code> attribute @w3schools</a></dt>
     </dl>
   </section>
-  <section><h3>Element <code class="html">label</code></h3>
-    <a href="http://www.w3schools.com/tags/tag_label.asp">http://www.w3schools.com/tags/tag_label.asp</a>
+  <section><h3>Основни атрибути</h3>
+    <dl class="fa">
+      <dt><a href="https://www.w3schools.com/tags/att_input_readonly.asp"><code class="note">readonly</code> attribute @w3schools</a></dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_required.asp"><code class="note">required</code> attribute @w3schools</a></dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_size.asp"><code class="note">size</code> attribute @w3schools</a></dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_type.asp"><code class="note">type</code> attribute @w3schools</a></dt>
+      <dt><a href="https://www.w3schools.com/tags/att_input_value.asp"><code class="note">value</code> attribute @w3schools</a></dt>
+    </dl>
   </section>
-  <section><h3>Element <code>textarea</code></h3>
-    <a href="http://www.w3schools.com/tags/tag_textarea.asp">http://www.w3schools.com/tags/tag_textarea.asp</a>
-  </section>
-  <section><h3>input type="radio"</h3>
-    <dl class="fa" style="font-size: .6em">
+</section>
+
+<section><h1>Ролята на <code class="note">name</code> атрибута в елементите на една форма</h1></section>
+<section><h2>Ролята на <code class="note">name</code> атрибута в елементите на една форма</h2>
+<section>
+  <dl class="fa">
+    <dt>От гледна точка на изпращането на данни, чрез <code>name</code> атрибута задаваме име на данните, които ще се асоциират с това поле.</dt>
+    <dt class="note">Ако дадено input поле няма дефиниран <code>name</code> атрибут, то няма да се изпратят въведените в него данни към сървъра!</dt>
+  </dl>
+  <pre><code rel="HTML" class="html">
+    <form action="/login" method="get">
+      <div>Име: <input type="text"></div>
+      <div>Парола: <input type="password" name="pass"></div>
+      <button type="submit">Submit</button>
+    </form>
+  </code></pre>
+  <p>Тествайте и погледнете в query string-а на URL какви данни ще се изпратя към сървъра.</p>
+</section>
+</section>
+
+<section><h1>Радио-бутони (input type="radio")</h1></section>
+<section><h2>Радио-бутони (input type="radio")</h2>
+  <section>
+    <dl class="fa" style="font-size: .8em">
       <dt>За да функционират радио контролите като избор на една от множество алтернативни стойности, то тези input полета трябва да имат <span class="note">една и съша стойност за атрибута <code>name</code></span></dt>
       <dt>Стойността, която ще се подаде на сървъра след избора на потребителя, се определя от атрибута <code>value</code></dt>
     </dl>
-    <pre><code rel="HTML" class="html" style="font-size: .9em">
+    <pre><code rel="HTML" class="html">
       <form action="/test" method="get">
         <fieldset>
           <legend>Gender</legend>
@@ -665,14 +708,74 @@
       </form>
     </code></pre>
   </section>
-  <section><h3>Element <code>select</code></h3>
-    <a href="http://www.w3schools.com/tags/tag_select.asp">http://www.w3schools.com/tags/tag_select.asp</a>
+</section>
+
+<section><h1>Елемент <code>input</code> като бутон</h1></section>
+<section><h2>Елемент <code>input</code> като бутон</h2>
+  <section>
+    <dl class="fa">
+      <dt>input елемента притежава стойности за атрибута <code>type</code>: <code>submit</code>, <code>reset</code> и <code>button</code>, които имат същото значение и ефект, както при <code>button</code> елемента</dt>
+    </dl>
+    <pre><code rel="HTML" class="html">
+      <input type="submit" name="" value="Изпрати">
+      <input type="reset" name="" value="Изчисти">
+      <input type="бутон" name="" value="Click me">
+    </code></pre>
+    <p class="note">Вероятно бихте предпочели да използвате елемента <code>button</code>, когато искате да сложите бутон.</p>
   </section>
-  <section><h3>Elements <code>option и optgroup</code></h3>
-    <a href="http://www.w3schools.com/tags/tag_option.asp">http://www.w3schools.com/tags/tag_option.asp</a>
-    <a href="http://www.w3schools.com/tags/tag_optgroup.asp">http://www.w3schools.com/tags/tag_optgroup.asp</a>
+</section>
+
+<section><h1>Елемент <code>button</code></h1></section>
+<section><h2>Елемент <code>button</code></h2>
+  <section>
+    <p><a href="http://www.w3schools.com/tags/tag_button.asp">http://www.w3schools.com/tags/tag_button.asp</a></p>
+    <pre><code rel="HTML" class="html">
+      <!-- бутон, за изпращане на формата: -->
+      <button type="submit">Изпрати</button>
+
+      <!-- бутон, за изчистване на полетата: -->
+      <button type="reset">Изчисти</button>
+
+      <!-- бутон, без дефинирана функционалност - използва се с JavaScript: -->
+      <button type="button">Click me</button>
+    </code></pre>
+  </section>
+</section>
+
+<section><h1>Елемент <code class="html">label</code></h1></section>
+<section><h2>Елемент <code class="html">label</code></h2>
+  <section>
+    <p><a href="http://www.w3schools.com/tags/tag_label.asp">http://www.w3schools.com/tags/tag_label.asp</a></p>
+    <p>Use case:</p>
+    <div class="results_h">
+      <fieldset>
+        <legend>Gender:</legend>
+        <label>male <input type="radio" name="gender" value="male" style="transform: scale(1.5); vertical-align: middle;"></label>
+        <label>female <input type="radio" name="gender" value="female" style="transform: scale(1.5); vertical-align: middle;"></label>
+        <label>other <input type="radio" name="gender" value="other" style="transform: scale(1.5); vertical-align: middle;"></label>
+      </fieldset>
+    </div>
+  </section>
+</section>
+
+<section><h1>Елементи <code>fieldset & legend</code></h1></section>
+<section><h2>Елементи <code>fieldset & legend</code></h2>
+  <section>
+    <a href="http://www.w3schools.com/tags/tag_fieldset.asp">http://www.w3schools.com/tags/tag_fieldset.asp</a>
+    <a href="http://www.w3schools.com/tags/tag_legend.asp">http://www.w3schools.com/tags/tag_legend.asp</a>
+  </section>
+</section>
+
+<section><h1>Елементи <code>select, option и optgroup</code></h1></section>
+<section><h2>Елементи <code>select, option и optgroup</code></h2>
+  <section>
+    <dl class="fa">
+      <dt><a href="http://www.w3schools.com/tags/tag_select.asp">http://www.w3schools.com/tags/tag_select.asp</a></dt>
+      <dt><a href="http://www.w3schools.com/tags/tag_option.asp">http://www.w3schools.com/tags/tag_option.asp</a></dt>
+      <dt><a href="http://www.w3schools.com/tags/tag_optgroup.asp">http://www.w3schools.com/tags/tag_optgroup.asp</a></dt>
+    </dl>
     <p>
-      <select name="town" class="fontsize1">
+      <select name="town" style="font-size: 1em">
         <option value="">Населено място</option>
         <option value="София">София</option>
         <optgroup label="А">
@@ -689,12 +792,41 @@
       </select>
     </p>
   </section>
-  <section><h3>Elements <code>fieldset & legend</code></h3>
-    <a href="http://www.w3schools.com/tags/tag_fieldset.asp">http://www.w3schools.com/tags/tag_fieldset.asp</a>
-    <a href="http://www.w3schools.com/tags/tag_legend.asp">http://www.w3schools.com/tags/tag_legend.asp</a>
+</section>
+
+<section><h1>Атрибута <code>multiple</code> върху <code>select</code></h1></section>
+<section><h2>Атрибута <code>multiple</code> върху <code>select</code></h2>
+  <section>
+    <p>АКо желаем потребителя да има възможност да избере няколко опции от <code>select</code> елемент, то трябва да добавим атрибута <a href="https://www.w3schools.com/tags/att_input_multiple.asp">multiple</a></p>
+    <pre><code rel="HTML" class="html">
+      <select name="color" multiple>
+        <option value="">Червено</option>
+        <option value="">Зелено</option>
+        <option value="">Синьо</option>
+        <option value="">Оранжево</option>
+        <option value="">Черно</option>
+        <option value="">Бяло</option>
+      </select>
+    </code></pre>
+      <select name="town" class="fontsize1" multiple>
+        <option value="">Червено</option>
+        <option value="">Зелено</option>
+        <option value="">Синьо</option>
+        <option value="">Оранжево</option>
+        <option value="">Черно</option>
+        <option value="">Бяло</option>
+      </select>
+    </p>
   </section>
-  <section><h3>Element <code>button</code></h3>
-    <a href="http://www.w3schools.com/tags/tag_button.asp">http://www.w3schools.com/tags/tag_button.asp</a>
+</section>
+
+<section><h1>Елемент <code>textarea</code></h1></section>
+<section><h2>Елемент <code>textarea</code></h2>
+  <section>
+    <p><a href="http://www.w3schools.com/tags/tag_textarea.asp">http://www.w3schools.com/tags/tag_textarea.asp</a></p>
+    <div>
+      <textarea style="font-size: 1em;" rows="4" cols="50" placeholder="write your comment here..."></textarea>
+    </div>
   </section>
 </section>
 
