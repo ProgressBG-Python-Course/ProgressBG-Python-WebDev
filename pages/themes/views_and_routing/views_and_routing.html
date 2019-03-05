@@ -79,14 +79,14 @@
   <section>
     <p>In next slides we are going to  discuss the basic algorithm of processing a URL request by Django (we are not going to speak about middle-wares for now)</p>
   </section>
-  <section><h3>Overview</h3>
+  <section><h3>Algorithm</h3>
     <dl class="fa">
       <dt>Find the main <code>URLconf</code> path</dt>
       <dd>project's settings.py => ROOT_URLCONF</dd>
       <dt>Load the module in the ROOT_URLCONF and get the list from <code>urlpatterns</code> variable</dt>
       <dt>Runs through each URL pattern (<span class="note">in the given order</span>), and stops at the first one that matches the requested URL.</dt>
-      <dt>Once one of the URL patterns matches, Django imports and calls the given view.</dt>
-      <dt>In the common use case, the view queries the model and render a template with the given data. The rendered template will be returned as a Response.</dt>
+      <dt>Once one of the URL patterns matches, Django imports and calls the given view. The view is expected to return a Response.</dt>
+      <dt>If no URL pattern matches (or if an exception is raised), Django invokes an appropriate error-handling view.</dt>
     </dl>
     <p>Reference: <a href="https://docs.djangoproject.com/en/2.1/topics/http/urls/#how-django-processes-a-request">How Django processes a request @djangoproject</a></p>
   </section>
@@ -109,11 +109,9 @@
   </section>
   <section><h3>todo_project demo (http://127.0.0.1:8000/todos/list/)</h3>
     <dl class="fa">
-      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/urls/#django.urls.path">Path() @djangoproject</a></dt>
+      <dt>Match routes string in 'todo_project/urls.py' to <span class="note">todos/list/</span></dt>
     </dl>
     <pre><code rel="todo_project/urls.py" class="python">
-      # Match routes strings to "todos/list/":
-
       urlpatterns = [
           path('', include('todo_app.urls')),
           path('todos/', include('todo_app.urls')),
@@ -123,16 +121,14 @@
           path('admin/', admin.site.urls),
       ]
     </code></pre>
-    <!-- <dl class="fa">
-      <dt>Match routes string in 'todo_app.urls' to <span class="note">list/</span></dt>
-    </dl> -->
-    <pre><code rel="todo_app.urls" class="python">
-      # Match routes strings to "list/":
-
+    <dl class="fa">
+      <dt>Match routes string in 'todo_app/urls.py' to <span class="note">list/</span></dt>
+    </dl>
+    <pre><code rel="todo_app/urls.py" class="python">
       urlpatterns = [
         path('', views.index),
         path('list/', views.list),
-        # Match! Execute views.list.list
+        # Match! Execute views.list
 
         path('table/', views.table),
       ]
@@ -140,9 +136,9 @@
   </section>
   <section><h3>todo_project demo (http://127.0.0.1:8000/todos/list/)</h3>
     <dl class="fa">
-      <dt>Call views.list function</dt>
+      <dt>Call list view</dt>
     </dl>
-    <pre><code rel="todo_app.views" class="python">
+    <pre><code rel="todo_app/views.py" class="python">
       # ...
 
       def list(request):
@@ -156,6 +152,9 @@
 
         return render(request, template_file, context)
     </code></pre>
+    <dl class="fa">
+      <dt>The view in this example gets data from the DB, and returns the rendered template as a HTTP Response</dt>
+    </dl>
   </section>
 </section>
 <!--
@@ -224,17 +223,16 @@
     <pre><code rel="urls => views" class="python">
       # http://127.0.0.1:8000/todos/del/1
 
-      path('del/&lt;id&gt;', views.delete) =&gt;
-      	# pass number 1
-        delete(request,id=1)
+      path('del/&lt;id&gt;', views.delete)
+      	# executes delete(request,id=1)
 
-      path('del/&lt;str:id&gt;', views.delete) =&gt;
-      	# pass the string &quot;1&quot;
-      	delete(request,id=&quot;1&quot;)
+      path('del/&lt;str:id&gt;', views.delete)
+      	# executes delete(request,id=&quot;1&quot;)
 
-      path('del/&lt;id&gt;', views.delete, {'id':99}) =&gt;
-      	# pass the number 99, as it overides the named parts
-        delete(request,id=99):
+      path('del/&lt;id&gt;', views.delete, {'id':99})
+      	# executes delete(request,id=99)
+        # note, that the path() id param overides the named id part
+
     </code></pre>
     <dl class="fa">
       <dt>To capture a value from the URL, use angle brackets in the route</dt>
@@ -269,20 +267,31 @@
         index(request, year='2018', month='02')
     </code></pre>
   </section>
-</section>
-
-
-<section data-min="5"><h1>Access Query String</h1></section>
-<section><h2>Access Query String</h2>
-  <section><h3></h3>
+  <section><h3>Final note</h3>
     <dl class="fa">
-      <dt><a href="https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.QueryDict.items"></a></dt>
+      <dt>URLconf searches against the requested URL, as a normal Python string. But this <span class="note">does not include</span> the domain name or the GET/POST parameters.</dt>
+      <dt>For example, from the given URL: <code class="note">http://127.0.0.1:8000/todos/edit?id=1</code></dt> Django will match to the string "<code class="note">todos/edit</code>".
     </dl>
   </section>
 </section>
 
 
-<section data-min="20"><h1>Class-based Views</h1></section>
+<!-- <section data-min="5"><h1>Access Query String</h1></section>
+<section><h2>Access Query String</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>Recall that a query string is the part in a URL after the <span class="note">?</span> (question) mark.</dt>
+      <dt>A query string consists of <span class="note">name=value</span> pairs, separated by <span class="note">&</span></dt>
+      <dt>With query string we can pass parameters to the back-end program</dt>
+      <dd>Like: search string, page number, order by, etc. </dd>
+      <dt>Reference: <a href="https://en.wikipedia.org/wiki/Query_string">query string</a></dt>
+    </dl>
+  </section>
+  <section><h3>References</h3></section>
+</section> -->
+
+
+<!-- <section data-min="20"><h1>Class-based Views</h1></section>
 <section><h2>Class-based Views</h2>
   <section><h3>Overview</h3>
     <p>Once again - what is a view?</p>
@@ -295,25 +304,65 @@
       <dt>Django 1.3 introduce the <span class="note">class-based views</span>, which make it very easy to implement and reuse generic views, just by sub-classing them.</dt>
     </dl>
   </section>
-</section>
+</section> -->
 
 
 <section id="hw"><h1>Exercises</h1></section>
-<section><h2>Task1</h2>
-  <section><h3>The Task</h3>
-  	<p>Define the URLconf and views for next urls</p>
+<section id="task1"><h2>Task1: URLconf_exercises</h2>
+  <section><h3>The task</h3>
+  	<p>Define the URLconf and views for next URLs:</p>
   	<dl class="fa">
   		<dt>http://127.0.0.1:8000/todos/list</dt>
-  		<dd>views.list: detailed list of all tasks</dd>
+  		<dd>views.list => returns a detailed list of all tasks</dd>
   		<dt>http://127.0.0.1:8000/todos/list_1</dt>
-  		<dd>views.list: detailed list of task with id=1 only</dd>
+  		<dd>views.list => returns a detailed list of task with id=1 only</dd>
   		<dt>http://127.0.0.1:8000/todos/2018</dt>
-  		<dd>views.index: short list of all task with due date year = 2018</dd>
+  		<dd>views.index => returns a short list of all task with due date year = 2018</dd>
   		<dt>http://127.0.0.1:8000/todos/2018/02</dt>
-  		<dd>views.index: short list of all task with due date year = 2018 and month=February</dd>
+  		<dd>views.index => returns a short list of all task with due date year = 2018 and month=February</dd>
   	</dl>
-  	<p class="note">Note, that you need only 2 views to be defined</p>
   </section>
+  <section><h3>Notes</h3>
+    <dl class="fa">
+      <dt><span class="note">Note, that you need only 2 views to be defined</span>:</dt>
+      <dd><code>views.list</code> and <code>views.index</code></dd>
+      <dt>For the "detailed list" you can list the next task properties ("title", "description", "due") </dt>
+      <dt>For the "short list" you can list only the task title</dt>
+    </dl>
+  </section>
+</section>
+<section id="task2"><h2>Task2 - TasksManagment</h2>
+  <section><h3>The interface</h3>
+    <dl class="fa">
+      <dt>Using the skills you've acquired by the <a href="https://progressbg-python-course.github.io/ProgressBG-VC-Django-Slides/pages/themes/static_resources/static_resources.html#/hw">Exercises on Static Resources</a> make your todo_app <code>index</code> view to render a page like this:</dt>
+    </dl>
+    <figure><a href="Tasks_and_HW/images/127.0.0.1:8000-todos.png"><img style="height: 60vh" src="Tasks_and_HW/images/127.0.0.1:8000-todos.png"></a>
+      <figcaption class="note" style="font-size: .8em;">(click the image to see it in full size)</figcaption>
+    </figure>
+    <dl class="fa">
+      <dt>You can use your preferred colours, but make sure, that your page will have the same layout as the one shown in the picture.</dt>
+    </dl>
+  </section>
+  <section><h3>The interface - font icons howto</h3>
+    <dl class="fa">
+      <dt>Its better to use font icons, instead of images for the "trash" (<i class="fa fa-trash"></i>) and "pencil"(<i class="fa fa-pencil"></i>) icons.</dt>
+      <dt>You can use the <a href="https://fontawesome.com/icons?d=gallery&m=free">Font Awesome</a> free set of font icons</dt>
+      <dt>Go to  <a href="https://fontawesome.com/start">start free @fontawesome</a> and follow the instructions.</dt>
+    </dl>
+  </section>
+  <section><h3>The Functionality</h3>
+    <p>For now, you have to implement only part of the "delete task" functionality</p>
+    <dl class="fa">
+      <dt>Each "trash" icon should be a link with an href: <code>http://127.0.0.1:8000/todos/delete/N</code>, where N is the id of the task.</dt>
+      <dt>The <code>delete</code> view can use the <code>index.html</code> template, in which a task will be displayed <a href="https://www.w3schools.com/tags/tag_del.asp">as deleted</a>, if its id matches the number (N) in the delete path</dt>
+      <dd>Hint: use the Django built-in <a href="https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#if">if tag</a></dd>
+    </dl>
+  </section>
+  <section><h3>The Functionality - example</h3>
+    <p>Clicking on the first task trash icon, should generate next page (with url: http://127.0.0.1:8000/todos/delete/1)</p>
+    <a href="Tasks_and_HW/images/127.0.0.1:8000-todos-delete-1.png"><img src="Tasks_and_HW/images/127.0.0.1:8000-todos-delete-1.png" style="height: 60vh;"></a>
+  </section>
+
 </section>
 
 <section data-min="5"><h1>Resources</h1></section>

@@ -52,5 +52,12 @@ function  PrettyPreCodeOld(){
     }
 }
 
+function titleImagesInLinks(){
+    images = document.querySelectorAll('a>img');
+    for(let i = 0; i<images.length; i++){
+        images[i].setAttribute("title", "click for bigger image");
+    }
+}
 PrettyPreCode();
+titleImagesInLinks()
 
