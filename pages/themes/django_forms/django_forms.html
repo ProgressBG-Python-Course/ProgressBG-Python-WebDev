@@ -79,21 +79,227 @@
 	</section>
 </section>
 
+<section data-min="20"><h1>Embed Pure HTML Forms in Django - live demo</h1></section>
+<section><h2>Embedded Pure HTML Forms in Django - live demo</h2>
+  <section><h3>The Goal</h3>
+  	<dl class="fa">
+  		<dt>Create simple Django App ('html_forms_demo') with next functionality:</dt>
+  		<dd>Read (list) all Tasks</dd>
+  		<dd>Create a Task</dd>
+  		<dd>Update a Task</dd>
+  		<dd>Delete a Task</dd>
+  		<dt>Use HTML form code in templates, but add in each form, which sends POST data the <code>{% csrf_token %}</code> tag</dt>
+      <dd>The CSRF middleware and template tag provides easy-to-use protection against Cross Site Request Forgeries (discussed in next slides)</dd>
+  	</dl>
+  </section>
+  <section><h3>Demo code</h3>
+  	<dl class="fa">
+  		<dt>The demo code is in github:</dt>
+  		<dd><a href="https://github.com/ProgressBG-Python-Course/ProgressBG-VC-Django-Labs/tree/master/labs/todo_project/html_forms_demo">ProgressBG-VC-Django-Labs/labs/todo_project/html_forms_demo/</a></dd>
+  	</dl>
+  </section>
+</section>
+
+<section data-min="5"><h1>Security Issues</h1></section>
+<section><h2>Security Issues</h2>
+  <section><h3>Cross-Site Request Forgery (CSRF)</h3>
+    <dl class="fa">
+      <dt>Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions (state changing requests) on a web application in which they're currently authenticated.</dt>
+      <dd>CSRF only allows for state changes to occur and therefore the attacker cannot receive the contents of the HTTP response.</dd>
+      <dd>State changing means to change the state of the DB. Like set another password, transfer funds, even delete tables (if the account has the respective rights for that)</dd>
+      <dt>Reference: <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">CSRF @owasp.org</a></dt>
+    </dl>
+  </section>
+  <section><h3>CSRF attack scenario</h3>
+    <p><a href="images/csrf_post_scenario.png"><img src="images/csrf_post_scenario.png"></a></p>
+  </section>
+  <section><h3>Cross-Site Request Forgery (CSRF)</h3>
+  	<p>CSRF Tutorial - A Guide to Better Understand and Defend Against Cross-Site Request Forgery (CSRF)</p>
+  	<iframe width="767" height="431" src="https://www.youtube.com/embed/13QPmRuhbhU?list=PLK56YNVBjVeqKS4LKME7PY6ZoC7G0zE-f" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </section>
+  <section><h3>Cross-Site Request Forgery (CSRF)</h3>
+  	<p>Understanding CSRF, the video tutorial edition</p>
+  	<iframe width="767" height="431" src="https://www.youtube.com/embed/hW2ONyxAySY?list=PLK56YNVBjVeqKS4LKME7PY6ZoC7G0zE-f" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </section>
+  <section><h3>Django CSRF protection</h3>
+    <dl class="fa">
+      <dt>The CSRF middleware and template tag provides easy-to-use protection against Cross Site Request Forgeries.</dt>
+      <dt>Django forces you to use the <code>{% csrf_token %}</code> inside a form with POST method, if the form is for an internal URL!</dt>
+      <dd class="note">This should not be done for POST forms that target external URLs, since that would cause the CSRF token to be leaked, leading to a vulnerability.</dd>
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/csrf/">Cross Site Request Forgery protection @djangoproject</a></dt>
+    </dl>
+  </section>
+  <section><h3>Django CSRF protection - how it works?</h3>
+    <dl class="fa">
+      <dt>The CSRF middleware sets a cookie with a unique secret value and the {% csrf_token %} tag adds the same value in a hidden field</dt>
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/csrf/#how-it-works">How it works @djangoproject</a></dt>
+    </dl>
+  </section>
+  <!-- <section><h3>Cross-Site Scripting (XSS)</h3>
+    <p>OWASP Top 10: Cross-Site Scripting (XSS)</p>
+    <iframe width="767" height="431" src="https://www.youtube.com/embed/IuzU4y-UjLw?list=PLK56YNVBjVeqKS4LKME7PY6ZoC7G0zE-f" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </section> -->
+</section>
+
+<section data-min="5"><h1>Building a form in Django with Django Form class</h1></section>
+<section><h2>Building a form in Django</h2>
+  <section><h3>Overview</h3>
+  	<dl class="fa">
+      <dt>Djangno's Forms API provides the ability to define form functionality in a single location, data validation and tight integration with Django models.</dt>
+  		<dt>Django can handle three distinct parts of the work involved in forms:</dt>
+  		<dd>preparing and restructuring data to be rendered</dd>
+  		<dd>creating HTML forms for the data</dd>
+  		<dd>receiving and processing submitted forms and data from the client</dd>
+  		<dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/forms/api/">Forms API</a></dt>
+  	</dl>
+  </section>
+  <section><h3>Django Form workflow</h3>
+    <p><a href="images/Django_form_workflow.png"><img src="images/Django_form_workflow.png"></a></p>
+  </section>
+  <section><h3>Django Form workflow</h3>
+    <p><a href="images/Django_form_workflow_mdn.png"><img src="images/Django_form_workflow_mdn.png"></a></p>
+    <p>Reference: <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms#Django_form_handling_process">Django_form_handling_process @mdn</a></p>
+  </section>
+  <section><h3>The Django Form class</h3>
+      <pre><code rel="Syntax" class="python">
+        from django import forms
+
+        class FormClassName(forms.Form):
+          field_for_input_1
+          field_for_input_2
+      </code></pre>
+  	<dl class="fa">
+  		<dt>A Form class describes a form and determines how it works and appears.</dt>
+  		<dt>A Form class’s fields map to HTML form &lt;input&gt; elements.</dt>
+  		<dt>The logic behind is similar to the way a Django Model class maps to a database field</dt>
+  		<dd>Django provides the <a href="https://docs.djangoproject.com/en/2.1/topics/forms/modelforms/#django.forms.ModelForm">ModelForm</a> class which lets us create a Form class from a Django model</dd>
+  		<dt>A form field is represented to a user in the browser as an HTML <a href="https://docs.djangoproject.com/en/2.1/ref/forms/widgets/">widget</a></dt>
+  	</dl>
+  </section>
+  <section><h3>The Django Form class - demo</h3>
+  	<pre><code rel="forms.py" class="python">
+      from django import forms
+
+      class CreateTaskForm(forms.Form):
+        title = forms.CharField(
+          max_length=100,
+          required=True,
+          widget=forms.TextInput(
+            attrs={
+              'class' : 'form-control',
+              'placeholder' : 'Enter a task name...',
+            }
+          )
+        )
+
+        due = forms.DateTimeField(
+            widget = forms.DateInput(
+              attrs={'type': 'date', 'class': 'form-control'})
+        )
+  	</code></pre>
+  </section>
+  <section><h3>The Django Form class - where to place it?</h3>
+    <dl class="fa">
+      <dt>There's no specific location where Django expects to find your forms</dt>
+      <dt>You just have to import Django form classes where they're needed, just like any Python package.</dt>
+      <dt>You can place Django form classes in their own file inside an app (e.g. <code>forms.py</code>) or place them inside other app files (e.g. models.py, views.py)</dt>
+    </dl>
+  </section>
+  <section><h3>Bound and unbound form</h3>
+    <dl class="fa">
+      <dt>An <span class="note">unbound form</span> has no data associated with it. When rendered to the user, it will be empty or will contain default values.</dt>
+      <dt>A <span class="note">bound form</span> has submitted data, and hence can be used to tell if that data is valid.</dt>
+      <dd>If an invalid bound form is rendered, it can include inline error messages telling the user what data to correct.</dd>
+    </dl>
+  </section>
+  <section><h3>Form fields</h3>
+  	<dl class="fa">
+      <dt>Django form fields define two types of functionality, a form field's HTML markup and its server-side validation facilities</dt>
+      <dt><a href="aux/form_fields_cheet_sheet.html">Form fields cheat sheet</a></dt>
+  		<dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/forms/fields/">Form fields</a></dt>
+  	</dl>
+  </section>
+  <section><h3>Widgets</h3>
+  	<dl class="fa">
+      <dt>A widget is Django’s representation of an HTML input element</dt>
+  		<dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/forms/widgets/">widgets</a></dt>
+  	</dl>
+  </section>
+  <section><h3>Set Form into Template</h3>
+    <dl class="fa">
+      <dt>Once, we've defined the form class, we can render it into the Django template using:</dt>
+    </dl>
+    <pre><code rel="template.html" class="python">
+      <form action="/url_path/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Submit</button>
+      </form>
+    </code></pre>
+    <dl class="fa">
+      <dt>All the form’s fields and their attributes will be unpacked into HTML markup from that {{ form }} by Django’s template language.</dt>
+      <dt class="note">Note, that the container &lt;form&gt; element should be present!</dt>
+    </dl>
+  </section>
+  <section><h3>The View</h3>
+    <dl class="fa">
+      <dt>Usually, the same URL and the associated view method, would handle:</dt>
+      <dd>generating the blank HTML form</dd>
+      <dd>process the submitted HTML form data</dd>
+    </dl>
+    <pre><code rel="views.py" class="python">
+      from django.http import HttpResponseRedirect
+      from django.shortcuts import render
+      from .forms import SomeForm
+
+      def get_name(request):
+        # if this is a POST request => to process the form data:
+        if request.method == 'POST':
+          # create a form instance and populate it with data from the request:
+          form = SomeForm(request.POST)
+
+          # check whether it's valid:
+          if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/redirect_success_url/')
+
+        # if a GET (or any other method) => create a blank form:
+        else:
+          form = SomeForm()
+
+        return render(request, 'template.html', {'form': form})
+    </code></pre>
+  </section>
+</section>
+
+
+<section data-min="5"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Django Docs</h3>
+  	<dl class="fa">
+  		<dt><a href="https://docs.djangoproject.com/en/2.1/ref/forms/api">The Forms API</a></dt>
+  	</dl>
+  </section>
+</section>
 
 <section id="hw"><h1>Exercises</h1></section>
 <section><h2>Task1</h2>
 	<section><h3>The Task</h3>
-
+		<dl class="fa">
+			<dt>Create Django Forms for the TodoApp</dt>
+		</dl>
 	</section>
 </section>
-
+<!--
 <section><h3>Submission</h3>
 	<dl class="fa">
 		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
 		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
 		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: django_forms">progressbg.python.course@gmail.com</a></dt>
 	</dl>
-</section>
+</section> -->
 
 
 

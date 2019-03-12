@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <table class="table table-responsive text-justify" border="1">
+  <tbody><tr>
+  <th><b>Field type</b></th>
+  <th><b>Django form field type</b></th>
+  <th><b>HTML output</b></th>
+  <th><b>Default Django widget</b></th>
+  <th><b>Validation behavior</b></th>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Boolean</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.BooleanField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type='checkbox'
+  ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.CheckboxInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates HTML checkbox input
+  markup to obtain a boolean True or False value; returns False when
+  the checkbox is unchecked, True when the checkbox is checked.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Boolean</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.NullBooleanField()</p>
+  </td>
+  <td>
+  <pre>&lt;select&gt;
+    &lt;option value="1" selected="selected"&gt;
+       Unknown
+    &lt;/option&gt;
+    &lt;option value="2"&gt;
+       Yes
+    &lt;/option&gt;
+    &lt;option value="3"&gt;
+       No
+    &lt;/option&gt;
+    &lt;/select&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">
+  forms.widgets.NullBooleanSelect()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like BooleanField but
+  also allows "Unknown" value; returns None when the Unknown(1) value
+  is selected, True when the Yes(2) value is selected and False when
+  the No(3) value is selected.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.CharField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates HTML text input
+  markup.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.EmailField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="email"
+  ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.EmailInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates HTML email input
+  markup. Note this HTML5 markup is for client-side email validation
+  and only works if a browser supports HTML5. If a browser doesn't
+  support HTML5, then it treats this markup as a regular text input.
+  Django server-side form validation is done for email irrespective
+  of HTML5 support.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.GenericIPAddressField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django validates the (text) value can be converted to
+  an IPv4 or IPv6 address (e.g.192.46.3.2,
+  2001:0db8:85a3:0000:0000:8a2e:0370:7334).</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.RegexField(
+  regex='regular_expression')</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django validates the (text) value complies with the
+  regular expression defined in regex. Note regex can be either a
+  string that represents a regular expression (e.g. \.com$ for a
+  string that ends in .com) or a compiled Python regular expression
+  from Python's re package (e.g. re.compile('\.com$') )</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.SlugField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django validates the (text) value can be converted to
+  slug. In Django a 'slug' is a value that contains only lower case
+  letters, numbers, underscores and hyphens, which is typically used
+  to sanitize URLs and file names (e.g. the slug representation of
+  'What is a Slug ?! A sanitized-string' is
+  what-is-a-slug-a-sanitized-string.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.URLField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="url" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.URLInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates HTML url input markup.
+  Note this HTML5 markup is for client-side url validation and only
+  works if the browser supports HTML5. If a browser doesn't support
+  HTML5 then it treats this markup as regular text input. Django
+  server-side form validation is done for a url irrespective of HTML5
+  support.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.UUIDField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django validates the (text) value is convertable to a
+  UUID (Universally unique identifier).</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">
+  forms.ComboField(fields=[field_type1,field_type1])</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django enforces the data pass rules for a list of
+  Django form fields
+  (e.g.ComboField(fields=[CharField(max_length=50), SlugField()])
+  enforces the data be a slug field with a maximum length of 50
+  characters)</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">
+  forms.MultiValueField(fields=[field_type1,field_type1])</p>
+  </td>
+  <td>
+  <p class="card-text text-justify"><em>Varies depending on field
+  list (e.g. for three CharField : <code>&lt;input type="text"
+  ...&gt;&lt;input type="text" ...&gt;&lt;input type="text" ...&gt;;
+  for two CharField: &lt;input type="text" ...&gt;&lt;input
+  type="text" ...&gt;</code></em></p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Designed to create custom form
+  fields made up of multiple pre-exisiting form fields (e.g. Social
+  Security form field made up of three CharField()). It requires a
+  subclass implementation (e.g. class
+  SocialSecurityField(MultiValueField):) to include the base form
+  fields and validation logic of the new field.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Text (Specialized) / Files</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.FilePathField(
+  path='directory')</p>
+  </td>
+  <td>
+  <pre>&lt;select &gt;
+   &lt;option value="directory/file_1"&gt;
+     file_1
+    &lt;/option&gt;
+   &lt;option value="directory/file_2"&gt;
+     file_2
+   &lt;/option&gt;
+   &lt;option value="directory/file_3"&gt;
+     file_3
+   &lt;/option&gt;
+  &lt;/select&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.Select()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates an HTML select list
+  from files located on a server-side path directory. Note value is
+  composed of path+filename and just displays filename</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Files</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.FileField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="file" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">
+  forms.widgets.ClearableFileInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates HTML file input markup
+  so an end user is able to select a file through his web browser. In
+  addition, it provides various utilities to handle post-processing
+  of files</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Files (Specialized)</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.ImageField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="file" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">
+  forms.widgets.ClearableFileInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates HTML file input markup
+  so an end user is able to select an image file through his web
+  browser. Works just like FileField but provides additional
+  utilities to handle post-processing of images using the Pillow
+  package. Note this field forces you to install Pillow (e.g. pip
+  install Pillow).</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Date/time</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.DateField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.DateInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django validates the (text) value can be converted to a
+  datetime.date, datetime.datetime or string formatted in a
+  particular date format (e.g. 2017-12-25, 11/25/17).</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Date/time</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.TimeField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django validates the (text) value can be converted to a
+  datetime.time or string formatted in a particular time format (e.g.
+  15:40:33, 17:44).</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Date/time</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.DateTimeField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.DateTimeInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django validates the (text) value can be converted to a
+  datetime.datetime, datetime.date or string formatted in a
+  particular datetime format (e.g. 2017-12-25 14:30:59, 11/25/17
+  14:30).</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Date/time</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.DurationField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.TextInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like CharField, but
+  server-side Django validates the (text) value can be converted to a
+  timedelta. Note Django uses the
+  django.utils.dateparse.parse_duration() method as a helper, which
+  means the string must match the format DD HH:MM:SS.uuuuuu (e.g. 2
+  1:10:20 for a timedelta of 2 days, 1 hour, 10 minutes, 20
+  seconds).</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Date/time</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.SplitDateTimeField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="text" name="_0"
+  ...&gt;
+  &lt;input type="text" name="_1" ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">
+  forms.widgets.SplitDateTimeWidget</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works similar to DateTimeField
+  but generates two separate text inputs for date &amp; time, unlike
+  DateTimeField which expects a single string with date &amp; time.
+  Validation wise Django enforces the date input can be converted to
+  a datetime.date and the time input can be converted to a
+  datetime.time.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Number</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.IntegerField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="number"
+  ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.NumberInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates an HTML number input
+  markup. Note this HTML5 markup is for client-side number validation
+  and only works if the browser supports HTML5. If a browser doesn't
+  support HTML5 then it treats this markup as a regular text input.
+  Django server-side form validation is done for an integer number
+  irrespective of HTML5 support.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Number</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.DecimalField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="number"
+  ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.NumberInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates an HTML number input
+  markup. Note this HTML5 markup is for client-side number validation
+  and only works if a browser supports HTML5. If a browser doesn't
+  support HTML5 then it treats this markup as a regular text input.
+  Django server-side form validation is done for a decimal number
+  irrespective of HTML5 support.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Number</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.FloatField()</p>
+  </td>
+  <td>
+  <pre>&lt;input type="number"
+  ...&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.NumberInput()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates an HTML number input
+  markup. Note this HTML5 markup is for client-side number validation
+  and only works if a browser supports HTML5. If a browser doesn't
+  support HTML5 then it treats this markup as a regular text input.
+  Django server-side form validation is done for a float number
+  irrespective of HTML5 support.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Predefined values</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.ChoiceField(
+  choices=tuple_of_tuples)</p>
+  </td>
+  <td>
+  <pre>&lt;select&gt;
+   &lt;option value="tuple1_1"
+             selected="selected"&gt;
+      tuple1_2
+   &lt;/option&gt;
+   &lt;option value="tuple_2_1"&gt;
+            tuple_2_2
+   &lt;/option&gt;
+   &lt;option value="tuple_3_1"&gt;
+            tuple_3_2
+   &lt;/option&gt;
+  &lt;/select&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.Select()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates an HTML select list
+  from a tuple of tuples defined through choices (e.g.((1,'United
+  States'),(2,'Canada'),(3,'Mexico'))). Note with ChoiceField if no
+  value is selected an empty string '' is passed for post-processing
+  and if a value like '2' is selected a literal string is passed for
+  post-processing, irrespective of the original data representation.
+  See TypeChoiceField or clean form methods to override these last
+  behaviors for empty values and string handling.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Predefined values</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.TypeChoiceField(
+  choices=tuple_of_tuples, coerce=coerce_function,
+  empty_value=None)</p>
+  </td>
+  <td>
+  <pre>&lt;select&gt;
+   &lt;option value="tuple1_1"
+             selected="selected"&gt;
+       tuple1_2
+   &lt;/option&gt;
+   &lt;option value="tuple_2_1"&gt;
+             tuple_2_2
+   &lt;/option&gt;
+   &lt;option value="tuple_3_1"&gt;
+             tuple_3_2
+   &lt;/option&gt;
+  &lt;/select&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.Select()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like ChoiceField but
+  provides extra post-processing functionality with the coerce and
+  empty_value arguments. For example, with TypeChoiceField you can
+  define a different default value with the empty_value arguement
+  (e.g.empty_value=None) and you can define a coercion method with
+  the coerce argument so the selected value is converted from its
+  string representation (e.g. with coerce=int a value like '2' gets
+  converted to 2 (integer) through the built-in int function).</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Predefined values</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.MultipleChoiceField(
+  choices=tuple_of_tuples)</p>
+  </td>
+  <td>
+  <pre>&lt;select multiple='multiple'&gt;
+   &lt;option value="tuple1_1"
+              selected="selected"&gt;
+        tuple1_2
+   &lt;/option&gt;
+   &lt;option value="tuple_2_1"&gt;
+              tuple_2_2
+   &lt;/option&gt;
+   &lt;option value="tuple_3_1"&gt;
+              tuple_3_2
+   &lt;/option&gt;
+  &lt;/select&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">
+  forms.widgets.SelectMultiple()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Generates an HTML select list for
+  multiple values from tuple of tuples defined through choices
+  (e.g.((1,'United States'),(2,'Canada'),(3,'Mexico'))). It works
+  just like ChoiceField but allows multiple values to be selected,
+  which become available as a list in post-processing.</p>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <p class="card-text text-justify">Predefined values</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.TypedMultipleChoiceField(
+  choices=tuple_of_tuples, coerce=coerce_function,
+  empty_value=None)</p>
+  </td>
+  <td>
+  <pre>&lt;select multiple='multiple'&gt;
+   &lt;option value="tuple1_1"
+              selected="selected"&gt;
+        tuple1_2
+   &lt;/option&gt;
+   &lt;option value="tuple_2_1"&gt;
+              tuple_2_2
+   &lt;/option&gt;
+   &lt;option value="tuple_3_1"&gt;
+              tuple_3_2
+   &lt;/option&gt;
+  &lt;/select&gt;
+  </pre>
+  </td>
+  <td>
+  <p class="card-text text-justify">forms.widgets.Select()</p>
+  </td>
+  <td>
+  <p class="card-text text-justify">Works just like
+  MultipleChoiceField but provides extra post-processing
+  functionality with the coerce and empty_value arguments. For
+  example, with TypedMultipleChoiceField you can define a different
+  default value with the empty_value argument (e.g.empty_value=None)
+  and you can define a coercion method with the coerce argument so
+  the selected value is converted from its string representation
+  (e.g. with coerce=int a value like '2' gets converted to 2
+  (integer) through the built-in int function).</p>
+  </td>
+  </tr>
+  </tbody></table>
+</body>
+</html>
