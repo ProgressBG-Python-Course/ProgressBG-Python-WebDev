@@ -239,6 +239,18 @@
     <dl class="fa">
       <dt>All the form’s fields and their attributes will be unpacked into HTML markup from that {{ form }} by Django’s template language.</dt>
       <dt class="note">Note, that the container &lt;form&gt; element should be present!</dt>
+      <dt>The default output is a two-column HTML table, with a &lt;tr&gt; for each field</dt>
+      <dd>Note, that you have to put the container &lt;table&gt; element.</dd>
+    </dl>
+  </section>
+  <section><h3>Form template output styles</h3>
+    <dl class="fa">
+      <dt><a href="https://docs.djangoproject.com/en/2.1/ref/forms/api/#as-table">form.as_table</a> (default)</dt>
+      <dd>renders the form as table cells wrapped in &lt;tr&gt; tags</dd>
+      <dt><a href="https://docs.djangoproject.com/en/2.1/ref/forms/api/#django.forms.Form.as_p">form.as_p</a></dt>
+      <dd>renders the form as a series of &lt;p&gt; tags, with each &lt;p&gt; containing one field:</dd>
+      <dt><a href="https://docs.djangoproject.com/en/2.1/ref/forms/api/#as-ul">form.as_ul</a></dt>
+      <dd>renders the form as a series of &lt;li&gt; tags, with each &lt;li&gt; containing one field. It does not include the &lt;ul&gt; container element</dd>
     </dl>
   </section>
   <section><h3>The View</h3>
@@ -271,6 +283,11 @@
 
         return render(request, 'template.html', {'form': form})
     </code></pre>
+  </section>
+  <section><h3>Models and Forms</h3>
+    <dl class="fa">
+      <dt>If a form is going to be used to directly add or edit a Django model, a ModelForm can save a great deal of time, effort, and code, because it will build a form, along with the appropriate fields and their attributes, from a Model class.</dt>
+    </dl>
   </section>
 </section>
 
