@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>orm_overview</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#orm_overview" target="_top"><i class="fa fa-home"></i></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>previous slide</span></div>
+				<div><span>P</span><span>next slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Django ORM Overview</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note">Iva E. Popova, 2018-2019:</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+		</div>
+	</section>
+	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Django Models Overview</h1></section>
+<section><h2>Django Models Overview</h2>
+  <section><h3>What is a "Model"?</h3>
+  	<dl class="fa">
+  		<dt>A Django model is a description of the data in your database, represented with Python code. A Model contains the essential fields and behaviours of the data you’re storing.</dt>
+  		<dt>Generally, each <span class="note">model</span> maps to a single database <span class="note">table</span></dt>
+  		<dt>Each <span class="note">model</span> is represented by a <span class="note">Python class</span> that is a subclass of <code>django.db.models.Model</code></dt>
+  		<dt>Each <span class="note">class attribute</span> specifies a <span class="note">model field</span>, which maps to a <span class="note">table column</span>.</dt>
+  		<dt>Models must live within apps</dt>
+  		<dt>The <span class="note">M</span> in MTV stands for Model.</dt>
+  	</dl>
+  </section>
+  <section><h3>In short</h3>
+  	<table>
+  		<tr><th>Concept</th><th>Representation</th><th>DB Mapping</th></tr>
+  		<tr><td>Model</td><td>Python Class</td><td>DB Table</td></tr>
+  		<tr><td>Model Field</td><td>Class Attribute</td><td>Table Column</td></tr>
+  	</table>
+  </section>
+  <section><h3>Model Class Definition - Example</h3>
+  	<p>The Django code:</p>
+  	<pre><code rel="app_name/models.py" class="python">
+  		class Task(models.Model):
+  		  title = models.CharField('Title', max_length=100)
+  		  description = models.TextField('Description', null=True)
+  		  created_at = models.DateTimeField(auto_now_add=True)
+  		  completed = models.BooleanField(default=False)
+  	</code></pre>
+  	<p>Results in next SQL:</p>
+  	<pre><code rel="SQL" class="sql">
+  		--
+  		-- Create model Task
+  		--
+  		CREATE TABLE "app_name_task" (
+  			"id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  			"title" varchar(100) NOT NULL,
+  			"description" text NULL,
+  			"created_at" datetime NOT NULL,
+  			"completed" bool NOT NULL
+  		);
+  	</code></pre>
+  </section>
+  <section><h3>Example notes</h3>
+  	<dl class="fa">
+  		<dt>An id field is added automatically, but this behaviour can be overridden, as discussed next.</dt>
+  		<dt>The CREATE TABLE SQL is formatted using SQLite syntax as this is the database backend specified in example settings file.</dt>
+  	</dl>
+  </section>
+  <section><h3>Register the models</h3>
+  	<dl class="fa">
+  		<dt>In order for Django to <span class="note">use</span> our models we have to add the app_name in which the models is defined into INSTALLED_APPS settings.py section</dt>
+  	</dl>
+  	<pre><code rel="settings.py" class="python">
+  		INSTALLED_APPS = [
+  		    #...
+  		    'app_name',
+  		    #...
+  		]
+  	</code></pre>
+  </section>
+</section>
+
+<!-- <section data-min="10"><h1>Access a database directly and execute SQL queries</h1></section>
+<section><h2>Access a database directly and execute SQL queries</h2>
+  <section><h3>Overview</h3>
+  	<dl class="fa">
+  		<dt>The object <code>django.db.connection</code> represents the default database connection</dt>
+  		<dt>To use the database connection call <code>connection.cursor()</code> to get a cursor object</dt>
+  		<dt>call <code>cursor.execute(sql, [params])</code> to execute an SQL statement</dt>
+  		<dt>call <code>cursor.fetchone()</code> or <code>cursor.fetchall()</code> to return the resulting rows.</dt>
+  		<dt></dt>
+  	</dl>
+  </section>
+  <section><h3>Connections and Cursors</h3>
+  	<dl class="fa">
+  		<dt>connection and cursor implement the standard Python DB-API described in <a href="https://www.python.org/dev/peps/pep-0249/">PEP 249</a>, except for transaction handling</dt>
+  		<dt>the SQL statement in cursor.execute() can use placeholders, "%s" , rather than adding parameters directly within the SQL. In such case, the underlying database library will automatically escape our parameters as necessary</dt>
+  	</dl>
+  </section>
+  <section><h3>Example</h3></section>
+  <section><h3>Using more than one database</h3>
+  	<dl class="fa">
+  		<dt>When we are using more than one database, we can use <code>django.db.connections</code> to obtain the connection (and cursor) for a specific database.</dt>
+  		<dt><code>django.db.connections</code> is a dictionary-like object that allows us to retrieve a specific connection using its alias:</dt>
+  	</dl>
+  	<pre><code rel="app_name/views.py" class="js">
+  		from django.db import connections
+
+  		cursor = connections['my_db_alias'].cursor()
+  		# Your code here...
+  	</code></pre>
+  </section>
+</section> -->
+
+<section data-min="10"><h1>The Migrations Workflow</h1></section>
+<section><h2>The Migrations Workflow</h2>
+  <section><h3>Overview</h3>
+  	<dl class="fa">
+  		<dt>Migrations are how Django stores changes to our models (and thus - to our database schema).</dt>
+  		<dt><span class="note">Migrations</span> are <span class="note">Python files</span>, generated by Django, usually placed in <code>app_name/migrations</code> folder</dt>
+  		<dt>With the <code>migrate</code> command, Django will automatically <span class="note">apply the changes</span> specified in migrations file to given database</dt>
+  		<dt>We can see what SQL statement a migration will execute, by <code>sqlmigrate</code> command</dt>
+  	</dl>
+  </section>
+</section>
+
+
+<section data-min="10"><h1>Model Fields</h1></section>
+<section><h2>Model Fields</h2>
+  <section><h3>Reference</h3>
+  	<dl class="fa">
+  		<dt><a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/">Model field reference @djangodocs</a></dt>
+  	</dl>
+  </section>
+</section>
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section>
+
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your file names/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: orm_overview">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section>
+
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
