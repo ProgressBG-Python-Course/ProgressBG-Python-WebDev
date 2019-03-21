@@ -37,6 +37,16 @@
 						<li><span>Prerequisites: setup python, pipenv, git</span></li>
 					</ol>
 				</section>
+				<section id="git_overview" data-hours='4'>
+					<h3>Git Overview</h3>
+					<ol>
+						<li>Installing and configuring git</li>
+						<li>Distributed VCS - Basic Concepts</li>
+						<li>Create and configure a git repository</li>
+						<li>Adding files to repository and committing changes</li>
+						<li>Connect your local git repository to your GitHub/GitLab repository</li>
+					</ol>
+				</section>
 				<section id="web_development_concepts_overview" data-hours="1.5">
 					<h3>Web Development Concepts - Overview</h3>
 					<ol>
@@ -86,7 +96,7 @@
 						<li>Create a skeleton Django Project</li>
 					</ol>
 				</section>
-		<!-- 		<section id="create_first_django_project" data-hours="4" data-wip>
+			<!-- 		<section id="create_first_django_project" data-hours="4" data-wip>
 					<h3>Create a skeleton Django Project</h3>
 					<ol>
 						<li>Setup the environment</li>
@@ -145,28 +155,6 @@
 						<li>Advanced Forms processing techniques</li> -->
 					</ol>
 				</section>
-				<section id="django_middleware_framework" data-hours="1" data-wip>
-					<h3>Django’s middleware framework</h3>
-					<ol>
-						<!-- <li></li> -->
-					</ol>
-				</section>
-				<section id="django_cache_framework" data-hours="1" data-wip>
-					<h3>Django’s Cache Framework</h3>
-					<ol>
-						<li>Overview of cache strategies</li>
-						<li>python-memcached binding</li>
-						<li>Database Caching</li>
-						<li>Filesystem and Local-Memory Caching</li>
-						<li>Per-Site and Per-View Caching</li>
-					</ol>
-				</section>
-				<!-- <section id="unit_testing_with_django" data-hours="2" data-wip>
-					<h3>Unit Testing with Django</h3>
-					<ol>
-						<li></li>
-					</ol>
-				</section> -->
 			</article>
 
 			<article><h1>Django ORM</h1>
@@ -176,27 +164,16 @@
 						<li>Configure a DB for Django Project</li>
 					</ol>
 				</section>
-				<section id="orm_overview" data-hours="2">
+				<section id="orm_overview" data-hours="5">
 					<h3>Django ORM Overview</h3>
 					<ol>
 						<li>Django ORM Overview</li>
 						<li>The Migrations Workflow</li>
 						<li>Model Fileds</li>
-						<li>Model Metadata</li>
-						<li>The Model Methods</li>
 						<li>Models Relationships</li>
+						<li>The Model Methods</li>
 						<li>Model Transactions</li>
 						<li>Initial Data Setup (fixtures)</li>
-					</ol>
-				</section>
-				<section id="orm_crud_operations" data-hours="2" data-wip>
-					<h3>Django ORM CRUD operations</h3>
-					<ol>
-						<li>CRUD on single records</li>
-						<li>CRUD on multiple records</li>
-						<li>One to One CRUD Operations</li>
-						<li>One to Many CRUD Operations</li>
-						<li>Many to Many CRUD Operations</li>
 					</ol>
 				</section>
 				<section id="django_orm_model_queries" data-hours="2" data-wip>
@@ -206,8 +183,19 @@
 						<li>Merge and aggregate queries </li>
 						<li>Expression and Function Queries</li>
 						<li>Model Queries with Raw SQL</li>
+						<li>Django ORM CRUD operations</li>
 					</ol>
 				</section>
+				<!-- <section id="orm_crud_operations" data-hours="1" data-wip>
+					<h3>Django ORM CRUD operations</h3>
+					<ol>
+						<li>CRUD on single records</li>
+						<li>CRUD on multiple records</li>
+						<li>One to One CRUD Operations</li>
+						<li>One to Many CRUD Operations</li>
+						<li>Many to Many CRUD Operations</li>
+					</ol>
+				</section> -->
 				<section id="django_model_forms_and_class_views" data-hours="2" data-wip>
 					<h3>Django Model Forms and Class Views</h3>
 					<ol>
@@ -226,10 +214,38 @@
 						<li>Common issues</li>
 					</ol>
 				</section>
+				<section id="access_a_database_directly_and_execute_SQL_queries" data-hours="1" data-wip>
+					<h3>Access a database directly and execute SQL queries</h3>
+					<ol>
+						<li>Overview</li>
+						<li>Connections and Cursors</li>
+						<li>Using more than one database</li>
+					</ol>
+				</section>
+			</article>
+
+
+			<article><h1>Django middleware and cache Frameworks</h1>
+				<section id="django_middleware_framework" data-hours="1" data-wip>
+					<h3>Django’s middleware framework</h3>
+					<ol>
+						<!-- <li></li> -->
+					</ol>
+				</section>
+				<section id="django_cache_framework" data-hours="1" data-wip>
+					<h3>Django’s Cache Framework</h3>
+					<ol>
+						<li>Overview of cache strategies</li>
+						<li>python-memcached binding</li>
+						<li>Database Caching</li>
+						<li>Filesystem and Local-Memory Caching</li>
+						<li>Per-Site and Per-View Caching</li>
+					</ol>
+				</section>
 			</article>
 
 			<article><h1>Users, Authentication and Admin Management</h1>
-				<section id="Django_user_system" data-hours="2" data-wip>
+				<section id="Django_user_system" data-hours="1" data-wip>
 					<h3>Django User System</h3>
 					<ol>
 						<li>Overview</li>
@@ -240,7 +256,7 @@
 						<li>Enforce Django permissions in views, urls, templates, models</li>
 					</ol>
 				</section>
-				<section id="Django_Admin" data-hours="2" data-wip>
+				<section id="Django_Admin" data-hours="1" data-wip>
 					<h3>Dive into Django Admin </h3>
 					<ol>
 						<li>Register and setup models</li>
@@ -258,7 +274,7 @@
 						<li>Using Authentication Data in Templates</li>
 					</ol>
 				</section>
-				<section id="Django_session_framework" data-hours="4" data-wip>
+				<section id="Django_session_framework" data-hours="2" data-wip>
 					<h3>Django Session Framework</h3>
 					<ol>
 						<li>Setup the Session Middleware</li>
@@ -384,7 +400,7 @@
 				</section>
 			</article> -->
 			<article><h1>Building Full-Stack Applications with Django and Angular</h1>
-				<section id="Angular Crash Course" data-hours="8" data-wip>
+				<section id="Angular Crash Course" data-hours="6" data-wip>
 					<h3>Angular Crash Course</h3>
 					<ol>
 						<li>Getting started with Angular</li>
