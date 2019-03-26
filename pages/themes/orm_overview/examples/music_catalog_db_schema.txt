@@ -10,23 +10,24 @@ notes
 Table ALBUM
 ---------------------------------------------------------
 id          (primary key)
-artist_id   (foreign key to artist table)
-genre_id    (foreign key to genre table)
 name
 release_date
-picture_url
 notes
+picture_url
+artist_id   (foreign key to artist table)
+genre_id    (foreign key to genre table)
+
 
 
 ---------------------------------------------------------
 Table TRACK
 ---------------------------------------------------------
 id            (primary key)
-album_id      (foreign key to albums table)
 name
-track_artist  (if null the track_artist = album.artist)
-playtime
+duration
 lyrics
+track_artist  (if null the track_artist = album.artist)
+album_id      (foreign key to albums table)
 
 ---------------------------------------------------------
 Table GENRES

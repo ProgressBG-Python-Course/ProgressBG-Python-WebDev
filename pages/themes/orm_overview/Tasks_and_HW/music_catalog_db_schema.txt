@@ -1,0 +1,38 @@
+---------------------------------------------------------
+Table Genre
+---------------------------------------------------------
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(50) NOT NULL,
+  "notes" text NULL
+
+---------------------------------------------------------
+Table Artist
+---------------------------------------------------------
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(50) NOT NULL,
+  "about" text NULL,
+  "birth_date" date NULL,
+  "is_fav" bool NOT NULL
+
+---------------------------------------------------------
+Table Album
+---------------------------------------------------------
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(50) NOT NULL,
+  "date" datetime NULL,
+  "about" text NULL,
+  "is_fav" bool NOT NULL,
+  "release_date" date NULL
+  "genre"  [Many to Many relation to Genre Table]
+  "artist" [Many to Many relation to Artist Table]
+
+---------------------------------------------------------
+Table Track
+---------------------------------------------------------
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" varchar(50) NOT NULL,
+  "duration" bigint NULL,
+  "lyrics" text NULL,
+  "is_fav" bool NOT NULL,
+  album  [ForeignKey to Album.id, on_delete=models.PROTECT]
+  artist [Many to Many relation to Artist Table]

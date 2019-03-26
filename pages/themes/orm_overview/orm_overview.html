@@ -322,12 +322,37 @@
 </section>
 
 <section id="hw"><h1>Exercises</h1></section>
-<section><h2>Task1</h2>
-	<section><h3>The Task</h3>
+<section><h2>Music Catalog Project</h2>
+	<section><h3>Create music_catalog_project</h3>
     <dl class="fa">
-      <dt>Create Music Catalog Schema: <a href="examples/music_catalog_db_schema.txt">music_catalog_db_schema.txt</a></dt>
+      <dt>Create the '<code>music_catalog_project</code>' project with one app - '<code>music_catalog</code>'</dt>
+      <dt>Make sure you have the next folder structure:</dt>
     </dl>
+    <pre><code rel="Terminal" class="js">
+      .
+      ├── manage.py
+      ├── music_catalog
+      │   ├── admin.py
+      │   ├── apps.py
+      │   ├── __init__.py
+      │   ├── migrations
+      │   │   └── __init__.py
+      │   ├── models.py
+      │   ├── tests.py
+      │   └── views.py
+      ├── music_catalog_project
+      │   ├── __init__.py
+      │   ├── settings.py
+      │   ├── urls.py
+      │   └── wsgi.py
+    </code></pre>
 	</section>
+  <section><h3>Create music_catalog models</h3>
+    <dl class="fa">
+      <dt>Create <code>music_catalog</code> models, following next schema: <a href="Tasks_and_HW/music_catalog_db_schema.txt">music_catalog_db_schema.txt</a></dt>
+      <dt>Register the created Models into admin, and make sure you can enter some sample data for the tables being created</dt>
+    </dl>
+  </section>
 </section>
 
 <section><h3>Submission</h3>
