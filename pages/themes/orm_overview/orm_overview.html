@@ -131,6 +131,18 @@
   		    #...
   		]
   	</code></pre>
+    <dl class="fa">
+      <dt>If we want to manage our DB Models in the Django's admin model, we have to <span class="note">register</span> them into <code>app_name/admin.py</code></dt>
+    </dl>
+    <pre><code rel="admin.py" class="python">
+      from django.contrib import admin
+
+      # Register your models here.
+      from .models import Task,User
+
+      admin.site.register(User)
+      admin.site.register(Task)
+    </code></pre>
   </section>
 </section>
 
@@ -200,7 +212,11 @@
 <section><h2>Model Fields</h2>
   <section><h3>Reference</h3>
   	<dl class="fa">
-  		<dt><a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/">Model field reference @djangodocs</a></dt>
+      <dt>The type of filed in a model (e.g. CharField) corresponds to a database column type (e.g., varchar)</dt>
+      <dt>Django defines next Field types</dt>
+      <dd><a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/#field-types">field-types @djangoproject</a></dd>
+      <dt>To all Field types we can optionally specify some options as Fild attributes:</dt>
+  		<dd><a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/#field-options">field-options @djangoproject</a></dd>
   	</dl>
   </section>
 </section>
@@ -211,8 +227,9 @@
   <section><h3>Many to One relationships in Django models</h3>
   	<dl class="fa">
   		<dt>A one to many relationship implies that one model record can have many other model records associated with itself</dt>
-  		<dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/#django.db.models.ForeignKey">models.ForeignKey</a></dt>
-  		<dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/topics/db/examples/many_to_one/">many_to_one</a></dt>
+      <dt>Since Django 2.0 the ForeignKey field requires two positional arguments:</dt>
+      <dd>the model to map to</dd>
+      <dd>the on_delete argument (check <a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/#django.db.models.ForeignKey.on_delete">ForeignKey.on_delete</a>)</dd>
   	</dl>
   	<pre><code rel="models.py" class="python">
   		from django.db import models
@@ -221,11 +238,14 @@
   		    name = models.CharField(max_length=30)
 
   		class Item(models.Model):
-  		    menu = models.ForeignKey(Menu)
+  		    menu = models.ForeignKey(Menu,on_delete=models.PROTECT)
   		    name = models.CharField(max_length=30)
   		    description = models.CharField(max_length=100)
 
   	</code></pre>
+    <dl class="fa">
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/models/fields/#django.db.models.ForeignKey">models.ForeignKey docs</a>, <a href="https://docs.djangoproject.com/en/2.1/topics/db/examples/many_to_one/">many_to_one examples</a></dt>
+    </dl>
   </section>
   <section><h3>Many to Many relationships in Django models</h3>
   	<dl class="fa">
@@ -245,6 +265,59 @@
   		    address = models.CharField(max_length=30)
   		    products = models.ManyToManyField(Product,blank=True)
   	</code></pre>
+  </section>
+</section>
+
+<section data-min="10"><h1>Model Methods</h1></section>
+<section><h2>Model Methods</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>We can define custom methods on a model to add custom “row-level” functionality to our objects</dt>
+      <dt>This is a valuable technique for keeping business logic in one place – the model.</dt>
+      <dt class="note">Minimally, in every model you should define the standard Python class method <code>__str__()</code> to return a human-readable string for each object. </dt>
+      <dd>This string is used to represent individual records in the administration site (and anywhere else you need to refer to a model instance)</dd>
+    </dl>
+  </section>
+  <section><h3>__str__() - example</h3>
+    <pre><code rel="models.py" class="python">
+      class Task(models.Model):
+        title = models.CharField('Title', max_length=100)
+        description = models.TextField('Description', null=True)
+        created_at = models.DateTimeField(auto_now_add=True)
+        completed = models.BooleanField(default=False)
+
+        def __str__(self):
+          return self.title
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h1>Model metadata</h1></section>
+<section><h2>Model metadata</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>We can declare model-level metadata for our Model by declaring class Meta</dt>
+    </dl>
+    <pre><code rel="models.py" class="python">
+      class Meta:
+        ordering = ['-my_field_name']
+    </code></pre>
+    <dl class="fa">
+      <dt>One of the most useful features of this metadata is to control the default ordering of records returned when you query the model</dt>
+      <dd>Reference: <a href="https://docs.djangoproject.com/en/2.1/ref/models/options/#ordering">ordering</a></dd>
+      <dt>Reference:<a href="https://docs.djangoproject.com/en/2.1/ref/models/options">Model Meta options @djangoproject</a></dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="5"><h1>Models Best Practices</h1></section>
+<section><h2>Models Best Practices</h2>
+  <section>
+
+    <dl class="fa">
+      <dt><a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#model-style">Model style @djangoproject</a></dt>
+      <dt><a href="https://wsvincent.com/django-models-best-practices/">Django Models Best Practices</a></dt>
+    </dl>
   </section>
 </section>
 
