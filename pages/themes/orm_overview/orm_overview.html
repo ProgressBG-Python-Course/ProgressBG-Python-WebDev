@@ -172,7 +172,7 @@
   		$python manage.py showmigrations
   	</code></pre>
   </section>
-  <section><h3>>migrate command</h3>
+  <section><h3>migrate command</h3>
   	<dl class="fa">
   		<dt><a href="https://docs.djangoproject.com/en/2.1/ref/django-admin/#django-admin-migrate">migrate @pythonproject</a></dt>
   	</dl>
@@ -180,7 +180,7 @@
   		$python manage.py migrate
   	</code></pre>
   </section>
-  <section><h3>>check command</h3>
+  <section><h3>check command</h3>
   	<dl class="fa">
   		<dt><a href="https://docs.djangoproject.com/en/2.1/ref/django-admin/#django-admin-check">check @pythonproject</a></dt>
   	</dl>
@@ -188,7 +188,7 @@
   		$python manage.py check
   	</code></pre>
   </section>
-  <section><h3>>sqlmigrate command</h3>
+  <section><h3>sqlmigrate command</h3>
   	<dl class="fa">
   		<dt>We can see what SQL statement a migration will execute, by <code>sqlmigrate</code> command</dt>
   		<dt><a href="https://docs.djangoproject.com/en/2.1/ref/django-admin/#django-admin-sqlmigrate">sqlmigrate @pythonproject</a></dt>
@@ -197,7 +197,7 @@
   		$python manage.py sqlmigrate models_overview 0001
   	</code></pre>
   </section>
-  <section><h3>>shell command</h3>
+  <section><h3>shell command</h3>
   	<dl class="fa">
   		<dt><a href="https://docs.djangoproject.com/en/2.1/ref/django-admin/#django-admin-shell">shell @pythonproject</a></dt>
   	</dl>
@@ -205,7 +205,25 @@
   		$python manage.py shell
   	</code></pre>
   </section>
-  <section><h3>Live demo with <code>shell</code> command on todo app</h3></section>
+  <section><h3>Live demo with <code>shell</code> command on todo app</h3>
+    <pre><code rel="python manage.py shell" class="python">
+       from models_overview.models import Task
+
+       >>> Task._meta.get_fields()
+       (&lt;django.db.models.fields.AutoField: id&gt;, &lt;django.db.models.fields.CharField: title&gt;, &lt;django.db.models.fields.TextField: description&gt;, &lt;djang
+       o.db.models.fields.DateTimeField: created_at&gt;, &lt;django.db.models.fields.BooleanField: completed&gt;)
+
+       >>> t = Task.objects.all()
+       >>> t
+       &lt;QuerySet [&lt;Task: Task object (1)&gt;, &lt;Task: Task object (2)&gt;]&gt;
+
+       >>> t.values()[0]
+       {'id': 1, 'title': 'ORM Task', 'description': 'ORM Task description', 'created_at': datetime.datetime(2019, 3, 20, 22, 3, 41, 679268, tzinfo=&lt;
+       UTC&gt;), 'updated_at': datetime.datetime(2019, 3, 20, 22, 5, 41, 477431, tzinfo=&lt;UTC&gt;), 'completed': False}
+
+
+    </code></pre>
+  </section>
 </section>
 
 <section data-min="10"><h1>Model Fields</h1></section>
@@ -276,6 +294,7 @@
       <dt>This is a valuable technique for keeping business logic in one place – the model.</dt>
       <dt class="note">Minimally, in every model you should define the standard Python class method <code>__str__()</code> to return a human-readable string for each object. </dt>
       <dd>This string is used to represent individual records in the administration site (and anywhere else you need to refer to a model instance)</dd>
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/2.1/topics/db/models/#model-methods">model-methods @djangoproject</a></dt>
     </dl>
   </section>
   <section><h3>__str__() - example</h3>
