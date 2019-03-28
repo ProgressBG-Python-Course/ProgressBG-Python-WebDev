@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>orm_model_queries</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#orm_model_queries" target="_top"><i class="fa fa-home"></i></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>previous slide</span></div>
+				<div><span>P</span><span>next slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Django ORM Model Queries</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note">Iva E. Popova, 2018-2019:</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+		</div>
+	</section>
+	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="note">
+			<p>Created by</p>
+		</div>
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Overview</h1></section>
+<section><h2>Overview</h2>
+  <section>
+  	<dl class="fa">
+  		<dt>Once you’ve created your data models, Django automatically provides a high-level Python API for working with those models and make queries to them (create, retrieve, update and delete objects)</dt>
+  	</dl>
+  </section>
+  <section><h3>Tip: the <code>shell_plus</code> command</h3>
+  	<dl class="fa">
+  		<dt>Django-extensions have a command shell_plus with a parameter print-sql, which can show you the SQL that Django is running while performing a query</dt>
+  		<dt>Reference: <a href="https://pypi.org/project/django-extensions/">Django-extensions</a></dt>
+  	</dl>
+  	<pre><code rel="Terminal" class="js">
+  		python manage.py shell_plus --print-sql
+  	</code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h1>Retrieving objects</h1></section>
+<section><h2>Retrieving objects</h2>
+  <section><h3>Overview</h3>
+  	<dl class="fa">
+  		<dt>When we want to get a collection of objects from our DB (i.e. like the SELECT SQL statement) we have to construct a <a href="https://docs.djangoproject.com/el/2.1/ref/models/querysets/#django.db.models.query.QuerySet">QuerySet</a></dt>
+  		<dt>A QuerySet represents a collection of objects from the database.</dt>
+  		<dt>It can have zero, one or many filters. Filters narrow down the query results based on the given parameters.</dt>
+  		<dt>In SQL terms, a QuerySet equates to a SELECT statement, and a filter is a limiting clause such as WHERE or LIMIT.</dt>
+  	</dl>
+  </section>
+  <section><h3>The Manager</h3>
+  	<dl class="fa">
+  		<dt>We get a QuerySet by using our model’s Manager</dt>
+  		<dt>A Manager is the interface through which database query operations are provided to Django models.</dt>
+  		<dt>Each model has at least one Manager, and it’s called objects by default</dt>
+  	</dl>
+  	<pre><code rel="JS" class="js">
+  		>>> from models_overview.models import Task
+  		>>>
+  		>>> Task.objects
+  		&lt;django.db.models.manager.Manager object at 0x7faa0b906e80&gt;
+  	</code></pre>
+  	<dl class="fa">
+  		<dt>Reference: <a href="https://docs.djangoproject.com/el/2.1/topics/db/managers/#django.db.models.Manager">Manager @djangoproject</a></dt>
+  	</dl>
+  </section>
+  <section><h3>Retrieving a single object with get</h3>
+  	<dl class="fa">
+  		<dt>We can use the get() method on a Manager which will return a single object directly:</dt>
+  	</dl>
+  	<pre><code rel="shell" class="python">
+  		>>> Task.objects.get(id=1)
+
+  		&lt;Task: New Task Title&gt;
+  	</code></pre>
+  	<pre><code rel="SQL" class="sql">
+  		SELECT "models_overview_task"."id",
+  		       "models_overview_task"."title",
+  		       "models_overview_task"."description",
+  		       "models_overview_task"."created_at",
+  		       "models_overview_task"."updated_at",
+  		       "models_overview_task"."completed"
+  		  FROM "models_overview_task"
+  		 WHERE "models_overview_task"."id" = 1
+  	</code></pre>
+  </section>
+  <section><h3>Retrieving all objects</h3>
+  	<pre><code rel="shell" class="python">
+  		>>> all_tasks = Task.objects.all()
+  		>>> all_tasks
+
+  		&lt;QuerySet [&lt;Task: Task object (1)&gt;, &lt;Task: Task object (2)&gt;, &lt;Task: Task object (3)&gt;, &lt;Task: Task object (4)&gt;, &lt;Task: Task object (5)&gt;]&gt;
+  	</code></pre>
+  	<pre><code rel="SQL" class="sql">
+  		SELECT "models_overview_task"."id",
+  		       "models_overview_task"."title",
+  		       "models_overview_task"."description",
+  		       "models_overview_task"."created_at",
+  		       "models_overview_task"."updated_at",
+  		       "models_overview_task"."completed"
+  		  FROM "models_overview_task"
+  		 LIMIT 21
+  	</code></pre>
+  	<dl class="fa">
+  		<dt>The <a href="https://docs.djangoproject.com/el/2.1/ref/models/querysets/#django.db.models.query.QuerySet.all">QuerySet.all()</a> method returns a QuerySet of all the objects in the database.</dt>
+  	</dl>
+  </section>
+  <section><h3>Limiting QuerySets</h3>
+  	<dl class="fa">
+  		<dt>We can use Python array-slicing syntax to limit the QuerySet.</dt>
+  		<dt>This is the equivalent of SQL’s LIMIT and OFFSET clauses.</dt>
+  		<dt>Note, that negative indexing is not supported.</dt>
+  	</dl>
+  	<pre><code rel="JS" class="js">
+  		>>> Task.objects.all()[1:3]
+
+  		&lt;QuerySet [&lt;Task: Task 2&gt;, &lt;Task: Learn to create model object&gt;]&gt;
+  	</code></pre>
+  	<pre><code rel="SQl" class="js">
+  		SELECT "models_overview_task"."id",
+  		       "models_overview_task"."title",
+  		       "models_overview_task"."description",
+  		       "models_overview_task"."created_at",
+  		       "models_overview_task"."updated_at",
+  		       "models_overview_task"."completed"
+  		  FROM "models_overview_task"
+  		 LIMIT 2
+  		OFFSET 1
+
+  	</code></pre>
+  </section>
+  <section><h3>Retrieving specific objects with filters</h3>
+  	<dl class="fa">
+  		<dt>The two most common ways to refine a QuerySet.</dt>
+  		<dt><code><a href="https://docs.djangoproject.com/en/2.1/ref/models/querysets/#filter">filter(**kwargs)</a></code></dt>
+  		<dd>Returns a new QuerySet containing objects that match the given lookup parameters.</dd>
+  		<dt><code><a href="https://docs.djangoproject.com/en/2.1/ref/models/querysets/#exclude">exclude(**kwargs)</a></code></dt>
+  		<dd>Returns a new QuerySet containing objects that do not match the given lookup parameters.</dd>
+  	</dl>
+  </section>
+  <section><h3>Example</h3>
+  	<pre><code rel="shell" class="python">
+  		>>> Task.objects.filter(id=1)
+
+  		&lt;QuerySet [&lt;Task: Task object (1)&gt;]&gt;
+
+
+  		>>> Task.objects.exclude(id=1)
+
+  		&lt;QuerySet [&lt;Task: Task object (2)&gt;, &lt;Task: Task object (3)&gt;, &lt;Task: Task object (4)&gt;, &lt;Task: Task object (5)&gt;]&gt;
+  	</code></pre>
+  	<pre><code rel="SQL" class="sql">
+  		SELECT "models_overview_task"."id",
+  		       "models_overview_task"."title",
+  		       "models_overview_task"."description",
+  		       "models_overview_task"."created_at",
+  		       "models_overview_task"."updated_at",
+  		       "models_overview_task"."completed"
+  		  FROM "models_overview_task"
+  		 WHERE "models_overview_task"."id" = 1
+
+  		 SELECT "models_overview_task"."id",
+  		        "models_overview_task"."title",
+  		        "models_overview_task"."description",
+  		        "models_overview_task"."created_at",
+  		        "models_overview_task"."updated_at",
+  		        "models_overview_task"."completed"
+  		   FROM "models_overview_task"
+  		  WHERE NOT ("models_overview_task"."id" = 1)
+  	</code></pre>
+  </section>
+  <section><h3>Chaining filters</h3>
+  	<dl class="fa">
+  		<dt>The result of refining a QuerySet is itself a QuerySet, so it’s possible to chain refinements together.</dt>
+  	</dl>
+  	<pre><code rel="shell" class="python">
+  		Task.objects.filter(
+  		  updated_at__gte=datetime.date(2017, 1, 30)
+  		).exclude(
+  		  title__startswith='Learn'
+  		)
+  	</code></pre>
+  	<dl class="fa">
+  		<dt>Each time you refine a QuerySet, you get a brand-new QuerySet that is in no way bound to the previous QuerySet.</dt>
+  		<dt>Each refinement creates a separate and distinct QuerySet that can be stored, used and reused.</dt>
+  	</dl>
+  </section>
+  <section><h3>QuerySets are lazy</h3>
+  	<dl class="fa">
+  		<dt>The act of creating a QuerySet doesn’t involve any database activity.</dt>
+  		<dt>Django won’t actually run the query until the QuerySet is evaluated.</dt>
+  	</dl>
+  	<pre><code rel="shell" class="python">
+  		q1 = Task.objects.filter(updated_at__gte=datetime.date(2017, 1, 30))
+  		q2 = q1.exclude(title__startswith='Learn')
+  		print(q2)
+  	</code></pre>
+  	<dl class="fa">
+  		<dt>In the above example, the DB is actually hit <span class="note">only ones</span>, when Python needs to evaluate the q2 in <code>print(q2)</code> statement</dt>
+  	</dl>
+  </section>
+  <section><h3>Field lookups</h3>
+  	<dl class="fa">
+  		<dt>Field lookups are how you specify the meat of an SQL WHERE clause</dt>
+  		<dt>They’re specified as keyword arguments to the QuerySet methods filter(), exclude() and get().</dt>
+  		<dt>Syntax: <code>field__lookuptype=value</code></dt>
+  		<dt>Reference: <a href="https://docs.djangoproject.com/el/2.1/ref/models/querysets/#field-lookups">field-lookups @djangoproject</a></dt>
+  	</dl>
+  	<pre><code rel="shell" class="python">
+  		Task.objects.filter(title__contains="Task")
+
+  		&lt;QuerySet [&lt;Task: New Task Title&gt;, &lt;Task: Task 2&gt;]&gt;
+  	</code></pre>
+  	<pre><code rel="SQL" class="sql">
+  		SELECT "models_overview_task"."id",
+  		       "models_overview_task"."title",
+  		       "models_overview_task"."description",
+  		       "models_overview_task"."created_at",
+  		       "models_overview_task"."updated_at",
+  		       "models_overview_task"."completed"
+  		  FROM "models_overview_task"
+  		 WHERE "models_overview_task"."title" LIKE '%Task%' ESCAPE '\'
+  	</code></pre>
+  </section>
+  <section><h3>Field lookups - more examples</h3>
+  	<pre><code rel="shell" class="python">
+  		>>> Task.objects.filter(updated_at__hour__gte=22)
+
+  		&lt;QuerySet [&lt;Task: New Task Title&gt;, &lt;Task: Task 2&gt;, &lt;Task: Learn to create model object&gt;, &lt;Task: Learn to create model object&gt;, &lt;Task: Learn to
+  		 create model object&gt;]&gt;
+  	</code></pre>
+  	<pre><code rel="JS" class="js">
+  		SELECT "models_overview_task"."id",
+  		       "models_overview_task"."title",
+  		       "models_overview_task"."description",
+  		       "models_overview_task"."created_at",
+  		       "models_overview_task"."updated_at",
+  		       "models_overview_task"."completed"
+  		  FROM "models_overview_task"
+  		 WHERE django_datetime_extract('hour', "models_overview_task"."updated_at",'UTC') >= 22
+  	</code></pre>
+  </section>
+  <section><h3>Ordering Data</h3>
+  	<dl class="fa">
+  		<dt>We may order our results according to a certain value – say, alphabetically.</dt>
+  		<dt>Reference: <a href="https://docs.djangoproject.com/el/2.1/ref/models/querysets/#django.db.models.query.QuerySet.order_by">QuerySet.order_by()</a></dt>
+  	</dl>
+  	<pre><code rel="shell" class="python">
+  		>>> Task.objects.order_by('title')
+
+  		&lt;QuerySet [&lt;Task: Learn to create model object&gt;, &lt;Task: Learn to create model object&gt;, &lt;Task: Learn to create model object&gt;, &lt;Task: New Task T
+  		itle&gt;, &lt;Task: Task 2&gt;]&gt;
+  	</code></pre>
+  	<pre><code rel="SQL" class="sql">
+  		SELECT "models_overview_task"."id",
+  		       "models_overview_task"."title",
+  		       "models_overview_task"."description",
+  		       "models_overview_task"."created_at",
+  		       "models_overview_task"."updated_at",
+  		       "models_overview_task"."completed"
+  		  FROM "models_overview_task"
+  		 ORDER BY "models_overview_task"."title" ASC
+  	</code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h1>Create/Update objects</h1></section>
+<section><h2>Create/Update objects</h2>
+  <section><h3>Create</h3>
+  	<dl class="fa">
+  		<dt>To create an object, instantiate it using keyword arguments to the model class, then call save() to save it to the database.</dt>
+  	</dl>
+  	<pre><code rel="python manage.py shell" class="python">
+  		>>> from models_overview.models import Task
+  		>>>
+  		>>> t = Task(title='Learn to create model object', description='')
+  		>>> t.save()
+  	</code></pre>
+  	<dl class="fa">
+  		<dt>The generated SQL is:</dt>
+  	</dl>
+  	<pre><code rel="SQL" class="js">
+  		INSERT INTO "models_overview_task" ("title", "description", "created_at", "updated_at", "completed")
+  		VALUES ('Learn to create model object', '', '2019-03-27 23:04:42.018578', 33
+  		m'2019-03-27 23:04:42.018637', 0)
+  	</code></pre>
+  </section>
+  <section><h3>Update</h3>
+  	<dl class="fa">
+  		<dt>To save changes to an object that’s already in the database, use <a href="https://docs.djangoproject.com/en/2.1/ref/models/instances/#django.db.models.Model.save">save() method</a>.</dt>
+  	</dl>
+  	<pre><code rel="shell" class="python">
+  		>>> t1 = Task.objects.get(pk=1)
+
+  		>>> t1.title = "New Task Title"
+  		>>> t1.save()
+  	</code></pre>
+  	<pre><code rel="SQL" class="js">
+  		UPDATE "models_overview_task"
+  		   SET "title" = 'New Task Title',
+  		       "description" = 'ORM Task description',
+  		       "created_at" = '2019-03-27 22:03:41.679268',
+  		       "updated_at" = '2019-03-27 23:40:21.322359',
+  		       "completed" = 0
+  		 WHERE "models_overview_task"."id" = 1
+  	</code></pre>
+  </section>
+</section>
+
+<!--
+<section data-min="10"><h1>Field lookup with Django ORM</h1></section>
+<section><h2>Field lookup with Django ORM</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
+<section data-min="20"><h1>Merge and aggregate queries</h1></section>
+<section><h2>Merge and aggregate queries</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
+<section data-min="10"><h1>Expression and Function Queries</h1></section>
+<section><h2>Expression and Function Queries</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
+<section data-min="10"><h1>Model Queries with Raw SQL</h1></section>
+<section><h2>Model Queries with Raw SQL</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
+
+<section data-min="10"><h1>Django ORM CRUD operations</h1></section>
+<section><h2>Django ORM CRUD operations</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section>
+
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: orm_model_queries">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section>
+
+-->
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
