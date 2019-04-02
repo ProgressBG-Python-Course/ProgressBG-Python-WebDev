@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>using_django_orm_with_mysql</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#using_django_orm_with_mysql" target="_top"><i class="fa fa-home"></i></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>previous slide</span></div>
+				<div><span>P</span><span>next slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Using Django ORM with MySQL/Oracle</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note">Iva E. Popova, 2018-2019:</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+		</div>
+	</section>
+	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="note">
+			<p>Created by</p>
+		</div>
+		<div class="company">
+			 <div class="LI-profile-badge"	data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Configure the MySQL DB</h1></section>
+<section><h2>Configure the MySQL DB</h2>
+	<section><h3>Prerequisites</h3>
+		<dl class="fa">
+			<dt>install mysql client and server for your system</dt>
+			<dt>setup mysql client package for python 3</dt>
+			<dd><a href="https://pypi.org/project/mysqlclient/">https://pypi.org/project/mysqlclient/</a></dd>
+		</dl>
+		<p>Make sure, you're on your python3 virtualenv and use <code class="note">pipenv install mysqlclient</code>, instead <code>pip3 install mysqlclient</code></p>
+	</section>
+	<section><h3>Create the MySQL database and user</h3>
+		<pre><code rel="Terminal" class="bash">
+			# create database
+			CREATE DATABASE music_catalog_db;
+
+			# create user
+			# to prevent ERROR 1396 (HY000): Operation CREATE USER failed for
+			# drop USER 'django_admin'@'localhost'
+			# flush privileges;
+			CREATE USER 'django_admin'@'localhost' IDENTIFIED BY '123';
+			GRANT ALL PRIVILEGES ON music_catalog_db.* TO 'django_admin'@'localhost';
+			# GRANT ALL PRIVILEGES ON mydb.* TO 'myuser'@'%' WITH GRANT OPTION;
+			FLUSH PRIVILEGES;
+		</code></pre>
+	</section>
+	<section><h3>Test DB Connection</h3>
+		<pre><code rel="Terminal" class="bash">
+			#connect:
+			mysql -u django_admin -p'123' music_catalog_db
+		</code></pre>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Use MySQL with Djano</h1></section>
+<section><h2>Use MySQL with Djano</h2>
+  <section><h3>Set MySQL As Django Project Default Database Server</h3>
+  	<dl class="fa">
+  		<dt>Connection settings are used in this order:</dt>
+  		<dd>OPTIONS.</dd>
+  		<dd>NAME, USER, PASSWORD, HOST, PORT</dd>
+  		<dd>MySQL option files.</dd>
+  		<dt>It's more flexible and secure to use a separate 'my.cnf' file with connection string option, than to hard code them in settings.py</dt>
+  	</dl>
+  </section>
+  <section><h3>MySQL As Django Project Default Database Server - Example</h3>
+  	<dl class="fa">
+  		<dt>Create the 'my.cnf' file in project's settings folder:</dt>
+  	</dl>
+  	<pre><code rel="music_catalog_project/my.cnf" class="bash">
+  		[client]
+  		database = music_catalog_db
+  		user = django_admin
+  		password = 123
+  		default-character-set = utf8
+  	</code></pre>
+  	<dl class="fa">
+  		<dt>Set MySQL as default project DB</dt>
+  	</dl>
+  	<pre><code rel="settings.py" class="python">
+  		DATABASES = {
+  		    'default': {
+  		        'ENGINE': 'django.db.backends.mysql',
+  		        'OPTIONS': {
+  		            'read_default_file': 'my.cnf',
+  		        },
+  		    }
+  		}
+  	</code></pre>
+  </section>
+</section>
+
+
+<section data-min="5"><h1>Migrate SQLite to MySQL</h1></section>
+<section><h2>Migrate SQLite to MySQL</h2>
+	<section><h3>Make sure you can connect to your DB</h3>
+		<pre><code rel="Terminal" class="bash">
+    	mysql -u django_admin -p'123' music_catalog_db
+		</code></pre>
+	</section>
+  <section><h3>dump data</h3>
+  	<pre><code rel="Terminal" class="bash">
+  		python manage.py dumpdata > datadump.json
+  	</code></pre>
+  </section>
+  <section><h3>sync db - id you already have data</h3>
+  	<dl class="fa">
+  		<dt><a href="https://docs.djangoproject.com/en/2.1/ref/django-admin/#cmdoption-migrate-run-syncdb">migrate-run-syncdb @djangoproject</a></dt>
+  	</dl>
+  	<pre><code rel="Terminal" class="bash">
+  		python manage.py migrate --run-syncdb
+  	</code></pre>
+  </section>
+  <section><h3></h3>
+  	<pre><code rel="python manage.py shell" class="python">
+  		from django.contrib.contenttypes.models import ContentType
+  		ContentType.objects.all().delete()
+  		quit()
+  	</code></pre>
+  </section>
+  <section><h3>load data</h3>
+  	<pre><code rel="Terminal" class="bash">
+  		python manage.py loaddata datadump.json
+  	</code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Docs</h3>
+  	<dl class="fa">
+  		<dt><a href="https://docs.djangoproject.com/en/2.2/ref/databases/#mysql-notes">MySQL notes @djangoproject</a></dt>
+  	</dl>
+  </section>
+</section>
+
+
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section>
+
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: using_django_orm_with_mysql">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END	 #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '	';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
