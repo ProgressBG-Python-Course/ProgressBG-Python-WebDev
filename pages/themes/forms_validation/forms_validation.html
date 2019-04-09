@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>forms_validation</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#forms_validation" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>previous slide</span></div>
+        <div><span>P</span><span>next slide</span></div>
+        <div><span>O</span><span>overview slides</span></div>
+        <div><span>ctrl+left click</span><span>zoom element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Form validation and cleaning</h1></section>
+<section data-transition="zoom">
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+  <section class="copyright" data-transition="zoom">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/програмиране-с-python-2/">
+      <img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span class="note">Iva E. Popova, 2018-2019:</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </section>
+  <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+    <div class="note">
+      <p>Created by</p>
+    </div>
+    <div class="company">
+       <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+    </div>
+  </section>
+</section>
+
+
+<section data-min="5"><h1>Overview</h1></section>
+<section><h2>Overview</h2>
+  <section>
+    <dl class="fa">
+      <dt>Data validation should be done on both sides:</dt>
+      <dd>Client side: with JavaScript. Consider that validation as usability, not secure, feature.</dd>
+      <dd>Server-side: there should be done the real secure data check.</dd>
+    </dl>
+  </section>
+  <section><h3>Server-side validation process</h3>
+    <dl class="fa">
+      <dt>Each submited data <span class="note">must</span> be cleaned and validated by the server.</dt>
+      <dt>If the received form contains invalid data, the server should:</dt>
+      <dd>display the form again with user-entered data in "valid" fields</dd>
+      <dd>the invalid fields should contains messages to describe the problem</dd>
+      <dt>The server must also clean the data - removing dangerous symbols, like <code>` %</code> and so on.</dt>
+    </dl>
+  </section>
+</section>
+
+
+<section data-min="20"><h1>Django Form Validation</h1></section>
+<section><h2>Django Form Validation</h2>
+  <section><h3>Why?</h3>
+    <dl class="fa">
+      <dt>The <code>request.POST</code> data are too <span class="note">row</span> for direct input into DB.</dt>
+      <dd>We can use it as is just for bound form instance, as in</dd>
+      <dd><code>form = MyFormClass(request.POST)</code></dd>
+      <dt>Also note that the data in <code>request.POST</code> is treated as string. And if we have to deal with IntegerField() or DateField() they need to be converted manually to the expected data type</dt>
+    </dl>
+  </section>
+  <section><h3>Django Form Validation</h3>
+    <dl class="fa">
+      <dt>Once we have a bound form we can then access each of the form's field values through the <code>cleaned_data</code> dictionary.</dt>
+      <dt>If we have a form field type IntegerField() or DateField() syntax <code>form.cleaned_data['field_name']</code> produces an integer or date type value</dt>
+      <dt class="note">Note: we can't access <code>cleaned_data</code> until <code>is_valid()</code> is called on the form.</dt>
+      <pre><code rel="todo_app/views.py" class="python">
+        # create a bound form instance:
+        form = CreateUpdateTaskForm(request.POST)
+
+        if form.is_valid():
+          # update the DB:
+          task = Task.objects.filter(id=id).update(
+            # get the cleaned 'due' field:
+            due=form.cleaned_data['due'],
+            #...
+          )
+      </code></pre>
+    </dl>
+  </section>
+  <section><h3>is_valid() method</h3>
+  	<dl class="fa">
+  		<dt>Once you create a bound form with request.POST, you call the is_valid() method on the instance to determine if the included values comply with a form's field definitions (e.g. if an EmailField() value is a valid email)</dt>
+  		<dt>is_valid() method returns a boolean True or False value, but it has two important side-effects:</dt>
+  		<dd>creates the <code>cleaned_data</code> dictionary on the form instance to hold the form field values that passed validation rules.</dd>
+  		<dd>creates the <code>errors</code> dictionary on the form instance to hold the form errors for each of the fields that didn't pass the validation rules.</dd>
+  	</dl>
+  </section>
+  <section><h3>Django Form Validation - demo</h3>
+  	<dl class="fa">
+  		<dt>An overview of the process could be givven by:</dt>
+  	</dl>
+  	<pre style="width: 90vw;"><code rel="todo_app/views.py" class="python">
+  		def add(request):
+  		  if request.method == 'POST':
+  		    # create bound form instance:
+  		    form = CreateUpdateTaskForm(request.POST)
+  		    # Call is_valid() to validate data and create cleaned_data or errors dict
+  		    if form.is_valid():
+  		      # Form data is valid, you can now access validated values in the cleaned_data dict
+  		      title = form.cleaned_data['title']
+  		      description = form.cleaned_data['description']
+  		      due = form.cleaned_data['due']
+
+  		      # process data, insert into DB
+  		      Task.objects.create(
+  		        title = title, description=description, due=due
+  		      )
+  		      # Redirect to a new URL
+  		      return redirect('todo_index')
+  		    else:
+  		      pass
+  		      # is_valid() method created errors dict, so form reference now contains errors
+  		      # this form reference drops to the last return statement where errors
+  		      # can then be presented accessing form.errors in a template
+  		  else:
+  		    # GET, generate blank, unbound form
+  		    form = CreateUpdateTaskForm()
+
+  		  # render the data:
+  		  template_file = 'todo_app/add.html'
+
+  		  context = {
+  		      'form': form,
+  		      'app_name': app_name,
+  		      'page_name': 'Add Task'
+  		  }
+
+  		  return render(request, template_file, context)
+
+  	</code></pre>
+  </section>
+  <section><h3>Django Form Validation</h3>
+    <dl class="fa">
+      <dt>Form validation happens when the data is cleaned.</dt>
+      <dt>Django provides default methods for cleaning and validating date with respect to the type of the field</dt>
+      <dt>We can customize the validation process, as well.</dt>
+      <dt>The easiest way to validate a single field is to override the method <code>clean_<fieldname>()</code></dt>
+    </dl>
+  </section>
+  <section><h3>The custom cleaning methods</h3>
+  	<dl class="fa">
+  		<dt>clean_<field>() and clean() methods are automatically invoked when the is_valid() method is run.</dt>
+  		<dt>We can define our logic for them in the forms class</dt>
+  	</dl>
+  	<pre><code rel="todo_app/forms.py" class="python">
+  		class CreateUpdateTaskForm(forms.Form):
+  			# fields declarations:
+  			# ...
+
+  			# custom cleaning method for 'due':
+  			def clean_due(self):
+	  		  # clean the data:
+	  		  data = self.cleaned_data['due']
+
+	  		  # Check if a date is not in the past.
+  		  	now = make_aware(datetime.datetime.now())
+  		    if data < now:
+  		      raise forms.ValidationError(_('Invalid date - due date is in past'))
+
+
+	  		  # always return the cleaned data.
+	  		  return data
+  	</code></pre>
+  </section>
+</section>
+
+
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+  <section><h3>The Task</h3>
+
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: forms_validation">progressbg.python.course@gmail.com</a></dt>
+  </dl>
+</section>
+-->
+
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+   <p>These slides are based on</p>
+   <p>customised version of </p>
+   <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+   <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+      center: true,
+      width: 1024,
+      height: 850,
+      // Bounds for smallest/largest possible scale to apply to content
+      // minScale: .5,
+      maxScale: 1,
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+</body>
+</html>
