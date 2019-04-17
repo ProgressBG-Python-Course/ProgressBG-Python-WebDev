@@ -181,7 +181,7 @@
       <dt>The {{ field.errors }} in our template will output a list of any validation errors corresponding to that field.</dt>
       <dt>We can customize the presentation of the errors with a {% for error in field.errors %} loop. In this case, each object in the loop is a simple string containing the error message.</dt>
     </dl>
-    <pre><code rel="JS" class="js">
+    <pre><code rel="template.html" class="html">
       {% for field in form %}
         <div class="form-group">
           <label>{{ field.label }}</label>
