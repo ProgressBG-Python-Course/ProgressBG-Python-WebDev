@@ -174,10 +174,28 @@
   		  }
 
   		  return render(request, template_file, context)
-
   	</code></pre>
   </section>
-  <section><h3>Django Form Validation</h3>
+  <section><h3>Display validation errors in template</h3>
+    <dl class="fa">
+      <dt>The {{ field.errors }} in our template will output a list of any validation errors corresponding to that field.</dt>
+      <dt>We can customize the presentation of the errors with a {% for error in field.errors %} loop. In this case, each object in the loop is a simple string containing the error message.</dt>
+    </dl>
+    <pre><code rel="JS" class="js">
+      {% for field in form %}
+        <div class="form-group">
+          <label>{{ field.label }}</label>
+          {{ field }}
+
+          {% for item in field.errors  %}
+          <div style="color:#F00">{{item}}</div>
+          {% endfor %}
+
+        </div>
+      {% endfor %}
+    </code></pre>
+  </section>
+  <section><h3>Notes</h3>
     <dl class="fa">
       <dt>Form validation happens when the data is cleaned.</dt>
       <dt>Django provides default methods for cleaning and validating date with respect to the type of the field</dt>
@@ -212,7 +230,7 @@
   </section>
   <section><h3>References:</h3>
     <dl class="fa">
-      <dt><a href="https://docs.djangoproject.com/en/2.1/ref/forms/validation/#using-validation-in-practice">Using validation in practice @djangoproject</a></dt>
+      <dt><a href="https://docs.djangoproject.com/en/2.2/ref/forms/validation/">Form and field validation @djangoproject</a></dt>
     </dl>
   </section>
 </section>
