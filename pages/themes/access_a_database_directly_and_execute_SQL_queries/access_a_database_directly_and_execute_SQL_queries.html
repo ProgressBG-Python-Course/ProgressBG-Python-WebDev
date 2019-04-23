@@ -88,7 +88,7 @@
   <section><h3>inspectdb usage</h3>
     <dl class="fa">
       <dt>Make sure you have setup the database (in settings.py) which you'll want to introspect</dt>
-      <pre><code rel="settings.py" class="js">
+      <pre style="width: 80vw; margin-left:0em;"><code rel="settings.py" class="js">
         DATABASES = {
           'default': {
               'ENGINE': 'django.db.backends.mysql',
@@ -98,22 +98,59 @@
           },
         }
       </code></pre>
-      <dt>In project root folder run:</dt>
-      <pre><code rel="Terminal" class="bash">
-        python mysite/manage.py inspectdb > mysite/myapp/models.py
+      <pre><code rel="access_existing_db/my.cnf" class="bash">
+        [client]
+        database = music_catalog_db
+        user = django_admin
+        password = 123
+        default-character-set = utf8
       </code></pre>
+
     </dl>
   </section>
-  <section><h3>Cleaning Up Generated Models</h3>
+  <section><h3>inspectdb usage</h3>
+    <dl class="fa">
+      <dt>In project root folder run:</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash">
+      python mysite/manage.py inspectdb > mysite/myapp/models.py
+    </code></pre>
+    <dl class="fa">
+      <dt>make sure you point the right path in '<code>mysite/myapp/models.py</code>'</dt>
+    </dl>
+  </section>
+  <section><h3>Cleaning Up Generated Models - ManyToMany relations</h3>
     <dl class="fa" style="width:120%; margin-left: -2em;">
       <dt>The automatic model generation can not be perfect. In order to customise the resulting models, we need to know how they are created</dt>
-      <dd>Each table is converted to a model class (there is a one-to-one mapping between database tables and model classes). This means that you’ll need to <span class="note">refactor the models for any many-to-many join tables</span> into ManyToManyField objects.</dd>
-      <dd>Each field’s type (e.g., CharField, DateField) is determined by looking at the database column type (e.g., VARCHAR, DATE). If inspectdb cannot map a column’s type to a model field type, it will use TextField and will insert the Python comment '<code>This field type is a guess.</code>' next to the field in the generated model. Keep an eye out for that, and change the field type accordingly if needed.</dd>
+      <dt>Each table is converted to a model class (there is a one-to-one mapping between database tables and model classes). This means that you’ll need to <span class="note">refactor the models for any many-to-many join tables</span> into ManyToManyField objects.</dt>
+    </dl>
+    <pre><code rel="models.py" class="js">
+      class MusicCatalogAlbumArtist(models.Model):
+          album = models.ForeignKey(MusicCatalogAlbum, models.DO_NOTHING)
+          artist = models.ForeignKey('MusicCatalogArtist', models.DO_NOTHING)
+
+          class Meta:
+              managed = False
+              db_table = 'music_catalog_album_artist'
+              unique_together = (('album', 'artist'),)
+    </code></pre>
+    <pre><code rel="JS" class="js">
+      class Album(models.Model):
+          # ...
+          artist = models.ManyToManyField(Artist)
+    </code></pre>
+  </section>
+  <section><h3>Cleaning Up Generated Models - guessed field types</h3>
+    <dl class="fa">
+      <dt>Each field’s type (e.g., CharField, DateField) is determined by looking at the database column type (e.g., VARCHAR, DATE).</dt>
+      <dt>If inspectdb cannot map a column’s type to a model field type, it will use TextField and will insert the Python comment '<code>This field type is a guess.</code>' next to the field in the generated model.</dt>
+      <dt>Keep an eye out for that, and change the field type accordingly if needed.</dt>
     </dl>
   </section>
-  <section><h3>Cleaning Up Generated Models</h3>
+  <section><h3>Cleaning Up Generated Models - IDs</h3>
     <dl class="fa">
-      <dt>Each generated model has an attribute for every field, including id primary key fields. But Django automatically adds an id primary key field if a model doesn’t have a primary key. Thus, we’ll want to <span class="note">remove any lines that look like</span>: <code>id = models.IntegerField(primary_key=True)</code></dt>
+      <dt>Each generated model has an attribute for every field, including id primary key fields. But Django automatically adds an id primary key field if a model doesn’t have a primary key.</dt>
+      <dt>Thus, we’ll want to <span class="note">remove any lines that look like</span>: <code>id = models.IntegerField(primary_key=True)</code></dt>
     </dl>
   </section>
   <section><h3>Cleaning Up Generated Models</h3>
@@ -130,7 +167,14 @@
   </section>
   <section><h3>Cleaning Up Generated Models</h3>
     <dl class="fa">
-      <dt>By default, inspectdb creates unmanaged models. That is, managed = False in the model’s Meta class tells Django not to manage each table’s creation, modification, and deletion. refer to</dt>
+      <dt>By default, inspectdb creates unmanaged models. That is, managed = False in the model’s Meta class tells Django not to manage each table’s creation, modification, and deletion.</dt>
+      <dt>If False, no database table creation or deletion operations will be performed for this model. This is useful if the model represents an existing table or a database view that has been created by some other means. This is the only difference when managed=False. All other aspects of model handling are exactly the same as normal.</dt>
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/1.11/ref/models/options/#managed">models/options/#managed @djangodocs</a></dt>
+    </dl>
+  </section>
+  <section><h3>Install the core Django tables</h3>
+    <dl class="fa">
+      <dt>Next, run the migrate command to install any extra needed database records such as admin permissions and content types</dt>
     </dl>
   </section>
 
@@ -144,17 +188,14 @@
   </section>
 </section>
 
-
-
-<section data-min="10"><h1>Overview</h1></section>
-<section><h2>Overview</h2>
+<section data-min="10"><h1>Connections and Cursors</h1></section>
+<section><h2>Connections and Cursors</h2>
   <section>
   	<dl class="fa">
   		<dt>The object <code>django.db.connection</code> represents the default database connection</dt>
   		<dt>To use the database connection call <code>connection.cursor()</code> to get a cursor object</dt>
   		<dt>call <code>cursor.execute(sql, [params])</code> to execute an SQL statement</dt>
   		<dt>call <code>cursor.fetchone()</code> or <code>cursor.fetchall()</code> to return the resulting rows.</dt>
-  		<dt></dt>
   	</dl>
   </section>
   <section><h3>Connections and Cursors</h3>
@@ -163,7 +204,7 @@
   		<dt>the SQL statement in cursor.execute() can use placeholders, "%s" , rather than adding parameters directly within the SQL. In such case, the underlying database library will automatically escape our parameters as necessary</dt>
   	</dl>
   </section>
-  <section><h3>Example</h3></section>
+  <!-- <section><h3>Example</h3></section> -->
   <section><h3>Using more than one database</h3>
   	<dl class="fa">
   		<dt>When we are using more than one database, we can use <code>django.db.connections</code> to obtain the connection (and cursor) for a specific database.</dt>
