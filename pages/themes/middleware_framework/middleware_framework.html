@@ -98,6 +98,31 @@
   </section>
 </section>
 <section><h2>Writing custom middlewares</h2>
+	<section><h3>Middleware classes</h3>
+		<dl class="fa">
+			<dt>The Middleware classes can live anywhere in your Python path.</dt>
+			<dt>The only thing Django cares about is the path you register in the project settings MIDDLEWARE.</dt>
+			<dt>A Middleware class doesn’t have to subclass anything</dt>
+		</dl>
+	</section>
+	<section><h3>Middleware class methods</h3>
+		<dl class="fa">
+			<p>A Middleware class should define at least one of the following methods:</p>
+			<dt>Called during request:</dt>
+			<dd><span class="note">process_request(request)</span></dd>
+			<dd><span class="note">process_view(request, view_func, view_args, view_kwargs)</span></dd>
+			<dt>Called during response:</dt>
+			<dd><span class="note">process_exception(request, exception)</span> (only if the view raised an exception)</dd>
+			<dd><span class="note">process_template_response(request, response)</span> (only for template responses)</dd>
+			<dd><span class="note">process_response(request, response)</span></dd>
+		</dl>
+	</section>
+	<section><h3>Middleware execution</h3>
+		<dl class="fa">
+			<dt>A Middlware class is called twice during the request/response life cycle.</dt>
+			<dt>Thus, the order we define the Middlwares in the MIDDLEWARE configuration is important.</dt>
+		</dl>
+	</section>
 	<section><h3>The middleware code</h3>
 		<pre><code rel="todo_app/middlewares.py" class="js">
 			import datetime
