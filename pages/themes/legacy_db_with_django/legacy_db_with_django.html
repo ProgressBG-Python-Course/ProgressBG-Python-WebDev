@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>legacy_db_with_django</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#legacy_db_with_django" target="_top"><i class="fa fa-home"></i></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>previous slide</span></div>
+				<div><span>P</span><span>next slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Using Django with legacy DB</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note">Iva E. Popova, 2018-2019:</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+		</div>
+	</section>
+	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section>
+</section>
+
+<section data-min="5"><h1>Create the demo project</h1></section>
+<section><h2>Create the demo project</h2>
+  <section><h3>The project</h3>
+    <pre><code rel="Terminal" class="bash">
+      # create new Django project
+      django-admin startproject using_legacy_db
+
+      # create the app, which will use the legacy db:
+      python manage.py startapp music_catalog_app
+    </code></pre>
+  </section>
+  <section><h3>The database</h3>
+    <pre><code rel="Terminal" class="bash">
+      # create the legacy db:
+      CREATE DATABASE music_catalog_legacy_db;
+      GRANT ALL PRIVILEGES ON music_catalog_legacy_db.* TO 'django_admin'@'localhost';
+      FLUSH PRIVILEGES;
+    </code></pre>
+  </section>
+  <section><h3>The schema</h3>
+    <a href="images/music_catalog_legacy_db_erp_ordered.png"><img src="images/music_catalog_legacy_db_erp_ordered.png"></a>
+  </section>
+  <section><h3>Import the schema</h3>
+    <dl class="fa">
+      <dt>Download the music_catalog_legacy_db schema dump: <a href="db_schema/music_catalog_legacy_db.rowdump.sql">music_catalog_legacy_db.rowdump.sql</a></dt>
+      <dt>Import it onto music_catalog_legacy_db:</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash">
+      mysql -u django_admin -p music_catalog_legacy_db < music_catalog_legacy_db.rowdump.sql
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h1>Using Multiple databases in Django Project</h1></section>
+<section><h2>Using Multiple databases in Django Project</h2>
+  <section><h3>Set up a database router</h3>
+    <dl class="fa">
+      <dt>The easiest way to use multiple databases is to set up a our custom database router</dt>
+      <dt>The router implements which database alias to use for which model.</dt>
+      <dt>In general, we want <span class="note">app1_db</span> to be used in all models for <span class="note">app1</span>. All other queries should use the default database</dt>
+    </dl>
+  </section>
+  <section><h3>Database routers overview</h3>
+    <dl class="fa">
+      <dt>A <a href="https://docs.djangoproject.com/en/2.2/topics/db/multi-db/#database-routers">Database Router</a> is a class that provides up to four methods:</dt>
+      <dd><code>db_for_read(model, **hints)</code></dd>
+      <dd><code>db_for_write(model, **hints)</code></dd>
+      <dd><code>allow_relation(obj1, obj2, **hints)</code></dd>
+      <dd><code>allow_migrate(db, app_label, model_name=None, **hints)</code></dd>
+      <dt>A router doesn’t have to provide all these methods – it may omit one or more of them. If one of the methods is omitted, Django will skip that router when performing the relevant check</dt>
+    </dl>
+  </section>
+  <section><h3><code>db_for_read(model, **hints)</code></h3>
+    <dl class="fa">
+      <dt>Suggest the database that should be used for read operations for objects of type model.</dt>
+      <dt>If a database operation is able to provide any additional information that might assist in selecting a database, it will be provided in the <a href="https://docs.djangoproject.com/en/2.2/topics/db/multi-db/#topics-db-multi-db-hints">hints</a> dictionary.</dt>
+      <dt>Returns None if there is no suggestion.</dt>
+    </dl>
+  </section>
+  <section><h3><code>db_for_write(model, **hints)</code></h3>
+    <dl class="fa">
+      <dt>Suggest the database that should be used for write operations of objects of type Model</dt>
+      <dt>If a database operation is able to provide any additional information that might assist in selecting a database, it will be provided in the <a href="https://docs.djangoproject.com/en/2.2/topics/db/multi-db/#topics-db-multi-db-hints">hints</a> dictionary.</dt>
+      <dt>Returns None if there is no suggestion.</dt>
+    </dl>
+  </section>
+  <section style="font-size: .9em;"><h3><code><code>allow_relation(obj1, obj2, **hints)</code></code></h3>
+    <dl class="fa">
+      <dt>Return True if a relation between obj1 and obj2 should be allowed, False if the relation should be prevented, or None if the router has no opinion.</dt>
+      <dt>This is purely a validation operation, used by foreign key and many to many operations to determine if a relation should be allowed between two objects.</dt>
+      <dt>If no router has an opinion (i.e. all routers return None), only relations within the same database are allowed.</dt>
+    </dl>
+  </section>
+  <section style="font-size: .9em;"><h3><code>allow_migrate(db, app_label, model_name=None, **hints)</code></h3>
+    <dl class="fa">
+      <dt>Determine if the migration operation is allowed to run on the database with alias db. Return True if the operation should run, False if it shouldn’t run, or None if the router has no opinion.</dt>
+      <dt>The <span class="note">app_label</span> positional argument is the label of the application being migrated.</dt>
+      <dt><span class="note">model_name</span> is set by most migration operations to the value of model._meta.model_name (the lowercased version of the model __name__) of the model being migrated. Its value is None for the RunPython and RunSQL operations unless they provide it using hints.</dt>
+      <dt>hints are used by certain operations to communicate additional information to the router.</dt>
+    </dl>
+  </section>
+  <section style="font-size: .9em;"><h3><code>allow_migrate(db, app_label, model_name=None, **hints)</code></h3>
+    <dl class="fa">
+      <dt>When <span class="note">model_name</span> is set, hints normally contains the model class under the key 'model'. Note that it may be a historical model, and thus not have any custom attributes, methods, or managers. You should only rely on <span class="note">_meta</span>.</dt>
+      <dt><code>allow_migrate()</code> method can also be used to determine the availability of a model on a given database.</dt>
+      <dt>makemigrations always creates migrations for model changes, but if <code>allow_migrate()</code> returns False, any migration operations for the model_name will be silently skipped when running migrate on the db. </dt>
+      <dt>Changing the behavior of allow_migrate() for models that already have migrations may result in broken foreign keys, extra tables, or missing tables.</dt>
+      <dt>When makemigrations verifies the migration history, it skips databases where no app is allowed to migrate.</dt>
+    </dl>
+  </section>
+  <section><h3>Router demo - MusicCatalogLegacyDbRouter</h3>
+    <pre><code rel="using_legacy_db/using_legacy_db/music_catalog_legacy_db_router.py" class="python">
+      class MusicCatalogLegacyDbRouter:
+          """
+          A router to control all database operations on models
+          in the music_catalog_app.
+          """
+          def db_for_read(self, model, **hints):
+              # Attempts to read music_catalog_app go to music_catalog_legacy_db.
+              if model._meta.app_label == 'music_catalog_app':
+                  return 'music_catalog_legacy_db'
+              return None
+
+          def db_for_write(self, model, **hints):
+              # Attempts to write music_catalog_app go to music_catalog_legacy_db.
+              if model._meta.app_label == 'music_catalog_app':
+                  return 'music_catalog_legacy_db'
+              return None
+
+          def allow_relation(self, obj1, obj2, **hints):
+              # Allow any relation if both models are part of the worlddata app
+              if obj1._meta.app_label == 'music_catalog_app' and \
+                  obj2._meta.app_label == 'music_catalog_app':
+                  return True
+              # Allow if neither is part of worlddata app
+              elif 'music_catalog_app' not in [obj1._meta.app_label, obj2._meta.app_label]:
+                  return True
+              # by default return None - "undecided"
+
+          def allow_migrate(self, db, app_label, model_name=None, **hints):
+              # allow migrations on the "default" (django related data) DB
+              if db == 'default' and app_label != 'music_catalog_app':
+                  return True
+
+              # allow migrations on the legacy database too
+              # this will enable us to actually alter the database schema of the legacy DB.
+              if db == 'music_catalog_legacy_db' and app_label == "music_catalog_app":
+                 return True
+
+              return False
+    </code></pre>
+  </section>
+  <section style="margin-left: -2em;"><h3>Activate the Router</h3>
+    <dl class="fa">
+      <dt>The routers needs to be activated in <span class="note">settings.py</span> by:</dt>
+      <dd><code>DATABASE_ROUTERS = ['path.to.DBRouter1', 'path.to.DBRouter2']</code></dd>
+      <dd>The order in which routers are processed is significant. </dd>
+      <dd>Routers will be queried in the order they are listed in the DATABASE_ROUTERS setting.</dd>
+      <dd>substitute <code>path.to.</code> with the actual Python path to the module where a router is defined</dd>
+    </dl>
+    <pre style="width: 100vw;"><code rel="settings.py" class="python">
+        # the path, relative to the project: 'using_legacy_db/music_catalog_legacy_db_router.py'
+        DATABASE_ROUTERS = ['using_legacy_db.music_catalog_legacy_db_router.MusicCatalogLegacyDbRouter']
+      </code></pre>
+  </section>
+  <section><h3>Migrate default database</h3>
+    <dl class="fa">
+      <dt>Since the database connection is set up, we can start the initial database migration which will only create the necessary Django tables using the default database alias ('default' in settings).</dt>
+    </dl>
+    <pre><code rel="Terminal" class="python">
+      # Make sure that only the default migrations will be made:
+      python manage.py showmigrations
+
+      # if everything ok, then migrate:
+      python manage.py migrate
+    </code></pre>
+  </section>
+  <section><h3>What is next?</h3>
+    <dl class="fa">
+      <dt>We have to generate the model classes from the legacy database schema.</dt>
+      <dt>That process is called database introspection</dt>
+      <dt>Django comes with a useful tool for that: <code>inspectdb</code></dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="5"><h1>Introspect the database tables with inspectdb</h1></section>
+<section><h2>Introspect the database tables with inspectdb</h2>
+  <section>
+    <dl class="fa">
+      <dt>Django comes with a utility called inspectdb that can create models by introspecting an existing database</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash">
+      python manage.py inspectdb [--database DATABASE] [table [table ...]]
+
+      # to get all options:
+      python manage.py inspectdb --help
+    </code></pre>
+    <dl class="fa">
+      <dt>Introspects the database tables in the DATABASE pointed-to by the NAME setting and outputs a Django model module (a models.py file) <span class="note">to standard output</span>.</dt>
+      <dt>We can choose what tables or views to inspect by passing their names as arguments.</dt>
+    </dl>
+  </section>
+  <section><h3>inspectdb usage</h3>
+    <dl class="fa">
+      <dt>Make sure you have setup the database (in settings.py) which you'll want to introspect</dt>
+      <pre style="width: 80vw; margin-left:0em;"><code rel="settings.py" class="python">
+        DATABASES = {
+          'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+          },
+          'music_catalog_legacy_db': {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'read_default_file': os.path.join(BASE_DIR, 'using_legacy_db/music_catalog_legacy_db.cnf'),
+            },
+          }
+        }
+      </code></pre>
+      <pre><code rel="using_legacy_db/music_catalog_legacy_db.cnf" class="bash">
+        [client]
+        database = music_catalog_legacy_db
+        user = django_admin
+        password = 123
+        default-character-set = utf8
+      </code></pre>
+
+    </dl>
+  </section>
+  <section><h3>inspectdb usage</h3>
+    <dl class="fa">
+      <dt>In project root folder run:</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash">
+      python manage.py inspectdb --database=music_catalog_legacy_db > music_catalog_legacy_db_inspectdb.py
+    </code></pre>
+  </section>
+  <section><h3>Cleaning Up Generated Models - ManyToMany relations</h3>
+    <dl class="fa" style="width:120%; margin-left: -2em;">
+      <dt>The automatic model generation can not be perfect. In order to customise the resulting models, we need to know how they are created</dt>
+      <dt>Each table is converted to a model class (there is a one-to-one mapping between database tables and model classes). This means that you’ll need to <span class="note">refactor the models for any many-to-many join tables</span> into ManyToManyField objects.</dt>
+    </dl>
+    <pre><code rel="models.py" class="python">
+      class AlbumArtist(models.Model):
+        album = models.ForeignKey(Album, models.DO_NOTHING, primary_key=True)
+        artist = models.ForeignKey('Artist', models.DO_NOTHING)
+
+        class Meta:
+          managed = False
+          db_table = 'album_artist'
+          unique_together = (('album', 'artist'),)
+
+    </code></pre>
+    <pre><code rel="models.py" class="python">
+      class Album(models.Model):
+          # ...
+          artist = models.ManyToManyField(Artist)
+
+      # now, you can remove AlbumArtist table
+    </code></pre>
+  </section>
+  <section><h3>Cleaning Up Generated Models - guessed field types</h3>
+    <dl class="fa">
+      <dt>Each field’s type (e.g., CharField, DateField) is determined by looking at the database column type (e.g., VARCHAR, DATE).</dt>
+      <dt>If inspectdb cannot map a column’s type to a model field type, it will use TextField and will insert the Python comment '<code>This field type is a guess.</code>' next to the field in the generated model.</dt>
+      <dt>Keep an eye out for that, and change the field type accordingly if needed.</dt>
+    </dl>
+  </section>
+  <section><h3>Cleaning Up Generated Models - IDs</h3>
+    <dl class="fa">
+      <dt>Each generated model has an attribute for every field, including id primary key fields. But Django automatically adds an id primary key field if a model doesn’t have a primary key.</dt>
+      <dt>Thus, we’ll want to <span class="note">remove any lines that look like</span>: <code>id = models.IntegerField(primary_key=True)</code></dt>
+    </dl>
+  </section>
+  <section><h3>Cleaning Up Generated Models</h3>
+    <dl class="fa">
+      <dt>If a database column name is a Python reserved word (such as pass, class, or for), inspectdb will append '<code>_field</code>' to the attribute name and set the db_column attribute to the real field name (e.g., pass, class, or for).</dt>
+      <dt>For example, if a table has an INT column called for, the generated model will have a field like this:</dt></dt>
+    </dl>
+    <pre><code rel="python" class="python">
+      pass_field = models.IntegerField(db_column='pass')
+    </code></pre>
+    <dl class="fa">
+      <dt>And inspectdb will insert the Python comment '<code>Field renamed because it was a Python reserved word</code>.' next to the field.</dt>
+    </dl>
+  </section>
+  <section><h3>Cleaning Up Generated Models</h3>
+    <dl class="fa">
+      <dt>By default, inspectdb creates unmanaged models. That is, managed = False in the model’s Meta class tells Django not to manage each table’s creation, modification, and deletion.</dt>
+      <dt>If False, no database table creation or deletion operations will be performed for this model. This is useful if the model represents an existing table or a database view that has been created by some other means. This is the only difference when managed=False. All other aspects of model handling are exactly the same as normal.</dt>
+      <dt>Reference: <a href="https://docs.djangoproject.com/en/1.11/ref/models/options/#managed">models/options/#managed @djangodocs</a></dt>
+    </dl>
+  </section>
+  <section><h3>Install the core Django tables</h3>
+    <dl class="fa">
+      <dt>Next, run the migrate command to install any extra needed database records such as admin permissions and content types</dt>
+    </dl>
+  </section>
+  <section><h3>References</h3>
+    <dl class="fa">
+      <dt><a href="https://docs.djangoproject.com/en/2.2/howto/legacy-databases/">Integrating Django with a legacy database @djangoproject</a></dt>
+      <dt><a href="https://docs.djangoproject.com/en/2.2/ref/django-admin/#django-admin-inspectdb">inspectdb @djangoproject</a></dt>
+    </dl>
+  </section>
+  <section><h3>Videos</h3>
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/G_GVBi7oVqA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </section>
+</section>
+
+
+
+<section data-min="10"><h1>Connections and Cursors</h1></section>
+<section><h2>Connections and Cursors</h2>
+  <section>
+  	<dl class="fa">
+  		<dt>The object <code>django.db.connection</code> represents the default database connection</dt>
+  		<dt>To use the database connection call <code>connection.cursor()</code> to get a cursor object</dt>
+  		<dt>call <code>cursor.execute(sql, [params])</code> to execute an SQL statement</dt>
+  		<dt>call <code>cursor.fetchone()</code> or <code>cursor.fetchall()</code> to return the resulting rows.</dt>
+  	</dl>
+  </section>
+  <section><h3>Connections and Cursors</h3>
+  	<dl class="fa">
+  		<dt>connection and cursor implement the standard Python DB-API described in <a href="https://www.python.org/dev/peps/pep-0249/">PEP 249</a>, except for transaction handling</dt>
+  		<dt>the SQL statement in cursor.execute() can use placeholders, "%s" , rather than adding parameters directly within the SQL. In such case, the underlying database library will automatically escape our parameters as necessary</dt>
+  	</dl>
+  </section>
+  <!-- <section><h3>Example</h3></section> -->
+  <section><h3>Using more than one database</h3>
+  	<dl class="fa">
+  		<dt>When we are using more than one database, we can use <code>django.db.connections</code> to obtain the connection (and cursor) for a specific database.</dt>
+  		<dt><code>django.db.connections</code> is a dictionary-like object that allows us to retrieve a specific connection using its alias:</dt>
+  	</dl>
+  	<pre><code rel="app_name/views.py" class="python">
+  		from django.db import connections
+
+  		cursor = connections['my_db_alias'].cursor()
+  		# Your code here...
+  	</code></pre>
+  </section>
+</section>
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
