@@ -349,8 +349,12 @@
     <dl class="fa">
       <dt>Next, run the migrate command to install any extra needed database records such as admin permissions and content types</dt>
     </dl>
-  </section>
-  <section><h3>References</h3>
+  </section>  
+</section>
+
+<section data-min="5"><h1>References</h1></section>
+<section><h2>References</h2>  
+  <section><h3>Docs</h3>
     <dl class="fa">
       <dt><a href="https://docs.djangoproject.com/en/2.2/howto/legacy-databases/">Integrating Django with a legacy database @djangoproject</a></dt>
       <dt><a href="https://docs.djangoproject.com/en/2.2/ref/django-admin/#django-admin-inspectdb">inspectdb @djangoproject</a></dt>
@@ -362,37 +366,6 @@
 </section>
 
 
-
-<section data-min="10"><h1>Connections and Cursors</h1></section>
-<section><h2>Connections and Cursors</h2>
-  <section>
-  	<dl class="fa">
-  		<dt>The object <code>django.db.connection</code> represents the default database connection</dt>
-  		<dt>To use the database connection call <code>connection.cursor()</code> to get a cursor object</dt>
-  		<dt>call <code>cursor.execute(sql, [params])</code> to execute an SQL statement</dt>
-  		<dt>call <code>cursor.fetchone()</code> or <code>cursor.fetchall()</code> to return the resulting rows.</dt>
-  	</dl>
-  </section>
-  <section><h3>Connections and Cursors</h3>
-  	<dl class="fa">
-  		<dt>connection and cursor implement the standard Python DB-API described in <a href="https://www.python.org/dev/peps/pep-0249/">PEP 249</a>, except for transaction handling</dt>
-  		<dt>the SQL statement in cursor.execute() can use placeholders, "%s" , rather than adding parameters directly within the SQL. In such case, the underlying database library will automatically escape our parameters as necessary</dt>
-  	</dl>
-  </section>
-  <!-- <section><h3>Example</h3></section> -->
-  <section><h3>Using more than one database</h3>
-  	<dl class="fa">
-  		<dt>When we are using more than one database, we can use <code>django.db.connections</code> to obtain the connection (and cursor) for a specific database.</dt>
-  		<dt><code>django.db.connections</code> is a dictionary-like object that allows us to retrieve a specific connection using its alias:</dt>
-  	</dl>
-  	<pre><code rel="app_name/views.py" class="python">
-  		from django.db import connections
-
-  		cursor = connections['my_db_alias'].cursor()
-  		# Your code here...
-  	</code></pre>
-  </section>
-</section>
 
 <section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
 	 <p>These slides are based on</p>
