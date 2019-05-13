@@ -88,6 +88,7 @@
   	<dl class="fa">
   		<dt>Middlewares allows us to run a piece of code on each and every request/response that Django handles.</dt>
   		<dt>This code might need to modify the request before the view handles it, it might need to log information about the request for debugging purposes, and so forth.</dt>
+  		<dt>After Django 1.10, a new middleware framework is introduced: <a href="https://django.cowhite.com/blog/django-middleware-the-new-version-of-middleware-and-how-to-use-it/">new-style middleware</a></dt>
   	</dl>
   </section>
   <section><h3>References</h3>
@@ -98,55 +99,156 @@
   </section>
 </section>
 <section><h2>Writing custom middlewares</h2>
-	<section><h3>Middleware classes</h3>
+	<section><h3>Overview</h3>
 		<dl class="fa">
-			<dt>The Middleware classes can live anywhere in your Python path.</dt>
-			<dt>The only thing Django cares about is the path you register in the project settings MIDDLEWARE.</dt>
-			<dt>A Middleware class doesn’t have to subclass anything</dt>
+			<dt>We can create custom middlewares by <span class="note">defining a <b>callable</b></span>* that <span class="note">takes a get_response <b>callable</b></span> and <span class="note">returns a middleware</span> object.</dt>
+			<dd>* <b>callable</b> in Python is an instance of a class with a __call__ method</dd>
+			<dd>Remind, that functions in Python are instances with __call__ method defined. So, functions are <b>callable</b> by default.</dd>
+			<dd>We can write custom class with __call__ method, which will be <b>callable</b> as well.</dd>
+			<dt>A middleware can be defined as function or as a class.</dt>
 		</dl>
 	</section>
-	<section><h3>Middleware class methods</h3>
+	<section><h3>Where to write middlewares?</h3>
 		<dl class="fa">
-			<p>A Middleware class should define at least one of the following methods:</p>
-			<dt>Called during request:</dt>
-			<dd><span class="note">process_request(request)</span></dd>
-			<dd><span class="note">process_view(request, view_func, view_args, view_kwargs)</span></dd>
-			<dt>Called during response:</dt>
-			<dd><span class="note">process_exception(request, exception)</span> (only if the view raised an exception)</dd>
-			<dd><span class="note">process_template_response(request, response)</span> (only for template responses)</dd>
-			<dd><span class="note">process_response(request, response)</span></dd>
+			<dt>Middleware definitions can live anywhere in your Python path.</dt>
+			<dt>The only thing Django cares about is the path you register in the project settings MIDDLEWARE.</dt>
+		</dl>
+		<pre><code rel="settings.py" class="python">
+			# if our middleware (function_test_middleware) is defined in:
+			# my_project/my_app/middlewares.py
+
+			# then in settings.py:
+			MIDDLEWARE = [
+			    ...,
+			    'my_app.middlewares.function_test_middleware',
+
+			# remember, that the order you define the middlewares in settings is important!
+		</code></pre>
+	</section>
+	<section><h3>Middleware by function</h3>
+		<pre><code rel="middlewares.py" class="python">
+			def simple_middleware(get_response):
+			    # One-time configuration and initialization.
+
+			    def middleware(request):
+			        # Code to be executed for each request before
+			        # the view (and later middleware) are called.
+
+			        response = get_response(request)
+
+			        # Code to be executed for each request/response after
+			        # the view is called.
+
+			        return response
+
+			    return middleware
+		</code></pre>
+	</section>
+	<section><h3>Middleware by classes</h3>
+		<pre><code rel="middlewares.py" class="js">
+			class SimpleMiddleware:
+			    def __init__(self, get_response):
+			        self.get_response = get_response
+			        # One-time configuration and initialization.
+
+			    def __call__(self, request):
+			        # Code to be executed for each request before
+			        # the view (and later middleware) are called.
+
+			        response = self.get_response(request)
+
+			        # Code to be executed for each request/response after
+			        # the view is called.
+
+			        return response
+		</code></pre>
+		<dl class="fa">
+			<dt>A Middleware class doesn’t have to subclass anything</dt>
 		</dl>
 	</section>
 	<section><h3>Middleware execution</h3>
 		<dl class="fa">
-			<dt>A Middlware class is called twice during the request/response life cycle.</dt>
-			<dt>Thus, the order we define the Middlwares in the MIDDLEWARE configuration is important.</dt>
+			<dt>A Middleware object is called twice during the request/response life cycle.</dt>
+			<dt>Thus, the order we define the Middlewares in the MIDDLEWARE configuration is important.</dt>
 		</dl>
 	</section>
-	<section><h3>The middleware code</h3>
-		<pre><code rel="todo_app/middlewares.py" class="js">
-			import datetime
-
-			class TimeStampMiddleware(object):
-			    def __init__(self, get_response):
-			      self.get_response = get_response
-			      # One-time configuration and initialization.
-
-			    def __call__(self, request):
-			      # Code to be executed for each request before the view (and later middleware) are called.
-			      request.timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-
-			      response = self.get_response(request)
-
-			      # Code to be executed for each request/response after the view is called.
-
-			      return response
-		</code></pre>
-	</section>
-	<section><h3>Add middleware to settings</h3>
+	<section><h3>Middleware objects methods</h3>
 		<dl class="fa">
-			<dt></dt>
+			<p>A Middleware object should define at least one of the following methods:</p>
+			<dt>Called during request:</dt>
+			<dd><span class="note">process_view(request, view_func, view_args, view_kwargs)</span></dd>
+			<dt>Called during response:</dt>
+			<dd><span class="note">process_exception(request, exception)</span> (only if the view raised an exception)</dd>
+			<dd><span class="note">process_template_response(request, response)</span> (only for template responses)</dd>
 		</dl>
+	</section>
+	<section><h3><code>process_view()</code></h3>
+		<dl class="fa">
+			<dt>Process_view is for intercepting a view before it is rendered and displaying something else instead (perhaps, an error message, or a one-time message to users the next time they log in).</dt>
+			<dt>Reference: <a href="https://docs.djangoproject.com/en/2.2/topics/http/middleware/#process-view">process-view @djangodocs</a></dt>
+		</dl>
+	</section>
+	<section><h3><code>process_exception()</code></h3>
+		<dl class="fa">
+			<dt><code>process_exception()</code> is called when a view raises an exception</dt>
+			<dt>Reference: <a href="https://docs.djangoproject.com/en/2.2/topics/http/middleware/#process-exception">process-exception @djangodocs</a></dt>
+		</dl>
+	</section>
+	<section><h3><code>process_template_response()</code></h3>
+		<dl class="fa">
+			<dt>process_template_response() is called just after the view has finished executing, <span class="note">if the response instance has a render() method</span>, indicating that it is a TemplateResponse or equivalent.</dt>
+			<dt>Reference: <a href="https://docs.djangoproject.com/en/2.2/topics/http/middleware/#process-template-response">process-template-response @djangodocs</a></dt>
+		</dl>
+	</section>
+	<section><h3>The middleware demo</h3>
+		<pre style="width: 80vw;"><code rel="todo_app/middlewares.py" class="js">
+			import requests
+			from django.conf import settings
+
+			class SOMiddleware:
+				def __init__(self, get_response):
+				    self.get_response = get_response
+				    # One-time configuration and initialization.
+
+				def __call__(self, request):
+				    # Code to be executed for each request before
+				    # the view (and later middleware) are called.
+
+				    response = self.get_response(request)
+
+				    # Code to be executed for each request/response after
+				    # the view is called.
+
+				    return response
+
+				def process_exception(self, request, exception):
+					if settings.DEBUG:
+						# get excesption to search for it in SO:
+						intitle = '{}'.format(exception.__class__.__name__)
+
+						# now query the SO APIs:
+						url = 'https://api.stackexchange.com/2.2/search'
+						headers = { 'User-Agent': 'github.com/vitorfs/seot' }
+						params = {
+							'order': 'desc',
+							'sort': 'votes',
+							'site': 'stackoverflow',
+							'pagesize': 3,
+							'tagged': 'python;django',
+							'intitle': intitle
+						}
+
+						r = requests.get(url, params=params, headers=headers)
+						questions = r.json()
+
+						# print first 3 SO answers in console:
+						print('\n','#'*50)
+						for question in questions['items']:
+							print('{}:{}'.format(question['title'], question['link'] ))
+						print('#'*50)
+
+					return None
+		</code></pre>
 	</section>
 </section>
 
