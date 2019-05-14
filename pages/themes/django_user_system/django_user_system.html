@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>django_user_system	</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#django_user_system" target="_top"><i class="fa fa-home"></i></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>previous slide</span></div>
+				<div><span>P</span><span>next slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Django User System</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note">Iva E. Popova, 2018-2019:</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+		</div>
+	</section>
+	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="note">
+			<p>Created by</p>
+		</div>
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section>
+</section>
+
+<section><h1>User Authentication</h1></section>
+<section><h2>User Authentication</h2>
+	<section><h3>Clear the concept</h3>
+		<dl class="fa">
+			<dt><span class="note">authentication</span> concerns <span class="note">user's identity</span>. It is a process of validating user credentials (Username/Password)</dt>
+			<dt><span class="note">authorisation</span> concerns <span class="note">user's permissions</span> to access some resources</dt>
+		</dl>
+	</section>
+	<section><h3>Django Authentication System - Overview</h3>
+		<dl class="fa">
+			<dt>The Django authentication system handles both authentication and authorization</dt>
+			<dt>The auth system consists of:</dt>
+			<dd><span class="note">Users</span></dd>
+			<dd><span class="note">Permissions</span>: binary flags designating whether a user may perform a certain task</dd>
+			<dd><span class="note">Groups</span>: a generic way of applying labels and permissions to more than one user</dd>
+			<dd><span class="note">password hashing system</span>: can be easily configured</dd>
+			<dd><span class="note">Forms and view tools</span> for logging in users, or restricting content</dd>
+			<dd>A pluggable backend system</dd>
+		</dl>
+	</section>
+	<section><h3>Django Authentication System - Overview</h3>
+		<dl class="fa">
+			<dt>The authentication system in Django aims to be very generic and doesn’t provide some features commonly found in web authentication systems.</dt>
+			<dt>Solutions for some of these common problems have been implemented in third-party packages:</dt>
+			<dd>Password strength checking</dd>
+			<dd>Throttling of login attempts</dd>
+			<dd>Authentication against third-parties (OAuth, for example)</dd>
+		</dl>
+	</section>
+	<section><h3>User objects</h3>
+		<dl class="fa">
+			<dt>objects are the core of the authentication system</dt>
+			<dt>Only one class of user exists in Django’s authentication framework</dt>
+			<dt>Different users (i.e. admin, stuff, etc.) are just user objects with special attributes set, not different classes of user objects</dt>
+		</dl>
+	</section>
+	<section><h3>User objects attributes:</h3>
+		<dl class="fa">
+			<dt>The primary attributes of the default user are:</dt>
+			<dd>username</dd>
+			<dd>password</dd>
+			<dd>email</dd>
+			<dd>first_name</dd>
+			<dd>last_name</dd>
+		</dl>
+	</section>
+	<section><h3>Creating Users</h3>
+		<dl class="fa">
+			<dt>The simplest, and least error prone way to create and manage users is through the Django admin.</dt>
+			<dt>Django also provides built in views and forms to allow users to log in and out and change their own password.</dt>
+			<dt>Or, we can create users directly using the included <code>create_user()</code> function:</dt>
+		</dl>
+		<pre><code rel="views.py" class="python">
+			def create_user(request):
+			   user = User.objects.create_user('ada', 'ada@byron.com', 'adapass')
+			   # we can add/change other properties if we want later
+
+			   user.save();
+
+			   return HttpResponse('user created')
+		</code></pre>
+		<dl class="fa">
+			<dt>You can check the admin interface, that user 'ada' was created.</dt>
+		</dl>
+	</section>
+	<section><h3>Creating Superusers</h3>
+		<dl class="fa">
+			<dt>Superuser can be created with the CLI <code>createsuperuser</code> command:</dt>
+		</dl>
+		<pre><code rel="Terminal" class="js">
+			$ python manage.py createsuperuser
+		</code></pre>
+	</section>
+	<section><h3>Changing passwords</h3>
+		<dl class="fa">
+			<dt>Django does not store raw passwords on the user model, but only a hash.</dt>
+			<dt>Thus, we can not change a password directly in the model.</dt>
+			<dt>We can use the CLI:</dt>
+			<dd><code>manage.py changepassword username</code></dd>
+			<dt>Or we can use the <code>set_password()</code> function:</dt>
+			<pre><code rel="JS" class="js">
+				user = User.objects.get(username='ada')
+				user.set_password('adanewpass')
+				user.save()
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Authenticating Users</h3>
+		<dl class="fa">
+			<dt>To authenticate a given username and password, use <code>authenticate(**credentials)</code></dt>
+			<dd><span class="note">**credentials</span> - keyword arguments, for the default configuration (username and password)</dd>
+			<dt>returns a User object if the password is valid for the given username</dt>
+			<dt>returns None if the password is invalid for the given username</dt>
+		</dl>
+	</section>
+	<section><h3>Authenticating Users</h3>
+		<pre><code rel="JS" class="js">
+			from django.contrib.auth import authenticate
+
+			user = authenticate(username='ada', password='addnewpass')
+
+			if user is not None:
+			  # the password verified for the user
+			  if user.is_active:
+			    return HttpResponse('User is authenticated')
+			  else:
+			    return HttpResponse('account is disabled, the user is valid')
+			else:
+			  # the authentication system was unable to verify the username and password
+			  return HttpResponse('The username and/or password were incorrect.')
+		</code></pre>
+	</section>
+	<section><h3>Authentication in Request</h3>
+		<dl class="fa">
+			<dt>Django uses sessions and middleware to hook the authentication system into request objects.</dt>
+			<dt>They provide <code>request.user</code> attribute on every request which represents the current user</dt>
+			<dt>If the current user has not logged in, this attribute will be set to an instance of AnonymousUser, otherwise it will be an instance of User .</dt>
+			<dt>To check if user is logged in, we can use the <code>is_authenticated()</code>:</dt>
+		</dl>
+		<pre><code rel="JS" class="js">
+			if request.user.is_authenticated():
+				# Do something for authenticated users.
+			else:
+				# Do something for anonymous users.
+		</code></pre>
+	</section>
+	<section><h3>login()</h3>
+		<dl class="fa">
+			<dt>with a login() function we can attach to the current session an authenticated user.</dt>
+		</dl>
+		<pre><code rel="views.py" class="js">
+			from django.contrib.auth import authenticate, login
+
+			def login_view(request):
+			  username = request.POST['username']
+			  password = request.POST['password']
+
+			  user = authenticate(username=username, password=password)
+			  if user is not None:
+			    if user.is_active:
+			      login(request, user)
+			      # Redirect to a success login page.
+			    else:
+			      # Return a 'disabled account' error message
+			  else:
+			    # Return an 'invalid login' error message.
+		</code></pre>
+	</section>
+	<section><h3>logout()</h3>
+		<dl class="fa">
+			<dt>To log out a user who has been logged in via django.contrib.auth.login() , use django.contrib.auth.logout()</dt>
+		</dl>
+		<pre><code rel="JS" class="js">
+			from django.contrib.auth import logout
+
+			def logout_view(request):
+			  logout(request)
+			  # Redirect to a success logout page.
+		</code></pre>
+	</section>
+	<section><h3>Limiting resource access</h3>
+		<dl class="fa">
+			<dt>we can use the <code>login_required</code> decorator</dt>
+			<dd><code>django.contrib.auth.decorators.login_required</code></dd>
+		</dl>
+		<pre><code rel="views.py" class="js">
+			from django.contrib.auth.decorators import login_required
+
+			@login_required
+			def restricted_view(request):
+			  pass
+		</code></pre>
+	</section>
+	<section><h3>Limiting resource access</h3>
+		<dl class="fa">
+			<dt>login_required() does the following</dt>
+			<dd>If the user isn’t logged in, redirect to LOGIN_URL , passing the current absolute path in the query string. Example: /accounts/login/?next=/reviews/3/</dd>
+		<dd>If the user is logged in, execute the view normally. The view code is free to assume the user is logged in</dd>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>Demo</h1></section>
+<section><h2>Demo</h2>
+  <section><h3>Reference:</h3>
+  	<dl class="fa">
+  		<dt><a href="https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/">Django Login/Logout Tutorial</a></dt>
+  		<dt><a href="https://wsvincent.com/django-user-authentication-tutorial-signup/">Django Signup Tutorial</a></dt>
+  	</dl>
+  </section>
+  <section><h3>Reference:</h3>
+  	<dl class="fa">
+  		<dt>Python Django Tutorial: Full-Featured Web App - Login and Logout System by <a href="https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g">Corey Schafer</a></dt>
+  	</dl>
+  	<iframe src="https://www.youtube.com/embed/3aVqWaLjqS4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </section>
+</section>
+<!--
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: django_user_system">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section>
+
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
