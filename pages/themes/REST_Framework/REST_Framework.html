@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>REST_Framework</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#REST_Framework" target="_top"><i class="fa fa-home"></i></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>previous slide</span></div>
+				<div><span>P</span><span>next slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Django REST Framework</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note">Iva E. Popova, 2018-2019:</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+		</div>
+	</section>
+	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="note">
+			<p>Created by</p>
+		</div>
+		<div class="company">
+			 <div class="LI-profile-badge"	data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Overview of REST Services with Django</h1></section>
+<section><h2>Overview of REST Services with Django</h2>
+	<section><h3>Web Services</h3>
+		<dl class="fa">
+			<dt>Web services are the software component that supports machine to machine interaction over network.</dt>
+			<dt>The related data is stored on a remote server and transmitted to the client machine through APIs that provide web services for third-party users.</dt>
+			<dt>APIs can use different architectures to transfer data from the server to the client.</dt>
+		</dl>
+	</section>
+	<section style="font-size: .8em;"><h3>REST vs SOAP</h3>
+		<table>
+			<tr>
+				<th>SOAP</th>
+				<th>REST</th>
+			</tr>
+			<tr>
+				<td>An XML based message protocol</td>
+				<td>An architectural style protocol</td>
+			</tr>
+			<tr>
+				<td>Uses WSDL for communication between client and service</td>
+				<td>Can use JSON, XML, plain text to send and receive data</td>
+			</tr>
+			<tr>
+				<td>Invokes services by calling RPC methods</td>
+				<td>Calls services via URL path (API endpoint)</td>
+			</tr>
+			<tr>
+				<td>Does not return human-readable format</td>
+				<td>Returns plain ASCII: JSON, XML,...</td>
+			</tr>
+			<tr>
+				<td>Relies on HTTP and SMTP/FTP...</td>
+				<td>Relies only on HTTP</td>
+			</tr>
+			<tr>
+				<td>Difficult to process the output with JavaScript</td>
+				<td>JavaScript can easily parse JSON</td>
+			</tr>
+			<tr>
+				<td>Bulky, bigger learning curve</td>
+				<td>Lightweight, better performance, less CPU intensive</td>
+			</tr>
+		</table>
+	</section>
+	<section><h3>Consuming JSON on the front-end: demo</h3>
+		<a href="examples/consuming_JSON_with_JS/index.html">get a GitHub user repos</a>
+	</section>
+</section>
+
+<section data-min="5"><h1>Django REST Framework</h1></section>
+<section><h2>Django REST Framework</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt><a href="https://www.django-rest-framework.org/#installation">Installation</a></dt>
+			<dt><a href="https://www.django-rest-framework.org/tutorial/quickstart/">Quickstart</a></dt>
+		</dl>
+	</section>
+	<section><h3>Serializers</h3>
+		<dl class="fa">
+			<dt>Serializers allow complex data such as querysets and model instances to be converted to	native Python datatypes that can then be easily rendered into JSON, XML or other content types</dt>
+			<dt>The serializers in REST framework work very similarly to Django's Form and ModelForm classes</dt>
+		</dl>
+	</section>
+	<section><h3>Declaring Serializers</h3>
+		<dl class="fa">
+			<dt>Let's create the Python object, which we'll serialize: </dt>
+		</dl>
+		<pre><code rel="JS" class="js">
+			class Comment(object):
+				def __init__(self, email, content):
+					self.email = email
+					self.content = content
+
+			comment = Comment(email='ada@byron.com', content='some comment')
+		</code></pre>
+		<dl class="fa">
+			<dt>Now, we can declare the CommentSerializer:</dt>
+		</dl>
+		<pre><code rel="JS" class="js">
+			from rest_framework import serializers
+
+			class CommentSerializer(serializers.Serializer):
+				email = serializers.EmailField()
+				content = serializers.CharField(max_length=200)
+		</code></pre>
+	</section>
+	<section><h3>ViewSets</h3>
+		<dl class="fa">
+			<dt>With ViewSets we can <span class="note">combine the logic for a set of related views in a single class</span>, called a ViewSet</dt>
+			<dt>A ViewSet class is simply <span class="note">a type of class-based View</span>, that <span class="note">provides actions such as list(), create() an so on</span>.</dt>
+			<dt>The method handlers for a ViewSet are only bound to the corresponding actions at the point of finalizing the view, using the .as_view() method.</dt>
+			<dt>Typically, rather than explicitly registering the views in a viewset in the urlconf, you'll register the viewset with a router class, that automatically determines the urlconf for you.</dt>
+		</dl>
+	</section>
+</section>
+
+
+
+
+<!-- <section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section>
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: REST_Framework">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section>
+ -->
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END	 #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '	';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
