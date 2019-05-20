@@ -4,11 +4,23 @@
   <title>github API demo</title>
 </head>
 <body>
+  <header style="height: 5em; background: #999"></header>
   <div class="gh">
     <label>github user: <input type="text" name="ghUser"></label>
     <p>Get github user repos: <button>Start</button></p>
-    <ul class="output"></ul>
+    <ul class="output">
+      <!-- <li>Repo name</li> -->
+    </ul>
   </div>
+
+
+
+  <!-- https://api.github.com/users/ProgressBG-Python-Course -->
+  <!-- <form  action="https://api.github.com/users/ProgressBG-Python-Course" method="get">    
+    <label>github user: <input type="text" name="ghUser"></label>
+    <p>Get github user repos: <button>Start</button></p>
+  </form> -->
+
   <script type="text/javascript" src="ghAPI.js"></script>
 </body>
 </html>

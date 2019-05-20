@@ -170,6 +170,90 @@
 			<dt>Typically, rather than explicitly registering the views in a viewset in the urlconf, you'll register the viewset with a router class, that automatically determines the urlconf for you.</dt>
 		</dl>
 	</section>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>REST framework adds support for automatic URL routing to Django, and provides you with a simple, quick and consistent way of wiring your view logic to a set of URLs.</dt>
+			<dt>Reference: <a href="https://www.django-rest-framework.org/api-guide/routers/#routers">routers</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>REST APIs for TodoApp - demo</h1></section>
+<section><h2>REST APIs for TodoApp - demo</h2>
+	<section><h3>Create <span class="note">todo_rest_api</span>  app</h3>
+		<dl class="fa">
+			<dt>Let's create a new app for our TodoApp REST API backend:</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			python manage.py startapp todo_rest_api
+		</code></pre>
+		<dl class="fa">
+			<dt>Set the urls path for the todo_rest_api:</dt>
+		</dl>
+		<pre><code rel="todo_project/urls.py" class="js">
+			path('todos_rest/', include('todo_rest_api.urls')),
+		</code></pre>
+	</section>
+  <section><h3>Create ModelSerializer</h3>
+  	<dl class="fa">
+  		<dt>We need ModelSerializer to convert model instances to JSON which will be easily consumed by the front-end</dt>
+  		<dt><a href="https://www.django-rest-framework.org/api-guide/serializers/#modelserializer">ModelSerializer class</a></dt>
+  	</dl>
+  	<pre><code rel="todo_rest_api/serializers.py" class="js">
+  		from rest_framework import serializers
+  		# reuse the todo_app.model:
+  		from todo_app.models import Task
+
+  		class TaskSerializer(serializers.ModelSerializer):
+  		  class Meta:
+  		    model = Task
+  		    fields = '__all__'
+  	</code></pre>
+  </section>
+  <section><h3>Create the ViewSet</h3>
+  	<dl class="fa">
+  		<dt>The viewsets base class provides the implementation for CRUD operations by default</dt>
+  		<dt>The actions provided by the ModelViewSet class are <code>list()</code>, <code>retrieve()</code>, <code>create()</code>, <code>update()</code>, <code>partial_update()</code>, and <code>destroy()</code>.</dt>
+  		<dt><a href="https://www.django-rest-framework.org/api-guide/viewsets/#modelviewset">ModelViewSet class</a></dt>
+  	</dl>
+  	<pre><code rel="todo_rest_api/views.py" class="js">
+  		from django.shortcuts import render
+  		from rest_framework import viewsets
+  		from .serializers import TaskSerializer
+  		from todo_app.models import Task
+
+  		class TaskView(viewsets.ModelViewSet):
+  		  serializer_class = TaskSerializer
+  		  queryset = Task.objects.all()
+  	</code></pre>
+  </section>
+  <section><h3>Create the Router</h3>
+  	<pre><code rel="todo_rest_api/urls.py" class="js">
+  		from django.urls import path, include
+  		from rest_framework import routers
+  		from . import views
+
+  		router = routers.DefaultRouter()
+  		router.register(r'todos', views.TaskView, 'todo')
+
+  		urlpatterns = [
+  		  path('api/', include(router.urls))
+  		]
+  	</code></pre>
+  </section>
+  <section><h3>Perform CRUD operations on the Task Model</h3>
+  	<dl class="fa">
+  		<dt>Create</dt>
+  		<dd>URL: <a href="http://127.0.0.1:8000/todos_rest/api/todos/">http://127.0.0.1:8000/todos_rest/api/todos/</a>, method:POST</dd>
+  		<dt>Read</dt>
+  		<dd>URL: <a href="http://127.0.0.1:8000/todos_rest/api/todos/">http://127.0.0.1:8000/todos_rest/api/todos/</a>, method:GET</dd>
+  		<dt>Update</dt>
+  		<dd>URL: <a href="http://127.0.0.1:8000/todos_rest/api/todos/25/">http://127.0.0.1:8000/todos_rest/api/todos/25</a>, method:PUT</dd>
+  		<dt>Delete</dt>
+  		<dd>URL: <a href="http://127.0.0.1:8000/todos_rest/api/todos/25/">http://127.0.0.1:8000/todos_rest/api/todos/25</a>, method:DELETE</dd>
+  	</dl>
+  	<p class="note">This API endpoints will be used by our front-end application, which we will create with Angular</p>
+  </section>
 </section>
 
 

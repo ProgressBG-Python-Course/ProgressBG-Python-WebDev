@@ -9,6 +9,7 @@ function xhrSyncAJAXcall(url, callback){
 
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      console.log(`##########################:\n ${this.responseText}`);
         callback(this.responseText);
 
     };
@@ -18,10 +19,6 @@ function xhrSyncAJAXcall(url, callback){
   return data;
 }
 
-function printNow(){
-  let now = new Date();
-  console.log(`${now.getMinutes()}:${now.getSeconds()}:${now.getMilliseconds()}`);
-}
 function processData(data){
   console.log(`data: ${data}`);
   let userGithubReposUrl = JSON.parse(data).repos_url;
@@ -31,7 +28,8 @@ function updageUI(data){
   let repos = JSON.parse(data);
   // console.dir(repos);
   repos.forEach(e=>{
-    let li = createDOMElement('LI', e.full_name);
+    let li = createDOMElement('P', e.full_name);
+    li.style.background = 'red';
     output.appendChild(li);
   })
 }
@@ -48,9 +46,9 @@ let output = document.querySelector('.output');
 
 ghBtn.addEventListener('click', function(){
   url +=ghUser.value;
-  printNow();
+
+  
   xhrSyncAJAXcall(url, processData);
-  printNow();
   console.log(`data: ${data}`);
 
 })
