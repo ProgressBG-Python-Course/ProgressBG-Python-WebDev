@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>angular_crash_course</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#angular_crash_course" target="_top"><i class="fa fa-home"></i></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>previous slide</span></div>
+				<div><span>P</span><span>next slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Angular Crash Course</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note">Iva E. Popova, 2018-2019:</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+		</div>
+	</section>
+	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="note">
+			<p>Created by</p>
+		</div>
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section>
+</section>
+
+<!-- AJAX basics -->
+<section data-min="20"><h1>Client-Side vs Server-Side Rendering</h1></section>
+<section><h2>Client-Side vs Server-Side Rendering</h2>
+  <section><h3>Overview</h3>
+    <a href="images/SSRvsCSR_Overview.png"><img src="images/SSRvsCSR_Overview.png"></a>
+    <p>The Client-Side Rendering is based on AJAX</p>
+  </section>
+  <!-- <section><h3>Server-Side Rendering (SSR)</h3></section> -->
+</section>
+<section data-min="20"><h1>AJAX basics</h1></section>
+<section><h2>AJAX basics</h2>
+  <section><h3>What is AJAX?</h3>
+    <div style="text-align: center">
+      <p><span class="note">A</span>synchronous</p>
+      <p><span class="note">J</span>avaScript</p>
+      <p><span class="note">A</span>nd</p>
+      <p><span class="note">X</span>ML</p>
+    </div>
+    <p><em>In reality, these days, the use of JSON prevails over XML, but for backward compatibility we do not say AJAJ</em></p>
+  </section>
+  <section><h3>What is AJAX?</h3>
+    <dl class="fa">
+      <dt>AJAX is just the name for combination of technologies:</dt>
+      <dd>the use of the built-in <span class="note">XMLHttpRequest</span> object to request data from a web server</dd>
+      <dd>the use of JavaScript and HTML DOM (to display or use the data)</dd>
+    </dl>
+  </section>
+  <section>
+    <p>With AJAX, Web applications can send and retrieve data from a Web server <span class="note">asynchronously</span> (in the background)  without refreshing the existent page </p>
+  </section>
+  <section>
+    <p>With AJAX we can:</p>
+    <dl class="fa">
+      <dt>Update a web page without reloading the page</dt>
+      <dt>Request data from a server - after the page has loaded</dt>
+      <dt>Receive data from a server - after the page has loaded</dt>
+      <dt>Send data to a server - in the background</dt>
+    </dl>
+  </section>
+  <section>
+    <a href="images/Ajax_vs_Conventinal_Model.png"><img src="images/Ajax_vs_Conventinal_Model.png"></a>
+  </section>
+  <section><h3>XMLHttpRequest Overview</h3>
+    <a href="https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest">XMLHttpRequest at MDN</a>
+  </section>
+  <section><h3>AJAX - Simple example</h3>
+  	<dl class="fa">
+  		<dt>Demo: <a href="examples/songLyricsAjaxLoad/songLyricsAjaxLoad.html">songLyricsAjaxLoad</a></dt>
+  		<dt>You can inspect the source with browser's developer tools</dt>
+  	</dl>
+  </section>
+</section>
+
+
+<!-- intro -->
+<section data-min="20"><h1>Angular - set up the environment</h1></section>
+<section><h2>Angular - set up the environment</h2>
+  <section><h3>Terminal</h3>
+    <dl class="fa" style="font-size: .8em;">
+      <dt>In order to use the Angular CLI, you'll need a <a href="https://en.wikipedia.org/wiki/Command-line_interface">Terminal (CLI)</a> on your system.</dt>
+      <dt>In Windows you can use:</dt>
+      <dd><span class="note">Command Prompt</span>: <a href="https://www.digitalcitizen.life/7-ways-launch-command-prompt-windows-7-windows-8">10 ways to launch the Command Prompt in Windows</a></dd>
+      <dd><span class="note">PowerShell</span>: <a href="https://docs.microsoft.com/en-us/powershell/scripting/getting-started/getting-started-with-windows-powershell?view=powershell-6">Getting Started with Windows PowerShell</a></dd>
+      <dd><span class="note">Git Bash</span>: install <a href="https://git-for-windows.github.io/">git for windows</a> and make sure <b>Git Bash</b> is marked for install.</dd>
+      <dd>You can even go pro and use the new Windows10 feature: <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux (WSL)</a></dd>
+    </dl>
+  </section>
+  <section><h3>node and npm</h3>
+    <dl class="fa">
+      <dt><span class="note">Node.js</span> is a JavaScript runtime built on Chrome's V8 JavaScript engine.</dt>
+      <dt><span class="note">Node.js</span> is used for developing server-side JavaScript applications</dt>
+      <dt>The <span class="note">npm</span> is a package manager for Node.js, which makes it quite simple to install additional tools via packages; it comes bundled with Node.js</dt>
+      <dt>Download and install the latest LTS version for your system:</dt>
+      <dd><a href="https://nodejs.org/en/download/">Node.js® and npm</a></dd>
+    </dl>
+  </section>
+  <section><h3>node and npm</h3>
+    <dl class="fa">
+      <dt>Verify installation:</dt>
+      <dd>Open a Terminal and type the commands given, after the prompt sign '$'</dd>
+      <dd>The output should look like the commented lines (after the comment sign '#')</dd>
+    </dl>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      $ node -v
+      #v12.2.0
+
+      $ npm -v
+      #6.9.0
+    </code></pre>
+  </section>
+  <section><h3>npm and node update</h3>
+  	<dl class="fa">
+  		<dt>In case you've already installed the node/npm you can update them by:</dt>
+  	</dl>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      # updte npm:
+      npm install -g npm stable
+
+      #update node:
+      npm install -g node
+
+      #check version installation,
+      node -v
+      npm -v
+    </code></pre>
+  </section>
+  <section><h3>Angular CLI</h3>
+    <dl class="fa">
+      <dt>Angular CLI is a command-line tool, developed by Angular team, that helps in generating Angular projects with required configurations, boilerplate code, and also downloads the required node packages with one simple command</dt>
+      <dt>Reference: <a href="https://angular.io/cli">CLI Command Reference @angular.io</a></dt>
+    </dl>
+  </section>
+  <section><h3>Angular CLI  - install</h3>
+    <pre><code rel="JS" class="js">
+    	# install globally the latest version:
+    	npm install -g @angular/cli
+
+    	# OR install specific version per project:
+    	npm install @angular/cli@6
+    	# will install in current folder the latest version of angular 6
+    </code></pre>
+  </section>
+</section>
+
+
+<!-- overview -->
+<section data-min="15"><h1>What is Angular?</h1></section>
+<section><h2>What is Angular?</h2>
+  <section>
+    <dl class="fa">
+      <dt>A <span class="note">Front-End</span> web application framework</dt>
+      <dd>strongly opinionated, imposing good practictices and cutting-edge Web Technologies</dd>
+      <dd>not a library (like jQuery or React)</dd>
+      <dt>A <span class="note">platform</span> - apps created by Angular runs on:</dt>
+      <dd ><span class="note">Web</span></dd>
+      <dd><span class="note">iOS and Android</span> - using <a href="https://www.nativescript.org/">native script</a> </dd>
+      <dd><span class="note">desktop (Windows, Linux, MacOS)</span> - using <a href="https://electronjs.org/">electron</a></dd>
+      <dt>Created and led by the Angular team at <span class="note">Google</span>.</dt>
+      <dd>the language - <span class="note">TypeScript</span>, created and supported by <span class="note">Microsoft</span>.</dd>
+      <dt><span class="note">Open-source</span> project: <a href="https://github.com/angular/angular">github.com/angular</a></dt>
+    </dl>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt><span class="note">Angular</span> is a total rewrite of the <span class="note">AngularJS</span> framework.</dt>
+      <dd><span class="note">Angular</span> is the official name of all Angular2+ versions</dd>
+      <dd><span class="note">AngularJS</span> is the official name of Angular1 version</dd>
+      <dt>Angular is <span class="note">not an MVC</span>, but a <span class="note">component-based</span> architecture.</dt>
+    </dl>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt>Angular supports the cutting-edge technologies and best practices in Front-End Development:</dt>
+      <dd>Components decoupling, separation of concerns</dd>
+      <dd>Declarative templates</dd>
+      <dd>Services</dd>
+      <dd>Dependency Injection</dd>
+      <dd>Routers</dd>
+      <dd>Observables, RxJS integrated</dd>
+    </dl>
+  </section>
+</section>
+<section data-min="5"><h1>Angular Versioning</h1></section>
+<section><h2>Angular's Versioning</h2>
+  <section><h3>Angular vs AngularJS</h3>
+    <p>There are 2 separated branches of Angular frameworks!</p>
+    <dl class="fa">
+      <dt><b>AngularJS</b> is the name for all v1.x versions of Angular</dt>
+      <dd class="note">Not developed any more, just LTS support fixes.</dd>
+      <dd><a href="https://github.com/angular/angular.js">angular.js on github</a></dd>
+      <dt><b>Angular</b> is the name, under which are developed all version after 2.0</dt>
+      <dd><a href="https://github.com/angular/angular">angular on github</a></dd>
+    </dl>
+  </section>
+  <section><h3>Semantic versioning</h3>
+    <p>From version 2.0, Angular team adopted the<br> <em>semantic versioning:</em></p>
+    <a href="images/AngularSemanticVersioning.png"><img src="images/AngularSemanticVersioning.png"></a>
+  </section>
+  <section><h3>Reference</h3>
+  	<dl class="fa">
+  		<dt><a href="https://angular.io/guide/releases">Angular Releases</a></dt>
+  	</dl>
+  </section>
+</section>
+<section data-min="20"><h1>Get familiar with Angular CLI</h1></section>
+<section><h2>Get familiar with Angular CLI</h2>
+  <section><h3>Overview</h3>
+    <div style="font-style: italic;">From <a href="https://github.com/angular/angular-cli/wiki">angular-cli/wiki</a></div>
+    <blockquote cite="https://github.com/angular/angular-cli/wiki">
+
+      The Angular CLI is a tool to initialize, develop, scaffold and maintain Angular applications.
+    </blockquote>
+  </section>
+  <section><h3>Create an Angular app with CLI</h3>
+  	<pre><code rel="Terminal" class="bash" data-noescape>
+  	  # Create project workspace
+  	  ng new MyApp
+
+  	  # navigate to the project workspace
+  	  cd MyApp
+
+  	  # start your app and open it in browser
+  	  ng serve --open
+  	</code></pre>
+  </section>
+  <section><h3>Main commands</h3>
+  	<pre><code rel="Terminal" class="bash">
+  		ng help
+  	</code></pre>
+    <table style="font-size: .6em">
+      <tr><th>Command</th><th>Action</th></tr>
+      <tr><td>help</td><td>Show help</td></tr>
+      <tr><td>new</td><td>Creates a new directory and a new Angular app.</td></tr>
+      <tr><td>update</td><td>Updates your application and its dependencies.</td></tr>
+      <tr><td>serve</td><td>Builds and serves your app, rebuilding on file changes.</td></tr>
+      <tr><td>build</td><td>Builds your app and places it into the output path (dist/ by default).</td></tr>
+      <tr><td>generate</td><td>Generates and/or modifies files based on a schematic.</td></tr>
+      <tr><td>add</td><td>Add support for a library to your project.</td></tr>
+      <tr><td>test</td><td>Run unit tests in existing project.</td></tr>
+      <tr><td>e2e</td><td>Run e2e tests in existing project.</td></tr>
+      <tr><td>lint</td><td>Lints code in existing project.</td></tr>
+      <!-- <tr><td>xi18n</td><td>Extracts i18n messages from source code.</td></tr> -->
+      <!-- <tr><td>config</td><td>Get/set configuration values.</td></tr> -->
+      <tr><td>doc</td><td>Opens the official Angular API documentation for a given keyword.</td></tr>
+    </table>
+  </section>
+  <section><h3>ng <i>command</i> --help</h3>
+    <p>You can get help for any ng command, if you put at the end of it the option <code>--help</code></p>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng new --help
+
+      usage: ng new &lt;name&gt; [options]
+      options:
+        --collection (-c)
+          Schematics collection to use.
+        --dry-run (-d)
+          Run through without making any changes.
+        --force (-f)
+          Forces overwriting of files.
+        --inline-style (-s)
+          Specifies if the style will be in the ts file.
+        --inline-template (-t)
+          Specifies if the template will be in the ts file.
+        --prefix (-p)
+          The prefix to apply to generated selectors.
+        --routing
+          Generates a routing module.
+        --skip-package-json
+          Do not add dependencies to package.json.
+        --skip-tests (-S)
+          Skip creating spec files.
+        --style
+          The file extension to be used for style files.
+        --verbose (-v)
+          Adds more details to output logging.
+        --view-encapsulation
+          Specifies the view encapsulation strategy.
+    </code></pre>
+  </section>
+  <section><h3>ng <i>command</i> --help - example</h3>
+    <p style="font-size: .8em">If we want to check the available options for the command <code>ng generate component</code>, we can get help instantly:</p>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng generate component --help
+      usage: ng generate component <name> [options]
+      options:
+        --change-detection (-c)
+          Specifies the change detection strategy.
+        --dry-run (-d)
+          Run through without making any changes.
+        --export
+          Specifies if declaring module exports the component.
+        --flat
+          Flag to indicate if a dir is created.
+        --force (-f)
+          Forces overwriting of files.
+        --inline-style (-s)
+          Specifies if the style will be in the ts file.
+        --inline-template (-t)
+          Specifies if the template will be in the ts file.
+        --module (-m)
+          Allows specification of the declaring module.
+        --prefix (-p)
+          The prefix to apply to generated selectors.
+        --project
+          The name of the project.
+        --selector
+          The selector to use for the component.
+        --skip-import
+          Flag to skip the module import.
+        --spec
+          Specifies if a spec file is generated.
+        --styleext
+          The file extension to be used for style files.
+        --view-encapsulation (-v)
+          Specifies the view encapsulation strategy.
+    </code></pre>
+  </section>
+  <section><h3>--dry-run</h3>
+    <dl class="fa">
+      <dt>Any CLI command can be run with <code>--dry-run</code> option, which will prevent CLI from making any changes to your project.</dt>
+      <dt>Dry-run mode is useful to preview what an ng command will do, especially, if you use it with <code>--verbose</code> option.</dt>
+    </dl>
+  </section>
+  <section><h3>--dry-run - example</h3>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng new SimplestApp --dry-run
+      CREATE SimplestApp/README.md (1028 bytes)
+      CREATE SimplestApp/angular.json (3444 bytes)
+      CREATE SimplestApp/package.json (1316 bytes)
+      CREATE SimplestApp/tsconfig.json (384 bytes)
+      CREATE SimplestApp/tslint.json (2805 bytes)
+      CREATE SimplestApp/.editorconfig (245 bytes)
+      CREATE SimplestApp/.gitignore (503 bytes)
+      CREATE SimplestApp/src/environments/environment.prod.ts (51 bytes)
+      CREATE SimplestApp/src/environments/environment.ts (631 bytes)
+      CREATE SimplestApp/src/favicon.ico (5430 bytes)
+      CREATE SimplestApp/src/index.html (298 bytes)
+      CREATE SimplestApp/src/main.ts (370 bytes)
+      CREATE SimplestApp/src/polyfills.ts (3194 bytes)
+      CREATE SimplestApp/src/test.ts (642 bytes)
+      CREATE SimplestApp/src/assets/.gitkeep (0 bytes)
+      CREATE SimplestApp/src/styles.css (80 bytes)
+      CREATE SimplestApp/src/browserslist (375 bytes)
+      CREATE SimplestApp/src/karma.conf.js (964 bytes)
+      CREATE SimplestApp/src/tsconfig.app.json (194 bytes)
+      CREATE SimplestApp/src/tsconfig.spec.json (282 bytes)
+      CREATE SimplestApp/src/tslint.json (314 bytes)
+      CREATE SimplestApp/src/app/app.module.ts (314 bytes)
+      CREATE SimplestApp/src/app/app.component.css (0 bytes)
+      CREATE SimplestApp/src/app/app.component.html (1141 bytes)
+      CREATE SimplestApp/src/app/app.component.spec.ts (986 bytes)
+      CREATE SimplestApp/src/app/app.component.ts (207 bytes)
+      CREATE SimplestApp/e2e/protractor.conf.js (752 bytes)
+      CREATE SimplestApp/e2e/src/app.e2e-spec.ts (299 bytes)
+      CREATE SimplestApp/e2e/src/app.po.ts (208 bytes)
+      CREATE SimplestApp/e2e/tsconfig.e2e.json (213 bytes)
+
+      NOTE: Run with "dry run" no changes were made.
+    </code></pre>
+  </section>
+</section>
+
+
+<!-- HowAnAngularAppWorks -->
+<section data-min="15"><h1>Project Directory Structure and Files</h1></section>
+<section><h2>Project Directory Structure and Files</h2>
+  <p><code>ng new</code> creates the following structure:</p>
+  <dl class="fa" style="font-size: .8em; line-height: 80%;">
+    <dt><code>angular.json</code> (<code>.angular-cli.json</code> in angular cli versions < 6.0)</dt>
+    <dd>configuration for Angular CLI</dd>
+    <dt><code>e2e/</code></dt>
+    <dd>for <em>end-to-end</em> (e2e) tests</dd>
+    <dt><code>node_modules/</code></dt>
+    <dd>here are installed project's node modules dependencies</dd>
+    <dt><code class="note">package.json</code></dt>
+    <dd><em>dependencies</em> and <em>devDependencies</em> sections specifies the node modules dependencies</dd>
+    <dt><code>package-lock.json</code></dt>
+    <dd>it is automatically generated for any operations where npm modifies either the node_modules tree, or package.json</dd>
+    <dt><code class="note">src/app/</code></dt>
+    <dd>here is the actual logic of your app</dd>
+    <dt><code>tsconfig.json</code></dt>
+    <dd>TypeScript compiler configuration</dd>
+    <dt><code>tslint.json</code></dt>
+    <dd>tslint configuration</dd>
+  </dl>
+</section>
+
+<section data-min="15"><h1>Angular Main Workflow Overview</h1></section>
+<section><h2>Angular Main Workflow Overview</h2>
+  <section>
+    <a href="images/AngularWorkflowOverview.png"><img src="images/AngularWorkflowOverview.png"></a>
+  </section>
+</section>
+
+<section data-min="20"><h1>Angular Architecture Overview</h1></section>
+<section><h2>Angular Architecture Overview</h2>
+  <section>
+    <p>The architecture overview as depicted in angular.io docs:</p>
+    <a href="images/overview2byAngTeam.png"><img src="images/overview2byAngTeam.png"></a>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt>Angular app consists of one or more <span class="note">modules</span>.</dt>
+      <dt>Every Angular app has at least one module - the root module (AppModule)</dt>
+      <dt>Each module encompasses <span class="note">components</span> and <span class="note">services</span> </dt>
+      <dt>A component is a unit, containing the UI (HTML + CSS) and the JS code</dt>
+      <dt>Service - code, which is not intrinsic to a single component, i.e. the business logics.</dt>
+    </dl>
+  </section>
+  <section><h3>Components</h3>
+    <dl class="fa">
+      <dt>A component represents a patch of screen called a <em>view</em>, like nav bar, search, footer and etc.</dt>
+      <dt>They are independent, reusable, and are built on the concepts of <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a></dt>
+      <dd>Check the official Web Components repository: <a href="https://www.webcomponents.org/">@webcomponents.org</a></dd>
+    </dl>
+  </section>
+  <section><h3>Components</h3>
+    <dl class="fa">
+      <dt>Each component can consists of many other components (i.e. they form a <em>component tree</em>)</dt>
+      <dt>Components can communicate with each other</dt>
+      <dt>Angular creates, updates, and destroys components as the user moves through the application</dt>
+      <dt>A TypeScript class can become a component if it is decorated with <code>@Component</code> decorator</dt>
+    </dl>
+  </section>
+  <section><h3>Create Components</h3>
+    <dl class="fa">
+      <dt>When creating a new project, Angular creates for us only the main app component <em>app.component.*</em></dt>
+      <dt>We can create other components using the Angular CLI commands:</dt>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng generate component compName
+      </code></pre>
+      <dd>or by the short-hand commands:</dd>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng g c compName
+      </code></pre>
+    </dl>
+  </section>
+</section>
+
+<section data-min="30"><h1>Frame a BookStore app in Angular terms</h1></section>
+<section><h2>Frame a BookStore app in Angular terms</h2>
+  <section>
+    <a href="images/BookStoreComponentsOverview.png"><img src="images/BookStoreComponentsOverview.png"></a>
+  </section>
+</section>
+
+
+<!-- ComponentsBasics -->
+<section data-min="__Y__"><h1>Components Basics</h1></section>
+<section><h2>Components Basics</h2>
+  <section>
+    <pre><code rel="JS" class="js">
+      @Component({
+        selector: 'app-root',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+      })
+      export class AppComponent {
+        title = 'app';
+      }
+    </code></pre>
+    <a href="images/AngularComponentBox_MY.png"><img src="images/AngularComponentBox_MY.png"></a>
+  </section>
+  <section>
+  	<dl class="fa">
+  		<dt>Each component defines a class that contains application data and logic, and is associated with an HTML template that defines a view to be displayed in a target environment.</dt>
+  		<dt>Every Angular application has at least one component, the <span class="note">root component</span> that connects a component hierarchy with the page document object model (DOM).</dt>
+  	</dl>
+  </section>
+</section>
+<section data-min="10"><h1>The app component tree</h1></section>
+<section><h2>The app component tree</h2>
+  <section>
+    <a href="images/ComponentTree-BookStoreSimple.png"><img src="images/ComponentTree-BookStoreSimple.png"></a>
+  </section>
+</section>
+<section><h2>Component Declaration</h2>
+  <dl class="fa">
+    <dt>When a component A has to use component B in its template, then component B must be made available to the component A. </dt>
+    <dt>Component B has to be declared in the module of the component A.</dt>
+    <dt>If the component B is declared in another module, the module must be imported into the module of the first component. Otherwise, the component won’t be compiled with the template.</dt>
+  </dl>
+</section>
+<section data-min="10"><h1>Components Metadata and  Decorators</h1></section>
+<section><h2>Components Decorators</h2>
+  <section>
+    <dl class="fa">
+      <dt>A component is a JavaScript class with a decorator.</dt>
+      <dt>The decorator defines how the component should look on the page, how it has to be used, and the dependencies of the component.</dt>
+      <dt>In decorator, we can specify various component metadata</dt>
+    </dl>
+  </section>
+  <section><h3>Metadata Properties:</h3>
+    <p class="note">The minimum metadata for a component are the ones specifying the selector, template and style:</p>
+    <dl class="fa">
+      <dt><strong>selector</strong> - css selector that identifies this component in a template</dt>
+      <dt><strong>styleUrls</strong> - list of urls to stylesheets to be applied to this component's view</dt>
+      <dt><strong>styles</strong> - inline-defined styles to be applied to this component's view</dt>
+      <dt><strong>template</strong> - inline-defined template for the view</dt>
+      <dt><strong>templateUrl</strong> - url to an external file containing a template for the view</dt>
+    </dl>
+  </section>
+  <section style="font-size: .9em;"><h3>Metadata Properties:</h3>
+    <dl class="fa">
+      <dt><strong>animations</strong> - list of animations of this component</dt>
+      <dt><strong>changeDetection</strong> - change detection strategy used by this component</dt>
+      <dt><strong>encapsulation</strong> - style encapsulation strategy used by this component</dt>
+      <dt><strong>entryComponents</strong> - list of components that are dynamically inserted into the view of this component</dt>
+      <dt><strong>exportAs</strong> - name under which the component instance is exported in a template</dt>
+    </dl>
+  </section>
+  <section style="font-size: .9em;"><h3>Metadata Properties:</h3>
+    <dl class="fa">
+      <dt><strong>inputs</strong> - list of class property names to data-bind as component inputs</dt>
+      <dt><strong>outputs</strong> - list of class property names that expose output events that others can
+      subscribe to</dt>
+      <dt><strong>providers</strong> - list of providers available to this component and its children</dt>
+      <dt><strong>viewProviders</strong> - list of providers available to this component and its view children</dt></dt>
+      <dt><strong>queries</strong> -  configure queries that can be injected into the component</dt>
+    </dl>
+  </section>
+</section>
+<section data-min="10"><h1>The Selector</h1></section>
+<section><h2>The Selector</h2>
+  <section><h3></h3>
+    <dl class="fa">
+      <dt><span class="note">element-name</span> - select by element name.</dt>
+      <dt><span class="note">.class</span> - select by class name.</dt>
+      <dt><span class="note">[attribute]</span> - select by attribute name.</dt>
+      <dt><span class="note">[attribute=value]</span> - select by attribute name and value.</dt>
+      <dt><span class="note">:not(sub_selector)</span> - select only if the element does not match the sub_selector.</dt>
+      <dt><span class="note">selector1, selector2</span> - select if either selector1 or selector2 matches.</dt>
+    </dl>
+  </section>
+</section>
+<section data-min="10"><h1>The Template</h1></section>
+<section><h2>The Template</h2>
+  <section>
+    <dl class="fa">
+      <dt>An Angular Template represents the view.</dt>
+      <dt>It can contain an HTML code (no scripts elements, though) augmented with Angular's entities.</dt>
+    </dl>
+  </section>
+  <section><h3>Interpolation <code>{﻿{...}}</code></h3>
+
+  </section>
+  <section><h3>Template Reference Variables</h3>
+    <dl class="fa">
+      <dt>A template reference variable is often a reference to a DOM element within a template</dt>
+      <dt>It can also be a reference to an <em>Angular component</em> or <em>directive</em> or a <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">web component</a>.</dt>
+      <dt>A template reference variable is declared by prefixing the variable with <code>#</code>.</dt>
+      <dt>It can be accessed anywhere in the entire template.</dt>
+    </dl>
+  </section>
+  <section><h3>Template Reference Variables - examples</h3>
+    <pre><code rel="components.component.html" class="html">
+      &lt;section&gt;
+        &lt;h2&gt;Template reference variables&lt;/h2&gt;
+        &lt;input #userName placeholder=&quot;enter a user name&quot;&gt;
+        &lt;button (click)=&quot;getUserName(userName.value)&quot;&gt;Get UserName&lt;/button&gt;
+      &lt;/section&gt;
+    </code></pre>
+    <pre><code rel="components.component.ts" class="typescript">
+      import { Component, OnInit } from '@angular/core';
+
+      @Component({
+        selector: 'app-components',
+        templateUrl: './components.component.html',
+        styleUrls: ['./components.component.css']
+      })
+      export class ComponentsComponent implements OnInit {
+
+        constructor() { }
+
+        ngOnInit() {
+        }
+
+        getUserName(data) {
+          console.log(data);
+        }
+      }
+    </code></pre>
+  </section>
+</section>
+<section data-min="15"><h1>Create the Components of BookStore</h1></section>
+<section><h2>Create the Components of BookStore</h2>
+  <section><h3>create main components files</h3>
+    <p>For now, we do not need the *.component.spec.ts file, which is used to for test cases. That's wh, we'll instruct Angular CLI to not create the spec file per component:</p>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      # the header:
+      ng g c header --spec==false
+
+      # the footer:
+      ng g c footer --spec==false
+
+      # the main:
+      ng g c main --spec==false
+    </code></pre>
+  </section>
+  <section>
+    <p>Our project tree should look like:</p>
+    <pre><code rel="Output" class="bash" data-noescape>
+      app/
+      ├── app.component.css
+      ├── app.component.html
+      ├── app.component.spec.ts
+      ├── app.component.ts
+      ├── app.module.ts
+      ├── footer
+      │   ├── footer.component.css
+      │   ├── footer.component.html
+      │   └── footer.component.ts
+      ├── header
+      │   ├── header.component.css
+      │   ├── header.component.html
+      │   └── header.component.ts
+      └── main
+          ├── main.component.css
+          ├── main.component.html
+          └── main.component.ts
+    </code></pre>
+  </section>
+</section>
+
+
+<!-- Directives -->
+<section data-min="10"><h1>Directives</h1></section>
+<section><h2>Directives</h2>
+  <section>
+    <dl class="fa">
+      <dt>Directives are markers on DOM element that tell Angular to attach a specified behaviour to an existing element.</dt>
+      <dt>Angular provides a number of built-in directives, which are attributes we can add to our template elements in order to attach to them a dynamic behaviour.</dt>
+    </dl>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt>Angular includes several structural directives:</dt>
+      <dd><code>NgIf</code></dd>
+      <dd><code>NgFor</code></dd>
+      <dd><code>NgSwitch, NgSwitchWhen, NgSwitchDefault</code></dd>
+      <dt>And several non-structural directives:</dt>
+      <dd><code>NgClass</code></dd>
+      <dd><code>NgStyle</code></dd>
+      <dd><code>NgControlName</code></dd>
+      <dd><code>NgModel</code></dd>
+    </dl>
+  </section>
+</section>
+
+<section data-min="50"><h1>Built-In Directives</h1></section>
+<section><h2>Built-In Directives</h2>
+  <section><h3>Structural Directives</h3>
+    <dl class="fa">
+      <dt>They can manipulate the DOM structure.</dt>
+      <dt>With them we can add, remove or modify DOM elements.</dt>
+      <dt>An asterisk (*) precedes the structural directive name</dt>
+      <dt>You may apply only one structural directive to an element.</dt>
+    </dl>
+  </section>
+  <section><h3>Structural Directives</h3>
+    <dl class="fa" style="font-size: .8em">
+      <dt>Asterisk symbol is a "syntactic sugar".</dt>
+      <dt>Internally, Angular translates the <code>*ngSomething</code> attribute into a <code>&lt;ng-template&gt;</code> element, wrapped around the host element</dt>
+      <pre><code rel="Asteric Notation" class="html">
+        &lt;h2 *ngIf=&quot;true&quot;&gt;shown&lt;/h2&gt;
+      </code></pre>
+      <pre><code rel="<ng-template> wrapping" class="html">
+        <ng-template [ngIf]="true">
+          &lt;h2&gt;shown&lt;/h2&gt;
+        </ng-template>
+      </code></pre>
+      <dd>The translation is according to the Angular's <a href="https://angular.io/guide/structural-directives#microsyntax">microsyntax</a>.</dd>
+    </dl>
+    <p class="note">More on property bindings (<code>[ngif]=""</code>) will be discused in "Data and Events Bindings" theme.</p>
+  </section>
+  <section><h3><code>NgIf</code></h3>
+    <pre><code rel="Syntax" class="bash">
+      &lt;tag *ngIf=&quot;condition&quot;&gt;&lt;/tag&gt;
+    </code></pre>
+    <dl class="fa">
+      <dt>With <code>ngIf</code> directive we can display or hide an element based on a condition.</dt>
+      <dt>condition is the result of an <em>expression</em> that we pass into directive.</dt>
+      <dd>if condition == true : the element will be included in the DOM</dd>
+      <dd>if condition == false : the element will be removed (not just hide) from the DOM</dd>
+    </dl>
+  </section>
+  <section><h3><code>NgIf - examples</code></h3>
+    <pre style="width: 110%"><code rel="directives-test.component.ts" class="typescript">
+      import { Component, OnInit } from '@angular/core';
+
+      @Component({
+        selector: 'app-directives-test',
+        styles: [`section&gt;h2{
+                    border: .1em solid #000; margin: 1em;
+                }`],
+        template: `&lt;section&gt;
+                    &lt;h2 *ngIf=&quot;false&quot;&gt;*ngIf=&quot;false&quot;&lt;/h2&gt;
+                    &lt;h2 *ngIf=&quot;true&quot;&gt;*ngIf=&quot;true&quot;&lt;/h2&gt;
+                    &lt;h2 *ngIf=&quot;3&gt;2-1&quot;&gt;*ngIf=&quot;3&gt;2-1&quot;&lt;/h2&gt;
+                    &lt;h2 *ngIf=&quot;showH2&quot;&gt;*ngIf=&quot;showH2&quot;&lt;/h2&gt;
+                  &lt;/section&gt;`
+      })
+      export class DirectivesTestComponent implements OnInit {
+
+        showH2 = 'true';
+
+        constructor() { }
+
+        ngOnInit() {
+        }
+
+      }
+    </code></pre>
+  </section>
+  <section><h3>ngIf; then; else</h3>
+    <pre><code rel="HTML" class="html">
+      <div *ngIf="isValid;then thenBlock else elseBlock">here is ignored</div>
+      <ng-template #thenBlock>thenBlock: isValid == true</ng-template>
+      <ng-template #elseBlock>elseBlock: isValid == false</ng-template>
+    </code></pre>
+  </section>
+  <section><h3><code>NgSwitch</code></h3>
+    <dl class="fa">
+      <dt>To replace multiple alternative ngIf directives</dt>
+    </dl>
+    <pre><code rel="HTML" class="html">
+      <div class="container">
+        <div *ngIf="myVar == 'A'">Var is A</div>
+        <div *ngIf="myVar == 'B'">Var is B</div>
+        <div *ngIf="myVar != 'A' && myVar != 'B'">Var is neither A nor B</div>
+      </div>
+    </code></pre>
+    <pre><code rel="HTML" class="html">
+      <div class="container" [ngSwitch]="myVar">
+        <div *ngSwitchCase="'A'">Var is A</div>
+        <div *ngSwitchCase="'B'">Var is B</div>
+        <div *ngSwitchDefault>Var is something else</div>
+      </div>
+    </code></pre>
+  </section>
+  <section><h3><code>ngFor</code></h3>
+    <dl class="fa">
+      <dt>Allows to repeat a given DOM element and pass an element of the array (iterable object) on each iteration.</dt>
+      <dt><code>ndFor</code> is useful for generating repeating content, such as a list items, dropdown options, and so on.</dt>
+    </dl>
+    <pre><code rel="HTML" class="html">
+      <ul *ngFor="let item of [1,2,3]">
+        <li>item {{item}}</li>
+      </ul>
+    </code></pre>
+    <pre><code rel="Output" class="bash" data-noescape>
+      . item 1
+      . item 2
+      . item 3
+    </code></pre>
+  </section>
+  <section><h3><code>ngFor - example</code></h3>
+    <pre><code rel="directives.component.html" class="html">
+      <div *ngFor="let name of names; let i = index;">
+        <p>Hello {{name}}!</p>
+      </div>
+    </code></pre>
+    <pre><code rel="directives.component.ts" class="typescript">
+      export class DirectivesComponent implements OnInit {
+        names = ['Maria', 'Ivan'];
+
+        constructor() { }
+
+        ngOnInit() {}
+      }
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="50"><h1>Custom Directives</h1></section>
+<section><h2>Custom Directives</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa" style="font-size: .9em">
+      <dt>Directives are Components without a view/UI.</dt>
+      <dt>Directives do not need the "template" and "style" annotations.</dt>
+      <dt class="note">We create directives by annotating a class with the @Directive decorator.</dt>
+    </dl>
+    <pre><code rel="Syntax" class="bash" data-noescape>
+      import { Directive } from '@angular/core';
+
+      @Directive({
+        selector: '[selector'
+      })
+      export class SomeNameDirective {
+
+        constructor() { }
+
+      }
+    </code></pre>
+  </section>
+  <section><h3>Generate directive</h3>
+    <dl class="fa">
+      <dt>Using Angular CLI:</dt>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng g d custom_directive
+      </code></pre>
+      <dt>directives are not created in separate folder, by default.</dt>
+      <dt>Directives must be declared in Angular Modules in the same manner as components.</dt>
+    </dl>
+    <pre><code rel="custom-directive.directive.ts" class="typescript">
+      import { Directive } from '@angular/core';
+
+      @Directive({
+        selector: '[appCustomDirective]'
+      })
+      export class CustomDirectiveDirective {
+
+        constructor() { }
+
+      }
+    </code></pre>
+  </section>
+  <section><h3>ElementRef and Renderer objects</h3>
+    <dl class="fa">
+      <dt>Angular provides us with two very useful objects: the ElementRef and the Renderer.</dt>
+      <dt>The ElementRef object gives us <span class="note">direct access to the DOM element</span> for the directive through the nativeElement property.</dt>
+      <dt>The Renderer object gives us many helper methods to enable us to modify the DOM element.</dt>
+      <dt>Both objects can be <span class="note">injected</span> into a class</dt>
+    </dl>
+  </section>
+  <section><h3>ElementRef and Renderer objects - example</h3>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng g c customDirectiveExample
+    </code></pre>
+    <pre><code rel="custom-directive-example.component.ts" class="typescript">
+      import { Component, OnInit } from '@angular/core';
+      import { Directive, Renderer, ElementRef } from '@angular/core';
+
+      @Component({
+        selector: 'app-custom-directive-example',
+        templateUrl: './custom-directive-example.component.html',
+        styleUrls: ['./custom-directive-example.component.css']
+      })
+      export class CustomDirectiveExampleComponent implements OnInit {
+
+        constructor() { }
+
+        ngOnInit() {
+        }
+
+      }
+
+      @Directive({
+        selector: '[appImportant]'
+      })
+      export class CustomDirectiveDirective {
+
+        constructor(private el: ElementRef,
+          private renderer: Renderer) {
+          renderer.setElementStyle(el.nativeElement, 'backgroundColor', '#d12929');
+        }
+
+      }
+    </code></pre>
+  </section>
+</section>
+
+<section><h1><code>&lt;ng-template&gt;</code></h1></section>
+<section><h2><code>&lt;ng-template&gt;</code></h2>
+  <section>
+    <dl class="fa">
+      <dt>&lt;ng-template&gt; is an Angular element, that is never displayed directly.</dt>
+      <dt>Angular replaces the <code>&lt;ng-template&gt;</code> and its contents with a comment, before rendering the view</dt>
+    </dl>
+  </section>
+</section>
+
+
+
+
+
+
+
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section>
+
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: angular_crash_course">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
