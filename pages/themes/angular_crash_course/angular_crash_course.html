@@ -75,858 +75,1856 @@
 </section>
 
 <!-- AJAX basics -->
-<section data-min="20"><h1>Client-Side vs Server-Side Rendering</h1></section>
-<section><h2>Client-Side vs Server-Side Rendering</h2>
-  <section><h3>Overview</h3>
-    <a href="images/SSRvsCSR_Overview.png"><img src="images/SSRvsCSR_Overview.png"></a>
-    <p>The Client-Side Rendering is based on AJAX</p>
+  <section data-min="20"><h1>Client-Side vs Server-Side Rendering</h1></section>
+  <section><h2>Client-Side vs Server-Side Rendering</h2>
+    <section><h3>Overview</h3>
+      <a href="images/SSRvsCSR_Overview.png"><img src="images/SSRvsCSR_Overview.png"></a>
+      <p>The Client-Side Rendering is based on AJAX</p>
+    </section>
+    <!-- <section><h3>Server-Side Rendering (SSR)</h3></section> -->
   </section>
-  <!-- <section><h3>Server-Side Rendering (SSR)</h3></section> -->
-</section>
-<section data-min="20"><h1>AJAX basics</h1></section>
-<section><h2>AJAX basics</h2>
-  <section><h3>What is AJAX?</h3>
-    <div style="text-align: center">
-      <p><span class="note">A</span>synchronous</p>
-      <p><span class="note">J</span>avaScript</p>
-      <p><span class="note">A</span>nd</p>
-      <p><span class="note">X</span>ML</p>
-    </div>
-    <p><em>In reality, these days, the use of JSON prevails over XML, but for backward compatibility we do not say AJAJ</em></p>
+  <section data-min="20"><h1>AJAX basics</h1></section>
+  <section><h2>AJAX basics</h2>
+    <section><h3>What is AJAX?</h3>
+      <div style="text-align: center">
+        <p><span class="note">A</span>synchronous</p>
+        <p><span class="note">J</span>avaScript</p>
+        <p><span class="note">A</span>nd</p>
+        <p><span class="note">X</span>ML</p>
+      </div>
+      <p><em>In reality, these days, the use of JSON prevails over XML, but for backward compatibility we do not say AJAJ</em></p>
+    </section>
+    <section><h3>What is AJAX?</h3>
+      <dl class="fa">
+        <dt>AJAX is just the name for combination of technologies:</dt>
+        <dd>the use of the built-in <span class="note">XMLHttpRequest</span> object to request data from a web server</dd>
+        <dd>the use of JavaScript and HTML DOM (to display or use the data)</dd>
+      </dl>
+    </section>
+    <section>
+      <p>With AJAX, Web applications can send and retrieve data from a Web server <span class="note">asynchronously</span> (in the background)  without refreshing the existent page </p>
+    </section>
+    <section>
+      <p>With AJAX we can:</p>
+      <dl class="fa">
+        <dt>Update a web page without reloading the page</dt>
+        <dt>Request data from a server - after the page has loaded</dt>
+        <dt>Receive data from a server - after the page has loaded</dt>
+        <dt>Send data to a server - in the background</dt>
+      </dl>
+    </section>
+    <section>
+      <a href="images/Ajax_vs_Conventinal_Model.png"><img src="images/Ajax_vs_Conventinal_Model.png"></a>
+    </section>
+    <section><h3>XMLHttpRequest Overview</h3>
+      <a href="https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest">XMLHttpRequest at MDN</a>
+    </section>
+    <section><h3>AJAX - Simple example</h3>
+    	<dl class="fa">
+    		<dt>Demo: <a href="examples/songLyricsAjaxLoad/songLyricsAjaxLoad.html">songLyricsAjaxLoad</a></dt>
+    		<dt>You can inspect the source with browser's developer tools</dt>
+    	</dl>
+    </section>
   </section>
-  <section><h3>What is AJAX?</h3>
-    <dl class="fa">
-      <dt>AJAX is just the name for combination of technologies:</dt>
-      <dd>the use of the built-in <span class="note">XMLHttpRequest</span> object to request data from a web server</dd>
-      <dd>the use of JavaScript and HTML DOM (to display or use the data)</dd>
-    </dl>
-  </section>
-  <section>
-    <p>With AJAX, Web applications can send and retrieve data from a Web server <span class="note">asynchronously</span> (in the background)  without refreshing the existent page </p>
-  </section>
-  <section>
-    <p>With AJAX we can:</p>
-    <dl class="fa">
-      <dt>Update a web page without reloading the page</dt>
-      <dt>Request data from a server - after the page has loaded</dt>
-      <dt>Receive data from a server - after the page has loaded</dt>
-      <dt>Send data to a server - in the background</dt>
-    </dl>
-  </section>
-  <section>
-    <a href="images/Ajax_vs_Conventinal_Model.png"><img src="images/Ajax_vs_Conventinal_Model.png"></a>
-  </section>
-  <section><h3>XMLHttpRequest Overview</h3>
-    <a href="https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest">XMLHttpRequest at MDN</a>
-  </section>
-  <section><h3>AJAX - Simple example</h3>
-  	<dl class="fa">
-  		<dt>Demo: <a href="examples/songLyricsAjaxLoad/songLyricsAjaxLoad.html">songLyricsAjaxLoad</a></dt>
-  		<dt>You can inspect the source with browser's developer tools</dt>
-  	</dl>
-  </section>
-</section>
 
 
-<!-- intro -->
-<section data-min="20"><h1>Angular - set up the environment</h1></section>
-<section><h2>Angular - set up the environment</h2>
-  <section><h3>Terminal</h3>
-    <dl class="fa" style="font-size: .8em;">
-      <dt>In order to use the Angular CLI, you'll need a <a href="https://en.wikipedia.org/wiki/Command-line_interface">Terminal (CLI)</a> on your system.</dt>
-      <dt>In Windows you can use:</dt>
-      <dd><span class="note">Command Prompt</span>: <a href="https://www.digitalcitizen.life/7-ways-launch-command-prompt-windows-7-windows-8">10 ways to launch the Command Prompt in Windows</a></dd>
-      <dd><span class="note">PowerShell</span>: <a href="https://docs.microsoft.com/en-us/powershell/scripting/getting-started/getting-started-with-windows-powershell?view=powershell-6">Getting Started with Windows PowerShell</a></dd>
-      <dd><span class="note">Git Bash</span>: install <a href="https://git-for-windows.github.io/">git for windows</a> and make sure <b>Git Bash</b> is marked for install.</dd>
-      <dd>You can even go pro and use the new Windows10 feature: <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux (WSL)</a></dd>
-    </dl>
-  </section>
-  <section><h3>node and npm</h3>
-    <dl class="fa">
-      <dt><span class="note">Node.js</span> is a JavaScript runtime built on Chrome's V8 JavaScript engine.</dt>
-      <dt><span class="note">Node.js</span> is used for developing server-side JavaScript applications</dt>
-      <dt>The <span class="note">npm</span> is a package manager for Node.js, which makes it quite simple to install additional tools via packages; it comes bundled with Node.js</dt>
-      <dt>Download and install the latest LTS version for your system:</dt>
-      <dd><a href="https://nodejs.org/en/download/">Node.js® and npm</a></dd>
-    </dl>
-  </section>
-  <section><h3>node and npm</h3>
-    <dl class="fa">
-      <dt>Verify installation:</dt>
-      <dd>Open a Terminal and type the commands given, after the prompt sign '$'</dd>
-      <dd>The output should look like the commented lines (after the comment sign '#')</dd>
-    </dl>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      $ node -v
-      #v12.2.0
+<!-- Angular intro -->
+  <section data-min="20"><h1>Angular - set up the environment</h1></section>
+  <section><h2>Angular - set up the environment</h2>
+    <section><h3>Terminal</h3>
+      <dl class="fa" style="font-size: .8em;">
+        <dt>In order to use the Angular CLI, you'll need a <a href="https://en.wikipedia.org/wiki/Command-line_interface">Terminal (CLI)</a> on your system.</dt>
+        <dt>In Windows you can use:</dt>
+        <dd><span class="note">Command Prompt</span>: <a href="https://www.digitalcitizen.life/7-ways-launch-command-prompt-windows-7-windows-8">10 ways to launch the Command Prompt in Windows</a></dd>
+        <dd><span class="note">PowerShell</span>: <a href="https://docs.microsoft.com/en-us/powershell/scripting/getting-started/getting-started-with-windows-powershell?view=powershell-6">Getting Started with Windows PowerShell</a></dd>
+        <dd><span class="note">Git Bash</span>: install <a href="https://git-for-windows.github.io/">git for windows</a> and make sure <b>Git Bash</b> is marked for install.</dd>
+        <dd>You can even go pro and use the new Windows10 feature: <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux (WSL)</a></dd>
+      </dl>
+    </section>
+    <section><h3>node and npm</h3>
+      <dl class="fa">
+        <dt><span class="note">Node.js</span> is a JavaScript runtime built on Chrome's V8 JavaScript engine.</dt>
+        <dt><span class="note">Node.js</span> is used for developing server-side JavaScript applications</dt>
+        <dt>The <span class="note">npm</span> is a package manager for Node.js, which makes it quite simple to install additional tools via packages; it comes bundled with Node.js</dt>
+        <dt>Download and install the latest LTS version for your system:</dt>
+        <dd><a href="https://nodejs.org/en/download/">Node.js® and npm</a></dd>
+      </dl>
+    </section>
+    <section><h3>node and npm</h3>
+      <dl class="fa">
+        <dt>Verify installation:</dt>
+        <dd>Open a Terminal and type the commands given, after the prompt sign '$'</dd>
+        <dd>The output should look like the commented lines (after the comment sign '#')</dd>
+      </dl>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        $ node -v
+        #v12.2.0
 
-      $ npm -v
-      #6.9.0
-    </code></pre>
-  </section>
-  <section><h3>npm and node update</h3>
-  	<dl class="fa">
-  		<dt>In case you've already installed the node/npm you can update them by:</dt>
-  	</dl>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      # updte npm:
-      npm install -g npm stable
+        $ npm -v
+        #6.9.0
+      </code></pre>
+    </section>
+    <section><h3>npm and node update</h3>
+    	<dl class="fa">
+    		<dt>In case you've already installed the node/npm you can update them by:</dt>
+    	</dl>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        # updte npm:
+        npm install -g npm stable
 
-      #update node:
-      npm install -g node
+        #update node:
+        npm install -g node
 
-      #check version installation,
-      node -v
-      npm -v
-    </code></pre>
-  </section>
-  <section><h3>Angular CLI</h3>
-    <dl class="fa">
-      <dt>Angular CLI is a command-line tool, developed by Angular team, that helps in generating Angular projects with required configurations, boilerplate code, and also downloads the required node packages with one simple command</dt>
-      <dt>Reference: <a href="https://angular.io/cli">CLI Command Reference @angular.io</a></dt>
-    </dl>
-  </section>
-  <section><h3>Angular CLI  - install</h3>
-    <pre><code rel="JS" class="js">
-    	# install globally the latest version:
-    	npm install -g @angular/cli
+        #check version installation,
+        node -v
+        npm -v
+      </code></pre>
+    </section>
+    <section><h3>Angular CLI</h3>
+      <dl class="fa">
+        <dt>Angular CLI is a command-line tool, developed by Angular team, that helps in generating Angular projects with required configurations, boilerplate code, and also downloads the required node packages with one simple command</dt>
+        <dt>Reference: <a href="https://angular.io/cli">CLI Command Reference @angular.io</a></dt>
+      </dl>
+    </section>
+    <section><h3>Angular CLI  - install</h3>
+      <pre><code rel="JS" class="js">
+      	# install globally the latest version:
+      	npm install -g @angular/cli
 
-    	# OR install specific version per project:
-    	npm install @angular/cli@6
-    	# will install in current folder the latest version of angular 6
-    </code></pre>
+      	# OR install specific version per project:
+      	npm install @angular/cli@6
+      	# will install in current folder the latest version of angular 6
+      </code></pre>
+    </section>
   </section>
-</section>
 
 
-<!-- overview -->
-<section data-min="15"><h1>What is Angular?</h1></section>
-<section><h2>What is Angular?</h2>
-  <section>
-    <dl class="fa">
-      <dt>A <span class="note">Front-End</span> web application framework</dt>
-      <dd>strongly opinionated, imposing good practictices and cutting-edge Web Technologies</dd>
-      <dd>not a library (like jQuery or React)</dd>
-      <dt>A <span class="note">platform</span> - apps created by Angular runs on:</dt>
-      <dd ><span class="note">Web</span></dd>
-      <dd><span class="note">iOS and Android</span> - using <a href="https://www.nativescript.org/">native script</a> </dd>
-      <dd><span class="note">desktop (Windows, Linux, MacOS)</span> - using <a href="https://electronjs.org/">electron</a></dd>
-      <dt>Created and led by the Angular team at <span class="note">Google</span>.</dt>
-      <dd>the language - <span class="note">TypeScript</span>, created and supported by <span class="note">Microsoft</span>.</dd>
-      <dt><span class="note">Open-source</span> project: <a href="https://github.com/angular/angular">github.com/angular</a></dt>
-    </dl>
+<!-- Angular overview -->
+  <section data-min="15"><h1>What is Angular?</h1></section>
+  <section><h2>What is Angular?</h2>
+    <section>
+      <dl class="fa">
+        <dt>A <span class="note">Front-End</span> web application framework</dt>
+        <dd>strongly opinionated, imposing good practices and cutting-edge Web Technologies</dd>
+        <dd>not a library (like jQuery or React)</dd>
+        <dt>A <span class="note">platform</span> - apps created by Angular runs on:</dt>
+        <dd ><span class="note">Web</span></dd>
+        <dd><span class="note">iOS and Android</span> - using <a href="https://www.nativescript.org/">native script</a> </dd>
+        <dd><span class="note">desktop (Windows, Linux, MacOS)</span> - using <a href="https://electronjs.org/">electron</a></dd>
+        <dt>Created and led by the Angular team at <span class="note">Google</span>.</dt>
+        <dd>the language - <span class="note">TypeScript</span>, created and supported by <span class="note">Microsoft</span>.</dd>
+        <dt><span class="note">Open-source</span> project: <a href="https://github.com/angular/angular">github.com/angular</a></dt>
+      </dl>
+    </section>
+    <section>
+      <dl class="fa">
+        <dt><span class="note">Angular</span> is a total rewrite of the <span class="note">AngularJS</span> framework.</dt>
+        <dd><span class="note">Angular</span> is the official name of all Angular2+ versions</dd>
+        <dd><span class="note">AngularJS</span> is the official name of Angular1 version</dd>
+        <dt>Angular is <span class="note">not an MVC</span>, but a <span class="note">component-based</span> architecture.</dt>
+      </dl>
+    </section>
+    <section>
+      <dl class="fa">
+        <dt>Angular supports the cutting-edge technologies and best practices in Front-End Development:</dt>
+        <dd>Components decoupling, separation of concerns</dd>
+        <dd>Declarative templates</dd>
+        <dd>Services</dd>
+        <dd>Dependency Injection</dd>
+        <dd>Routers</dd>
+        <dd>Observables, RxJS integrated</dd>
+      </dl>
+    </section>
   </section>
-  <section>
-    <dl class="fa">
-      <dt><span class="note">Angular</span> is a total rewrite of the <span class="note">AngularJS</span> framework.</dt>
-      <dd><span class="note">Angular</span> is the official name of all Angular2+ versions</dd>
-      <dd><span class="note">AngularJS</span> is the official name of Angular1 version</dd>
-      <dt>Angular is <span class="note">not an MVC</span>, but a <span class="note">component-based</span> architecture.</dt>
-    </dl>
+  <section data-min="5"><h1>Angular Versioning</h1></section>
+  <section><h2>Angular Versioning</h2>
+    <section><h3>Angular vs AngularJS</h3>
+      <p>There are 2 separated branches of Angular frameworks!</p>
+      <dl class="fa">
+        <dt><b>AngularJS</b> is the name for all v1.x versions of Angular</dt>
+        <dd class="note">Not developed any more, just LTS support fixes.</dd>
+        <dd><a href="https://github.com/angular/angular.js">angular.js on github</a></dd>
+        <dt><b>Angular</b> is the name, under which are developed all version after 2.0</dt>
+        <dd><a href="https://github.com/angular/angular">angular on github</a></dd>
+      </dl>
+    </section>
+    <section><h3>Semantic versioning</h3>
+      <p>From version 2.0, Angular team adopted the<br> <em>semantic versioning:</em></p>
+      <a href="images/AngularSemanticVersioning.png"><img src="images/AngularSemanticVersioning.png"></a>
+    </section>
+    <section><h3>Reference</h3>
+    	<dl class="fa">
+    		<dt><a href="https://angular.io/guide/releases">Angular Releases</a></dt>
+    	</dl>
+    </section>
   </section>
-  <section>
-    <dl class="fa">
-      <dt>Angular supports the cutting-edge technologies and best practices in Front-End Development:</dt>
-      <dd>Components decoupling, separation of concerns</dd>
-      <dd>Declarative templates</dd>
-      <dd>Services</dd>
-      <dd>Dependency Injection</dd>
-      <dd>Routers</dd>
-      <dd>Observables, RxJS integrated</dd>
-    </dl>
-  </section>
-</section>
-<section data-min="5"><h1>Angular Versioning</h1></section>
-<section><h2>Angular's Versioning</h2>
-  <section><h3>Angular vs AngularJS</h3>
-    <p>There are 2 separated branches of Angular frameworks!</p>
-    <dl class="fa">
-      <dt><b>AngularJS</b> is the name for all v1.x versions of Angular</dt>
-      <dd class="note">Not developed any more, just LTS support fixes.</dd>
-      <dd><a href="https://github.com/angular/angular.js">angular.js on github</a></dd>
-      <dt><b>Angular</b> is the name, under which are developed all version after 2.0</dt>
-      <dd><a href="https://github.com/angular/angular">angular on github</a></dd>
-    </dl>
-  </section>
-  <section><h3>Semantic versioning</h3>
-    <p>From version 2.0, Angular team adopted the<br> <em>semantic versioning:</em></p>
-    <a href="images/AngularSemanticVersioning.png"><img src="images/AngularSemanticVersioning.png"></a>
-  </section>
-  <section><h3>Reference</h3>
-  	<dl class="fa">
-  		<dt><a href="https://angular.io/guide/releases">Angular Releases</a></dt>
-  	</dl>
-  </section>
-</section>
-<section data-min="20"><h1>Get familiar with Angular CLI</h1></section>
-<section><h2>Get familiar with Angular CLI</h2>
-  <section><h3>Overview</h3>
-    <div style="font-style: italic;">From <a href="https://github.com/angular/angular-cli/wiki">angular-cli/wiki</a></div>
-    <blockquote cite="https://github.com/angular/angular-cli/wiki">
+  <section data-min="20"><h1>Get familiar with Angular CLI</h1></section>
+  <section><h2>Get familiar with Angular CLI</h2>
+    <section><h3>Overview</h3>
+      <div style="font-style: italic;">From <a href="https://github.com/angular/angular-cli/wiki">angular-cli/wiki</a></div>
+      <blockquote cite="https://github.com/angular/angular-cli/wiki">
 
-      The Angular CLI is a tool to initialize, develop, scaffold and maintain Angular applications.
-    </blockquote>
-  </section>
-  <section><h3>Create an Angular app with CLI</h3>
-  	<pre><code rel="Terminal" class="bash" data-noescape>
-  	  # Create project workspace
-  	  ng new MyApp
+        The Angular CLI is a tool to initialize, develop, scaffold and maintain Angular applications.
+      </blockquote>
+    </section>
+    <section><h3>Create an Angular app with CLI</h3>
+    	<pre><code rel="Terminal" class="bash" data-noescape>
+    	  # Create project workspace
+    	  ng new MyApp
 
-  	  # navigate to the project workspace
-  	  cd MyApp
+    	  # navigate to the project workspace
+    	  cd MyApp
 
-  	  # start your app and open it in browser
-  	  ng serve --open
-  	</code></pre>
-  </section>
-  <section><h3>Main commands</h3>
-  	<pre><code rel="Terminal" class="bash">
-  		ng help
-  	</code></pre>
-    <table style="font-size: .6em">
-      <tr><th>Command</th><th>Action</th></tr>
-      <tr><td>help</td><td>Show help</td></tr>
-      <tr><td>new</td><td>Creates a new directory and a new Angular app.</td></tr>
-      <tr><td>update</td><td>Updates your application and its dependencies.</td></tr>
-      <tr><td>serve</td><td>Builds and serves your app, rebuilding on file changes.</td></tr>
-      <tr><td>build</td><td>Builds your app and places it into the output path (dist/ by default).</td></tr>
-      <tr><td>generate</td><td>Generates and/or modifies files based on a schematic.</td></tr>
-      <tr><td>add</td><td>Add support for a library to your project.</td></tr>
-      <tr><td>test</td><td>Run unit tests in existing project.</td></tr>
-      <tr><td>e2e</td><td>Run e2e tests in existing project.</td></tr>
-      <tr><td>lint</td><td>Lints code in existing project.</td></tr>
-      <!-- <tr><td>xi18n</td><td>Extracts i18n messages from source code.</td></tr> -->
-      <!-- <tr><td>config</td><td>Get/set configuration values.</td></tr> -->
-      <tr><td>doc</td><td>Opens the official Angular API documentation for a given keyword.</td></tr>
-    </table>
-  </section>
-  <section><h3>ng <i>command</i> --help</h3>
-    <p>You can get help for any ng command, if you put at the end of it the option <code>--help</code></p>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      ng new --help
+    	  # start your app and open it in browser
+    	  ng serve --open
+    	</code></pre>
+    </section>
+    <section><h3>Main commands</h3>
+    	<pre><code rel="Terminal" class="bash">
+    		ng help
+    	</code></pre>
+      <table style="font-size: .6em">
+        <tr><th>Command</th><th>Action</th></tr>
+        <tr><td>help</td><td>Show help</td></tr>
+        <tr><td>new</td><td>Creates a new directory and a new Angular app.</td></tr>
+        <tr><td>update</td><td>Updates your application and its dependencies.</td></tr>
+        <tr><td>serve</td><td>Builds and serves your app, rebuilding on file changes.</td></tr>
+        <tr><td>build</td><td>Builds your app and places it into the output path (dist/ by default).</td></tr>
+        <tr><td>generate</td><td>Generates and/or modifies files based on a schematic.</td></tr>
+        <tr><td>add</td><td>Add support for a library to your project.</td></tr>
+        <tr><td>test</td><td>Run unit tests in existing project.</td></tr>
+        <tr><td>e2e</td><td>Run e2e tests in existing project.</td></tr>
+        <tr><td>lint</td><td>Lints code in existing project.</td></tr>
+        <!-- <tr><td>xi18n</td><td>Extracts i18n messages from source code.</td></tr> -->
+        <!-- <tr><td>config</td><td>Get/set configuration values.</td></tr> -->
+        <tr><td>doc</td><td>Opens the official Angular API documentation for a given keyword.</td></tr>
+      </table>
+    </section>
+    <section><h3>ng <i>command</i> --help</h3>
+      <p>You can get help for any ng command, if you put at the end of it the option <code>--help</code></p>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng new --help
 
-      usage: ng new &lt;name&gt; [options]
-      options:
-        --collection (-c)
-          Schematics collection to use.
-        --dry-run (-d)
-          Run through without making any changes.
-        --force (-f)
-          Forces overwriting of files.
-        --inline-style (-s)
-          Specifies if the style will be in the ts file.
-        --inline-template (-t)
-          Specifies if the template will be in the ts file.
-        --prefix (-p)
-          The prefix to apply to generated selectors.
-        --routing
-          Generates a routing module.
-        --skip-package-json
-          Do not add dependencies to package.json.
-        --skip-tests (-S)
-          Skip creating spec files.
-        --style
-          The file extension to be used for style files.
-        --verbose (-v)
-          Adds more details to output logging.
-        --view-encapsulation
-          Specifies the view encapsulation strategy.
-    </code></pre>
-  </section>
-  <section><h3>ng <i>command</i> --help - example</h3>
-    <p style="font-size: .8em">If we want to check the available options for the command <code>ng generate component</code>, we can get help instantly:</p>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      ng generate component --help
-      usage: ng generate component <name> [options]
-      options:
-        --change-detection (-c)
-          Specifies the change detection strategy.
-        --dry-run (-d)
-          Run through without making any changes.
-        --export
-          Specifies if declaring module exports the component.
-        --flat
-          Flag to indicate if a dir is created.
-        --force (-f)
-          Forces overwriting of files.
-        --inline-style (-s)
-          Specifies if the style will be in the ts file.
-        --inline-template (-t)
-          Specifies if the template will be in the ts file.
-        --module (-m)
-          Allows specification of the declaring module.
-        --prefix (-p)
-          The prefix to apply to generated selectors.
-        --project
-          The name of the project.
-        --selector
-          The selector to use for the component.
-        --skip-import
-          Flag to skip the module import.
-        --spec
-          Specifies if a spec file is generated.
-        --styleext
-          The file extension to be used for style files.
-        --view-encapsulation (-v)
-          Specifies the view encapsulation strategy.
-    </code></pre>
-  </section>
-  <section><h3>--dry-run</h3>
-    <dl class="fa">
-      <dt>Any CLI command can be run with <code>--dry-run</code> option, which will prevent CLI from making any changes to your project.</dt>
-      <dt>Dry-run mode is useful to preview what an ng command will do, especially, if you use it with <code>--verbose</code> option.</dt>
-    </dl>
-  </section>
-  <section><h3>--dry-run - example</h3>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      ng new SimplestApp --dry-run
-      CREATE SimplestApp/README.md (1028 bytes)
-      CREATE SimplestApp/angular.json (3444 bytes)
-      CREATE SimplestApp/package.json (1316 bytes)
-      CREATE SimplestApp/tsconfig.json (384 bytes)
-      CREATE SimplestApp/tslint.json (2805 bytes)
-      CREATE SimplestApp/.editorconfig (245 bytes)
-      CREATE SimplestApp/.gitignore (503 bytes)
-      CREATE SimplestApp/src/environments/environment.prod.ts (51 bytes)
-      CREATE SimplestApp/src/environments/environment.ts (631 bytes)
-      CREATE SimplestApp/src/favicon.ico (5430 bytes)
-      CREATE SimplestApp/src/index.html (298 bytes)
-      CREATE SimplestApp/src/main.ts (370 bytes)
-      CREATE SimplestApp/src/polyfills.ts (3194 bytes)
-      CREATE SimplestApp/src/test.ts (642 bytes)
-      CREATE SimplestApp/src/assets/.gitkeep (0 bytes)
-      CREATE SimplestApp/src/styles.css (80 bytes)
-      CREATE SimplestApp/src/browserslist (375 bytes)
-      CREATE SimplestApp/src/karma.conf.js (964 bytes)
-      CREATE SimplestApp/src/tsconfig.app.json (194 bytes)
-      CREATE SimplestApp/src/tsconfig.spec.json (282 bytes)
-      CREATE SimplestApp/src/tslint.json (314 bytes)
-      CREATE SimplestApp/src/app/app.module.ts (314 bytes)
-      CREATE SimplestApp/src/app/app.component.css (0 bytes)
-      CREATE SimplestApp/src/app/app.component.html (1141 bytes)
-      CREATE SimplestApp/src/app/app.component.spec.ts (986 bytes)
-      CREATE SimplestApp/src/app/app.component.ts (207 bytes)
-      CREATE SimplestApp/e2e/protractor.conf.js (752 bytes)
-      CREATE SimplestApp/e2e/src/app.e2e-spec.ts (299 bytes)
-      CREATE SimplestApp/e2e/src/app.po.ts (208 bytes)
-      CREATE SimplestApp/e2e/tsconfig.e2e.json (213 bytes)
+        usage: ng new &lt;name&gt; [options]
+        options:
+          --collection (-c)
+            Schematics collection to use.
+          --dry-run (-d)
+            Run through without making any changes.
+          --force (-f)
+            Forces overwriting of files.
+          --inline-style (-s)
+            Specifies if the style will be in the ts file.
+          --inline-template (-t)
+            Specifies if the template will be in the ts file.
+          --prefix (-p)
+            The prefix to apply to generated selectors.
+          --routing
+            Generates a routing module.
+          --skip-package-json
+            Do not add dependencies to package.json.
+          --skip-tests (-S)
+            Skip creating spec files.
+          --style
+            The file extension to be used for style files.
+          --verbose (-v)
+            Adds more details to output logging.
+          --view-encapsulation
+            Specifies the view encapsulation strategy.
+      </code></pre>
+    </section>
+    <section><h3>ng <i>command</i> --help - example</h3>
+      <p style="font-size: .8em">If we want to check the available options for the command <code>ng generate component</code>, we can get help instantly:</p>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng generate component --help
+        usage: ng generate component <name> [options]
+        options:
+          --change-detection (-c)
+            Specifies the change detection strategy.
+          --dry-run (-d)
+            Run through without making any changes.
+          --export
+            Specifies if declaring module exports the component.
+          --flat
+            Flag to indicate if a dir is created.
+          --force (-f)
+            Forces overwriting of files.
+          --inline-style (-s)
+            Specifies if the style will be in the ts file.
+          --inline-template (-t)
+            Specifies if the template will be in the ts file.
+          --module (-m)
+            Allows specification of the declaring module.
+          --prefix (-p)
+            The prefix to apply to generated selectors.
+          --project
+            The name of the project.
+          --selector
+            The selector to use for the component.
+          --skip-import
+            Flag to skip the module import.
+          --spec
+            Specifies if a spec file is generated.
+          --styleext
+            The file extension to be used for style files.
+          --view-encapsulation (-v)
+            Specifies the view encapsulation strategy.
+      </code></pre>
+    </section>
+    <section><h3>--dry-run</h3>
+      <dl class="fa">
+        <dt>Any CLI command can be run with <code>--dry-run</code> option, which will prevent CLI from making any changes to your project.</dt>
+        <dt>Dry-run mode is useful to preview what an ng command will do, especially, if you use it with <code>--verbose</code> option.</dt>
+      </dl>
+    </section>
+    <section><h3>--dry-run - example</h3>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng new SimplestApp --dry-run
+        CREATE SimplestApp/README.md (1028 bytes)
+        CREATE SimplestApp/angular.json (3444 bytes)
+        CREATE SimplestApp/package.json (1316 bytes)
+        CREATE SimplestApp/tsconfig.json (384 bytes)
+        CREATE SimplestApp/tslint.json (2805 bytes)
+        CREATE SimplestApp/.editorconfig (245 bytes)
+        CREATE SimplestApp/.gitignore (503 bytes)
+        CREATE SimplestApp/src/environments/environment.prod.ts (51 bytes)
+        CREATE SimplestApp/src/environments/environment.ts (631 bytes)
+        CREATE SimplestApp/src/favicon.ico (5430 bytes)
+        CREATE SimplestApp/src/index.html (298 bytes)
+        CREATE SimplestApp/src/main.ts (370 bytes)
+        CREATE SimplestApp/src/polyfills.ts (3194 bytes)
+        CREATE SimplestApp/src/test.ts (642 bytes)
+        CREATE SimplestApp/src/assets/.gitkeep (0 bytes)
+        CREATE SimplestApp/src/styles.css (80 bytes)
+        CREATE SimplestApp/src/browserslist (375 bytes)
+        CREATE SimplestApp/src/karma.conf.js (964 bytes)
+        CREATE SimplestApp/src/tsconfig.app.json (194 bytes)
+        CREATE SimplestApp/src/tsconfig.spec.json (282 bytes)
+        CREATE SimplestApp/src/tslint.json (314 bytes)
+        CREATE SimplestApp/src/app/app.module.ts (314 bytes)
+        CREATE SimplestApp/src/app/app.component.css (0 bytes)
+        CREATE SimplestApp/src/app/app.component.html (1141 bytes)
+        CREATE SimplestApp/src/app/app.component.spec.ts (986 bytes)
+        CREATE SimplestApp/src/app/app.component.ts (207 bytes)
+        CREATE SimplestApp/e2e/protractor.conf.js (752 bytes)
+        CREATE SimplestApp/e2e/src/app.e2e-spec.ts (299 bytes)
+        CREATE SimplestApp/e2e/src/app.po.ts (208 bytes)
+        CREATE SimplestApp/e2e/tsconfig.e2e.json (213 bytes)
 
-      NOTE: Run with "dry run" no changes were made.
-    </code></pre>
+        NOTE: Run with "dry run" no changes were made.
+      </code></pre>
+    </section>
   </section>
-</section>
 
 
 <!-- HowAnAngularAppWorks -->
-<section data-min="15"><h1>Project Directory Structure and Files</h1></section>
-<section><h2>Project Directory Structure and Files</h2>
-  <p><code>ng new</code> creates the following structure:</p>
-  <dl class="fa" style="font-size: .8em; line-height: 80%;">
-    <dt><code>angular.json</code> (<code>.angular-cli.json</code> in angular cli versions < 6.0)</dt>
-    <dd>configuration for Angular CLI</dd>
-    <dt><code>e2e/</code></dt>
-    <dd>for <em>end-to-end</em> (e2e) tests</dd>
-    <dt><code>node_modules/</code></dt>
-    <dd>here are installed project's node modules dependencies</dd>
-    <dt><code class="note">package.json</code></dt>
-    <dd><em>dependencies</em> and <em>devDependencies</em> sections specifies the node modules dependencies</dd>
-    <dt><code>package-lock.json</code></dt>
-    <dd>it is automatically generated for any operations where npm modifies either the node_modules tree, or package.json</dd>
-    <dt><code class="note">src/app/</code></dt>
-    <dd>here is the actual logic of your app</dd>
-    <dt><code>tsconfig.json</code></dt>
-    <dd>TypeScript compiler configuration</dd>
-    <dt><code>tslint.json</code></dt>
-    <dd>tslint configuration</dd>
-  </dl>
-</section>
-
-<section data-min="15"><h1>Angular Main Workflow Overview</h1></section>
-<section><h2>Angular Main Workflow Overview</h2>
-  <section>
-    <a href="images/AngularWorkflowOverview.png"><img src="images/AngularWorkflowOverview.png"></a>
-  </section>
-</section>
-
-<section data-min="20"><h1>Angular Architecture Overview</h1></section>
-<section><h2>Angular Architecture Overview</h2>
-  <section>
-    <p>The architecture overview as depicted in angular.io docs:</p>
-    <a href="images/overview2byAngTeam.png"><img src="images/overview2byAngTeam.png"></a>
-  </section>
-  <section>
-    <dl class="fa">
-      <dt>Angular app consists of one or more <span class="note">modules</span>.</dt>
-      <dt>Every Angular app has at least one module - the root module (AppModule)</dt>
-      <dt>Each module encompasses <span class="note">components</span> and <span class="note">services</span> </dt>
-      <dt>A component is a unit, containing the UI (HTML + CSS) and the JS code</dt>
-      <dt>Service - code, which is not intrinsic to a single component, i.e. the business logics.</dt>
+  <section data-min="15"><h1>Project Directory Structure and Files</h1></section>
+  <section><h2>Project Directory Structure and Files</h2>
+    <p><code>ng new</code> creates the following structure:</p>
+    <dl class="fa" style="font-size: .8em; line-height: 80%;">
+      <dt><code>angular.json</code> (<code>.angular-cli.json</code> in angular cli versions < 6.0)</dt>
+      <dd>configuration for Angular CLI</dd>
+      <dt><code>e2e/</code></dt>
+      <dd>for <em>end-to-end</em> (e2e) tests</dd>
+      <dt><code>node_modules/</code></dt>
+      <dd>here are installed project's node modules dependencies</dd>
+      <dt><code class="note">package.json</code></dt>
+      <dd><em>dependencies</em> and <em>devDependencies</em> sections specifies the node modules dependencies</dd>
+      <dt><code>package-lock.json</code></dt>
+      <dd>it is automatically generated for any operations where npm modifies either the node_modules tree, or package.json</dd>
+      <dt><code class="note">src/app/</code></dt>
+      <dd>here is the actual logic of your app</dd>
+      <dt><code>tsconfig.json</code></dt>
+      <dd>TypeScript compiler configuration</dd>
+      <dt><code>tslint.json</code></dt>
+      <dd>tslint configuration</dd>
     </dl>
   </section>
-  <section><h3>Components</h3>
-    <dl class="fa">
-      <dt>A component represents a patch of screen called a <em>view</em>, like nav bar, search, footer and etc.</dt>
-      <dt>They are independent, reusable, and are built on the concepts of <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a></dt>
-      <dd>Check the official Web Components repository: <a href="https://www.webcomponents.org/">@webcomponents.org</a></dd>
-    </dl>
+  <section data-min="15"><h1>Angular Main Workflow Overview</h1></section>
+  <section><h2>Angular Main Workflow Overview</h2>
+    <section>
+      <a href="images/AngularWorkflowOverview.png"><img src="images/AngularWorkflowOverview.png"></a>
+    </section>
   </section>
-  <section><h3>Components</h3>
-    <dl class="fa">
-      <dt>Each component can consists of many other components (i.e. they form a <em>component tree</em>)</dt>
-      <dt>Components can communicate with each other</dt>
-      <dt>Angular creates, updates, and destroys components as the user moves through the application</dt>
-      <dt>A TypeScript class can become a component if it is decorated with <code>@Component</code> decorator</dt>
-    </dl>
+  <section data-min="20"><h1>Angular Architecture Overview</h1></section>
+  <section><h2>Angular Architecture Overview</h2>
+    <section>
+      <p>The architecture overview as depicted in angular.io docs:</p>
+      <a href="images/overview2byAngTeam.png"><img src="images/overview2byAngTeam.png"></a>
+    </section>
+    <section>
+      <dl class="fa">
+        <dt>Angular app consists of one or more <span class="note">modules</span>.</dt>
+        <dt>Every Angular app has at least one module - the root module (AppModule)</dt>
+        <dt>Each module encompasses <span class="note">components</span> and <span class="note">services</span> </dt>
+        <dt>A component is a unit, containing the UI (HTML + CSS) and the JS code</dt>
+        <dt>Service - code, which is not intrinsic to a single component, i.e. the business logics.</dt>
+      </dl>
+    </section>
+    <section><h3>Components</h3>
+      <dl class="fa">
+        <dt>A component represents a patch of screen called a <em>view</em>, like nav bar, search, footer and etc.</dt>
+        <dt>They are independent, reusable, and are built on the concepts of <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a></dt>
+        <dd>Check the official Web Components repository: <a href="https://www.webcomponents.org/">@webcomponents.org</a></dd>
+      </dl>
+    </section>
+    <section><h3>Components</h3>
+      <dl class="fa">
+        <dt>Each component can consists of many other components (i.e. they form a <em>component tree</em>)</dt>
+        <dt>Components can communicate with each other</dt>
+        <dt>Angular creates, updates, and destroys components as the user moves through the application</dt>
+        <dt>A TypeScript class can become a component if it is decorated with <code>@Component</code> decorator</dt>
+      </dl>
+    </section>
+    <section><h3>Create Components</h3>
+      <dl class="fa">
+        <dt>When creating a new project, Angular creates for us only the main app component <em>app.component.*</em></dt>
+        <dt>We can create other components using the Angular CLI commands:</dt>
+        <pre><code rel="Terminal" class="bash" data-noescape>
+          ng generate component compName
+        </code></pre>
+        <dd>or by the short-hand commands:</dd>
+        <pre><code rel="Terminal" class="bash" data-noescape>
+          ng g c compName
+        </code></pre>
+      </dl>
+    </section>
   </section>
-  <section><h3>Create Components</h3>
-    <dl class="fa">
-      <dt>When creating a new project, Angular creates for us only the main app component <em>app.component.*</em></dt>
-      <dt>We can create other components using the Angular CLI commands:</dt>
+  <section data-min="30"><h1>Frame a BookStore app in Angular terms</h1></section>
+  <section><h2>Frame a BookStore app in Angular terms</h2>
+    <section>
+      <a href="images/BookStoreComponentsOverview.png"><img src="images/BookStoreComponentsOverview.png"></a>
+    </section>
+  </section>
+  <section data-min="15"><h1>Create the Components of BookStore</h1></section>
+  <section><h2>Create the Components of BookStore</h2>
+    <section><h3>create main components files</h3>
+      <p>For now, we do not need the *.component.spec.ts file, which is used to for test cases. That's wh, we'll instruct Angular CLI to not create the spec file per component:</p>
       <pre><code rel="Terminal" class="bash" data-noescape>
-        ng generate component compName
-      </code></pre>
-      <dd>or by the short-hand commands:</dd>
-      <pre><code rel="Terminal" class="bash" data-noescape>
-        ng g c compName
-      </code></pre>
-    </dl>
-  </section>
-</section>
+        # the header:
+        ng g c header --spec==false
 
-<section data-min="30"><h1>Frame a BookStore app in Angular terms</h1></section>
-<section><h2>Frame a BookStore app in Angular terms</h2>
-  <section>
-    <a href="images/BookStoreComponentsOverview.png"><img src="images/BookStoreComponentsOverview.png"></a>
+        # the footer:
+        ng g c footer --spec==false
+
+        # the main:
+        ng g c main --spec==false
+      </code></pre>
+    </section>
+    <section>
+      <p>Our project tree should look like:</p>
+      <pre><code rel="Output" class="bash" data-noescape>
+        app/
+        ├── app.component.css
+        ├── app.component.html
+        ├── app.component.spec.ts
+        ├── app.component.ts
+        ├── app.module.ts
+        ├── footer
+        │   ├── footer.component.css
+        │   ├── footer.component.html
+        │   └── footer.component.ts
+        ├── header
+        │   ├── header.component.css
+        │   ├── header.component.html
+        │   └── header.component.ts
+        └── main
+            ├── main.component.css
+            ├── main.component.html
+            └── main.component.ts
+      </code></pre>
+    </section>
   </section>
-</section>
 
 
 <!-- ComponentsBasics -->
-<section data-min="__Y__"><h1>Components Basics</h1></section>
-<section><h2>Components Basics</h2>
-  <section>
-    <pre><code rel="JS" class="js">
-      @Component({
-        selector: 'app-root',
-        templateUrl: './app.component.html',
-        styleUrls: ['./app.component.css']
-      })
-      export class AppComponent {
-        title = 'app';
-      }
-    </code></pre>
-    <a href="images/AngularComponentBox_MY.png"><img src="images/AngularComponentBox_MY.png"></a>
-  </section>
-  <section>
-  	<dl class="fa">
-  		<dt>Each component defines a class that contains application data and logic, and is associated with an HTML template that defines a view to be displayed in a target environment.</dt>
-  		<dt>Every Angular application has at least one component, the <span class="note">root component</span> that connects a component hierarchy with the page document object model (DOM).</dt>
-  	</dl>
-  </section>
-</section>
-<section data-min="10"><h1>The app component tree</h1></section>
-<section><h2>The app component tree</h2>
-  <section>
-    <a href="images/ComponentTree-BookStoreSimple.png"><img src="images/ComponentTree-BookStoreSimple.png"></a>
-  </section>
-</section>
-<section><h2>Component Declaration</h2>
-  <dl class="fa">
-    <dt>When a component A has to use component B in its template, then component B must be made available to the component A. </dt>
-    <dt>Component B has to be declared in the module of the component A.</dt>
-    <dt>If the component B is declared in another module, the module must be imported into the module of the first component. Otherwise, the component won’t be compiled with the template.</dt>
-  </dl>
-</section>
-<section data-min="10"><h1>Components Metadata and  Decorators</h1></section>
-<section><h2>Components Decorators</h2>
-  <section>
-    <dl class="fa">
-      <dt>A component is a JavaScript class with a decorator.</dt>
-      <dt>The decorator defines how the component should look on the page, how it has to be used, and the dependencies of the component.</dt>
-      <dt>In decorator, we can specify various component metadata</dt>
-    </dl>
-  </section>
-  <section><h3>Metadata Properties:</h3>
-    <p class="note">The minimum metadata for a component are the ones specifying the selector, template and style:</p>
-    <dl class="fa">
-      <dt><strong>selector</strong> - css selector that identifies this component in a template</dt>
-      <dt><strong>styleUrls</strong> - list of urls to stylesheets to be applied to this component's view</dt>
-      <dt><strong>styles</strong> - inline-defined styles to be applied to this component's view</dt>
-      <dt><strong>template</strong> - inline-defined template for the view</dt>
-      <dt><strong>templateUrl</strong> - url to an external file containing a template for the view</dt>
-    </dl>
-  </section>
-  <section style="font-size: .9em;"><h3>Metadata Properties:</h3>
-    <dl class="fa">
-      <dt><strong>animations</strong> - list of animations of this component</dt>
-      <dt><strong>changeDetection</strong> - change detection strategy used by this component</dt>
-      <dt><strong>encapsulation</strong> - style encapsulation strategy used by this component</dt>
-      <dt><strong>entryComponents</strong> - list of components that are dynamically inserted into the view of this component</dt>
-      <dt><strong>exportAs</strong> - name under which the component instance is exported in a template</dt>
-    </dl>
-  </section>
-  <section style="font-size: .9em;"><h3>Metadata Properties:</h3>
-    <dl class="fa">
-      <dt><strong>inputs</strong> - list of class property names to data-bind as component inputs</dt>
-      <dt><strong>outputs</strong> - list of class property names that expose output events that others can
-      subscribe to</dt>
-      <dt><strong>providers</strong> - list of providers available to this component and its children</dt>
-      <dt><strong>viewProviders</strong> - list of providers available to this component and its view children</dt></dt>
-      <dt><strong>queries</strong> -  configure queries that can be injected into the component</dt>
-    </dl>
-  </section>
-</section>
-<section data-min="10"><h1>The Selector</h1></section>
-<section><h2>The Selector</h2>
-  <section><h3></h3>
-    <dl class="fa">
-      <dt><span class="note">element-name</span> - select by element name.</dt>
-      <dt><span class="note">.class</span> - select by class name.</dt>
-      <dt><span class="note">[attribute]</span> - select by attribute name.</dt>
-      <dt><span class="note">[attribute=value]</span> - select by attribute name and value.</dt>
-      <dt><span class="note">:not(sub_selector)</span> - select only if the element does not match the sub_selector.</dt>
-      <dt><span class="note">selector1, selector2</span> - select if either selector1 or selector2 matches.</dt>
-    </dl>
-  </section>
-</section>
-<section data-min="10"><h1>The Template</h1></section>
-<section><h2>The Template</h2>
-  <section>
-    <dl class="fa">
-      <dt>An Angular Template represents the view.</dt>
-      <dt>It can contain an HTML code (no scripts elements, though) augmented with Angular's entities.</dt>
-    </dl>
-  </section>
-  <section><h3>Interpolation <code>{﻿{...}}</code></h3>
-
-  </section>
-  <section><h3>Template Reference Variables</h3>
-    <dl class="fa">
-      <dt>A template reference variable is often a reference to a DOM element within a template</dt>
-      <dt>It can also be a reference to an <em>Angular component</em> or <em>directive</em> or a <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">web component</a>.</dt>
-      <dt>A template reference variable is declared by prefixing the variable with <code>#</code>.</dt>
-      <dt>It can be accessed anywhere in the entire template.</dt>
-    </dl>
-  </section>
-  <section><h3>Template Reference Variables - examples</h3>
-    <pre><code rel="components.component.html" class="html">
-      &lt;section&gt;
-        &lt;h2&gt;Template reference variables&lt;/h2&gt;
-        &lt;input #userName placeholder=&quot;enter a user name&quot;&gt;
-        &lt;button (click)=&quot;getUserName(userName.value)&quot;&gt;Get UserName&lt;/button&gt;
-      &lt;/section&gt;
-    </code></pre>
-    <pre><code rel="components.component.ts" class="typescript">
-      import { Component, OnInit } from '@angular/core';
-
-      @Component({
-        selector: 'app-components',
-        templateUrl: './components.component.html',
-        styleUrls: ['./components.component.css']
-      })
-      export class ComponentsComponent implements OnInit {
-
-        constructor() { }
-
-        ngOnInit() {
+  <section data-min="__Y__"><h1>Components Basics</h1></section>
+  <section><h2>Components Basics</h2>
+    <section>
+      <dl class="fa">
+        <dt>A component is a <span class="note">TypeScript class</span> with an <span class="note">HTML template</span> and an optional set of CSS styles that control a part of the screen.</dt>
+      </dl>
+      <pre><code rel="JS" class="js">
+        @Component({
+          selector: 'app-root',
+          templateUrl: './app.component.html',
+          styleUrls: ['./app.component.css']
+        })
+        export class AppComponent {
+          title = 'app';
         }
-
-        getUserName(data) {
-          console.log(data);
-        }
-      }
-    </code></pre>
-  </section>
-</section>
-<section data-min="15"><h1>Create the Components of BookStore</h1></section>
-<section><h2>Create the Components of BookStore</h2>
-  <section><h3>create main components files</h3>
-    <p>For now, we do not need the *.component.spec.ts file, which is used to for test cases. That's wh, we'll instruct Angular CLI to not create the spec file per component:</p>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      # the header:
-      ng g c header --spec==false
-
-      # the footer:
-      ng g c footer --spec==false
-
-      # the main:
-      ng g c main --spec==false
-    </code></pre>
-  </section>
-  <section>
-    <p>Our project tree should look like:</p>
-    <pre><code rel="Output" class="bash" data-noescape>
-      app/
-      ├── app.component.css
-      ├── app.component.html
-      ├── app.component.spec.ts
-      ├── app.component.ts
-      ├── app.module.ts
-      ├── footer
-      │   ├── footer.component.css
-      │   ├── footer.component.html
-      │   └── footer.component.ts
-      ├── header
-      │   ├── header.component.css
-      │   ├── header.component.html
-      │   └── header.component.ts
-      └── main
-          ├── main.component.css
-          ├── main.component.html
-          └── main.component.ts
-    </code></pre>
-  </section>
-</section>
-
-
-<!-- Directives -->
-<section data-min="10"><h1>Directives</h1></section>
-<section><h2>Directives</h2>
-  <section>
-    <dl class="fa">
-      <dt>Directives are markers on DOM element that tell Angular to attach a specified behaviour to an existing element.</dt>
-      <dt>Angular provides a number of built-in directives, which are attributes we can add to our template elements in order to attach to them a dynamic behaviour.</dt>
-    </dl>
-  </section>
-  <section>
-    <dl class="fa">
-      <dt>Angular includes several structural directives:</dt>
-      <dd><code>NgIf</code></dd>
-      <dd><code>NgFor</code></dd>
-      <dd><code>NgSwitch, NgSwitchWhen, NgSwitchDefault</code></dd>
-      <dt>And several non-structural directives:</dt>
-      <dd><code>NgClass</code></dd>
-      <dd><code>NgStyle</code></dd>
-      <dd><code>NgControlName</code></dd>
-      <dd><code>NgModel</code></dd>
-    </dl>
-  </section>
-</section>
-
-<section data-min="50"><h1>Built-In Directives</h1></section>
-<section><h2>Built-In Directives</h2>
-  <section><h3>Structural Directives</h3>
-    <dl class="fa">
-      <dt>They can manipulate the DOM structure.</dt>
-      <dt>With them we can add, remove or modify DOM elements.</dt>
-      <dt>An asterisk (*) precedes the structural directive name</dt>
-      <dt>You may apply only one structural directive to an element.</dt>
-    </dl>
-  </section>
-  <section><h3>Structural Directives</h3>
-    <dl class="fa" style="font-size: .8em">
-      <dt>Asterisk symbol is a "syntactic sugar".</dt>
-      <dt>Internally, Angular translates the <code>*ngSomething</code> attribute into a <code>&lt;ng-template&gt;</code> element, wrapped around the host element</dt>
-      <pre><code rel="Asteric Notation" class="html">
-        &lt;h2 *ngIf=&quot;true&quot;&gt;shown&lt;/h2&gt;
       </code></pre>
-      <pre><code rel="<ng-template> wrapping" class="html">
-        <ng-template [ngIf]="true">
-          &lt;h2&gt;shown&lt;/h2&gt;
-        </ng-template>
-      </code></pre>
-      <dd>The translation is according to the Angular's <a href="https://angular.io/guide/structural-directives#microsyntax">microsyntax</a>.</dd>
-    </dl>
-    <p class="note">More on property bindings (<code>[ngif]=""</code>) will be discused in "Data and Events Bindings" theme.</p>
+      <a href="images/AngularComponentBox_MY.png"><img src="images/AngularComponentBox_MY.png"></a>
+    </section>
+    <section>
+    	<dl class="fa">
+    		<dt>Each component defines a class that contains application data and logic, and is associated with an HTML template that defines a view to be displayed in a target environment.</dt>
+    		<dt>Every Angular application has at least one component, the <span class="note">root component</span> that connects a component hierarchy with the page document object model (DOM).</dt>
+    	</dl>
+    </section>
   </section>
-  <section><h3><code>NgIf</code></h3>
-    <pre><code rel="Syntax" class="bash">
-      &lt;tag *ngIf=&quot;condition&quot;&gt;&lt;/tag&gt;
-    </code></pre>
+  <section data-min="10"><h1>The app component tree</h1></section>
+  <section><h2>The app component tree</h2>
+    <section>
+      <a href="images/ComponentTree-BookStoreSimple.png"><img src="images/ComponentTree-BookStoreSimple.png"></a>
+    </section>
+  </section>
+  <section><h2>Component Declaration</h2>
     <dl class="fa">
-      <dt>With <code>ngIf</code> directive we can display or hide an element based on a condition.</dt>
-      <dt>condition is the result of an <em>expression</em> that we pass into directive.</dt>
-      <dd>if condition == true : the element will be included in the DOM</dd>
-      <dd>if condition == false : the element will be removed (not just hide) from the DOM</dd>
+      <dt>When a component A has to use component B in its template, then component B must be made available to the component A. </dt>
+      <dt>Component B has to be declared in the module of the component A.</dt>
+      <dt>If the component B is declared in another module, the module must be imported into the module of the first component. Otherwise, the component won’t be compiled with the template.</dt>
     </dl>
   </section>
-  <section><h3><code>NgIf - examples</code></h3>
-    <pre style="width: 110%"><code rel="directives-test.component.ts" class="typescript">
-      import { Component, OnInit } from '@angular/core';
+  <section data-min="10"><h1>Components Metadata and  Decorators</h1></section>
+  <section><h2>Components Decorators</h2>
+    <section>
+      <dl class="fa">
+        <dt>A component is a TypeScript class with a decorator.</dt>
+        <dt>The decorator defines how the component should look on the page, how it has to be used, and the dependencies of the component.</dt>
+        <dt>In decorator, we can specify various component metadata</dt>
+        <dt>Reference: <a href="https://angular.io/api/core/Component">Component @angular.io</a></dt>
+      </dl>
+    </section>
+    <section><h3>Metadata Properties:</h3>
+      <p class="note">The minimum metadata for a component are the ones specifying the selector, template and style:</p>
+      <dl class="fa">
+        <dt><strong>selector</strong> - css selector that identifies this component in a template</dt>
+        <dt><strong>styleUrls</strong> - list of urls to stylesheets to be applied to this component's view</dt>
+        <dt><strong>styles</strong> - inline-defined styles to be applied to this component's view</dt>
+        <dt><strong>template</strong> - inline-defined template for the view</dt>
+        <dt><strong>templateUrl</strong> - url to an external file containing a template for the view</dt>
+      </dl>
+    </section>
+    <section style="font-size: .9em;" class="advanced"><h3>Metadata Properties:</h3>
+      <dl class="fa">
+        <dt><strong>animations</strong> - list of animations of this component</dt>
+        <dt><strong>changeDetection</strong> - change detection strategy used by this component</dt>
+        <dt><strong>encapsulation</strong> - style encapsulation strategy used by this component</dt>
+        <dt><strong>entryComponents</strong> - list of components that are dynamically inserted into the view of this component</dt>
+        <dt><strong>exportAs</strong> - name under which the component instance is exported in a template</dt>
+      </dl>
+    </section>
+    <section style="font-size: .9em;" class="advanced"><h3>Metadata Properties:</h3>
+      <dl class="fa">
+        <dt><strong>inputs</strong> - list of class property names to data-bind as component inputs</dt>
+        <dt><strong>outputs</strong> - list of class property names that expose output events that others can
+        subscribe to</dt>
+        <dt><strong>providers</strong> - list of providers available to this component and its children</dt>
+        <dt><strong>viewProviders</strong> - list of providers available to this component and its view children</dt></dt>
+        <dt><strong>queries</strong> -  configure queries that can be injected into the component</dt>
+      </dl>
+    </section>
+  </section>
+  <section data-min="10"><h1>The Selector</h1></section>
+  <section><h2>The Selector</h2>
+    <section><h3></h3>
+      <dl class="fa">
+        <dt><span class="note">element-name</span> - select by element name.</dt>
+        <dt><span class="note">.class</span> - select by class name.</dt>
+        <dt><span class="note">[attribute]</span> - select by attribute name.</dt>
+        <dt>Reference: <a href="https://angular.io/api/core/Directive#selector">Selector</a></dt>
+      </dl>
+    </section>
+  </section>
+  <section data-min="10"><h1>The Template</h1></section>
+  <section><h2>The Template</h2>
+    <section>
+      <dl class="fa">
+        <dt>An Angular Template represents the view.</dt>
+        <dt>It can contain an HTML code (no scripts elements, though) augmented with Angular's entities.</dt>
+      </dl>
+    </section>
+  </section>
 
-      @Component({
-        selector: 'app-directives-test',
-        styles: [`section&gt;h2{
-                    border: .1em solid #000; margin: 1em;
-                }`],
-        template: `&lt;section&gt;
-                    &lt;h2 *ngIf=&quot;false&quot;&gt;*ngIf=&quot;false&quot;&lt;/h2&gt;
-                    &lt;h2 *ngIf=&quot;true&quot;&gt;*ngIf=&quot;true&quot;&lt;/h2&gt;
-                    &lt;h2 *ngIf=&quot;3&gt;2-1&quot;&gt;*ngIf=&quot;3&gt;2-1&quot;&lt;/h2&gt;
-                    &lt;h2 *ngIf=&quot;showH2&quot;&gt;*ngIf=&quot;showH2&quot;&lt;/h2&gt;
-                  &lt;/section&gt;`
-      })
-      export class DirectivesTestComponent implements OnInit {
 
-        showH2 = 'true';
+<!-- Angular Template Syntax and data binding-->
+  <section data-min="1"><h1>Data binding Overview</h1></section>
+  <section><h2>Data binding Overview</h2>
+    <section>
+      <dl class="fa" style="font-size: .8em">
+        <dt><span class="note">data binding</span> == synchronization between elements of the component UI (<em>view</em>) and the data in the component class (<em>model</em>), and vice versa.</dt>
+      </dl>
+      <a href="images/AngularDataBinding_MY.png"><img src="images/AngularDataBinding_MY.png"></a>
+    </section>
+    <section>
+      <dl class="fa">
+        <dt>Data binding can control every aspect of the user interface:</dt>
+        <dd>hiding elements, showing results, closing things, accepting user input, and more</dd>
+        <dt>Data bindings are expressions embedded into templates and are evaluated to produce dynamic content in the HTML document.</dt>
+        <dt>Data bindings are applied as attributes on HTML elements or as special sequences of characters in strings</dt>
+        <dt>Data bindings contain simple JavaScript expressions.</dt>
+      </dl>
+    </section>
+    <section><h3>binding flows</h3>
+      <dl class="fa">
+        <dt class="note">One-way <b>data binding</b>:</dt>
+        <dd>data model => component class => (data binding expression) => template</dd>
+        <dt class="note">One-way <b>event binding</b>:</dt>
+        <dd>template => component class => data model</dd>
+        <dt class="note">Two-way data binding</dt>
+        <dd>data and event flows in both directions</dd>
+      </dl>
+    </section>
+    <section><h3>Data Binding Anatomy</h3>
+      <a href="images/AngularDataBindingAnatomy.png"><img src="images/AngularDataBindingAnatomy.png"></a>
+    </section>
+    <section><h3>Data Binding Anatomy</h3>
+      <dl class="fa" style="font-size: .8em">
+        <dt><span class="note">Host Element</span> - the HTML element that the binding will affect, by changing its appearance, content, or behaviour.</dt>
+        <dt><span class="note">Target</span> - specifies what the binding will do. There are two different types of target: a directive or a property binding.</dt>
+        <dt><span class="note">Expression</span> - a fragment of JavaScript code that is evaluated using the template’s component to provide context, i.e. the component’s property and methods can be included in the expression</dt>
+        <dt class="note">Expressions should be as simple as possible, as they can not be unit tested or easily debugged, thus are a source for potential bugs.</dt>
+      </dl>
+    </section>
+  </section>
+  <section data-min="10"><h1>Angular Template Syntax</h1></section>
+  <section><h2>Angular Template Syntax</h2>
+    <section>
+      <dl class="fa">
+        <dt>Almost all valid HTML markup is available in the Template.</dt>
+        <dt>There are few exceptions</dt>
+        <dd><span class="note">script</span> element is not allowed.</dd>
+        <dd><span class="note">html</span>, <span class="note">body</span> and <span class="note">base</span> elements are just ignored.</dd>
+        <dt>The HTML vocabulary of the templates can be extended with components and directives that appear as new elements and attributes.</dt>
+      </dl>
+    </section>
+    <section><h3>Template Reference Variables</h3>
+      <dl class="fa">
+        <dt>A template reference variable is often a reference to a DOM element within a template</dt>
+        <dt>It can also be a reference to an <em>Angular component</em> or <em>directive</em> or a <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">web component</a>.</dt>
+        <dt>A template reference variable is declared by prefixing the variable with <code>#</code>.</dt>
+        <dt>It can be accessed anywhere in the entire template.</dt>
+      </dl>
+    </section>
+    <section><h3>Template Reference Variables - examples</h3>
+      <pre><code rel="components.component.html" class="html">
+        &lt;section&gt;
+          &lt;h2&gt;Template reference variables&lt;/h2&gt;
+          &lt;input #userName placeholder=&quot;enter a user name&quot;&gt;
+          &lt;button (click)=&quot;getUserName(userName.value)&quot;&gt;Get UserName&lt;/button&gt;
+        &lt;/section&gt;
+      </code></pre>
+      <pre><code rel="components.component.ts" class="typescript">
+        import { Component, OnInit } from '@angular/core';
 
-        constructor() { }
+        @Component({
+          selector: 'app-components',
+          templateUrl: './components.component.html',
+          styleUrls: ['./components.component.css']
+        })
+        export class ComponentsComponent implements OnInit {
 
-        ngOnInit() {
+          constructor() { }
+
+          ngOnInit() {
+          }
+
+          getUserName(data) {
+            console.log(data);
+          }
+        }
+      </code></pre>
+    </section>
+    <section><h3>Template Expression Interpolation</h3>
+      <pre><code rel="Syntax" class="javascript" data-noescape>
+        {{class_data}} or {{expression}}
+      </code></pre>
+      <pre style="font-size: .5em"><code rel="one-way-data-binding.component.html" class="HTML">
+        <ul>
+          <li>interpolate simple expression --->{{1+2*2}}</li>
+          <li>interpolate class value as HTML content: --->{{name.toUpperCase()}}</li>
+          <li class="{{note}}">interpolate class value as HTML attribute</li>
+        </ul>
+      </code></pre>
+    </section>
+    <section><h3>Template Expression notes</h3>
+      <dl class="fa">
+        <dt>A template expression must produces a value.</dt>
+        <dt>Template expression is written inside <code>{{}}</code> or for <em>property binding</em> - inside quotes <code>""</code> on the right side of <code>[property]="expression"</code></dt>
+        <dt>Angular executes template expressions after every change detection cycle.</dt>
+        <dt>A template expression should not change any application state other than the value of the target property/element.</dt>
+      </dl>
+    </section>
+    <section><h3>Template Statement Interpolation</h3>
+      <dl class="fa">
+        <dt>A template statement responds to an <b>event</b> raised by a binding element, component, or directive.</dt>
+        <dt>They are used in <em>event binding</em> (discussed further) as the right side of <code>(event)="statement"</code></dt>
+        <dt>Template Statements can have a side effects - i.e. the application state can be freely changed</dt>
+      </dl>
+    </section>
+    <section><h3>Different kind of Brackets</h3>
+      <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        <tr><td class="note">{{expression}}</td><td>string interpolation binding</td></tr>
+        <tr><td class="note">[target]="expr"</td><td>a one-way <span class="note">data</span> binding</td></tr>
+        <tr><td class="note">(target) ="expr"</td><td>a one-way <span class="note">event</span> binding</td></tr>
+        <tr><td class="note">[(target)] ="expr"</td><td><em>the banana-in-a-box</em> brackets specify a two-way data binding</td></tr>
+      </table>
+    </section>
+    <section><h3>Resources</h3>
+      <dl class="fa">
+        <dt>More on <a href="https://angular.io/guide/template-syntax#template-syntax">Template Syntax</a>@angular docs.</dt>
+      </dl>
+    </section>
+  </section>
+  <section data-min="10"><h1>Property Binding</h1></section>
+  <section><h2>Property Binding</h2>
+    <section><h3>Overview</h3>
+      <dl class="fa">
+        <dt>Most commonly, property binding sets an element property to a component property value.</dt>
+        <dt>If <span class="note">binding target</span> is not a directive, then Angular checks to see whether the target can be used to create a property binding.</dt>
+        <dt>There are several different types of property binding</dt>
+      </dl>
+    </section>
+    <section><h3>Property binding types</h3>
+      <table style="font-size: .8em">
+        <tr><th>Name</th><th>Description</th></tr>
+        <tr><td class="note">[property]</td><td>set a property on the JavaScript object that represents the host element in the DOM</td></tr>
+        <tr><td class="note">[attr.name]</td><td>set the value of attributes on the host HTML element for which there are no DOM properties.</td></tr>
+        <tr><td class="note">[class.name]</td><td>configure class membership of the host element</td></tr>
+        <tr><td class="note">[style.name]</td><td>configure style settings of the host element</td></tr>
+      </table>
+    </section>
+    <section><h3>Property Binding: <code>[property]</code></h3>
+      <pre><code rel="Syntax" class="typescript">
+        [property]="expression"
+      </code></pre>
+      <dl class="fa">
+        <dt><code>property</code> is a DOM property, not HTML attribute.</dt>
+        <dt>The square brackets tells Angular to evaluate the expression and assign its value to the DOM property of the host element object.</dt>
+        <dt>If the square brackets are omitted, the expression would not be evaluated, and will be assigned as a string value to the property.</dt>
+      </dl>
+    </section>
+    <section><h3>HTML Attributes vs DOM Properties</h3>
+      <dl class="fa">
+        <dt class="note">Attributes initialize DOM properties!</dt>
+        <dt class="note">Attributes can not change! Property values can change!</dt>
+        <dd>For example, the HTML attribute <code>value</code> of an input field would not change, when we type in the input. Only the DOM <code>input</code> property would change</dd>
+        <dt>More on <a href="https://angular.io/guide/template-syntax#html-attribute-vs-dom-property">HTML attribute vs. DOM property</a>@angular docs.</dt>
+      </dl>
+    </section>
+    <section><h3>Attribute binding</h3>
+      <pre><code rel="Syntax" class="typescript" data-noescape>
+        [attr.html_attribute] = "expression"
+      </code></pre>
+      <dl class="fa">
+        <dt>You must use HTML attribute binding only in the case, where there are no equivalent property to bind to.</dt>
+      </dl>
+      <pre><code rel="Examples" class="html" data-escape>
+        &lt;p [attr.data-index]=&quot;pIndex&quot;&gt;Paragraph&lt;/p&gt;
+        &lt;p [attr.role]=&quot;tooltip&quot;&gt;Some content&lt;/p&gt;
+      </code></pre>
+      <dl class="fa">
+    </section>
+  </section>
+  <section data-min="10"><h1>Class Binding</h1></section>
+  <section><h2>Class Binding</h2>
+    <section>
+      <pre><code rel="Syntax" class="typescript" data-noescape>
+        [class] = "expression"
+      </code></pre>
+      <dl class="fa">
+        <dt>With class binding we can set or remove CSS class names from an element's class attribute.</dt>
+        <dt>The result of expression will be assigned to the element's class property.</dt>
+      </dl>
+    </section>
+    <section><h3>Class Binding - example</h3>
+      <pre><code rel="Examples" class="angular">
+        @Component({
+          selector: 'app-data-binding-test',
+          template: `
+            &lt;h1 [class]=&quot;h1Style&quot;&gt;Heading styled with {{h1Style}} class.&lt;/h1&gt;
+          `,
+          styles: [`
+            .notaBene{
+              background: #CA1313;
+              color: #ECDBDB;
+            }
+          `]
+        })
+        export class DataBindingTestComponent implements OnInit {
+          h1Style = 'notaBene';
+        }
+      </code></pre>
+    </section>
+    <section><h3>Apply class conditionally</h3>
+      <pre><code rel="Syntax" class="typescript" data-noescape>
+        [class.class_name] = "expression (boolean value)"
+      </code></pre>
+      <dl class="fa">
+        <dt>If expression is evaluated to True, the class_name will be added as value to the element's class property. If it is False - the class_name will be removed.</dt>
+      </dl>
+    </section>
+    <section><h3>Apply class conditionally - example</h3>
+      <pre><code rel="Example" class="html">
+        template: `
+            <p [class.italic]="true">Paragraph</p>
+          `,
+          styles: [`
+            .italic{
+              font-style: italic;
+            }
+          `]
+      </code></pre>
+    </section>
+    <section><h3>ngClass Directive</h3>
+      <pre><code rel="Syntax" class="typescript" data-noescape>
+        [ngClass]="{'class1': true, 'class2': true}"
+      </code></pre>
+      <dl class="fa">
+        <dt>You can bind to the ngClass to add or remove several classes simultaneously.</dt>
+        <dt>ngClass should be binded to a key:value object.</dt>
+        <dt>Each key of the object is a CSS class name:</dt>
+        <dd>if its value is true - the class will be added</dd>
+        <dd>if it is false - the class will be removed.</dd>
+      </dl>
+    </section>
+    <section><h3>ngClass Directive - example</h3>
+      <pre><code rel="HTML" class="html">
+        @Component({
+          selector: 'app-data-binding-test',
+          template: `
+            &lt;p [ngClass]=&quot;multiClass&quot;&gt;Paragraph multiClass&lt;/p&gt;
+          `,
+          styles: [`
+            .notaBene{
+              background: #CA1313;
+              color: #ECDBDB;
+            }
+            .italic{
+              font-style: italic;
+            }
+          `]
+        })
+        export class DataBindingTestComponent implements OnInit {
+          multiClass = {
+            'notaBene': true,
+            'italic': true
+          }
+        }
+      </code></pre>
+    </section>
+  </section>
+  <section data-min="10"><h1>Styles Binding</h1></section>
+  <section><h2>Styles Binding</h2>
+    <section>
+      <pre><code rel="Syntax" class="typescript">
+        [style.CSSproperty] = "expression"
+      </code></pre>
+      <dl class="fa">
+        <dt>With style binding we set inline style.</dt>
+        <dt>CSSproperty can be written as in CSS, i.e. with dash-case, or with camel-case.</dt>
+        <dt>expression should return a valid CSS value for that property</dt>
+      </dl>
+      <pre><code rel="example" class="html">
+        <p [style.background]="'#00E2FF'">A paragraph with light blue background </p>
+      </code></pre>
+    </section>
+    <section><h3>unit extension</h3>
+      <dl class="fa">
+        <dt>Properties which values requires CSS units (px, %, em, ...) can be set with unit extension:</dt>
+      </dl>
+      <pre><code rel="Syntax" class="html">
+        [style.property.unit]="expression"
+      </code></pre>
+      <pre><code rel="example" class="html">
+        <p [style.font-size.em]="vip?3:1">A VIP paragraph</p>
+      </code></pre>
+    </section>
+    <section><h3>NgStyle</h3>
+      <pre><code rel="Syntax" class="html">
+         [ngStyle]="{'property1': 'value1', 'property2': 'value2'}
+      </code></pre>
+      <dl class="fa">
+        <dt>With NgStyle we can set many inline styles simultaneously.</dt>
+        <dt>We set ngStyle to a key:value object.</dt>
+        <dd>Each key of the object is a CSS property name.</dd>
+        <dd>its value is the CSS value we want to set to that property</dd>
+      </dl>
+    </section>
+    <section><h3>NgStyle - example</h3>
+      <pre><code rel="data-binding-test.component.ts" class="typescript">
+        import { Component, OnInit } from '@angular/core';
+
+        @Component({
+          selector: 'app-data-binding-test',
+          template: `
+            <p [ngStyle]="vipStyle">Style binding with vipStyle</p>
+          `,
+          styles: [``]
+        })
+        export class DataBindingTestComponent {
+          vipStyle = {
+            'background': 'red',
+            'font-size': '2em',
+            'font-weiht': 'bold',
+            'color': 'white'
+          };
         }
 
-      }
-    </code></pre>
+      </code></pre>
+    </section>
   </section>
-  <section><h3>ngIf; then; else</h3>
-    <pre><code rel="HTML" class="html">
-      <div *ngIf="isValid;then thenBlock else elseBlock">here is ignored</div>
-      <ng-template #thenBlock>thenBlock: isValid == true</ng-template>
-      <ng-template #elseBlock>elseBlock: isValid == false</ng-template>
-    </code></pre>
+  <section data-min="30"><h1>Events Binding</h1></section>
+  <section><h2>Events Binding</h2>
+    <section><h3>Overview</h3>
+      <dl class="fa">
+        <dt>The binding directives discussed so far (property/class/style) flow data in one direction: <span class="note">from a component to an element</span>.</dt>
+        <dt>When user interacts with our page, we need <span class="note">to get data</span>, i.e. the flow to  be <span class="note">from an element to a component.</span> - we can do that by <b>event binging</b>.</dt>
+      </dl>
+    </section>
+    <section><h3>Syntax</h3>
+      <pre><code rel="Syntax" class="html">
+        (event_name) = "template statement"
+      </code></pre>
+      <pre><code rel="Example" class="html">
+        <button (click)="greet()">Click me</button>
+      </code></pre>
+      <dl class="fa" style="font-size: .8em;">
+        <dt>event_name - identifies the target event.</dt>
+        <dd>Could be written with the <code>on-</code> prefix, without the brackets: <code style="font-size: .8em;">&lt;button on-click=&quot;greet()&quot;&gt;Click me&lt;/button&gt;</code></dd>
+        <dt>When the event is raised, the Angular executes the <b>template statement</b>. And sets information about the event in a event object named <code>$event</code>.</dt>
+      </dl>
+    </section>
+    <section><h3>the <code>$event</code> object</h3>
+      <dl class="fa">
+        <dt>The information in the event object is determined by the target event.</dt>
+        <dt>If the target event is a native DOM event, then $event is a DOM event object, with properties such as target and target.value.</dt>
+        <dt>If the event belongs to a directive (recall that components are directives), $event has whatever shape the directive decides to produce.</dt>
+      </dl>
+    </section>
+    <section><h3>the <code>$event</code> object - example</h3>
+      <pre><code rel="HTML" class="typescript">
+        import { Component, OnInit } from '@angular/core';
+
+        @Component({
+          selector: 'app-event-binding',
+          template: `
+            <button (click)="clickHandler($event)">Button 1</button>
+            <button (click)="clickHandler($event)">Button 2</button>
+          `,
+          styleUrls: ['./event-binding.component.css']
+        })
+        export class EventBindingComponent {
+          outputDisplay = 'none';
+
+          clickHandler(e) {
+            // do something with event target object:
+            console.log(`${e.target.innerText} was clicked!`);
+          }
+        }
+      </code></pre>
+        <p>On each button click we will see in console: "Button 1 was clicked!" or "Button 2 was clicked!"</p>
+    </section>
+    <section><h3>template reference variable instead of $event</h3>
+      <dl class="fa">
+        <dt>by sending the entire $event object to the component, we can break the <a href="https://en.wikipedia.org/wiki/Separation_of_concerns">separation of concerns</a> between the template and the component.</dt>
+        <dt>That's why, when we just need to pass some data to the component, it's better to use the <a href="https://progressbg-www-courses.github.io/BKA-Angular/pages/themes/ComponentsBasics/ComponentsBasics.html#/12/2">template reference variable</a></dt>
+      </dl>
+    </section>
+    <section><h3>Sending data with template reference variable - example</h3>
+      <pre><code rel="event-binding.component.ts" class="typescript">
+        import { Component, OnInit } from '@angular/core';
+
+        @Component({
+          selector: 'app-event-binding',
+          template: `
+            <input type="text" (keyup)="onKeyUp(userInput.value)" #userInput><hr>
+            <div class="output">{{content}}</div>
+          `,
+          styles: [``]
+        })
+        export class EventBindingComponent {
+          content = '';
+
+          onKeyUp(inputValue) {
+            this.content = inputValue;
+          }
+        }
+      </code></pre>
+    </section>
   </section>
-  <section><h3><code>NgSwitch</code></h3>
-    <dl class="fa">
-      <dt>To replace multiple alternative ngIf directives</dt>
-    </dl>
-    <pre><code rel="HTML" class="html">
-      <div class="container">
-        <div *ngIf="myVar == 'A'">Var is A</div>
-        <div *ngIf="myVar == 'B'">Var is B</div>
-        <div *ngIf="myVar != 'A' && myVar != 'B'">Var is neither A nor B</div>
-      </div>
-    </code></pre>
-    <pre><code rel="HTML" class="html">
-      <div class="container" [ngSwitch]="myVar">
-        <div *ngSwitchCase="'A'">Var is A</div>
-        <div *ngSwitchCase="'B'">Var is B</div>
-        <div *ngSwitchDefault>Var is something else</div>
-      </div>
-    </code></pre>
+  <section data-min="10"><h1>Two-way binding</h1></section>
+  <section><h2>Two-way binding</h2>
+    <section><h3>Notes on Two-Way Data Binding in AngularJS and Angular(>= 2.x)</h3>
+      <dl class="fa">
+        <dt>In AngularJS (Angular v1), changes in the application state have been automagically reflected into the view and vise-versa. I.e. the two-way data binding was the default behaviour.</dt>
+        <dt>In Angular (Angular >= 2.x), this is no more the default behaviour</dt>
+      </dl>
+    </section>
+    <section><h3>Two-way binding - Overview</h3>
+      <dl class="fa" style="font-size: .8em;">
+        <dt>Two-way binding allows to both display a data property and update that property when the user makes changes.</dt>
+        <dt>In Angular (>=2.x) we can achieve that by combination of data and event bindings.</dt>
+        <dt>But Angular offers a special <span class="note">two-way data binding syntax</span> for this purpose - the "<b>banana-in-a-box</b>" syntax:</dt>
+        <pre><code rel="Syntax" class="typescript" style="font-size: 1.4em">
+          [(data)]
+        </code></pre>
+        <dt>The "<b>banana-in-a-box</b>" syntax is just a syntactic sugar for a property binding and an event binding.</dt>
+      </dl>
+    </section>
+    <section><h3>Two-way binding with[(ngModel)]</h3>
+      <dl class="fa">
+        <dt>Using the <code>[(x)]</code> syntax is convenient for custom components, where we implement the settable property called x and a corresponding event named xChange.</dt>
+        <dt>But HTML input elements do not have such properties, corresponding to Change events.</dt>
+        <dt>For such cases, it is better to use the ngModel directive</dt>
+        <dt class="note">FormsModule is required to use [(ngModel)]</dt>
+      </dl>
+    </section>
+    <section><h3>Two-way binding with[(ngModel)] -example</h3>
+      <dl class="fa">
+        <dt>Make sure you import the FormsModule in app.module.ts:</dt>
+        <pre><code rel="app.module.ts " class="typescript">
+          /* Other imports */
+          import { FormsModule } from '@angular/forms';
+
+          @NgModule({
+            imports: [
+              BrowserModule,
+              FormsModule
+            ],
+            /* Other module metadata */
+          })
+          export class AppModule { }
+        </code></pre>
+      </dl>
+    </section>
+    <section><h3>Two-way binding with [(ngModel)] -example</h3>
+      <pre><code rel="event-binding.component.ts" class="typescript">
+        import { Component, OnInit } from '@angular/core';
+
+        @Component({
+          selector: 'app-event-binding',
+          template: `
+            <label>userName: <input [(ngModel)]="userName"></label>
+            <div class="output">You've entered: {{userName}}</div>
+          `,
+          styles: [``]
+        })
+        export class EventBindingComponent {
+          userName;
+        }
+      </code></pre>
+    </section>
+    <section><h3>[(ngModel)] equivalents</h3>
+      <dl class="fa" style="font-size: .8em">
+        <dt>The previous example with [(ngModel)] can be written as combination of property binding and an event binding.</dt>
+        <dt>Note that, the <a href="https://developer.mozilla.org/en-US/docs/Web/Events/input">input event</a> is a standard DOM Event.</dt>
+      </dl>
+      <pre><code rel="event-binding.component.ts" class="typescript">
+        import { Component, OnInit } from '@angular/core';
+
+        @Component({
+          selector: 'app-event-binding',
+          template: `
+            &lt;input [value]=&quot;userName&quot; (input)=&quot;userName = $event.target.value&quot;&gt;
+            &lt;div class=&quot;output&quot;&gt;You've entered: {{userName}}&lt;/div&gt;
+          `,
+          styles: [``]
+        })
+        export class EventBindingComponent {
+          userName = '';
+        }
+      </code></pre>
+    </section>
   </section>
-  <section><h3><code>ngFor</code></h3>
-    <dl class="fa">
-      <dt>Allows to repeat a given DOM element and pass an element of the array (iterable object) on each iteration.</dt>
-      <dt><code>ndFor</code> is useful for generating repeating content, such as a list items, dropdown options, and so on.</dt>
-    </dl>
-    <pre><code rel="HTML" class="html">
-      <ul *ngFor="let item of [1,2,3]">
-        <li>item {{item}}</li>
-      </ul>
-    </code></pre>
-    <pre><code rel="Output" class="bash" data-noescape>
-      . item 1
-      . item 2
-      . item 3
-    </code></pre>
+
+
+<!-- Angular Directives -->
+  <section data-min="10"><h1>Angular Directives Overview</h1></section>
+  <section><h2>Angular Directives Overview</h2>
+    <section>
+      <dl class="fa">
+        <dt>Directives are markers on DOM element that tell Angular to attach a specified behavior to an existing element.</dt>
+        <dt>Angular provides a number of built-in directives, which are attributes we can add to our template elements in order to attach to them a dynamic behaviour.</dt>
+      </dl>
+    </section>
+    <section>
+      <dl class="fa">
+        <dt>Angular includes several structural directives:</dt>
+        <dd><code>NgIf</code></dd>
+        <dd><code>NgFor</code></dd>
+        <dd><code>NgSwitch, NgSwitchWhen, NgSwitchDefault</code></dd>
+        <dt>And several non-structural directives:</dt>
+        <dd><code>NgClass</code></dd>
+        <dd><code>NgStyle</code></dd>
+        <dd><code>NgControlName</code></dd>
+        <dd><code>NgModel</code></dd>
+      </dl>
+    </section>
   </section>
-  <section><h3><code>ngFor - example</code></h3>
-    <pre><code rel="directives.component.html" class="html">
-      <div *ngFor="let name of names; let i = index;">
-        <p>Hello {{name}}!</p>
-      </div>
-    </code></pre>
-    <pre><code rel="directives.component.ts" class="typescript">
-      export class DirectivesComponent implements OnInit {
-        names = ['Maria', 'Ivan'];
+  <section data-min="50"><h1>Built-In Directives</h1></section>
+  <section><h2>Built-In Directives</h2>
+    <section><h3>Structural Directives</h3>
+      <dl class="fa">
+        <dt>They can manipulate the DOM structure.</dt>
+        <dt>With them we can add, remove or modify DOM elements.</dt>
+        <dt>An asterisk (*) precedes the structural directive name</dt>
+        <dt>You may apply only one structural directive to an element.</dt>
+      </dl>
+    </section>
+    <section><h3>Structural Directives</h3>
+      <dl class="fa" style="font-size: .8em">
+        <dt>Asterisk symbol is a "syntactic sugar".</dt>
+        <dt>Internally, Angular translates the <code>*ngSomething</code> attribute into a <code>&lt;ng-template&gt;</code> element, wrapped around the host element</dt>
+        <pre><code rel="Asteric Notation" class="html">
+          &lt;h2 *ngIf=&quot;true&quot;&gt;shown&lt;/h2&gt;
+        </code></pre>
+        <pre><code rel="<ng-template> wrapping" class="html">
+          <ng-template [ngIf]="true">
+            &lt;h2&gt;shown&lt;/h2&gt;
+          </ng-template>
+        </code></pre>
+        <dd>The translation is according to the Angular's <a href="https://angular.io/guide/structural-directives#microsyntax">microsyntax</a>.</dd>
+      </dl>
+      <p class="note">More on property bindings (<code>[ngif]=""</code>) will be discused in "Data and Events Bindings" theme.</p>
+    </section>
+    <section><h3><code>NgIf</code></h3>
+      <pre><code rel="Syntax" class="bash">
+        &lt;tag *ngIf=&quot;condition&quot;&gt;&lt;/tag&gt;
+      </code></pre>
+      <dl class="fa">
+        <dt>With <code>ngIf</code> directive we can display or hide an element based on a condition.</dt>
+        <dt>condition is the result of an <em>expression</em> that we pass into directive.</dt>
+        <dd>if condition == true : the element will be included in the DOM</dd>
+        <dd>if condition == false : the element will be removed (not just hide) from the DOM</dd>
+      </dl>
+    </section>
+    <section><h3><code>NgIf - examples</code></h3>
+      <pre style="width: 110%"><code rel="directives-test.component.ts" class="typescript">
+        import { Component, OnInit } from '@angular/core';
 
-        constructor() { }
+        @Component({
+          selector: 'app-directives-test',
+          styles: [`section&gt;h2{
+                      border: .1em solid #000; margin: 1em;
+                  }`],
+          template: `&lt;section&gt;
+                      &lt;h2 *ngIf=&quot;false&quot;&gt;*ngIf=&quot;false&quot;&lt;/h2&gt;
+                      &lt;h2 *ngIf=&quot;true&quot;&gt;*ngIf=&quot;true&quot;&lt;/h2&gt;
+                      &lt;h2 *ngIf=&quot;3&gt;2-1&quot;&gt;*ngIf=&quot;3&gt;2-1&quot;&lt;/h2&gt;
+                      &lt;h2 *ngIf=&quot;showH2&quot;&gt;*ngIf=&quot;showH2&quot;&lt;/h2&gt;
+                    &lt;/section&gt;`
+        })
+        export class DirectivesTestComponent implements OnInit {
 
-        ngOnInit() {}
-      }
-    </code></pre>
+          showH2 = 'true';
+
+          constructor() { }
+
+          ngOnInit() {
+          }
+
+        }
+      </code></pre>
+    </section>
+    <section><h3>ngIf; then; else</h3>
+      <pre><code rel="HTML" class="html">
+        <div *ngIf="isValid;then thenBlock else elseBlock">here is ignored</div>
+        <ng-template #thenBlock>thenBlock: isValid == true</ng-template>
+        <ng-template #elseBlock>elseBlock: isValid == false</ng-template>
+      </code></pre>
+    </section>
+    <section><h3><code>NgSwitch</code></h3>
+      <dl class="fa">
+        <dt>To replace multiple alternative ngIf directives</dt>
+      </dl>
+      <pre><code rel="HTML" class="html">
+        <div class="container">
+          <div *ngIf="myVar == 'A'">Var is A</div>
+          <div *ngIf="myVar == 'B'">Var is B</div>
+          <div *ngIf="myVar != 'A' && myVar != 'B'">Var is neither A nor B</div>
+        </div>
+      </code></pre>
+      <pre><code rel="HTML" class="html">
+        <div class="container" [ngSwitch]="myVar">
+          <div *ngSwitchCase="'A'">Var is A</div>
+          <div *ngSwitchCase="'B'">Var is B</div>
+          <div *ngSwitchDefault>Var is something else</div>
+        </div>
+      </code></pre>
+    </section>
+    <section><h3><code>ngFor</code></h3>
+      <dl class="fa">
+        <dt>Allows to repeat a given DOM element and pass an element of the array (iterable object) on each iteration.</dt>
+        <dt><code>ndFor</code> is useful for generating repeating content, such as a list items, dropdown options, and so on.</dt>
+      </dl>
+      <pre><code rel="HTML" class="html">
+        <ul *ngFor="let item of [1,2,3]">
+          <li>item {{item}}</li>
+        </ul>
+      </code></pre>
+      <pre><code rel="Output" class="bash" data-noescape>
+        . item 1
+        . item 2
+        . item 3
+      </code></pre>
+    </section>
+    <section><h3><code>ngFor - example</code></h3>
+      <pre><code rel="directives.component.html" class="html">
+        <div *ngFor="let name of names; let i = index;">
+          <p>Hello {{name}}!</p>
+        </div>
+      </code></pre>
+      <pre><code rel="directives.component.ts" class="typescript">
+        export class DirectivesComponent implements OnInit {
+          names = ['Maria', 'Ivan'];
+
+          constructor() { }
+
+          ngOnInit() {}
+        }
+      </code></pre>
+    </section>
   </section>
-</section>
+  <section data-min="50"><h1>Custom Directives</h1></section>
+  <section><h2>Custom Directives</h2>
+    <section><h3>Overview</h3>
+      <dl class="fa" style="font-size: .9em">
+        <dt>Directives are Components without a view/UI.</dt>
+        <dt>Directives do not need the "template" and "style" annotations.</dt>
+        <dt class="note">We create directives by annotating a class with the @Directive decorator.</dt>
+      </dl>
+      <pre><code rel="Syntax" class="bash" data-noescape>
+        import { Directive } from '@angular/core';
 
-<section data-min="50"><h1>Custom Directives</h1></section>
-<section><h2>Custom Directives</h2>
-  <section><h3>Overview</h3>
-    <dl class="fa" style="font-size: .9em">
-      <dt>Directives are Components without a view/UI.</dt>
-      <dt>Directives do not need the "template" and "style" annotations.</dt>
-      <dt class="note">We create directives by annotating a class with the @Directive decorator.</dt>
-    </dl>
-    <pre><code rel="Syntax" class="bash" data-noescape>
-      import { Directive } from '@angular/core';
+        @Directive({
+          selector: '[selector'
+        })
+        export class SomeNameDirective {
 
-      @Directive({
-        selector: '[selector'
-      })
-      export class SomeNameDirective {
+          constructor() { }
 
-        constructor() { }
+        }
+      </code></pre>
+    </section>
+    <section><h3>Generate directive</h3>
+      <dl class="fa">
+        <dt>Using Angular CLI:</dt>
+        <pre><code rel="Terminal" class="bash" data-noescape>
+          ng g d custom_directive
+        </code></pre>
+        <dt>directives are not created in separate folder, by default.</dt>
+        <dt>Directives must be declared in Angular Modules in the same manner as components.</dt>
+      </dl>
+      <pre><code rel="custom-directive.directive.ts" class="typescript">
+        import { Directive } from '@angular/core';
 
-      }
-    </code></pre>
-  </section>
-  <section><h3>Generate directive</h3>
-    <dl class="fa">
-      <dt>Using Angular CLI:</dt>
+        @Directive({
+          selector: '[appCustomDirective]'
+        })
+        export class CustomDirectiveDirective {
+
+          constructor() { }
+
+        }
+      </code></pre>
+    </section>
+    <section><h3>ElementRef and Renderer objects</h3>
+      <dl class="fa">
+        <dt>Angular provides us with two very useful objects: the ElementRef and the Renderer.</dt>
+        <dt>The ElementRef object gives us <span class="note">direct access to the DOM element</span> for the directive through the nativeElement property.</dt>
+        <dt>The Renderer object gives us many helper methods to enable us to modify the DOM element.</dt>
+        <dt>Both objects can be <span class="note">injected</span> into a class</dt>
+      </dl>
+    </section>
+    <section><h3>ElementRef and Renderer objects - example</h3>
       <pre><code rel="Terminal" class="bash" data-noescape>
-        ng g d custom_directive
+        ng g c customDirectiveExample
       </code></pre>
-      <dt>directives are not created in separate folder, by default.</dt>
-      <dt>Directives must be declared in Angular Modules in the same manner as components.</dt>
-    </dl>
-    <pre><code rel="custom-directive.directive.ts" class="typescript">
-      import { Directive } from '@angular/core';
+      <pre><code rel="custom-directive-example.component.ts" class="typescript">
+        import { Component, OnInit } from '@angular/core';
+        import { Directive, Renderer, ElementRef } from '@angular/core';
 
-      @Directive({
-        selector: '[appCustomDirective]'
-      })
-      export class CustomDirectiveDirective {
+        @Component({
+          selector: 'app-custom-directive-example',
+          templateUrl: './custom-directive-example.component.html',
+          styleUrls: ['./custom-directive-example.component.css']
+        })
+        export class CustomDirectiveExampleComponent implements OnInit {
 
-        constructor() { }
+          constructor() { }
 
-      }
-    </code></pre>
-  </section>
-  <section><h3>ElementRef and Renderer objects</h3>
-    <dl class="fa">
-      <dt>Angular provides us with two very useful objects: the ElementRef and the Renderer.</dt>
-      <dt>The ElementRef object gives us <span class="note">direct access to the DOM element</span> for the directive through the nativeElement property.</dt>
-      <dt>The Renderer object gives us many helper methods to enable us to modify the DOM element.</dt>
-      <dt>Both objects can be <span class="note">injected</span> into a class</dt>
-    </dl>
-  </section>
-  <section><h3>ElementRef and Renderer objects - example</h3>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      ng g c customDirectiveExample
-    </code></pre>
-    <pre><code rel="custom-directive-example.component.ts" class="typescript">
-      import { Component, OnInit } from '@angular/core';
-      import { Directive, Renderer, ElementRef } from '@angular/core';
+          ngOnInit() {
+          }
 
-      @Component({
-        selector: 'app-custom-directive-example',
-        templateUrl: './custom-directive-example.component.html',
-        styleUrls: ['./custom-directive-example.component.css']
-      })
-      export class CustomDirectiveExampleComponent implements OnInit {
-
-        constructor() { }
-
-        ngOnInit() {
         }
 
-      }
+        @Directive({
+          selector: '[appImportant]'
+        })
+        export class CustomDirectiveDirective {
 
-      @Directive({
-        selector: '[appImportant]'
-      })
-      export class CustomDirectiveDirective {
+          constructor(private el: ElementRef,
+            private renderer: Renderer) {
+            renderer.setElementStyle(el.nativeElement, 'backgroundColor', '#d12929');
+          }
 
-        constructor(private el: ElementRef,
-          private renderer: Renderer) {
-          renderer.setElementStyle(el.nativeElement, 'backgroundColor', '#d12929');
+        }
+      </code></pre>
+    </section>
+  </section>
+
+
+<!-- Component Interaction -->
+  <section data-min="10"><h1>Component Interaction Overview</h1></section>
+  <section><h2>Component Interaction Overview</h2>
+    <section><h3>Component Composition</h3>
+      <dl class="fa">
+        <dt>An Angular App is a hierarchy of Components</dt>
+        <dd>Components can contain other components</dd>
+        <dd>This is known as <span class="note">component composition</span></dd>
+      </dl>
+      <img src="images/lego_blocks.jpg" style="height: 30vh">
+    </section>
+  </section>
+  <section data-min="20"><h1>Data Flow</h1></section>
+  <section><h2>Data Flow</h2>
+   <!--  <section>
+      <a href="images/parent-child-components_interaction.png"><img src="images/parent-child-components_interaction.png"></a>
+    </section> -->
+    <section><h3>Data flow</h3>
+      <dl class="fa">
+        <dt>The data flow between components <span class="note">should flow downwards</span></dt>
+        <dd>i.e. from parent components to child components</dd>
+        <dt>A data received outside from a component should be marked explicitly as input data</dt>
+        <dd>done with <code>@input</code> decorator</dd>
+        <dd>the <code>@input</code> decorator should be imported in the components from <code>@angular/core</code></dd>
+      </dl>
+    </section>
+    <section><h3>Data flow - main steps in Parent</h3>
+      <dl class="fa">
+        <dt>In Parent Component</dt>
+        <dd>send data to the Child</dd>
+        <dd>could be done with property binding</dd>
+        <pre><code rel="Parent Template" class="html">
+          &lt;app-child [parentData]=&quot;name&quot;&gt;&lt;app-child&gt;
+        </code></pre>
+      </dl>
+    </section>
+    <section style="font-size: .8em"><h3>Data flow - main steps in Child</h3>
+      <dl class="fa">
+        <dt>In Child Component</dt>
+        <dd>import the Input decorator from @angular/core</dd>
+        <pre><code rel="TS" class="typescript">
+          import { Component, OnInit,Input } from '@angular/core'
+        </code></pre>
+        <dd>Declare the parent data to be received as class property with  @Input() decorator</dd>
+        <pre><code rel="TS" class="bash" data-noescape>
+          @Input() parentData: string
+        </code></pre>
+        <dd>bind the parent data into the template</dd>
+        <pre><code rel="template" class="html" data-noescape>
+          &lt;span&gt;parent name: {{parentData}}&lt;/span&gt;
+        </code></pre>
+      </dl>
+    </section>
+    <section><h3>Aliases</h3>
+      <dl class="fa">
+        <dt>We can give alias to the input data with</dt>
+        <pre><code rel="TS" class="typescript">
+          @Input('parentData') userName : string
+        </code></pre>
+        <dl class="fa">
+          <dt><code>parentData</code> is the property name in the Parent Component</dt>
+          <dt><code>userName</code> is the alias we give to it</dt>
+        </dl>
+      </dl>
+    </section>
+  </section>
+  <section><h1>Data Flow examples</h1></section>
+  <section><h2>Data Flow examples</h2>
+    <section><h3>the Parent Component</h3>
+      <pre><code rel="TS" class="typescript">
+        import { Component, OnInit } from '@angular/core';
+
+        @Component({
+          selector: 'app-parent',
+          template: `
+            <h2>parent component</h2>
+            <app-child [parentData]="name"><app-child>
+          `,
+          styleUrls:['./parent.component.css']
+        })
+        export class ParentComponent implements OnInit {
+          // the data which will be sent to Child  as parentData property binding
+          public name="ParentComponent"
+
+          constructor() { }
+
+          ngOnInit() {
+          }
+        }
+      </code></pre>
+    </section>
+    <section><h3>the Child Component</h3>
+      <pre><code rel="TS" class="typescript">
+        import { Component, OnInit,Input } from '@angular/core';
+
+        @Component({
+          selector: 'app-child',
+          template: `
+            <h2>child component</h2>
+            <span>parent name: {{parentData}}</span>
+          `,
+          styleUrls:['./child.component.css']
+        })
+        export class ChildComponent implements OnInit {
+          //mark  parentData as input data
+          @Input() parentData: string
+
+          constructor() { }
+
+          ngOnInit() {
+          }
+
         }
 
-      }
-    </code></pre>
+      </code></pre>
+    </section>
   </section>
-</section>
-
-<section><h1><code>&lt;ng-template&gt;</code></h1></section>
-<section><h2><code>&lt;ng-template&gt;</code></h2>
-  <section>
-    <dl class="fa">
-      <dt>&lt;ng-template&gt; is an Angular element, that is never displayed directly.</dt>
-      <dt>Angular replaces the <code>&lt;ng-template&gt;</code> and its contents with a comment, before rendering the view</dt>
-    </dl>
+  <section data-min="20"><h1>Emitting Output</h1></section>
+  <section><h2>Emitting Output</h2>
+    <section><h3>Overview</h3>
+      <dl class="fa">
+        <dt>Usually Parent component needs to respond to things (events) happening on its child components</dt>
+        <dt>In Angular <span class="note">events should flow upwards</span>:</dt>
+        <dd>Children <span class="note">emits</span> an event</dd>
+        <dd>Parents responds, i.e.process the event</dd>
+        <dd>The events being emitted are declared with <code>@Output()</code> decorator as instances of <code>EventEmitter</code> class in the Child Component</dd>
+      </dl>
+    </section>
+    <section style="font-size: .8em"><h3>Emitting Output - steps in Child</h3>
+      <dl class="fa">
+        <dt>In Child Component</dt>
+        <dd>Import the EventEmitter class and Output decorator from @angular/core</dd>
+        <pre><code rel="TS" class="typescript">
+          import { Component, OnInit,Input,Output, EventEmitter } from '@angular/core';
+        </code></pre>
+        <dd>Declare the event</dd>
+        <pre><code rel="TS" class="typescript">
+          @Output() childEvent=new EventEmitter()
+        </code></pre>
+        <dd>Emit the event</dd>
+        <pre><code rel="HTML" class="html">
+          &lt;button (click)=&quot;this.childEvent.emit()&quot;&gt;Emit Event&lt;/button&gt;
+        </code></pre>
+      </dl>
+    </section>
+    <section style="font-size: .8em"><h3>Emitting Output - steps in Parent</h3>
+      <dl class="fa">
+        <dt>In Parent Component</dt>
+        <dd>capture the emitted Child Event using the event binding syntax</dd>
+        <dd><span class="note">the <code>$event</code> object for EventEmitter events stores the emitted value.</span> In contrast to DOM events, where <code>$event</code> stores the DOM event object</dd>
+        <pre><code rel="Parent tempate" class="html">
+          <app-child (childEvent)="respondToEvent($event)"></app-child>
+        </code></pre>
+        <pre><code rel="Parent Classs" class="typescript">
+          respondToEvent(msg){
+            // do something with emmited event message
+          }
+        </code></pre>
+      </dl>
+    </section>
   </section>
-</section>
 
 
+<!-- Angular Forms -->
+  <section data-min="5"><h1>Angular Forms Basics</h1></section>
+  <section><h2>Angular Forms Basics</h2>
+    <section><h3>Overview</h3>
+      <a href="images/angularFormsOverview1.png"><img src="images/angularFormsOverview1.png"></a>
+    </section>
+    <section><h3>The two ways</h3>
+      <dl class="fa">
+        <dt class="note">Template Driven Forms (TDF)</dt>
+        <dd>mostly on the template side</dd>
+        <dt class="note">Reactive Forms (RF)</dt>
+        <dd>mostly on the class side</dd>
+      </dl>
+    </section>
+  </section>
+  <section data-min="20"><h1>Template Driven Forms</h1></section>
+  <section><h2>Template Driven Forms</h2>
+    <section><h3>Overview</h3>
+      <dl class="fa">
+        <dt>Template driven forms (TDF) follows the approach for working with forms similar in Angular 1.x</dt>
+        <dt>As the names suggest, most of the logic, like creating form controls, forms, and defining validations is written inside the template in a declarative manner.</dt>
+      </dl>
+    </section>
+    <section><h3>The steps</h3>
+      <dl class="fa">
+        <dt>Add the form HTML</dt>
+        <dt>Bind the data</dt>
+        <dt>Track state and validity</dt>
+        <dt>Provide visual feedback</dt>
+        <dt>Display error messages</dt>
+        <dt>Post data to the server</dt>
+      </dl>
+    </section>
+  </section>
+  <section data-min="10"><h1>The HTML and style of the form</h1></section>
+  <section><h2>Styling forms</h2>
+    <section><h3>With Bootstrap4</h3>
+      <dl class="fa">
+        <dt><a href="https://getbootstrap.com/docs/4.0/components/forms/">Forms @bootsrap4</a></dt>
+      </dl>
+      <pre><code rel="HTML" class="html">
+        &lt;form&gt;
+          &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label for=&quot;exampleInputEmail1&quot;&gt;Email address&lt;/label&gt;
+            &lt;input type=&quot;email&quot; class=&quot;form-control&quot; id=&quot;exampleInputEmail1&quot; aria-describedby=&quot;emailHelp&quot; placeholder=&quot;Enter email&quot;&gt;
+            &lt;small id=&quot;emailHelp&quot; class=&quot;form-text text-muted&quot;&gt;We'll never share your email with anyone else.&lt;/small&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label for=&quot;exampleInputPassword1&quot;&gt;Password&lt;/label&gt;
+            &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;exampleInputPassword1&quot; placeholder=&quot;Password&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;form-check&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; id=&quot;exampleCheck1&quot;&gt;
+            &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Check me out&lt;/label&gt;
+          &lt;/div&gt;
+          &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+      </code></pre>
+    </section>
+  </section>
+  <section data-min="10"><h1>Binding form data</h1></section>
+  <section><h2>Binding form data</h2>
+    <section><h3>The FormsModule</h3>
+      <dl class="fa">
+        <dt>Import the Angular's form module</dt>
+      </dl>
+      <pre><code rel="app.module.ts" class="js">
+        import { FormsModule} from '@angular/forms'
+        ...
+        @NgModule({
+          declarations: [
+           ...
+          ],
+          imports: [
+            BrowserModule,
+            FormsModule
+          ],
+      </code></pre>
+    </section>
+    <section><h3>ngForm Directive</h3>
+      <dl class="fa">
+        <dt>After importing the FormsModule in our application, angular will implicitly attach an <code class="note">ngForm</code> directive to each HTML <code>form</code> element</dt>
+        <dt>That directive gives access to the values of the form control</dt>
+      </dl>
+      <pre><code rel="HTML" class="angular">
+        &lt;h1&gt;Demo form&lt;/h1&gt;
+        &lt;form #demoForm=&quot;ngForm&quot;&gt;
+          &lt;input type=&quot;text&quot;
+        &lt;/form&gt;
+        &lt;!-- just for debug/demo purpose --&gt;
+        &lt;h2&gt;Trace&lt;/h2&gt;
+        {{demoForm.value|json}}
+      </code></pre>
+    </section>
+    <section><h3>ngModel Directive</h3>
+      <dl class="fa">
+        <dt>Only the controls with <code>ngModel</code> directive will be accessible to our code!</dt>
+        <dd>For each control with ngModel, Angular creates a respective <code>FormControl</code> objects under the hood.</dd>
+        <dt>And each of controls with ngModel directive must have a name attribute, to prevent the error:</dt>
+        <dd style="font-size: .6em; color:red">Error: If ngModel is used within a form tag, either the name attribute must be set or the form
+        control must be defined as 'standalone' in ngModelOptions</dd>
+      </dl>
+    </section>
+    <section><h3></h3>
+      <pre><code rel="HTML" class="angular">
+        &lt;h1&gt;Demo form&lt;/h1&gt;
+        &lt;form #demoForm=&quot;ngForm&quot;&gt;
+          &lt;input name=&quot;userName&quot; type=&quot;text&quot; ngModel&gt;
+        &lt;/form&gt;
+        &lt;!-- just for debug/demo purpose --&gt;
+        &lt;h2&gt;Trace&lt;/h2&gt;
+        {{demoForm.value|json}}
+      </code></pre>
+    </section>
+    <section><h3>ngModelGroup Directive</h3>
+      <dl class="fa">
+        <dt>We can group form's controls with ngModelGroup directive:</dt>
+        <pre><code rel="HTML" class="html">
+          &lt;form #demoForm=&quot;ngForm&quot;&gt;
+            &lt;div ngModelGroup=&quot;userData&quot;&gt;
+              &lt;label for=&quot;&quot;&gt;name: &lt;input name=&quot;userName&quot; type=&quot;text&quot; ngModel&gt;&lt;/label&gt;
+              &lt;label for=&quot;&quot;&gt;email:&lt;input name=&quot;userEmail&quot; type=&quot;mail&quot; ngModel&gt;&lt;/label&gt;
+            &lt;/div&gt;
+          &lt;/form&gt;
+        </code></pre>
+      </dl>
+    </section>
+  </section>
+  <section data-min="20"><h1>Binding data to model</h1></section>
+  <section><h2>Binding data to model</h2>
+    <section><h3>Generate the model</h3>
+      <dl class="fa">
+        <dt>Let's make a separate class for the model</dt>
+        <pre><code rel="TS" class="typescript">
+          ng g class demoModel
+        </code></pre>
+        <dt>Define the class:</dt>
+        <pre><code rel="demo-model.ts" class="js">
+          export class DemoModel {
+              constructor(
+                  public userName:string,
+                  public userEmail:string
+              ){}
+          }
+        </code></pre>
+      </dl>
+    </section>
+    <section><h3>Generate the model</h3>
+      <dl class="fa">
+        <dt>And make an instance of it in the component class</dt>
+        <pre><code rel="demo-tdf.component" class="typescript">
+          import { Component, OnInit } from '@angular/core';
+          import { DemoModel } from './../demo-model';
+
+          @Component({
+            selector: 'app-demo-tdf',
+            templateUrl: './demo-tdf.component.html',
+            styleUrls: ['./demo-tdf.component.css']
+          })
+          export class DemoTDFComponent {
+            demoModel1 = new DemoModel("Maria", "123")
+          }
+        </code></pre>
+      </dl>
+    </section>
+    <section><h3>Use the model</h3>
+      <dl class="fa">
+        <dt>We can use the model to update the template with predefined values</dt>
+        <dt>We need to bind each model property to the respective ngModel property</dt>
+        <pre><code rel="demo-tdf.component.html" class="html">
+          ...
+          &lt;label&gt;name: &lt;input name=&quot;userName&quot; type=&quot;text&quot;
+              [ngModel]=&quot;demoModel1.userName&quot;&gt;
+          &lt;/label&gt;
+          ...
+        </code></pre>
+      </dl>
+    </section>
+    <section><h3>Use the model</h3>
+      <dl class="fa">
+        <dt>We can update the model, after the form control values are changed (i.e. to capture form data) by using two way data binding:</dt>
+        <pre><code rel="HTML" class="html">
+          ...
+          &lt;label for=&quot;&quot;&gt;name: &lt;input name=&quot;userName&quot; type=&quot;text&quot;
+            [(ngModel)]=&quot;demoModel1.userName&quot;&gt;
+          &lt;/label&gt;
+          ...
+        </code></pre>
+        <dt>And we can just send them to the server</dt>
+        <dt class="note">But for better user experience, we have to do some validation work before that</dt>
+      </dl>
+    </section>
+  </section>
+
+
+<!-- Http Requests with Angular -->
+  <section data-min="20"><h1>Angular HttpClientModule</h1></section>
+  <section><h2>Angular HttpClientModule</h2>
+    <section><h3>Overview</h3>
+      <dl class="fa">
+        <dt>Angular 4.3 introduced a new HttpClient service module.</dt>
+        <dt>The older Http service still works, but it's deprecated in Angular 5</dt>
+        <dd class="note">And it is removed from Angular6</dd>
+        <dt>The HttpClient service uses Observables (from RxJS) to emit data</dt>
+      </dl>
+    </section>
+  </section>
+  <section data-min="30"><h1>Getting Started with HttpClient</h1></section>
+  <section><h2>Getting Started with HttpClient</h2>
+    <section><h3>Importing HttpClient module and the Http service</h3>
+      <dl class="fa">
+        <dt>By simply importing HttpClientModule into our main module we can use the provided http service without the need to explicitly registering it as provider.</dt>
+      </dl>
+    </section>
+    <section><h3>HttpClient module and the Http service - code</h3>
+      <pre><code rel="app.module.ts" class="typescript">
+        import { BrowserModule } from '@angular/platform-browser';
+        import { NgModule } from '@angular/core';
+        import { HttpClientModule } from '@angular/common/http';
+
+        import { AppComponent } from './app.component';
+
+        @NgModule({
+          declarations: [
+            AppComponent
+          ],
+          imports: [
+            BrowserModule,
+            HttpClientModule
+          ],
+          providers: [],
+          bootstrap: [AppComponent]
+        })
+        export class AppModule { }
+      </code></pre>
+    </section>
+    <section><h3>Using Http into our service</h3>
+      <dl class="fa">
+        <dt>Crete the Books Service</dt>
+      </dl>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng g s Books --spec false
+      </code></pre>
+      <dl class="fa">
+        <dt>Inject the http service into Books Service</dt>
+      </dl>
+      <pre><code rel="books.service.ts" class="typescript">
+        import { Injectable } from '@angular/core';
+        import { HttpClient } from '@angular/common/http';
+
+        @Injectable({
+          providedIn: 'root'
+        })
+        export class BooksService {
+          constructor(private http: HttpClient) { }
+        }
+      </code></pre>
+    </section>
+    <section><h3>Demo data</h3>
+      <dl class="fa" style="font-size: .8em;">
+        <dt>In following examples these simple JSON data will be used:</dt>
+        <pre><code rel="books.json" class="js">
+          [
+              {
+                  "title":"Player Piano",
+                  "author": "Kurt Vonnegut",
+                  "price": 2.45
+              },
+              {
+                  "title":"Cat's Cradle",
+                  "author": "Kurt Vonnegut",
+                  "price": 3.25
+              },
+              {
+                  "title":"Steppenwolf",
+                  "author": "Hermann Hesse",
+                  "price": 5.20
+              },
+              {
+                  "title":"Siddhartha",
+                  "author": "Hermann Hesse",
+                  "price": 4.60
+              }
+          ]
+
+        </code></pre>
+      </dl>
+      <p style="font-size: .6em;">URL: <a href="https://raw.githubusercontent.com/ProgressBG-WWW-Courses/BKA-Angular-Code/RequestsAndObsevables/RequestsAndObsevables/src/assets/data/books.json">https://raw.githubusercontent.com/ProgressBG-WWW-Courses/BKA-Angular-Code/RequestsAndObsevables/RequestsAndObsevables/src/assets/data/books.json</a></p>
+    </section>
+    <section><h3>The HttpClient.get() Method</h3>
+      <dl class="fa">
+        <dt>Constructs an Observable which, when subscribed, will cause the configured GET request to be executed on the server</dt>
+      </dl>
+    </section>
+    <section><h3>Use HttpClient.get() Method</h3>
+      <pre><code rel="books.service.ts" class="typescript">
+        import { Injectable } from '@angular/core';
+        import { HttpClient } from '@angular/common/http';
+
+        @Injectable({
+          providedIn: 'root'
+        })
+        export class BooksService {
+          booksURL = 'https://raw.githubusercontent.com/ProgressBG-WWW-Courses/BKA-Angular-Code/RequestsAndObsevables/RequestsAndObsevables/src/assets/data/books.json';
+
+          constructor(private http: HttpClient) { }
+
+          fetchBooks() {
+            return this.http.get(this.booksURL)
+          }
+        }
+      </code></pre>
+    </section>
+    <section><h3>Cast the retrieved Observable into Books array</h3>
+      <dl class="fa">
+        <dt>We need to create a Book Interface, in order to have a type the Observable to be casted to</dt>
+        <dd>Just make an app/books.ts file</dd>
+      </dl>
+      <pre><code rel="app/books.ts" class="typescript">
+        export interface IBook{
+            title:string,
+            author: string,
+            price: number
+        }
+      </code></pre>
+    </section>
+    <section><h3>Cast the retrieved Observable into Books array</h3>
+      <dl class="fa">
+        <dt>Now, we can use the IBook Interface in our BooksService</dt>
+      </dl>
+      <pre><code rel="books.service.ts" class="typescript">
+        // other imports...
+        import { Observable } from 'rxjs';
+        import { IBook } from './books';
+
+        @Injectable({
+          providedIn: 'root'
+        })
+        export class BooksService {
+          // other code...
+
+          // type cast the Observable to IBook
+          fetchBooks():Observable&lt;IBook[]&gt; {
+            return this.http.get&lt;IBook[]&gt;(this.booksURL)
+          }
+        }
+      </code></pre>
+    </section>
+    <section><h3>Subscribe to the Books Data</h3>
+      <dl class="fa">
+        <dt>We can use the data retrieved by fetchBooks method in any component we injected the BooksService</dt>
+        <dt>Lets make a BooksList Component</dt>
+        <pre><code rel="Terminal" class="bash" data-noescape>
+          ng g c -t -s --spec false BooksList
+        </code></pre>
+      </dl>
+    </section>
+    <section><h3>Subscribe to the Books Data</h3>
+      <pre><code rel="books-list.component.ts" class="typescript">
+        export class BooksListComponent implements OnInit {
+          books = [];
+
+          constructor(private _booksService:BooksService) { }
+
+          ngOnInit() {
+            this._booksService.fetchBooks()
+              .subscribe( data=> this.books = data)
+          }
+        }
+      </code></pre>
+    </section>
+    <section><h3>Sorting the BooksList by price</h3>
+      <pre><code rel="books-list.component.ts" class="typescript">
+        export class BooksListComponent implements OnInit {
+          books = [];
+
+          compareByPrice(a,b) {
+            if (a.price < b.price)
+              return -1;
+            if (a.price > b.price)
+              return 1;
+            return 0;
+          }
+
+          constructor(private _booksService:BooksService) { }
+
+          ngOnInit() {
+            this._booksService.fetchBooks()
+              .pipe(map(things => things.sort(this.compareByPrice)))
+              .subscribe( data=> this.books = data)
+          }
+        }
+      </code></pre>
+    </section>
+  </section>
 
 
 
