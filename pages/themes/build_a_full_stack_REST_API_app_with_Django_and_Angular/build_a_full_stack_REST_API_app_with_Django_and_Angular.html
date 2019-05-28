@@ -1,46 +1,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>build_a_full_stack_REST_API_app_with_Django_and_Angular</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+  <meta charset="utf-8">
+  <title>build_a_full_stack_REST_API_app_with_Django_and_Angular</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/pdf.css' : '/ProgressBG-VC-Django-Slides/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#build_a_full_stack_REST_API_app_with_Django_and_Angular" target="_top"><i class="fa fa-home"></i></a>
-			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div><span>N/Space</span><span>previous slide</span></div>
-				<div><span>P</span><span>next slide</span></div>
-				<div><span>O</span><span>overview slides</span></div>
-				<div><span>ctrl+left click</span><span>zoom element</span></div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/ProgressBG-VC-Django-Slides/pages/agenda/agenda.html#build_a_full_stack_REST_API_app_with_Django_and_Angular" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>previous slide</span></div>
+        <div><span>P</span><span>next slide</span></div>
+        <div><span>O</span><span>overview slides</span></div>
+        <div><span>ctrl+left click</span><span>zoom element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/ProgressBG-VC-Django-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -48,290 +48,563 @@
 -->
 <section><h1>Build a Full-Stack REST API App with Django and Angular</h1></section>
 <section data-transition="zoom">
-	<!-- linkedin badge -->
-	<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="http://progressbg.net/програмиране-с-python-2/">
-			<img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note">Iva E. Popova, 2018-2019:</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-		</div>
-	</section>
-	<section class="copyright" data-transition="zoom" style="margin-top: -2em;">
-		<div class="note">
-			<p>Created by</p>
-		</div>
-		<div class="company">
-			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
-		</div>
-	</section>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+  <section class="copyright" data-transition="zoom">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/програмиране-с-python-2/">
+      <img style="height:80%" src="/ProgressBG-VC-Django-Slides/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span class="note">Iva E. Popova, 2018-2019:</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </section>
+  <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+    <div class="note">
+      <p>Created by</p>
+    </div>
+    <div class="company">
+       <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+    </div>
+  </section>
 </section>
 
 <section data-min="5"><h1>Project overview</h1></section>
 <section><h2>Project overview</h2>
   <section><h3>Basic structure</h3>
-  	<pre><code rel="Terminal" class="bash">
-  		todo_fullstack_project/
-  		├── backend
-  		│   ├── # the Django project
-  		└── frontend
-  				├── # the Angular project
-  	</code></pre>
+    <pre><code rel="Terminal" class="bash">
+      todo_fullstack_project/
+      ├── backend
+      │   ├── # the Django project
+      └── frontend
+          ├── # the Angular project
+    </code></pre>
   </section>
 </section>
 
 <section data-min="5"><h1>Build the Django REST API project</h1></section>
 <section><h2>Build the Django REST API project</h2>
   <section><h3>Create project</h3>
-  	<dl class="fa">
-  		<dt>Create <code>todo_rest_project</code></dt>
-  		<dd>rename the parent <code>todo_rest_project</code> folder to <code>backend</code></dd>
-  		<dt>Create <code>todo_rest_api</code> app</dt>
-  		<dt>Make sure you have next project structure:</dt>
-  	</dl>
-  	<pre><code rel="Terminal" class="python">
-  		backend/
-  		├── manage.py
-  		├── todo_rest_api # REST API APP
-  		│   ├── admin.py
-  		│   ├── apps.py
-  		│   ├── __init__.py
-  		│   ├── migrations
-  		│   ├── tests.py
-  		│   └── views.py
-  		└── todo_rest_project # project settings
-  		    ├── __init__.py
-  		    ├── settings.py
-  		    ├── urls.py
-  		    └── wsgi.py
-  	</code></pre>
+    <dl class="fa">
+      <dt>Create <code>todo_rest_project</code></dt>
+      <dd>rename the parent <code>todo_rest_project</code> folder to <code>backend</code></dd>
+      <dt>Create <code>todo_rest_api</code> app and register it in <code>settings.py</code></dt>
+      <dt>Make sure you have next project structure:</dt>
+    </dl>
+    <pre><code rel="Terminal" class="python">
+      todo_fullstack_project
+      ├── backend
+      │   ├── images│  
+      │   ├── manage.py
+      │   ├── todo_rest_api
+      │       ├── ...
+      │   └── todo_rest_project
+      │       ├── ...│
+    </code></pre>
   </section>
   <section><h3>Setup the database</h3>
-  	<pre><code rel="mysql -u root" class="mysql">
-  		# create the todo_app_db database and grant privileges:
-  		CREATE DATABASE music_catalog_legacy_dbtodo_app_db;
-  		GRANT ALL PRIVILEGES ON todo_app_db.* TO 'django_admin'@'localhost';
-  		FLUSH PRIVILEGES;
-  	</code></pre>
-  	<pre><code rel="settings.py" class="python">
-  		DATABASES = {
-  		  'default': {
-  		    'ENGINE': 'django.db.backends.mysql',
-  		    'OPTIONS': {
-  		      'read_default_file':
-  		        os.path.join(BASE_DIR, 'todo_rest_project/todo_app_db.cnf'),
-  		    },
-  		  },
-  		}
-  	</code></pre>
-  	<pre><code rel="todo_rest_project/todo_app_db.cnf" class="mysql">
-  		database = todo_app_db
-  		user = django_admin
-  		password = 123
-  		default-character-set = utf8
-  	</code></pre>
+    <pre><code rel="mysql -u root" class="mysql">
+      # create the todo_app_db database and grant privileges:
+      CREATE DATABASE music_catalog_legacy_dbtodo_app_db;
+      GRANT ALL PRIVILEGES ON todo_app_db.* TO 'django_admin'@'localhost';
+      FLUSH PRIVILEGES;
+    </code></pre>
+    <pre><code rel="settings.py" class="python">
+      DATABASES = {
+        'default': {
+          'ENGINE': 'django.db.backends.mysql',
+          'OPTIONS': {
+            'read_default_file':
+              os.path.join(BASE_DIR, 'todo_rest_project/todo_app_db.cnf'),
+          },
+        },
+      }
+    </code></pre>
+    <pre><code rel="todo_rest_project/todo_app_db.cnf" class="mysql">
+      [client]
+      database = todo_app_db
+      user = django_admin
+      password = 123
+      default-character-set = utf8
+    </code></pre>
   </section>
   <section><h3>Create the todo_rest_api model</h3>
-  	<pre><code rel="todo_rest_api/models.py" class="js">
-  		from django.db import models
-  		from django.utils import timezone
-  		from datetime import datetime
+    <pre><code rel="todo_rest_api/models.py" class="python">
+      from django.db import models
+      from django.utils import timezone
+      from datetime import datetime
 
 
-  		def days_from_now_1():
-  		  return timezone.now() + timezone.timedelta(days=1)
+      def days_from_now_1():
+        return timezone.now() + timezone.timedelta(days=1)
 
-  		# Create your models here.
-  		class Task(models.Model):
-  		  id = models.AutoField(primary_key=True)
-  		  title = models.CharField('Title', max_length=100, help_text="Task Title")
-  		  description = models.TextField('Description', null=True, help_text="Task Description")
+      # Create your models here.
+      class Task(models.Model):
+        id = models.AutoField(primary_key=True)
+        title = models.CharField('Title', max_length=100, help_text="Task Title")
+        description = models.TextField('Description', null=True, help_text="Task Description")
 
-  		  image = models.ImageField(
-  		    'Image',
-  		    null=False, blank=True,
-  		    help_text='Task image',
-  		    upload_to='images/')
+        image = models.ImageField(
+          'Image',
+          null=False, blank=True,
+          help_text='Task image',
+          upload_to='images/')
 
-  		  due = models.DateTimeField(
-  		    'due',
-  		    default=days_from_now_1,
-  		    help_text="Task Due (default - 1 day from now)")
+        due = models.DateTimeField(
+          'due',
+          default=days_from_now_1,
+          help_text="Task Due (default - 1 day from now)")
 
-  		  created = models.DateTimeField(auto_now_add=True)
-  		  completed = models.BooleanField(default=False)
+        created = models.DateTimeField(auto_now_add=True)
+        completed = models.BooleanField(default=False)
 
-  		  def __str__(self):
-  		    return f"{self.title} - {self.description}"
-  	</code></pre>
+        def __str__(self):
+          return f"{self.title} - {self.description}"
+    </code></pre>
+  </section>
+  <section><h3>Register the model in admin interface</h3>
+    <pre><code rel="todo_rest_api/admin.py" class="js">
+      from django.contrib import admin
+
+      # Register your models here.
+      from .models import Task
+
+      admin.site.register(Task)
+    </code></pre>
   </section>
   <section><h3>Start the project</h3>
-  	<pre><code rel="Terminal" class="bash">
-  		python manage.py makemigrations
-  		python manage.py migrate
+    <pre><code rel="Terminal" class="bash">
+      python manage.py makemigrations
+      python manage.py migrate
 
-  		python manage.py runserver
-  	</code></pre>
+      python manage.py runserver
+    </code></pre>
   </section>
   <section><h3>Setup the project URLs</h3>
-  	<pre><code rel="todo_rest_project/urls.py" class="js">
-  		from django.contrib import admin
-  		from django.urls import path, include
+    <pre><code rel="todo_rest_project/urls.py" >
+      from django.contrib import admin
+      from django.urls import path, include
 
-  		urlpatterns = [
-  		    path('admin/', admin.site.urls),
-  		    path('todos/', include('todo_rest_api.urls')),
-  		]
+      urlpatterns = [
+          path('admin/', admin.site.urls),
+          path('api/', include('todo_rest_api.urls')),
+      ]
 
-  	</code></pre>
+    </code></pre>
+  </section>
+  <section><h3>Setup the app URLs</h3>
+    <pre><code rel="todo_rest_api/urls.py" class="python">
+      from django.urls import path, re_path
+      from . import views
+
+      urlpatterns = [
+        path('tasks/', views.task_list),
+        path('task/&lt;int:id&gt;/', views.task_details),
+      ]
+    </code></pre>
+  </section>
+  <section style="font-size: .8em;"><h3>Overview the API endpoints</h3>
+    <p>So far, our Django app will be capableof serving the following API endpoints:</p>
+    <dl class="fa">
+      <dt><span class="note">http://127.0.0.1:8000/api/tasks/</span>, method GET</dt>
+      <dd>get all tasks</dd>
+      <dt><span class="note">http://127.0.0.1:8000/api/tasks/</span>,method POST</dt>
+      <dd>create new task</dd>
+      <dt><span class="note">http://127.0.0.1:8000/api/tasks/</span>,method DELETE</dt>
+      <dd>delete all tasks</dd>
+
+      <dt><span class="note">http://127.0.0.1:8000/api/task/&lt;id&gt;</span>, method [GET]</dt>
+      <dd>get task with id=&lt;id&gt;</dd>
+      <dt><span class="note">http://127.0.0.1:8000/api/task/&lt;id&gt;</span>, method [PUT]</dt>
+      <dd>update task with id=&lt;id&gt;</dd>
+      <dt><span class="note">http://127.0.0.1:8000/api/task/&lt;id&gt;</span>, method [DELETE]</dt>
+      <dd>delete task with id=&lt;id&gt;</dd>
+    </dl>
   </section>
   <section><h3>Create Serializer class</h3>
-  	<dl class="fa">
-  		<dt>We need a Serializer class for Task instances to manage serialization to JSON and deserialization from JSON</dt>
-  	</dl>
-  	<pre><code rel="todo_rest_api/serializers.py" class="python">
-  		from rest_framework import serializers
-  		from todo_rest_api.models import Task
+    <dl class="fa">
+      <dt>We need a Serializer class for Task instances to manage serialization to JSON and deserialization from JSON</dt>
+    </dl>
+    <pre><code rel="todo_rest_api/serializers.py" class="python">
+      from rest_framework import serializers
+      from todo_rest_api.models import Task
 
-  		class TaskSerializer(serializers.ModelSerializer):
-  		  class Meta:
-  		    model = Task
-  		    fields = ('title','description','image','due','completed')
-  	</code></pre>
+      class TaskSerializer(serializers.ModelSerializer):
+        class Meta:
+          model = Task
+          fields = ('id','title','description','image','due','completed')
+    </code></pre>
   </section>
   <section><h3>Create the API Views</h3>
+    <pre><code rel="todo_rest_api/views.py" class="python">
+      from django.http import HttpResponse
+      from django.http.response import JsonResponse
+      from rest_framework.parsers import JSONParser
+      from django.views.decorators.csrf import csrf_exempt
+      from rest_framework import status
 
-  </section>
-  <section><h3>Route Urls to API Views</h3>
-  	<dl class="fa">
-  		<dt></dt>
-  	</dl>
+      from todo_rest_api.models import Task
+      from .serializers import TaskSerializer
+
+      @csrf_exempt
+      def task_list(request):
+        # get all tasks
+        if request.method == 'GET':
+          tasks = Task.objects.all()
+          tasks_serializer = TaskSerializer(tasks, many=True)
+          return JsonResponse(tasks_serializer.data, safe=False)
+          # By default, the JsonResponse’s first parameter - data - should be a dict instance.
+          # To pass any other JSON-serializable object you must set the safe=False.
+
+        # create new task
+        elif request.method == 'POST':
+          task_data = JSONParser().parse(request)
+          task_serializer = TaskSerializer(data=task_data)
+          if task_serializer.is_valid():
+            task_serializer.save()
+            return JsonResponse(task_serializer.data, status=status.HTTP_201_CREATED)
+          return JsonResponse(task_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # delete all tasks
+        elif request.method == 'DELETE':
+          Task.objects.all().delete()
+          return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+
+
+      @csrf_exempt
+      def task_details(request, id):
+        try:
+          task = Task.objects.get(id=id)
+        except Task.DoesNotExist:
+          return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+        # get a task
+        if request.method == 'GET':
+          task_serializer = TaskSerializer(task)
+          return JsonResponse(task_serializer.data)
+
+        # update a task
+        elif request.method == 'PUT':
+          task_data = JSONParser().parse(request)
+          task_serializer = taskSerializer(task, data=task_data)
+          if task_serializer.is_valid():
+            task_serializer.save()
+            return JsonResponse(task_serializer.data)
+          return JsonResponse(task_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # delete a task
+        elif request.method == 'DELETE':
+          task.delete()
+          return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+
+
+      @csrf_exempt
+      def task_list_completed(request, completed):
+        tasks = task.objects.filter(completed=completed)
+
+        if request.method == 'GET':
+          tasks_serializer = taskSerializer(tasks, many=True)
+          return JsonResponse(customers_serializer.data, safe=False)
+
+    </code></pre>
   </section>
   <section><h3>Enable CORS in your Django backend</h3>
-  	<dl class="fa">
-  		<dt>We will use the <a href="https://github.com/ottoyiu/django-cors-headers">django-cors-headers</a> for handling the server headers required for Cross-Origin Resource Sharing (CORS)</dt>
-  		<dt>It is well tested package and works great with Django REST framework.</dt>
-  	</dl>
-  	<pre><code rel="settings.py" class="python">
-  		INSTALLED_APPS = [
-  		    ...
-  		    'corsheaders',
-  		]
-  		MIDDLEWARE = [
-  		    # CORS
-  		    'corsheaders.middleware.CorsMiddleware',
-  		]
+    <dl class="fa">
+      <dt>We will use the <a href="https://github.com/ottoyiu/django-cors-headers">django-cors-headers</a> for handling the server headers required for Cross-Origin Resource Sharing (CORS)</dt>
+      <dt>It is well tested package and works great with Django REST framework.</dt>
+    </dl>
+    <pre><code rel="settings.py" class="python">
+      INSTALLED_APPS = [
+          ...
+          'corsheaders',
+      ]
+      MIDDLEWARE = [
+          # CORS
+          'corsheaders.middleware.CorsMiddleware',
+      ]
 
-  		#  Only enable CORS for specified domains:
-  		CORS_ORIGIN_ALLOW_ALL = False
-  		CORS_ORIGIN_WHITELIST = (
-  		    'http://localhost:8000',
-  		    'http://127.0.0.1:8000',
-  		)
-  	</code></pre>
+      #  Only enable CORS for specified domains:
+      CORS_ORIGIN_ALLOW_ALL = False
+
+      CORS_ORIGIN_REGEX_WHITELIST = (
+          r"^https?:\/\/(localhost|127\.0\.0\.1)",
+      )
+    </code></pre>
   </section>
 </section>
 
 <section data-min="5"><h1>Build the Angular Project</h1></section>
 <section><h2>Build the Angular Project</h2>
   <section><h3>Create the project structure</h3>
-  	<pre><code rel="Terminal" class="bash">
-  		cd frontend
-  		# create Angular Application
-  		ng new todoApp
+    <pre><code rel="Terminal" class="bash">
+      # create a folder for the front-end code
+      mkdir frontend
 
-  		# run the app
-  		cd todoApp
-  		ng serve --open
-  	</code></pre>
+      # create Angular Application in frontend folder
+      cd frontend
+      ng new todoApp
+    </code></pre>
   </section>
-  <section><h3>Generate todos component</h3>
-  	<pre><code rel="Terminal" class="bash">
-  		# in root todoApp folder:
-  		ng generate component todos
-  	</code></pre>
+  <section><h3>Project structure</h3>
+    <dl class="fa">
+      <dt>Make sure you have next project structure:</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash">
+      todo_fullstack_project
+      ├── backend
+      │   ├── images│  
+      │   ├── manage.py
+      │   ├── todo_rest_api
+      │       ├── ...
+      │   └── todo_rest_project
+      │       ├── ...│  
+      └── frontend
+          ├── todoApp
+          │   ├── angular.json
+          │   ├── e2e
+          │   ├── package.json
+          │   ├── package-lock.json
+          │   ├── README.md
+          │   ├── src
+          │   │   ├── ...
+    </code></pre>
+  </section>
+  <section><h3>Start the Angular App</h3>
+    <pre><code rel="Terminal" class="bash">
+      # run the app
+      cd todoApp
+      ng serve --open
+    </code></pre>
+  </section>
+  <section><h3>Generate todo-api component</h3>
+    <pre><code rel="Terminal" class="bash">
+      # in root todoApp folder:
+      ng generate component todo-api
+    </code></pre>
   </section>
   <section><h3>create a Todo class</h3>
-    <pre><code rel="app/todo.ts" class="js">
+    <dl class="fa">
+      <dt>We have to define a Todo class to represent and construct our Todo items.</dt>
+      <dt>Create the file <code>todo.ts</code> in main project folder</dt>
+      <dt>And add the class definition:</dt>
+    </dl>
+
+    <pre><code rel="src/app/todo.ts" class="ts">
       export class Todo {
-          id: number;
-          title: string;
-          description: string;
-          image: string;
-          due: Date;
-          completed: boolean;
+        id: number;
+        title: string;
+        description: string;
+        image: string;
+        due: Date;
+        completed: boolean = false;
+
+        constructor(values: Object = {}) {
+          Object.assign(this, values);
+        }
       }
     </code></pre>
   </section>
   <section><h3>Create TodosApiService</h3>
-    <pre><code rel="Terminal" class="js">
+    <pre><code rel="Terminal" class="bash">
        ng generate service todos_api
     </code></pre>
-    <pre><code rel="todos-api.service.ts" class="js">
+    <pre><code rel="todos-api.service.ts" class="ts">
       import { Injectable } from '@angular/core';
       import { HttpClient } from '@angular/common/http';
       import { Observable } from 'rxjs';
+      import { map, catchError } from 'rxjs/operators';
+
+      import { Todo } from './todo';
 
       @Injectable({
         providedIn: 'root'
       })
       export class TodosApiService {
 
-        private baseUrl = 'http://127.0.0.1:8000/api/tasks';
+        private baseUrl = 'http://127.0.0.1:8000/api';
 
         constructor(private http: HttpClient) { }
 
-        getTodosList(): Observable<any> {
-          return this.http.get(`${this.baseUrl}/`);
+        // API: GET http://127.0.0.1:8000/api/tasks/
+        public getAllTodos(): Observable<any> {
+          return this.http
+            .get(this.baseUrl + '/tasks/').pipe(
+              map(response => {
+                const todos = response;
+                return todos;
+              }),
+              catchError(this.handleError),
+            )
         }
 
-        deleteAll(): Observable<any> {
-          return this.http.delete(`${this.baseUrl}/`);
+        // API: POST http://127.0.0.1:8000/api/tasks/
+         createTodo(todo: Todo): Observable<any> {
+          console.dir(todo);
+
+          return this.http
+          .post(`${this.baseUrl}/tasks/`, todo)
+          .pipe(map(response => {
+            console.dir(response);
+            return response;
+          }))
+        }
+
+        deleteAllTodos(): Observable<any> {
+          return this.http.delete(`${this.baseUrl}/tasks/`);
+        }
+
+
+        // API: DELETE http://127.0.0.1:8000/api/task/<id>
+        deleteTodo(id: number): Observable<any> {
+          return this.http.delete(`${this.baseUrl}/task/${id}/`);
+        }
+
+
+        private handleError (error: Response | any) {
+          console.error('ApiService::handleError', error);
+          return Observable.throw(error);
         }
       }
     </code></pre>
   </section>
-  <section><h3>todos/todos.component.html</h3>
-  	<pre><code rel="todos/todos.component.html" class="html">
-  		<div class="container">
+  <section><h3>Write todo-api component HTML Template:</h3>
+    <pre><code rel="todo-api/todo-api.component.html" class="html">
+      <div class="container">
         <form #todoForm="ngForm" (ngSubmit)="todoSubmit(todoForm);">
           <div class="form-group">
           <h1 class="text-center text-primary">Todo App</h1>
             <div class="input-group-prepend">
               <input type="text" #todo class="form-control" placeholder="Add Todo" autofocus name="todo" ngModel>
-              <span class="input-group-text" (click)="addItem(todo.value)">
+              <span class="input-group-text" (click)="createTodo(todo.value)">
                 <i class="material-icons">add</i>
               </span>
             </div>
           </div>
           <div class="data">
             <ul class="list-instyled">
-              <li *ngFor="let todo of todos | async">{{todo.title}} <i (click)="deleteItem(todo)" class="material-icons">delete</i></li>
+              <li *ngFor="let todo of todos | async">{{todo.title}}
+                <i (click)="deleteTodo(todo)" class="material-icons">delete</i>
+                <i (click)="updateTodo(todo)" class="material-icons">edit</i>
+              </li>
             </ul>
           </div>
-          <button type="button" class="button btn-danger" (click)='deleteAllTodos()'>Delete All</button>
+          <button type="button" class="button btn-danger" (click)="deleteAllTodos()">Delete All</button>
         </form>
       </div>
-  	</code></pre>
+
+    </code></pre>
+  </section>
+  <section><h3>Write the todo-api CSS</h3>
+    <pre><code rel="todo-api/todo-api.component.css" class="css">
+      /*Google fonts*/
+      @import url('https://fonts.googleapis.com/css?family=Raleway');
+      body{
+        padding: 0;
+        margin: 0;
+      }
+      form{
+        max-width: 80vw;
+        min-height: 60vh;
+        margin: 4em auto;
+        position: relative;
+        background: #f4f4f4;
+        padding: 2em 3em;
+      }
+      form h1{
+        font-family: "Raleway";
+        color:#05FFCF;
+        /*#05FFCF*/
+      }
+      form input[type=text]::placeholder{
+        font-family: "Raleway";
+        color:#666;
+      }
+      form .data{
+        margin-top: 1em;
+      }
+      form .data ul{
+        margin: 0;
+        padding: 0;
+      }
+      form .data li{
+        list-style-type: none;
+        background: #fff;
+        border-left: 4px solid #05FFCF;
+        padding: 1em;
+        margin: 1em auto;
+        width: 100%;
+        color: #666;
+        font-family: "Raleway";
+      }
+      form .data li i{
+        float: right;
+        color: #888;
+        cursor: pointer;
+      }
+      form .input-group-text{
+        background: #05FFCF;
+        border-radius: 50%;
+        width: 5em;
+        height: 5em;
+        padding: 1em 23px;
+        color: #fff;
+        position: absolute;
+        right: 13px;
+        top: 68px;
+        cursor: pointer;
+      }
+      form .input-group-text i{
+        font-size: 2em;
+      }
+      form .form-control{
+        height: 3em;
+        font-family: "Raleway";
+      }
+      form .form-control:focus{
+        box-shadow: 0;
+      }
+    </code></pre>
+  </section>
+  <section><h3>Include the <code>FormsModule</code> in main module settings</h3>
+    <pre><code rel="src/app/app.module.ts" class="js">
+      import { BrowserModule } from '@angular/platform-browser';
+      import { NgModule } from '@angular/core';
+      import { FormsModule }   from '@angular/forms';
+
+      import { AppComponent } from './app.component';
+      import { TodoApiComponent } from './todo-api/todo-api.component';
+
+      @NgModule({
+        declarations: [
+          AppComponent,
+          TodoApiComponent
+        ],
+        imports: [
+          BrowserModule,
+          FormsModule,
+        ],
+        providers: [],
+        bootstrap: [AppComponent]
+      })
+      export class AppModule { }
+    </code></pre>
   </section>
   <section><h3>description</h3>
-  	<dl class="fa">
-  		<dt><code>#todoForm="ngForm"</code> - a template reference variable to Angular ngForm directive</dt>
-  		<dt>The <code>ngSubmit</code> event emits the original form submission event</dt>
-  		<dt><code>#todo</code> - a template reference variable to the DOM input element within a template</dt>
-  		<dt><code>*ngFor</code> - Angular directive that renders a template for each item in a collection</dt>
-  	</dl>
+    <dl class="fa">
+      <dt><code>#todoForm="ngForm"</code> - a template reference variable to Angular ngForm directive</dt>
+      <dt>The <code>ngSubmit</code> event emits the original form submission event</dt>
+      <dt><code>#todo</code> - a template reference variable to the DOM input element within a template</dt>
+      <dt><code>*ngFor</code> - Angular directive that renders a template for each item in a collection</dt>
+    </dl>
   </section>
-  <section><h3>todos/todos.component.ts</h3>
-  	<pre><code rel="todos/todos.component.ts" class="ts">
-  		import { Component, OnInit } from '@angular/core';
+  <section><h3>Write the todo-api component logic</h3>
+    <pre><code rel="todo-api/todo-api.component.ts" class="ts">
+      import { Component, OnInit } from '@angular/core';
 
       import { Observable } from 'rxjs';
       import { TodosApiService } from '../todos-api.service';
@@ -343,7 +616,7 @@
         styleUrls: ['./todo-api.component.css']
       })
       export class TodoApiComponent implements OnInit {
-        todos: Observable<Todo[]>;
+        todos: Observable&lt;Todo[]&gt;;
 
         constructor(private todosApiService: TodosApiService) { }
 
@@ -351,34 +624,69 @@
           this.reloadData();
         }
 
+        // to submit item with enter, not only  with add btn click
+        todoSubmit(form:any){
+          let value = form.value;
+          if(value!==&quot;&quot;){
+            this.createTodo(value)
+            form.resetForm();
+          }else{
+            alert('Field required **')
+          }
+        }
+
         deleteAllTodos() {
-          this.todosApiService.deleteAll()
+          this.todosApiService.deleteAllTodos()
             .subscribe(
-              data => {
+              data =&gt; {
                 console.log(data);
                 this.reloadData();
               },
-              error => console.log('ERROR: ' + error));
+              error =&gt; console.log('ERROR: ' + error));
+        }
+
+        deleteTodo(todo) {
+          this.todosApiService.deleteTodo(todo.id)
+            .subscribe(
+              data =&gt; {
+                console.log(data);
+                this.reloadData();
+              },
+              error =&gt; console.log('ERROR: ' + error));
+        }
+
+        createTodo(title) {
+          console.warn('Will be implemented in labs')
+        }
+
+        updateTodo(todo){
+          console.warn('Will be implemented in labs');
+
         }
 
         // list todos
         reloadData() {
-          this.todos = this.todosApiService.getTodosList();
+          this.todos = this.todosApiService.getAllTodos();
         }
       }
-  	</code></pre>
+    </code></pre>
   </section>
   <section><h3>Include CSS libraries</h3>
-  	<dl class="fa">
-  		<dt>We will use the popular <a href="https://getbootstrap.com/">Bootsrap</a> v4, with free themes provided by <a href="https://bootswatch.com/">bootswatch.com</a> to easily style our app.</dt>
-  		<dt>And the material icons, provided by <a href="https://material.io/tools/icons/?style=baseline">Material Design Icons</a></dt>
-  	</dl>
-  	<pre><code rel="JS" class="js">
-  		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/slate/bootstrap.min.css">
-
-  		<!-- material icons -->
-  		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  	</code></pre>
+    <dl class="fa">
+      <dt>We will use the popular <a href="https://getbootstrap.com/">Bootsrap</a> v4, with free themes provided by <a href="https://bootswatch.com/">bootswatch.com</a> to easily style our app.</dt>
+      <dt>And the material icons, provided by <a href="https://material.io/tools/icons/?style=baseline">Material Design Icons</a></dt>
+      <dt>We will include these styles in our main index.html file, in the head section:</dt>
+    </dl>
+    <pre><code rel="todoApp/src/index.html" class="html">
+      &lt;head&gt;
+        ...
+        &lt;!-- bootstrap with bootswatch themes --&gt;
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/slate/bootstrap.min.css&quot;&gt;
+        &lt;!-- material icons --&gt;
+        &lt;link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;
+        ...
+      &lt;/head&gt;
+    </code></pre>
   </section>
 </section>
 
@@ -389,96 +697,122 @@
     <dl class="fa">
       <dt>As with any Angular Module we have to add the HttpClientModule module to the imports array of the main application module</dt>
     </dl>
-    <pre><code rel="JS" class="js">
-      ...
+    <pre><code rel="src/app/app.module.ts" class="js">
+      import { BrowserModule } from '@angular/platform-browser';
+      import { NgModule } from '@angular/core';
+      import { FormsModule }   from '@angular/forms';
       import { HttpClientModule } from  '@angular/common/http';
+
+      import { AppComponent } from './app.component';
+      import { TodoApiComponent } from './todo-api/todo-api.component';
 
       @NgModule({
         declarations: [
-          ...
+          AppComponent,
+          TodoApiComponent
         ],
         imports: [
-          ...
+          BrowserModule,
+          FormsModule,
           HttpClientModule
         ],
         providers: [],
         bootstrap: [AppComponent]
       })
       export class AppModule { }
-
     </code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h1>Test the project</h1></section>
+<section><h2>Test the project</h2>
+  <section><h3>the back -end</h3>
+    <dl class="fa">
+      <dt>Make sure you have a running Django server (do not close it!)</dt>
+      <dt>Enter some todo data through the Django Admin (<a href="http://127.0.0.1:8000/admin/todo_rest_api/task/">http://127.0.0.1:8000/admin/todo_rest_api/task/</a>)</dt>
+    </dl>
+    <a href="images/Tasks edit - Django site admin - Google Chrome.png"><img src="images/Tasks edit - Django site admin - Google Chrome.png"></a>
+  </section>
+  <section><h3>The front-end</h3>
+    <dl class="fa">
+      <dt>Make sure you have run your Angular app:</dt>
+      <dd>In separate terminal: <code>ng serve --open</code></dd>
+      <dt>You should see on <a href="http://localhost:4200/">http://localhost:4200/</a> your app</dt>
+      <dt>Currently you can list all task, delete all tasks, delete a single task.</dt>
+    </dl>
+    <a href="images/TodoApp - Google Chrome.png"><img src="images/TodoApp - Google Chrome.png"></a>
   </section>
 </section>
 
 <!-- <section id="hw"><h1>Exercises</h1></section>
 <section><h2>Task1</h2>
-	<section><h3>The Task</h3>
+  <section><h3>The Task</h3>
 
-	</section>
+  </section>
 </section>
 <section><h3>Submission</h3>
-	<dl class="fa">
-		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
-		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: build_a_full_stack_REST_API_app_with_Django_and_Angular">progressbg.python.course@gmail.com</a></dt>
-	</dl>
+  <dl class="fa">
+    <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW: build_a_full_stack_REST_API_app_with_Django_and_Angular">progressbg.python.course@gmail.com</a></dt>
+  </dl>
 </section> -->
 
 
 
 <section class="disclaimer" data-background="/ProgressBG-VC-Django-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
-	 <p>These slides are based on</p>
-	 <p>customised version of </p>
-	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
-	 <p>framework</p>
+   <p>These slides are based on</p>
+   <p>customised version of </p>
+   <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
 </section>
 <!--
 ########################################################
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1024,
-			height: 850,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+maous click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/ProgressBG-VC-Django-Slides/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/ProgressBG-VC-Django-Slides/lib/reveal.js/js/reveal.js"></script>
+   <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+      center: true,
+      width: 1024,
+      height: 850,
+      // Bounds for smallest/largest possible scale to apply to content
+      // minScale: .5,
+      maxScale: 1,
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/ProgressBG-VC-Django-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
 </body>
 </html>
